@@ -1,40 +1,185 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html>
+
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
+    <meta name="author" content="Novia Lim">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Novia Lim - Modern Full Stack Developer" />
+    <meta property="og:image" content="http://i.imgur.com/ARQqXNN.jpg" />
+    <meta property="og:description" content="Passionate in programming and data analytics, Novia has more than 10 years of IT + data analytics working experience with corporations such as Lexmark, Mercer & Oracle. Specialties: JavaScript, HTML5, CSS3, Git, Responsive design, API/JSON, RESTful API, Node.js, Express, React.js and Foundation Course in Analytics." />
+    <meta property="og:url" content="http://novialim.com" />
+
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
+    <title>VRooms</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="favicons/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+    html,
+    body {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        background-color: #F7F8FB;
+        height: 100%;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .message {
+        text-align: center;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px 20px;
+        max-width: 450px;
+    }
+
+    .message__title {
+        font-size: 22px;
+        font-weight: 100;
+        margin-top: 15px;
+        color: #47494E;
+        margin-bottom: 8px;
+    }
+
+    p {
+        -webkit-margin-after: 0px;
+        -webkit-margin-before: 0px;
+        font-size: 15px;
+        color: #7F828B;
+        line-height: 21px;
+        margin-bottom: 4px;
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #7F828B;
+        border: 1px solid #7F828B;
+    }
+
+    .hk-logo,
+    .app-icon {
+        fill: #DBE1EC;
+    }
+
+    .info {
+        fill: #9FABBC;
+    }
+
+    body.friendly {
+        background: -webkit-linear-gradient(-45deg, #8363a1 0%, #74a8c3 100%);
+        background: linear-gradient(135deg, #8363a1 0%, #74a8c3 100%);
+    }
+
+    body.friendly .message__title {
+        color: #fff;
+    }
+
+    body.friendly p {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    body.friendly .hk-logo,
+    body.friendly .app-icon {
+        fill: rgba(255, 255, 255, 0.9);
+    }
+
+    body.friendly .info {
+        fill: rgba(255, 255, 255, 0.9);
+    }
+
+    body.friendly .btn {
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .info_area {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .logo {
+        position: fixed;
+        left: 12px;
+        bottom: 12px;
+    }
+
+    #canvas-basic {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .cta-wrapper {
+        margin-top: 30px;
+    }
+
+    .cta-wrapper div, a {
+        position: relative;
+        padding: 3px 7px;
+        border: solid 1px transparent;
+        margin-right: 50px;
+        z-index: 1;
+        text-decoration: none;
+        color: #222;
+        transition: border .3s;
+    }
+    </style>
+    <base target=_parent />
+</head>
+
+<body class=friendly>
+
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+   
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <script src="granim.min.js"></script>
+    <script type="text/javascript">
+    var granimInstance = new Granim({
+        element: '#canvas-basic',
+        name: 'basic-gradient',
+        direction: 'left-right',
+        opacity: [1, 1],
+        isPausedWhenNotInView: true,
+        states: {
+            "default-state": {
+                gradients: [
+                    ['#AA076B', '#61045F'],
+                    ['#02AAB0', '#00CDAC'],
+                    ['#DA22FF', '#9733EE']
+                ]
+            }
+        }
+    });
+    </script>
+</body>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
 </html>
