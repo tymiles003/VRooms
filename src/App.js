@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Include the Main React Dependencies
+import React from "react";
+import ReactDOM from "react-dom";
+import routes from "./config/routes";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="btn">
-       Hang on tight. We are building something amazing.
-      </div>
-    );
-  }
-}
+import 'aframe';
+import 'aframe-animation-component';
+import 'aframe-particle-system-component';
+import 'babel-polyfill';
+import {Entity, Scene} from 'aframe-react';
 
-export default App;
+ReactDOM.render(routes, document.getElementById("app"));
