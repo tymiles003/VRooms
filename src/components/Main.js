@@ -12,7 +12,7 @@ const Main = props => (
   <div className="wrapper">
 
       <video className="video-container video-container-overlay" id="video-background" autoPlay="true" >
-        <source src="/assets/video/splashintro.mp4" type="video/mp4" />
+        <source src="https://s3.amazonaws.com/vrooms/splashintro.mp4" type="video/mp4" />
       </video>
 
         <div className="navigation navigation--main">
