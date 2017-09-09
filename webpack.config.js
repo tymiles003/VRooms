@@ -1,3 +1,5 @@
+var path = require("path");
+
 module.exports = {
 
   // This is the entry point or start of our react applicaton
@@ -6,6 +8,14 @@ module.exports = {
   // The plain compiled Javascript will be output into this file
   output: {
     filename: "public/bundle.js"
+  },
+
+  resolve: { 
+    extensions: ["", ".js", ".jsx"],
+    modulesDirectories: [path.resolve(__dirname, 'node_modules')]
+  },
+  resolveLoader: {
+    root: path.resolve(__dirname, 'node_modules')
   },
 
   // This section desribes the transformations we will perform
@@ -20,6 +30,7 @@ module.exports = {
         // Webpack will only process files in our src folder. This avoids processing
         // node modules and server files unnecessarily
         include: /src/,
+        exclude: path.resolve(__dirname, 'node_modules'),
         loader: "babel",
         query: {
           // These are the specific transformations we'll be using.

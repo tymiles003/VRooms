@@ -41,7 +41,7 @@ class Showcase extends React.Component {
     return (
       <a-scene>
         <Entity primitive='a-sky' src="assets/img/gallery/test-world3.jpg"/>
-        <a-text font="kelsonsans" value="Wayne's Home in Miami" width="6" position="-2.5 0.25 -1.5"
+        <a-text font="kelsonsans" value="Wayne's Home in Miami" width="6" position="-2.5 1 -1.5"
               rotation="0 15 0"></a-text>       
       </a-scene>
     );
