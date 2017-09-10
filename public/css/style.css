@@ -38,12 +38,11 @@ body.body-notify {
     /*display: none;*/
 }
 
-/*iframe {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    z-index: 99;
-}*/
+@media (max-width:1400px) {
+    #video-background {
+        display: none;
+    }
+}
 
 .wrapper {
     position: fixed;
