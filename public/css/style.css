@@ -37,12 +37,12 @@ body.body-notify {
     z-index: -100;
 }
 
-iframe {
+/*iframe {
     position: fixed;
     right: 0;
     bottom: 0;
     z-index: 99;
-}
+}*/
 
 .wrapper {
     position: fixed;
