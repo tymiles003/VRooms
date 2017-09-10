@@ -32,9 +32,8 @@ class Main extends Component {
 
                 <div className="navigation navigation--main">
                   <div className="navigation-wrapper">
-                    <a className="navigation__logo-link emerge" data-duration="600" data-effect="slide" data-right="64px"  >
+                    <a href="/" className="navigation__logo-link emerge" data-duration="600" data-effect="slide" data-right="64px"  >
                       <img className="navigation__logo" width="220" src="/assets/img/logo/VRooms_V8Logo180.png" alt="VRooms" /> 
-
                     </a>
                     <div className="navigation-mobile js-open-menu">
                       <div className="navigation-mobile__icon js-open-menu-btn"></div>
@@ -62,6 +61,19 @@ class Main extends Component {
                   </div>
                 </div>
 
+                <header className="header header--main js-header a-page" data-landing="yes" data-page="Home" data-page-name="Main">
+                  <div className="description">
+                    <h1 className="description__headline text--white emerge" data-duration="600" data-effect="slide" data-down="64px" data-hold="100">
+                      Virtual Reality for Real Estate
+                    </h1>
+                    <span className="description__sub_headline text--white emerge" data-duration="600" data-effect="slide" data-down="64px" data-hold="100" data-continue="true">
+                      Use VR to <strong>win</strong> more listings and <br />
+                      <strong>stay ahead</strong> of your competition
+                    </span>
+                      
+                  </div>
+
+                </header>
 
           </div>
         </div>   
