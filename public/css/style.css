@@ -34,7 +34,8 @@ body.body-notify {
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: -100;
+    z-index: 2;
+    /*display: none;*/
 }
 
 /*iframe {
@@ -48,7 +49,7 @@ body.body-notify {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 99;
     width: 100vw;
     height: 100vh;
     background-image: url(/assets/img/background/homebg4.jpg);
@@ -491,7 +492,7 @@ button {
     left: 4px;
     width: 27px;
     height: 4px;
-    background-color: #fff;
+    background-color: #818181;
     -webkit-transition: all 0s .3s;
     transition: all 0s .3s
 }
@@ -507,7 +508,7 @@ button {
 .navigation-mobile__icon::before {
     bottom: 8px;
     left: 0;
-    background: #fff;
+    background: #818181;
     -webkit-transition: bottom .3s .3s cubic-bezier(.23, 1, .32, 1), -webkit-transform .3s cubic-bezier(.23, 1, .32, 1);
     transition: bottom .3s .3s cubic-bezier(.23, 1, .32, 1), -webkit-transform .3s cubic-bezier(.23, 1, .32, 1);
     transition: bottom .3s .3s cubic-bezier(.23, 1, .32, 1), transform .3s cubic-bezier(.23, 1, .32, 1);
@@ -517,7 +518,7 @@ button {
 .navigation-mobile__icon::after {
     top: 8px;
     left: 0;
-    background: #fff;
+    background: #818181;
     -webkit-transition: top .3s .3s cubic-bezier(.23, 1, .32, 1), -webkit-transform .3s cubic-bezier(.23, 1, .32, 1);
     transition: top .3s .3s cubic-bezier(.23, 1, .32, 1), -webkit-transform .3s cubic-bezier(.23, 1, .32, 1);
     transition: top .3s .3s cubic-bezier(.23, 1, .32, 1), transform .3s cubic-bezier(.23, 1, .32, 1);
@@ -702,7 +703,8 @@ button {
     align-items: flex-end;
     width: 100%;
     min-height: 780px;
-    position: relative
+    position: relative;
+    z-index: 1;
 }
 
 .header--landing {
@@ -715,7 +717,7 @@ button {
 }
 
 .header--main {
-    padding-bottom: 120px
+    padding-bottom: 15%;
 }
 
 .landing-header__title {
@@ -787,7 +789,10 @@ button {
     -ms-flex-align: center;
     align-items: center;
     max-width: 1300px;
-    margin-top: auto
+    margin-top: auto;
+    background: rgba(0, 0, 0, .65);
+    border-radius: 5px 20px 5px;
+    padding: 0 20px;
 }
 
 .description__headline {
@@ -1207,7 +1212,7 @@ button {
         margin-bottom: 40px
     }
     .description__sub_headline {
-        margin-bottom: 65px
+        margin-bottom: 45px
     }
 }
 
@@ -1325,7 +1330,8 @@ button {
         height: 50px
     }
     .navigation__logo {
-        width: 180px
+        width: 180px;
+        padding-top: 10px
     }
     .navigation__logo-link {
         font-size: 0
@@ -1490,3 +1496,5 @@ button {
     transform: initial !important;
     transition: initial !important;
 }
+
+
