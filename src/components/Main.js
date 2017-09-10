@@ -9,6 +9,8 @@ import 'aframe-animation-component';
 import 'aframe-particle-system-component';
 import 'babel-polyfill';
 
+require('./styles/Main.css');
+
 class Main extends Component {
   constructor(props){
     super(props);
