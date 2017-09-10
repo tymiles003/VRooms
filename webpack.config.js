@@ -36,7 +36,8 @@ module.exports = {
           // These are the specific transformations we'll be using.
           presets: ["react", "es2015", "stage-2"]
         }
-      }
+      },
+      { test: /\.css$/, loader: 'style-loader!css-loader' }
     ]
   },
   // This lets us debug our react code in chrome dev tools. Errors will have lines and file names
