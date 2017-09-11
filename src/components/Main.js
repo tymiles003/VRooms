@@ -8,6 +8,8 @@ import 'aframe';
 import 'aframe-animation-component';
 import 'aframe-particle-system-component';
 import 'babel-polyfill';
+import LoginModal from "./LoginModal";
+
 
 require('./styles/Main.css');
 
@@ -46,8 +48,8 @@ class Main extends Component {
                         <a href="/showcase" className="navigation-menu__link ">SHOWCASE</a>
                         <a href="/contact" className="navigation-menu__link ">CONTACT US</a>
 
-                        <a rel="signup" href="#signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</a>
-                        <a data-auth="no" href="https://watch.appfollow.io?ref=github.com" className="navigation-menu__sign_in a-login">sign in</a>
+                        <a rel="signup" href="/signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</a>
+                        <a data-auth="no" href="/login" className="navigation-menu__sign_in a-login">sign in</a>
                     </nav>
                   </div>
                 </div>
@@ -85,6 +87,11 @@ class Main extends Component {
 
 export default Main;
 
+const handleLoginModal = () =>{
+
+  console.log("inside handle login",<Showcase />);
+  return <Showcase />;
+}
 
     // <Navbar />
     // {props.children}
