@@ -32,7 +32,7 @@ class Main extends Component {
                 <source src="https://s3.amazonaws.com/vrooms/splashintro.mp4" type="video/mp4" />
               </video>
 
-                <div className="navigation navigation--main">
+                <div className="navigation navigation--main navigation--main--gradient">
                   <div className="navigation-wrapper">
                     <a href="/" className="navigation__logo-link emerge" data-duration="600" data-effect="slide" data-right="64px"  >
                       <img className="navigation__logo" width="220" src="/assets/img/logo/VRooms_V8Logo180.png" alt="VRooms" /> 
