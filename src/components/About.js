@@ -42,7 +42,6 @@ class About extends React.Component {
                   }
               `}</style>
           </Helmet>
-
              
             <div className="particles">
              <Particles params={{

@@ -5,13 +5,34 @@ body {
 .application {
 	position: relative;
 }
-
+/*@media (min-width:1500px) {
+	canvas {
+		position: absolute;
+		top:0; 
+		left:0;
+		width: 100vw;
+	    height: 100vh;
+	}
+}*/
 .particles {
 	position: absolute;
 	top:0; 
 	left:0;
 	width: 100vw;
-    height: 100vh;
+	height: 100vh;
+	
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+}
+
+canvas {
+	min-width: 100%;
+	min-height: 100%;
+	width: 100vw;
+	height: 100vh;
+	align-self: stretch;
 }
 
 .aboutWrapper {
