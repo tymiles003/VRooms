@@ -6,6 +6,10 @@ import Favorites from "../components/Favorites";
 import Home from "../components/Home";
 import Showcase from "../components/Showcase";
 import About from "../components/About";
+import Login from "../components/authentication/login";
+import Signup from "../components/authentication/Signup";
+
+
 
 const routes = (
   <Router history={browserHistory}>
@@ -17,6 +21,10 @@ const routes = (
     </Route>
     <Route path="/about" component={About}>
     </Route>
+    <Route path="/login" component={Login} ></Route>
+    <Route path="/signup" component={Signup} ></Route>
+
+
     
   </Router>
 );
