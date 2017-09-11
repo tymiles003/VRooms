@@ -34,24 +34,24 @@ router.post("/signup", passport.authenticate("local-signup", {
 // });
 
 
-router.post("/passportLogin", passport.authenticate("local-login", {
-  successRedirect: "/profile",
-  failureRedirect: "/passportLogin",
+router.post("/login", passport.authenticate("local-login", {
+  successRedirect: "/",
+  failureRedirect: "/login",
   failureFlash: true,
 }));
 
 router.get("/auth/facebook", passport.authenticate("facebook", { scope: "email" }));
 
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/profile",
-  failureRedirect: "/",
+  successRedirect: "/",
+  failureRedirect: "/login",
 }));
 
 router.get("/auth/twitter", passport.authenticate("twitter"));
 
 router.get("/auth/twitter/callback", passport.authenticate("twitter", {
-  successRedirect: '/profile',
-  failureRedirect: '/',
+  successRedirect: '/',
+  failureRedirect: '/login',
 }));
 
 // router.get("/glogin", function(req,res){
@@ -62,8 +62,8 @@ router.get("/auth/twitter/callback", passport.authenticate("twitter", {
 router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 router.get("/auth/google/callback", passport.authenticate("google", {
-  successRedirect: "/profile",
-  failureRedirect: "/",
+  successRedirect: "/",
+  failureRedirect: "/login",
 }));
 
 // router.get("/auth/google/callback",

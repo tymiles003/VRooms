@@ -14,7 +14,7 @@ var loginRoutes = require("./routes/loginRoutes");
 var routes = require("./routes/routes");
 
 // Set up a default port, configure mongoose, configure our middleware
-var PORT = process.env.PORT || 5000;
+var PORT = process.env.PORT || 3000;
 mongoose.Promise = bluebird;
 var app = express();
 
@@ -54,6 +54,10 @@ app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Credentials', true);
+
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Credentials', 'true');
+
   next();
  });
 

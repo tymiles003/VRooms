@@ -40,16 +40,16 @@ const API = {
 
   login: function(){
     console.log("inside API login function");
-    return axios.post("/passportLogin");
+    return axios.post("/login");
   },
 
   signup: function(){
     return axios.post("/signup");
-  },
-
-  gLogin:function(){
-    return axios.get("http://localhost:5000/glogin");
   }
+
+  // gLogin:function(){
+  //   return axios.get("http://localhost:5000/glogin");
+  // }
 
 
 };

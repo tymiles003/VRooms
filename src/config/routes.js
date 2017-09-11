@@ -5,6 +5,7 @@ import Main from "../components/Main";
 import Favorites from "../components/Favorites";
 import Home from "../components/Home";
 import Showcase from "../components/Showcase";
+import About from "../components/About";
 import Login from "../components/authentication/login";
 import Signup from "../components/authentication/Signup";
 
@@ -17,6 +18,8 @@ const routes = (
       <IndexRoute component={Home} />
     </Route>
     <Route path="/showcase" component={Showcase}>
+    </Route>
+    <Route path="/about" component={About}>
     </Route>
     <Route path="/login" component={Login} ></Route>
     <Route path="/signup" component={Signup} ></Route>

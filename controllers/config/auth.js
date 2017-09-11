@@ -2,12 +2,12 @@ module.exports = {
   facebookAuth: {
     clientID: '896605267054808',
     clientSecret: '28f6a7d2842d5f9ba19e449131694902',
-    callbackURL: 'https://crossorigin.me/http://localhost:5000/auth/facebook/callback',
+    callbackURL: 'https://crossorigin.me/http://localhost:3000/auth/facebook/callback',
   },
   twitterAuth: {
     consumerKey: 'sOM9aZpoEyNAXKqvEUHd2O7cN',
     consumerSecret: '6I1x0PgH41AxuqtAKcfRqYtWDMKNv0TBaaoegW3RP3o1ks7NPk',
-    callbackURL: 'https://crossorigin.me/http://localhost:5000/auth/twitter/callback',
+    callbackURL: 'https://crossorigin.me/http://localhost:3000/auth/twitter/callback',
   },
   googleAuth: {
     //FOR DEV
@@ -24,5 +24,6 @@ module.exports = {
     clientID: "243612288079-f5s6vep0ag5frfluh0l1bng60kkncsu8.apps.googleusercontent.com",
     clientSecret: "FVQWsYreVVDi1t_VAwV0_7_m",
     callbackURL: "/auth/google/callback"
+    
   },
 };
