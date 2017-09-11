@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "webpack -w",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p --progress"
   },
   "keywords": [
     "aframe",
