@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, IndexRoute, Router, browserHistory } from "react-router";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 import Main from "../components/Main";
 import Favorites from "../components/Favorites";
@@ -9,24 +9,16 @@ import About from "../components/About";
 import Login from "../components/authentication/login";
 import Signup from "../components/authentication/Signup";
 
-
-
 const routes = (
-  <Router history={browserHistory}>
-    <Route path="/" component={Main}>
-      <Route path="favorites" component={Favorites} />
-      <IndexRoute component={Home} />
-    </Route>
-    <Route path="/showcase" component={Showcase}>
-    </Route>
-    <Route path="/about" component={About}>
-    </Route>
-    <Route path="/login" component={Login} ></Route>
-    <Route path="/signup" component={Signup} ></Route>
-
-
-    
-  </Router>
+    <BrowserRouter>
+        <Switch>
+            <Route exact path="/" component={Main} />
+            <Route path="/showcase" component={Showcase} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+        </Switch>
+    </BrowserRouter>
 );
 
 export default routes;
