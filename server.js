@@ -18,12 +18,6 @@ var PORT = process.env.PORT || 5000;
 mongoose.Promise = bluebird;
 var app = express();
 
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token');
-//     next();
-//   });
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -42,20 +36,6 @@ app.use(passport.session());
 app.use(flash());
 
 require("./controllers/config/passport")(passport);
-
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token');
-    next();
-  });
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Credentials', true);
-  next();
- });
 
 
 app.use(express.static(__dirname + "/public"));

@@ -3,7 +3,12 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../../models/user');
-var configAuth = require('./auth');
+var configAuth = require('./auth').dev;
+
+
+if (process.env.NODE_ENV === "production") {
+  configAuth = require('./auth').prod;
+}
 
 module.exports = function(passport) {
 
@@ -56,6 +61,7 @@ module.exports = function(passport) {
           return done(null, false, req.flash('loginMessage', 'No user found.'));
       if (!user.validPassword(password))
           return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+        console.log("USER ==== ",user);
       return done(null, user);
     });
   }));

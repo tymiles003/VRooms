@@ -32,17 +32,13 @@ class Login extends Component{
 
 	handleLogin = () =>{
 		API.login().then(function(res){
-			console.log("DATA===",res);
+			console.log("DATA===",res.data);
+			console.log("User===",res.user);
+			console.log("Response===",res);
+
+
 		});
 	}
-
-	handleGLogin = (e) =>{
-		e.preventDefault();
-		API.gLogin().then(function(res){
-			console.log("DATA===",res);
-		});
-	}
-
 
 	render(){
 
@@ -60,11 +56,11 @@ class Login extends Component{
 						        <input type="password" className="form-control" name="password" />
 						      </div>
 						        
-						        <button className="form-control" onClick={this.handleLogin} >Submit</button>
+						        <button className="form-control" type="submit">Submit</button>
 
-						        <button className="btn btn-primary" onClick={this.handleGoogleLogin}>Google</button>
-						        <button className="btn btn-primary" onClick={this.handleFacebookLogin}>Facebook</button>
-						        <button className="btn btn-primary" onClick={this.handleTwitterLogin}>Twitter</button>
+						        <a href="auth/google" className="btn btn-primary" >Google</a>
+						        <a href="auth/facebook" className="btn btn-primary" >Facebook</a>
+						        <a href="auth/twitter" className="btn btn-primary">Twitter</a>
 						    </form>
 				  </div>
 				  <span className="fa fa-sign-in"> Don't have an account?<a href="/signup"> Signup</a></span>
@@ -78,6 +74,3 @@ export default Login;
 
 
 
- // <% if (message != null) { %>
-	// 			    	<div className="alert-danger"><%= message %></div>
-	// 			    <% } %>
