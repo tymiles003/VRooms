@@ -1,0 +1,82 @@
+var express = require("express");
+var passport = require("passport");
+var path = require("path");
+
+var router = express.Router();
+
+
+
+// router.get('/login', function(req, res, next) {
+//   res.render('login.ejs', { message: req.flash('loginMessage') });
+// });
+
+// router.get('/signup', function(req, res) {
+//   res.render('signup.ejs', { message: req.flash('signupMessage') });
+// });
+
+// router.get('/profile', isLoggedIn, function(req, res) {
+//   res.render('profile.ejs', { user: req.user });
+// });
+
+router.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+router.post("/signup", passport.authenticate("local-signup", {
+  successRedirect: "/profile",
+  failureRedirect: "/signup",
+  failureFlash: true,
+}));
+
+// router.post("/login", function(req,res){
+//   console.log("inside login post route");
+// });
+
+
+router.post("/passportLogin", passport.authenticate("local-login", {
+  successRedirect: "/profile",
+  failureRedirect: "/passportLogin",
+  failureFlash: true,
+}));
+
+router.get("/auth/facebook", passport.authenticate("facebook", { scope: "email" }));
+
+router.get("/auth/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/profile",
+  failureRedirect: "/",
+}));
+
+router.get("/auth/twitter", passport.authenticate("twitter"));
+
+router.get("/auth/twitter/callback", passport.authenticate("twitter", {
+  successRedirect: '/profile',
+  failureRedirect: '/',
+}));
+
+// router.get("/glogin", function(req,res){
+//   console.log("inside /auth/google");
+//   passport.authenticate('google', { scope: ['profile', 'email'] });
+// });
+
+router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+router.get("/auth/google/callback", passport.authenticate("google", {
+  successRedirect: "/profile",
+  failureRedirect: "/",
+}));
+
+// router.get("/auth/google/callback",
+//   passport.authenticate("google", { failureRedirect: "/auth/google" }),
+//   (req, res) => res.redirect("OAuthLogin://login?user=" + JSON.stringify(req.user)));
+router.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+
+module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+      return next();
+  res.redirect('/');
+}

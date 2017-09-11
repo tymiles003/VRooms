@@ -7,13 +7,13 @@ import 'aframe';
 import 'aframe-animation-component';
 import 'aframe-particle-system-component';
 import 'babel-polyfill';
+import LoginModal from "./LoginModal";
+
 
 const Main = props => (
   <div className="wrapper">
 
-      <video className="video-container video-container-overlay" id="video-background" autoPlay="true" >
-        <source src="https://s3.amazonaws.com/vrooms/splashintro.mp4" type="video/mp4" />
-      </video>
+      
 
         <div className="navigation navigation--main">
           <div className="navigation-wrapper">
@@ -30,8 +30,8 @@ const Main = props => (
                 <a href="/showcase" className="navigation-menu__link ">SHOWCASE</a>
                 <a href="/contact" className="navigation-menu__link ">CONTACT US</a>
 
-                <a rel="signup" href="#signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</a>
-                <a data-auth="no" href="https://watch.appfollow.io?ref=github.com" className="navigation-menu__sign_in a-login">sign in</a>
+                <a rel="signup" href="/signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</a>
+                <a data-auth="no" href="/login" className="navigation-menu__sign_in a-login" >sign in</a>
             </nav>
           </div>
         </div>
@@ -53,6 +53,11 @@ const Main = props => (
 
 export default Main;
 
+const handleLoginModal = () =>{
+
+  console.log("inside handle login",<Showcase />);
+  return <Showcase />;
+}
 
     // <Navbar />
     // {props.children}

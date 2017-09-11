@@ -18,7 +18,40 @@ const API = {
     quote.favorited = !quote.favorited;
     const { _id, favorited } = quote;
     return axios.patch(`/api/quotes/${_id}`, { favorited });
+  },
+
+  loginFacebook: function(){
+  console.log("inside handle facebook login API function");
+
+    return axios.get("/auth/facebook");
+  },
+
+  loginGoogle: function(){
+  console.log("inside handle google login API function");
+
+    return axios.get("/auth/google").then(function(res){
+      console.log("response ;;; ",res);
+    });
+  },
+
+  loginTwitter: function(){
+    return axios.get("/auth/twitter");
+  },
+
+  login: function(){
+    console.log("inside API login function");
+    return axios.post("/passportLogin");
+  },
+
+  signup: function(){
+    return axios.post("/signup");
+  },
+
+  gLogin:function(){
+    return axios.get("http://localhost:5000/glogin");
   }
+
+
 };
 
 export default API;
