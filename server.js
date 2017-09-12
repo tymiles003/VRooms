@@ -1,20 +1,21 @@
-// Require our dependecies
-var express = require("express");
-var mongoose = require("mongoose");
-var bluebird = require("bluebird");
-var bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
+// Require our dependencies
+const express = require("express");
+const mongoose = require("mongoose");
+const bluebird = require("bluebird");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const path = require("path");
 
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
-var flash = require("connect-flash");
-var session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+const session = require("express-session");
 
-var loginRoutes = require("./routes/loginRoutes");
-var routes = require("./routes/routes");
+const apiRoutes = require("./routes/apiRoutes");
+const loginRoutes = require("./routes/loginRoutes");
 
 // Set up a default port, configure mongoose, configure our middleware
-var PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 mongoose.Promise = bluebird;
 var app = express();
 
@@ -26,11 +27,15 @@ app.use(function(req, res, next) {
 });
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use(cookieParser());
-app.use(session({ secret: "shhsecret", resave: true, saveUninitialized: true }));
+app.use(session({
+    secret: "shhsecret",
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -43,22 +48,25 @@ app.use(express.static(__dirname + "/public"));
 
 app.use("/", loginRoutes);
 
+// Default React route
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
 
-var db = process.env.MONGODB_URI || "mongodb://localhost/vroomsDB";
+const db = process.env.MONGODB_URI || "mongodb://localhost/vroomsDB";
 
 // Connect mongoose to our database
-mongoose.connect(db, function(error) {
-  // Log any errors connecting with mongoose
-  if (error) {
-    console.error(error);
-  }
-  // Or log a success message
-  else {
-    console.log("mongoose connection is successful");
-  }
+mongoose.connect(db, error => {
+    // Log any errors connecting with mongoose
+    if (error) {
+        console.error(error);
+    } else {
+        // Or log a success message
+        console.log("mongoose connection is successful");
+    }
 });
 
 // Start the server
-app.listen(PORT, function() {
-  console.log("Now listening on port %s! Visit localhost:%s in your browser.", PORT, PORT);
+app.listen(PORT, () => {
+    console.log("Now listening on port %s!", PORT);
 });
