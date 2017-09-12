@@ -5,6 +5,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Entity, Scene} from 'aframe-react';
+import {Helmet} from "react-helmet";
 
 // Showcasing gallery list of real estate
 class Showcase extends React.Component {
@@ -18,25 +19,29 @@ class Showcase extends React.Component {
   //   this.getQuotes = this.getQuotes.bind(this);
   // }
   // // Getting all quotes once the component has mounted
-  // componentDidMount() {
-  //   this.getQuotes();
-  //   // getQuotes() {}
+ 
+    this.removejscssfile = this.removejscssfile.bind(this);
 
-  //   API.getQuotes().then((res) => {
-  //     const favoriteQuotes = res.data.filter(quote => quote.favorited);
-  //     this.setState({ quotes: favoriteQuotes });
-  //   });
-  // }
-  // // A helper method for rendering one panel for each quote
-  // renderQuotes() {
-  //   return this.state.quotes.map(quote => (
-  //     <Panel
-  //       quote={quote}
-  //       key={quote._id}
-  //       getQuotes={this.getQuotes}
-  //     />
-  //   ));
-   }
+  }
+
+  removejscssfile(filename, filetype){
+    var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none"; //determine element type to create nodelist from
+    var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none"; //determine corresponding attribute to test for
+    var allsuspects=document.getElementsByTagName(targetelement);
+
+    for (var i=allsuspects.length; i>=0; i--)
+    { //search backwards within nodelist for matching elements to remove
+      if (allsuspects[i] && allsuspects[i].getAttribute(targetattr)!=null && allsuspects[i].getAttribute(targetattr).indexOf(filename)!=-1)
+        allsuspects[i].parentNode.removeChild(allsuspects[i]); //remove element by calling parentNode.removeChild()
+    }
+  }
+
+  componentDidMount = () => {
+    this.removejscssfile("drift.js", "js"); //remove all occurences of "drift.js" on VR page
+    this.removejscssfile("https://js.driftt.com/include/1505206200000/9ubdvirh8v4g.js", "js");
+    
+  }
+
   render() {
     return (
       <a-scene>

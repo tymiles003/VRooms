@@ -1502,3 +1502,19 @@ button {
     transform: initial !important;
     transition: initial !important;
 }
+
+/* Additional */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+a-scene {
+    position: relative;
+    z-index: 999;
+}
+
+#drift-widget-container{
+    position: absolute;
+    z-index:101 !important;
+}
