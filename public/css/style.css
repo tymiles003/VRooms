@@ -1318,6 +1318,7 @@ button {
 }
 
 @media (max-width:768px) {
+
     .navigation-wrapper {
         padding: 0 20px
     }
@@ -1333,12 +1334,12 @@ button {
 }
 
 @media (max-width:750px) {
+
     .navigation {
         height: 50px
     }
     .navigation__logo {
-        width: 180px;
-        padding-top: 10px
+        width: 120px;
     }
     .navigation__logo-link {
         font-size: 0
