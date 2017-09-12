@@ -6,7 +6,7 @@ const Navbar = (props) => (
 	<div className="navigation navigation--main">
 		<div className="navigation-wrapper">
 			<Link to="/" className="navigation__logo-link emerge" data-duration="600" data-effect="slide" data-right="64px"  >
-				<img className="navigation__logo" width="220" src="/assets/img/logo/VRooms_V10_Hori_Gray.png" alt="VRooms" /> 
+				<img className="navigation__logo" width="220" src={"/assets/img/logo/"+props.logo_filename+".png"} alt="VRooms" /> 
 			</Link>
 			<div className="navigation-mobile js-open-menu">
 				<div className="navigation-mobile__icon js-open-menu-btn"></div>

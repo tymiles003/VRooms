@@ -34,7 +34,7 @@ class Main extends Component {
                 <source src="https://s3.amazonaws.com/vrooms/splashintro.mp4" type="video/mp4" />
               </video>
 
-							<Navbar theme="white-bg"/>
+							<Navbar logo_filename="VRooms_V10_Hori_Gray" theme="white-bg"/>
 
                 <header className="header header--main js-header a-page" data-landing="yes" data-page="Home" data-page-name="Main">
                   <div className="description">
