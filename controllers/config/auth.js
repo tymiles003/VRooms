@@ -52,7 +52,7 @@ module.exports = {
       //FOR PROD
       clientID: "243612288079-f5s6vep0ag5frfluh0l1bng60kkncsu8.apps.googleusercontent.com",
       clientSecret: "FVQWsYreVVDi1t_VAwV0_7_m",
-      callbackURL: "/auth/google/callback"
+      callbackURL: "https://v-rooms.herokuapp.com/auth/google/callback"
     }
   }
 
