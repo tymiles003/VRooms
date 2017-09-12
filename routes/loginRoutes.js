@@ -21,18 +21,11 @@ router.get("/logout", function(req, res) {
     res.redirect("/");
 });
 
-router.post(
-    "/signup",
-    passport.authenticate("local-signup", {
-        successRedirect: "/profile",
-        failureRedirect: "/signup",
-        failureFlash: true
-    })
-);
-
-// router.post("/login", function(req,res){
-//   console.log("inside login post route");
-// });
+router.post("/signup", passport.authenticate("local-signup", {
+  successRedirect: "/",
+  failureRedirect: "/signup",
+  failureFlash: true,
+}));
 
 router.post(
     "/login",
@@ -66,15 +59,12 @@ router.get(
     })
 );
 
-// router.get("/glogin", function(req,res){
-//   console.log("inside /auth/google");
-//   passport.authenticate('google', { scope: ['profile', 'email'] });
-// });
 
 router.get(
     "/auth/google",
     passport.authenticate("google", { scope: ["profile", "email"] })
 );
+
 
 router.get(
     "/auth/google/callback",

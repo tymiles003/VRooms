@@ -15,9 +15,17 @@ const apiRoutes = require("./routes/apiRoutes");
 const loginRoutes = require("./routes/loginRoutes");
 
 // Set up a default port, configure mongoose, configure our middleware
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 mongoose.Promise = bluebird;
-const app = express();
+var app = express();
+
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -34,8 +42,10 @@ app.use(flash());
 
 require("./controllers/config/passport")(passport);
 
-app.use(express.static(path.join(__dirname, "./public")));
-app.use("/api", apiRoutes);
+
+app.use(express.static(__dirname + "/public"));
+// app.use("/", routes);
+
 app.use("/", loginRoutes);
 
 // Default React route
