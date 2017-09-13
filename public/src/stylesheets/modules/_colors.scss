@@ -1,0 +1,53 @@
+// Imports ===================================
+	@import "./vendor/_materialize-colors";
+	@import "./vendor/_material-design-guide";
+	@import "./vendor/_flat-colors";
+	// @import "modules/_color-overrides";
+//============================================
+
+// Define General Colors =====================
+	$red:            $flat-red;
+	$orange:         $flat-orange;
+	$yellow:         $flat-yellow;
+	$green:          $flat-green;
+	$teal:           $flat-teal;
+	$blue:           $flat-blue;
+	$purple:         $flat-purple;
+	$darkblue:       $flat-darkblue;
+
+	$dark-red:       $flat-red-d;
+	$dark-orange:    $flat-orange-d;
+	$dark-green:     $flat-green-d;
+	$dark-teal:      $flat-teal-d;
+	$dark-blue:      $flat-blue-d;
+	$dark-purple:    $flat-purple-d;
+	$dark-darkblue:  $flat-darkblue-d;
+
+	$white:          #fff;
+	$offwhite:       $flat-mono-white;
+	$light-gray:     $flat-mono-light;
+	$gray:           $flat-mono;
+	$dark-gray:      $flat-mono-dark;
+
+// Background Colors =========================
+	$color-bg-light: $offwhite;
+	$color-bg-dark: $dark-darkblue;
+
+// Text Colors ===============================
+	$color-link: #08c;
+
+	$color-fg-primary:   $ideal-primary;
+	$color-fg-secondary: $ideal-secondary;
+	$color-fg-dividers:  $ideal-dividers;
+	$color-fg-disabled:  $ideal-disabled;
+	$color-fg-hint:      $ideal-hint;
+	$color-fg-active:    $ideal-active;
+	$color-fg-inactive:  $ideal-inactive;
+
+	$color-fg-light-primary:   $ideal-white-primary;
+	$color-fg-light-secondary: $ideal-white-secondary;
+	$color-fg-light-dividers:  $ideal-white-dividers;
+	$color-fg-light-disabled:  $ideal-white-disabled;
+	$color-fg-light-hint:      $ideal-white-hint;
+	$color-fg-light-active:    $ideal-white-active;
+	$color-fg-light-inactive:  $ideal-white-inactive;

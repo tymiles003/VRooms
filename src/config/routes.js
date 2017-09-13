@@ -8,6 +8,8 @@ import Showcase from "../components/Showcase";
 import About from "../components/About";
 import LoginForm from "../components/authentication/LoginForm";
 import Signup from "../components/authentication/Signup";
+import NewVRoom from "../components/NewVRoom";
+
 
 const routes = (
     <BrowserRouter>
@@ -17,6 +19,7 @@ const routes = (
             <Route exact path="/about" component={About} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/signup" component={Signup} />
+            <Route path="/new-vroom" component={NewVRoom} />
         </Switch>
     </BrowserRouter>
 );
