@@ -18,7 +18,7 @@ const Navbar = (props) => (
           <Link to="/contact" className="navigation-menu__link uppercase">Contact Us</Link>
 
           <Link rel="signup" to="/signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</Link>
-          <Link data-auth="no" to="/login" className="navigation-menu__sign_in a-login">sign in</Link>
+          <Link data-auth="no" to="/login" className="navigation-menu__sign_in a-login" onClick={props.handleAuth}>sign in</Link>
       </nav>
     </div>
   </div>

@@ -8,7 +8,7 @@ import 'aframe';
 import 'aframe-animation-component';
 import 'aframe-particle-system-component';
 import 'babel-polyfill';
-import LoginModal from "./LoginModal";
+import Modal, {openModal} from "./CustomModal";
 
 import Navbar from './common/Navbar';
 import MobileMenu from './common/MobileMenu';
@@ -18,7 +18,20 @@ require('./styles/Main.css');
 class Main extends Component {
   constructor(props){
     super(props);
+
+    this.state={
+      signInClicked:false
+    }
   }
+
+handleAuth = (event) =>{
+  event.preventDefault();
+  console.log("inside handle auth");
+  this.setState({signInClicked:true});
+  
+  // this.forceUpdate();
+}
+
 
   render() {
       return (
@@ -36,8 +49,8 @@ class Main extends Component {
                 <source src="/assets/video/splashintro.mp4" type="video/mp4" />
               </video>
 
-                <Navbar logo_filename="VRooms_V11_Hori_Gray" theme="white-bg"/>
-
+                <Navbar logo_filename="VRooms_V11_Hori_Gray" theme="white-bg" handleAuth={this.handleAuth}/>
+                {this.state.signInClicked ? <Modal ref={(node) => {this.modal=node;}} modalIsOpen={true} /> : null}
                 <MobileMenu />
 
                 <header className="header header--main js-header a-page" data-landing="yes" data-page="Home" data-page-name="Main">
@@ -62,11 +75,6 @@ class Main extends Component {
 
 export default Main;
 
-const handleLoginModal = () =>{
-
-  console.log("inside handle login",<Showcase />);
-  return <Showcase />;
-}
 
     // <Navbar />
     // {props.children}
