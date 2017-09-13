@@ -806,7 +806,8 @@ button {
     line-height: 1.15em;
     max-width: 1000px;
     margin-bottom: 45px;
-    text-align: center
+    text-align: center;
+    margin-top: 20px
 }
 
 .description__sub_headline {
@@ -1321,7 +1322,8 @@ button {
         padding: 0 20px
     }
     .description__headline {
-        font-size: 49px
+        font-size: 49px;
+        margin-top: 20px;
     }
     .our_features__way+.our_features__way {
         margin-top: 0
