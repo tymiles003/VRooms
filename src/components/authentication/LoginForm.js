@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 
-class Login extends Component{
+class LoginForm extends Component{
 
 	constructor(){
 		super();
@@ -35,14 +35,13 @@ class Login extends Component{
 			console.log("DATA===",res.data);
 			console.log("User===",res.user);
 			console.log("Response===",res);
-
-
 		});
 	}
 
 	render(){
 
 		return (
+				
 				<div className="col-sm-8 col-sm-offset-2">
 				  <div className="jumbotron text-center">
 						    <form action="/login" method="post">
@@ -69,7 +68,7 @@ class Login extends Component{
 	}
 } 
 
-export default Login;
+export default LoginForm;
 
 
 				    // <h1><span className="fa fa-sign-in"></span> Login</h1>
