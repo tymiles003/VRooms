@@ -6,7 +6,7 @@ import Favorites from "../components/Favorites";
 import Home from "../components/Home";
 import Showcase from "../components/Showcase";
 import About from "../components/About";
-import Login from "../components/authentication/login";
+import LoginForm from "../components/authentication/LoginForm";
 import Signup from "../components/authentication/Signup";
 
 const routes = (
@@ -15,7 +15,7 @@ const routes = (
             <Route exact path="/" component={Main} />
             <Route path="/showcase" component={Showcase} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/login" component={LoginForm} />
             <Route exact path="/signup" component={Signup} />
         </Switch>
     </BrowserRouter>

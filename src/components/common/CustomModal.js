@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import Login from "./authentication/login";
  
 const customStyles = {
   content : {
@@ -30,17 +29,13 @@ class CustomModal extends React.Component {
  
   openModal() {
         this.setState({modalIsOpen: true});
-          
-    // this.setState({modalIsOpen: true});
   }
   
   toggleModal(){
-    this.setState({modelIsOpen: !this.state.modelIsOpen});
-    // return this.state.modelIsOpen;
+    this.setState({modelIsOpen: !(this.state.modalIsOpen)});
   }
 
   afterOpenModal() {
-    // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
   }
  
@@ -50,7 +45,6 @@ class CustomModal extends React.Component {
   }
  
  componentWillMount(){
-    // this.setState({modalIsOpen: false});
     Modal.setAppElement("body");
      
  }
@@ -77,12 +71,14 @@ class CustomModal extends React.Component {
           contentLabel="Example Modal"
         >
 
-        <div className="modal-header">
+          <div className="modal-header">
             <button type="button" className="close"  onClick={this.closeModal}>×</button>
-            <h4 className="modal-title">Login with</h4>
-        </div>
+            <h4 className="modal-title">{this.props.title}</h4>
+				</div>
+
+        {this.props.children}
         
-        <Login />
+        
          
         </Modal>
     );

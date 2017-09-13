@@ -3,12 +3,13 @@ import {Helmet} from "react-helmet";
 // import { Link } from "react-router";
 // import Navbar from "./common/Navbar";
 // import Footer from "./common/Footer";
+import LoginForm from "./authentication/LoginForm";
 
 import 'aframe';
 import 'aframe-animation-component';
 import 'aframe-particle-system-component';
 import 'babel-polyfill';
-import Modal, {openModal} from "./CustomModal";
+import Modal from "./common/CustomModal";
 
 import Navbar from './common/Navbar';
 import MobileMenu from './common/MobileMenu';
@@ -50,7 +51,11 @@ handleAuth = (event) =>{
               </video>
 
                 <Navbar logo_filename="VRooms_V11_Hori_Gray" theme="white-bg" handleAuth={this.handleAuth}/>
-                {this.state.signInClicked ? <Modal ref={(node) => {this.modal=node;}} modalIsOpen={true} /> : null}
+                {this.state.signInClicked ? 
+                  (<Modal ref={(node) => {this.modal=node;}} modalIsOpen={true} title="Login" >
+                    <LoginForm />
+                    </Modal>
+                  ) : null}
                 <MobileMenu />
 
                 <header className="header header--main js-header a-page" data-landing="yes" data-page="Home" data-page-name="Main">
