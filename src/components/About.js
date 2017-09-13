@@ -65,64 +65,65 @@ class About extends React.Component {
 
                 <MobileMenu />
 
+                <div className="marketing">
+                  <section className="section-features" id="application-home-benefits">
+                    <div className="row expanded text--white">
+                      <div className="small-centered small-12 columns">
+                        <h1>Discover the Power of Virtual Reality Using VRooms</h1>
+                      </div>
+                      <div className="small-12 columns feature-container">
+                        <div className="small-12 large-6 columns feature-content left">
+                          <div className="feature-text">
+                            <h5>Engage</h5>
+                            <p>Lucas ipsum dolor sit amet maul dooku gamorrean kessel sith moff organa cade moff jango. Sidious lando solo dagobah ackbar calamari. Obi-wan hutt anakin organa tatooine moff mace. Solo greedo darth dagobah jabba coruscant dagobah organa wedge.</p>
+                            <hr className="benefit-divider-1" />
+                          </div>
+                        </div>
+                        <div className="small-12 large-6 columns image-right">
+                          <img className="feature-img js-application-home-benefits-1-img" src="/assets/img/marketing/1.jpg" alt="Feature1" />
+                        </div>
+                      </div>
+                      <div className="small-12 columns feature-container">
+                        <div className="small-12 large-6 columns image-left">
+                          <img className="feature-img js-application-home-benefits-2-img" src="/assets/img/marketing/2.jpg" alt="Feature2" />
+                        </div>
+                        <div className="small-12 large-6 columns feature-content">
+                          <div className="feature-text">
+                            <h5>Improve</h5>
+                            <p>Lucas ipsum dolor sit amet maul dooku gamorrean kessel sith moff organa cade moff jango. Sidious lando solo dagobah ackbar calamari. Obi-wan hutt anakin organa tatooine moff mace. Solo greedo darth dagobah jabba coruscant dagobah organa wedge. </p>
+                            <hr className="benefit-divider-2" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="small-12 columns feature-container">
+                        <div className="small-12 large-6 columns feature-content left">
+                          <div className="feature-text">
+                            <h5>Experience</h5>
+                            <p>Lucas ipsum dolor sit amet maul dooku gamorrean kessel sith moff organa cade moff jango. Sidious lando solo dagobah ackbar calamari. Obi-wan hutt anakin organa tatooine moff mace. Solo greedo darth dagobah jabba coruscant dagobah organa wedge. </p>
+                            <hr className="benefit-divider-1" />
+                          </div>
+                        </div>
+                        <div className="small-12 large-6 columns image-right">
+                          <img className="feature-img js-application-home-benefits-3-img" src="/assets/img/marketing/3.jpg" alt="Feature3" />
+                        </div>
+                      </div>
+                      <div className="small-12 columns feature-container">
+                        <div className="small-12 large-6 columns image-left">
+                          <img className="feature-img js-application-home-benefits-4-img" src="/assets/img/marketing/4.jpg" alt="Feature4" />
+                        </div>
+                        <div className="small-12 large-6 columns feature-content">
+                          <div className="feature-text">
+                            <h5>Easy to Share</h5>
+                            <p>Share with people who don’t have a VR headset. Send them a mobile-compatible link and embed on your own web page.</p>
+                            <hr className="benefit-divider-2" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>  
 
-
-                <section class="section-features" id="application-home-benefits">
-                  <div class="row expanded">
-                    <div class="small-centered small-12 columns">
-                      <h4>Discover the Power of Transported</h4>
-                    </div>
-                    <div class="small-12 columns feature-container">
-                      <div class="small-12 large-6 columns feature-content left">
-                        <div class="feature-text align-right">
-                          <h5>Gorgeous Colors and Stunning Details</h5>
-                          <p>Homes can be scanned with stunning detail, in high resolution with rich HDR color. Buyers will feel as if they're really there.</p>
-                          <hr class="benefit-divider-1" />
-                        </div>
-                      </div>
-                      <div class="small-12 large-6 columns image-right">
-                        <img class="feature-img js-application-home-benefits-1-img" src="../transported-production.herokuapp.com/assets/marketing/features/index/feature1-9deb8dbcb7f58a5cbaeb939c8db4a8670644869fa5566eb2ee5a527e76eb8ad9.jpg" alt="Feature1" />
-                      </div>
-                    </div>
-                    <div class="small-12 columns feature-container">
-                      <div class="small-12 large-6 columns image-left">
-                        <img class="feature-img js-application-home-benefits-2-img" src="../transported-production.herokuapp.com/assets/marketing/features/index/feature2-4698c9bdb53754adb19b5bd274d160ff6f5048782408ac45663c813f38f026a7.jpg" alt="Feature2" />
-                      </div>
-                      <div class="small-12 large-6 columns feature-content">
-                        <div class="feature-text align-left">
-                          <h5>Reach a Global Marketplace</h5>
-                          <p>Your tour is published in the Transported VR app and available to shoppers across town and around the globe.</p>
-                          <hr class="benefit-divider-2" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="small-12 columns feature-container">
-                      <div class="small-12 large-6 columns feature-content left">
-                        <div class="feature-text align-right">
-                          <h5>No Proprietary Equipment</h5>
-                          <p>Transported’s VR platform doesn’t require a proprietary camera and we don't lock you in.</p>
-                          <hr class="benefit-divider-1" />
-                        </div>
-                      </div>
-                      <div class="small-12 large-6 columns image-right">
-                        <img class="feature-img js-application-home-benefits-3-img" src="../transported-production.herokuapp.com/assets/marketing/features/index/feature3-6355d5f4fef7efe3bb2e713f184b6942ffbdb1de4bc81b80ece03a193e277675.jpg" alt="Feature3" />
-                      </div>
-                    </div>
-                    <div class="small-12 columns feature-container">
-                      <div class="small-12 large-6 columns image-left">
-                        <img class="feature-img js-application-home-benefits-4-img" src="../transported-production.herokuapp.com/assets/marketing/features/index/feature4-154f3a06290a1e25f3b2c939a7e3520eee0e2af7dd279471c826c9d7f35b54e0.jpg" alt="Feature4" />
-                      </div>
-                      <div class="small-12 large-6 columns feature-content">
-                        <div class="feature-text align-left">
-                          <h5>Easy to Share</h5>
-                          <p>Share with people who don’t have a VR headset. Send them a mobile-compatible link, embed on your own web page, and post to Facebook and Twitter.</p>
-                          <hr class="benefit-divider-2" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
+                
 
 
 
@@ -152,3 +153,6 @@ export default About;
 //   </div>
 
 // </header>
+
+
+
