@@ -2,8 +2,19 @@
 	background-color: rgba(255,255,255,0.7);
 }
 .transparent-bg {
+<<<<<<< HEAD
+	background-color: rgba(0,0,0,0.2);
+	/* background-color: transparent !important; */
+	
+=======
 	background-color: transparent !important;
+>>>>>>> d019dd56be06c225ed5defcf08d6d9fc08042c5b
 }
 .transparent-bg .navigation-menu__link {
 	color: #fff;
+}
+
+.transparent-bg .navigation-menu__sign_in {
+	color: #fff;
+	border: 1px solid #fff;
 }
