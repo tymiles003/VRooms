@@ -53,7 +53,13 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
-const db = process.env.MONGODB_URI || "mongodb://localhost/vroomsDB";
+
+// Change the MongoDB URI depending on environment.
+let db = "mongodb://localhost/vroomsDB";
+// const db = process.env.MONGODB_URI || "mongodb://localhost/vroomsDB";
+if (process.env.NODE_ENV === 'production') {
+	db = process.env.MONGODB_URI
+}
 
 // Connect mongoose to our database
 mongoose.connect(db, error => {
