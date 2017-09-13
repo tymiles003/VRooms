@@ -26,14 +26,14 @@ class Main extends Component {
         <div className="application">
             <Helmet>
               {/* customized script elements */}
-              <script src="/js/drift.js" type="text/javascript" />
+              <script src="./js/drift.js" type="text/javascript" />
                 
             </Helmet>
             
           <div className="wrapper">
 
               <video className="video-container video-container-overlay" id="video-background" autoPlay="true">
-                <source src="/assets/video/splashintro.mp4" type="video/mp4" />
+                <source src="https://github.com/novialim/VRooms/blob/master/public/assets/video/splashintro.mp4" type="video/mp4" />
               </video>
 
                 <Navbar logo_filename="VRooms_V11_Hori_Gray" theme="white-bg"/>
