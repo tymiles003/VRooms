@@ -33,7 +33,7 @@ class Main extends Component {
           <div className="wrapper">
 
               <video className="video-container video-container-overlay" id="video-background" autoPlay="true">
-                <source src="https://github.com/novialim/VRooms/blob/master/public/assets/video/splashintro.mp4" type="video/mp4" />
+                <source src="./assets/video/splashintro.mp4" type="video/mp4" />
               </video>
 
                 <Navbar logo_filename="VRooms_V11_Hori_Gray" theme="white-bg"/>
