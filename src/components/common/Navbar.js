@@ -11,7 +11,13 @@ class Navbar extends Component {
 		super(props);
 		this.state = {
 			signInClicked: false,
+			addClass: false
 		}
+	}
+	
+	//if .js-open-menu is clicked, toggle .js-open-menu-btn & .js-mobile-menu 
+	toggle(){
+		this.setState({addClass: !this.state.addClass});
 	}
 
 	handleAuth = (event) =>{
@@ -22,17 +28,25 @@ class Navbar extends Component {
 	}
 
 	render() {
+
+		let mobileClassBtn = ["js-open-menu-btn"];
+		let mobileClassMenu = ["js-mobile-menu"];
+		if(this.state.addClass) {
+			mobileClassBtn.push('active');
+			mobileClassMenu.push('active');
+		}
+
 		return (
 			<div className={"navigation navigation--main--gradient "+ this.props.theme}>
 				<div className="navigation-wrapper">
 				<Link to="/" className="navigation__logo-link emerge" data-duration="600" data-effect="slide" data-right="64px"  >
 					<img className="navigation__logo" width="220" src={"/assets/img/logo/"+this.props.logo_filename+".png"} alt="VRooms" /> 
 				</Link>
-				<div className="navigation-mobile js-open-menu">
-					<div className="navigation-mobile__icon js-open-menu-btn"></div>
+				<div className="navigation-mobile js-open-menu" onClick={this.toggle.bind(this)}>
+					<div className={"navigation-mobile__icon" + ' ' + mobileClassBtn.join( ' ')}></div>
 				</div>
 
-				<div className="mobile-menu js-mobile-menu">
+				<div className={"mobile-menu" + ' ' + mobileClassMenu.join( ' ')}>
 					<a href="/about" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">About</a>
 					<a href="/agents" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">Agents</a>
 					<a href="/showcase" className="mobile-menu__link text--white text--bold ">Showcase</a>
