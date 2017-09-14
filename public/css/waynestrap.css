@@ -21,6 +21,62 @@ div, h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
+.ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input, .ws-form div {
+  margin: 0;
+  padding: 0;
+}
+
+.ws-form:hover, .ws-form fieldset:hover, .ws-form div:hover, .ws-form:active, .ws-form fieldset:active, .ws-form div:active, .ws-form:focus, .ws-form fieldset:focus, .ws-form div:focus, .ws-form input:hover, .ws-form input:active, .ws-form input:focus, .ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input, .ws-form div {
+  outline: none;
+  border: none;
+}
+
+.ws-form:hover, .ws-form fieldset:hover, .ws-form div:hover, .ws-form:active, .ws-form fieldset:active, .ws-form div:active, .ws-form:focus, .ws-form fieldset:focus, .ws-form div:focus, .ws-form input:hover, .ws-form input:active, .ws-form input:focus, .ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input, .ws-form div {
+  color: #000;
+}
+
+.ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input, .ws-form div {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 1em;
+  word-spacing: initial;
+  letter-spacing: initial;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: none;
+  text-decoration: none;
+}
+
+.ws-form:hover, .ws-form fieldset:hover, .ws-form div:hover, .ws-form:active, .ws-form fieldset:active, .ws-form div:active, .ws-form:focus, .ws-form fieldset:focus, .ws-form div:focus {
+  background-color: initial;
+}
+
+.ws-form input {
+  background-color: #fff;
+}
+
+.ws-form, .ws-form fieldset, .ws-form div {
+  background: none;
+}
+
+.ws-form {
+  font-size: 1rem;
+}
+
+.ws-btn {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  color: white;
+  background-color: #7f8c8d;
+  border-radius: 5px;
+}
+
+.ws-btn#submit {
+  background-color: #3498db;
+}
+
 .transparent-bg a,
 .opaque-black-bg a,
 .black-bg a,
@@ -70,6 +126,14 @@ div, h1, h2, h3, h4, h5, h6, p {
   padding: 3rem 1rem;
 }
 
+.ws-form .form-row {
+  padding: 0;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .ws-form .form-field-row {
   padding: 0;
   margin: 0;
@@ -79,21 +143,38 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .ws-form .input-wrap {
   flex: 1;
+  position: relative;
+  font-size: 1rem;
+}
+
+.ws-form .input-wrap label {
+  position: absolute;
+  font-size: .7em;
+  line-height: 1em;
+  top: .6em;
+  left: .6em;
+  color: inherit;
 }
 
 .ws-form .input-wrap input {
   width: 100%;
   margin: 0;
   border-radius: 0;
+  font-size: 1.25em;
+  height: 3em;
+  line-height: 3em;
+  padding: 0 1em;
 }
 
 .ws-form .input-wrap input[type="text"] {
   background-color: #fff;
   color: rgba(0, 0, 0, 0.87);
-  font-size: 1rem;
-  border: none;
-  outline: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: none;
+}
+
+.ws-form .input-wrap input[type="text"]:focus, .ws-form .input-wrap input[type="text"]:active {
+  outline: 1px solid #95a5a6;
 }
 
 .ws-form .input-wrap.input-street {
@@ -104,12 +185,24 @@ div, h1, h2, h3, h4, h5, h6, p {
   flex: 3;
 }
 
-.ws-form .input-wrap.input-state {
-  flex-basis: 0em;
+.ws-form .input-wrap.input-state input, .ws-form .input-wrap.input-zip input {
+  text-align: center;
 }
 
 .ws-form .input-wrap.input-zip {
-  flex-basis: 1.25em;
+  max-width: 8em;
+}
+
+.ws-form .input-wrap.input-state {
+  max-width: 6em;
+}
+
+.ws-form fieldset legend {
+  margin-bottom: .5rem;
+  margin-left: .5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 body {
@@ -138,7 +231,7 @@ html {
 
 .pg-form,
 .pg-newVRoom {
-  background-color: #fff;
+  background-color: #ecf0f1;
   min-height: 100vh;
   min-width: 100%;
 }
@@ -160,6 +253,7 @@ html {
   font-size: 1.2rem;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.87);
+  text-align: center;
 }
 
 .pg-form main header .headline,

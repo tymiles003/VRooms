@@ -12,12 +12,19 @@
 
 
 .ws-form {
+	@extend %reset-form;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	max-width: 700px;
 	padding: 3rem 1rem;
-
+	.form-row {
+		padding: 0;
+		margin: 2rem 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
 	.form-field-row {
 		padding: 0;
 		margin: 0;
@@ -26,20 +33,44 @@
 	}
 	.input-wrap {
 		flex: 1;
+		position: relative;
+		font-size: 1rem;
+		label {
+			position: absolute;
+			font-size: .7em;
+			line-height: 1em;
+			top: .6em;
+			left: .6em;
+			color: inherit;
+		}
 		input {
 			width: 100%;
 			margin: 0;
 			border-radius: 0;
+			font-size: 1.25em;
+			// font-size: inherit;
+			height: 3em;
+			line-height: 3em;
+			padding: 0 1em;
+				// with label.....
+				// padding-top: 1em;
+				// padding-bottom: .5em;
 			&[type="text"] {
 				background-color: #fff;
-				color: $fg-primary;
-				font-size: 1rem;
-				border: none;
-				outline: 1px solid $fg-dividers;
+				color: $primary;
+				// font-size: 1rem;
+				// padding-left: 0;
+				// text-indent: 1em;
+				// border: none;
+				// outline: 1px solid $dividers;
+				border:  1px solid $dividers;
 				box-shadow: none;
-			}
-			&:focus {
-
+				// box-shadow: 0px 0px 0px 1px $dividers inset;
+				&:focus, &:active {
+					// border-color: $light-gray;
+					outline: 1px solid $gray;
+					// box-shadow: 0px 0px 0px 1px $light-gray inset;
+				}
 			}
 		}
 		
@@ -49,13 +80,34 @@
 		&.input-city {
 			flex: 3
 		}
-		&.input-state {
-			// flex: 1
-			flex-basis: 0em;
+		&.input-state, &.input-zip {
+			input {
+				text-align: center;
+			}
 		}
 		&.input-zip {
-			// flex: 2;
-			flex-basis: 1.25em;
+			max-width: 8em;
+		}
+		&.input-state {
+			max-width: 6em;
+		}
+	}
+	fieldset {
+		legend {
+			margin-bottom: .5rem;
+			margin-left: .5rem;
+			font-size: 1rem;
+			font-weight: 700;
+			color: $primary;
 		}
 	}
 }
+
+// .naked-form {
+// 	@extend %reset-form;
+// 	input {
+// 		background-color: #fff;
+// 		@extend %color-theme-states;
+// 		outline: 1px solid;
+// 	}
+// }
