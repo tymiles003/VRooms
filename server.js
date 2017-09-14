@@ -23,8 +23,8 @@ let parseString = require('xml2js').parseString;
 
 // Import Zillow dependency and initiate
 const zillow_key = process.env.ZILLOW_KEY;
-let Zillow = require('node-zillow');
-let zillow = new Zillow(zillow_key);
+// let Zillow = require('node-zillow');
+// let zillow = new Zillow(zillow_key);
 
 
 // Set up a default port, configure mongoose, configure our middleware
@@ -101,22 +101,9 @@ app.post('/scrape', (req,res) => {
 })
 app.post('/fetch-listing', (req,res) => {
 	console.log('>>> POST /fetch-listing (server.js)');
-	// const zpid = req.body;
 	// const zpid = 48749425;
 	let zpid = req.body;
 	console.log('zpid',zpid);
-	// const baseAPIurl = 'http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm';
-	// let parameters = {
-		// 	zpid: zpid,
-		// 	'zws-id': zillow_key,
-		// }
-		// zillow.get('GetUpdatedPropertyDetails', parameters)
-		// .then( (results) => {
-			// 	console.log('zillow API results',results);
-			// 	res.json(results)
-			// })
-			// .catch( (err) => console.log('err',err))
-			// axios.get(baseAPIurl,parameters)
 	let qURL =`http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=${zillow_key}&zpid=${zpid}`;
 	console.log('qURL',qURL);
 
