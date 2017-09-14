@@ -14,7 +14,6 @@ import "babel-polyfill";
 // import Modal from "./common/CustomModal";
 
 import Navbar from "./common/Navbar";
-import MobileMenu from "./common/MobileMenu";
 
 // require('./styles/Main.css');
 
@@ -67,7 +66,6 @@ const Main = props => {
 					logo_filename="VRooms_V11_Hori_Gray"
 					theme="opaque-white-bg"
 				/>
-				<MobileMenu />
 
 				<header
 					className="header header--main js-header a-page"
