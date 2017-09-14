@@ -51,6 +51,7 @@
     "passport-twitter": "^1.0.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-dropzone": "^4.1.2",
     "react-helmet": "^5.2.0",
     "react-mdl": "^1.10.3",
     "react-modal": "^2.3.2",
