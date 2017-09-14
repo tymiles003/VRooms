@@ -32,10 +32,10 @@
 			border-radius: 0;
 			&[type="text"] {
 				background-color: #fff;
-				color: $color-fg-primary;
+				color: $fg-primary;
 				font-size: 1rem;
 				border: none;
-				outline: 1px solid $color-fg-dividers;
+				outline: 1px solid $fg-dividers;
 				box-shadow: none;
 			}
 			&:focus {
