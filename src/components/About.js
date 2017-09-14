@@ -3,46 +3,28 @@ import {Helmet} from "react-helmet";
 import Particles from 'react-particles-js';
 import Navbar from './common/Navbar';
 import MobileMenu from './common/MobileMenu';
+// import AboutCSS from './styles/About.css';
+// require('./styles/About.css');
 
-require('./styles/About.css');
-
-class About extends React.Component {
-  constructor(props) {
-    super(props);
-
-   }
-  render() {
-    return (
+// class About extends React.Component {
+	// constructor(props) {
+	//   super(props);
+  
+	//  }
+	// render() {
+	//   return (
+const About = (props) => {
+	return (
       <div className="application">
           <Helmet>
             {/* customized script elements */}
-            <script src="/js/drift.js" type="text/javascript" />
-
-             {/* inline style elements */}
-              <style type="text/css">{`
-                  body {
-                      overflow-y:auto;
-                  }
-
-                  body::-webkit-scrollbar {
-                      width: 10px;
-                      background-color: #F5F5F5;
-                  }
-                   
-                  body::-webkit-scrollbar-track {
-                      border: 1px solid gray;
-                      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-                      background-color: #F5F5F5;
-                  }
-                   
-                  body::-webkit-scrollbar-thumb {
-                      background-color: #57687c;
-                      
-                      background-image: -webkit-gradient(linear, 0 0, 0 100%,
-                                         color-stop(.5, rgba(255, 255, 255, .2)),
-                                         color-stop(.5, transparent), to(transparent));
-                  }
-              `}</style>
+            <script src="/js/drift.js" type="text/javascript"></script>
+			
+			{/* CSS links for this page */}
+			<link rel="stylesheet" href="/css/pagestyle.css"></link>
+			<link rel="stylesheet" href="/src/css/pages/About.css"></link>
+			<link rel="stylesheet" href="/css/panning.css"></link>
+			
           </Helmet>
              
             <div className="particles">
@@ -61,7 +43,7 @@ class About extends React.Component {
 
               <div className="aboutWrapper">  
 
-                <Navbar logo_filename="VRooms_V11_Hori_White" theme="transparent-bg"/>
+                <Navbar logo_filename="VRooms_V11_Hori_White" theme="opaque-black-bg"/>
 
                 <MobileMenu />
 
@@ -133,8 +115,9 @@ class About extends React.Component {
 
           
       </div>
-    );
-  }
+    // );
+//   }
+	)
 }
 
 export default About;

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import API from "../utils/API";
 import Navbar from './common/Navbar';
 import MobileMenu from './common/MobileMenu';
+import Helmet from 'react-helmet';
 // import Form from "../components/common/Forms/Form";
 
 class NewVRoom extends Component {
@@ -37,6 +38,11 @@ class NewVRoom extends Component {
 	render() {
 		return (
 			<div className="pg-form pg-newVRoom">
+
+			{/* Helmet =========================================================*/}
+				<Helmet 
+					title="Create New VRoom"
+				/>
 			{/* Navbar =========================================================*/}
 				<Navbar
 					logo_filename="VRooms_V11_Hori_Gray"

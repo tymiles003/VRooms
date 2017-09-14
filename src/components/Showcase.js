@@ -21,7 +21,7 @@ class Showcase extends React.Component {
   // // Getting all quotes once the component has mounted
  
     this.removejscssfile = this.removejscssfile.bind(this);
-
+	
   }
 
   removejscssfile(filename, filetype){
