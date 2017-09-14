@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import API from "../../../utils/API";
 import Navbar from '../Navbar';
-import MobileMenu from '../MobileMenu';
 import Helmet from 'react-helmet';
 // import Form from "../components/common/Forms/Form";
 

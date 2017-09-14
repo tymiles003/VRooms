@@ -2,8 +2,6 @@ import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 import Main from "../components/Main";
-import Favorites from "../components/Favorites";
-import Home from "../components/Home";
 import Showcase from "../components/Showcase";
 import About from "../components/About";
 import Agents from "../components/Agents";
