@@ -1,0 +1,71 @@
+
+.filedrop-wrap {
+	// Important that the dimensions of filedrop should reflect the aspect
+	// ratio of a 360 photo (i.e. the height should be half of the width.)
+	$filedrop-w: 90vw;
+	$filedrop-max-w: 500px;
+	$filedrop-min-w: 300px;
+	width: $filedrop-w;
+	height: $filedrop-w/2;
+	max-width: $filedrop-max-w;
+	max-height: $filedrop-max-w/2;
+	min-width: $filedrop-min-w;
+	min-height: $filedrop-min-w/2;
+	position: relative;
+
+	.dropzone {
+		background-color: $white;
+		color: $primary;
+		height: 100%;
+		width: 100%;
+		position: relative;
+		z-index: 100;
+		font-size: 1rem;
+		border: none;
+		outline: none;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		cursor: pointer;
+		// border: 2px dashed $dividers;
+		border: 2px dashed $light-blue;
+		// &:hover {
+		// 	border-color: rgba(52, 152, 219, 0.8);
+		// }
+		.dropzone-content {
+			color: inherit;
+			font-size: 1.1em;
+			font-weight: 400;
+			opacity: 0.5;
+			.feature-icon {
+				font-size: 5.5em;
+				margin-bottom: 1rem;
+				img {
+					height: 1em;
+					width: initial;
+				}
+			}
+			i {
+				font-size: inherit;
+			}
+			
+		}
+	}
+	#filedrop-preview,
+	.img-canvas {
+		background-size: cover;
+		height: 100%;
+		width: 100%;
+		margin: 0;
+		z-index: 101;
+		position: absolute;
+		top: 0;
+		left: 0;
+		&.no-file {
+			z-index: 99;
+		}
+	}
+}

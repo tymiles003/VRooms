@@ -105,8 +105,8 @@ div, h1, h2, h3, h4, h5, h6, p {
 		@extend %reset-all;
 		@extend %reset-bg-white;
 	}
-	div {
-		@extend %reset-all;
-		@extend %reset-bg-none;
-	}
+	// div {
+	// 	@extend %reset-all;
+	// 	@extend %reset-bg-none;
+	// }
 }

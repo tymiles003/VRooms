@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-// Scraping imports
-// import axios from 'axios';
-// import cheerio from 'cheerio';
 import API from "../../../utils/API";
-import Helmet from 'react-helmet';
+import FileDrop from './FileDrop';
 
 class NewVRoomForm extends Component {
 	constructor(props){
@@ -260,7 +257,7 @@ class NewVRoomForm extends Component {
 						</fieldset>
 					</div>
 					<div className="form-row">
-						<div className="input-wrap input-photo">
+						{/* <div className="input-wrap input-photo">
 							<label className="legend"> Upload 360 Photo </label>
 								<input
 									id="photo"
@@ -270,7 +267,8 @@ class NewVRoomForm extends Component {
 									accept="image/*"
 									onChange={this.handleInputChange}
 								/>
-						</div>
+						</div> */}
+						<FileDrop />
 					</div>
 					<div className="form-row">
 						<button

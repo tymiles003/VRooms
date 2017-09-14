@@ -1,10 +1,10 @@
 // Imports ===================================
-	@import "./vendor/_materialize-colors";
-	@import "./vendor/_material-design-guide";
-	@import "./vendor/_flat-colors";
-		// @import "../vendor/_materialize-colors";
-		// @import "../vendor/_material-design-guide";
-		// @import "../vendor/_flat-colors";
+	// @import "./vendor/_materialize-colors";
+	// @import "./vendor/_material-design-guide";
+	// @import "./vendor/_flat-colors";
+		@import "../vendor/_materialize-colors";
+		@import "../vendor/_material-design-guide";
+		@import "../vendor/_flat-colors";
 //============================================
 
 // Define General Colors =====================
@@ -24,6 +24,8 @@
 	$dark-blue:      $flat-blue-d;
 	$dark-purple:    $flat-purple-d;
 	$dark-darkblue:  $flat-darkblue-d;
+
+	$light-blue:     rgba(52, 152, 219, 0.5);
 
 	$white:          #fff;
 	$offwhite:       $flat-mono-white;

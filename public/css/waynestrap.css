@@ -21,21 +21,21 @@ div, h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
-.ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input, .ws-form div {
+.ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input {
   margin: 0;
   padding: 0;
 }
 
-.ws-form:hover, .ws-form fieldset:hover, .ws-form div:hover, .ws-form:active, .ws-form fieldset:active, .ws-form div:active, .ws-form:focus, .ws-form fieldset:focus, .ws-form div:focus, .ws-form input:hover, .ws-form input:active, .ws-form input:focus, .ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input, .ws-form div {
+.ws-form:hover, .ws-form fieldset:hover, .ws-form:active, .ws-form fieldset:active, .ws-form:focus, .ws-form fieldset:focus, .ws-form input:hover, .ws-form input:active, .ws-form input:focus, .ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input {
   outline: none;
   border: none;
 }
 
-.ws-form:hover, .ws-form fieldset:hover, .ws-form div:hover, .ws-form:active, .ws-form fieldset:active, .ws-form div:active, .ws-form:focus, .ws-form fieldset:focus, .ws-form div:focus, .ws-form input:hover, .ws-form input:active, .ws-form input:focus, .ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input, .ws-form div {
+.ws-form:hover, .ws-form fieldset:hover, .ws-form:active, .ws-form fieldset:active, .ws-form:focus, .ws-form fieldset:focus, .ws-form input:hover, .ws-form input:active, .ws-form input:focus, .ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input {
   color: #000;
 }
 
-.ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input, .ws-form div {
+.ws-form, .ws-form fieldset, .ws-form fieldset legend, .ws-form input {
   font-size: inherit;
   font-family: inherit;
   line-height: 1em;
@@ -47,7 +47,7 @@ div, h1, h2, h3, h4, h5, h6, p {
   text-decoration: none;
 }
 
-.ws-form:hover, .ws-form fieldset:hover, .ws-form div:hover, .ws-form:active, .ws-form fieldset:active, .ws-form div:active, .ws-form:focus, .ws-form fieldset:focus, .ws-form div:focus {
+.ws-form:hover, .ws-form fieldset:hover, .ws-form:active, .ws-form fieldset:active, .ws-form:focus, .ws-form fieldset:focus {
   background-color: initial;
 }
 
@@ -55,7 +55,7 @@ div, h1, h2, h3, h4, h5, h6, p {
   background-color: #fff;
 }
 
-.ws-form, .ws-form fieldset, .ws-form div {
+.ws-form, .ws-form fieldset {
   background: none;
 }
 
@@ -130,7 +130,6 @@ div, h1, h2, h3, h4, h5, h6, p {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 700px;
   padding: 3rem 1rem;
 }
 
@@ -242,7 +241,75 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .pg-newVRoom form fieldset {
   width: 100%;
+  max-width: 600px;
+}
+
+.filedrop-wrap {
+  width: 90vw;
+  height: 45vw;
   max-width: 500px;
+  max-height: 250px;
+  min-width: 300px;
+  min-height: 150px;
+  position: relative;
+}
+
+.filedrop-wrap .dropzone {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 100;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border: 2px dashed rgba(52, 152, 219, 0.5);
+}
+
+.filedrop-wrap .dropzone .dropzone-content {
+  color: inherit;
+  font-size: 1.1em;
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.filedrop-wrap .dropzone .dropzone-content .feature-icon {
+  font-size: 5.5em;
+  margin-bottom: 1rem;
+}
+
+.filedrop-wrap .dropzone .dropzone-content .feature-icon img {
+  height: 1em;
+  width: initial;
+}
+
+.filedrop-wrap .dropzone .dropzone-content i {
+  font-size: inherit;
+}
+
+.filedrop-wrap #filedrop-preview,
+.filedrop-wrap .img-canvas {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  z-index: 101;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.filedrop-wrap #filedrop-preview.no-file,
+.filedrop-wrap .img-canvas.no-file {
+  z-index: 99;
 }
 
 body {
