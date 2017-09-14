@@ -1,10 +1,4 @@
 import axios from "axios";
-// import fs from 'fs';
-// require("dotenv").config();
-
-// Import Zillow dependency and initiate
-import Zillow from 'node-zillow';
-const zillow = new Zillow(process.env.ZILLOW_ID);
 
 const API = {
   // Retrieves all quotes from the db
@@ -81,7 +75,6 @@ const API = {
 	  })
 	  .then( (response) => response)
 	  .catch( error => console.log('error',error) )
-  
 
   }
 

@@ -15,11 +15,13 @@ class NewVRoomForm extends Component {
 			city: "",
 			state: "",
 			zip: "",
-			isZPID: false,
+			query_type: 'invalid',
+			zpid: '16732045',
+			zillow_url: 'https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true',
 			fetch_query: "https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true",
 		};
 	}
-		
+	
 	handleInputChange = event => {
 		event.preventDefault();
 		const value = event.target.value;
@@ -27,75 +29,88 @@ class NewVRoomForm extends Component {
 		console.log(name, value);
 
 		if (name === 'fetch_query') {
-			this.detectZPID(value.trim())
+			this.detectQueryType(value.trim())
 		}
 		this.setState({
 			[name]: value
 		});
 	}
 
-	detectZPID = (query) => {
-		let isZPID = true;
-		// Automatically invalid if not right length
-		if (query.length !== 8) {
-			isZPID = false;
+	detectQueryType = (query) => {
+		// let isZPID = false;
+		let zpid = '';
+		let query_type = 'invalid';
+		
+		let isNumber = (query) => {
+			let parsed = parseInt(query);
+			console.log('parsed',parsed);
+			console.log('typeof parsed',typeof parsed);
+			return isNaN(parsed);
+		}
+		let notOnlyDigits = isNumber(query);
+		console.log('notOnlyDigits',notOnlyDigits);
+
+		// Check if it is a zpid
+		// zpid should have 8 characters.
+		if (query.length === 8 && !notOnlyDigits) { 
+			console.log('--- Zillow Property ID detected ---');
+
+			// Set the zpid default assuming valid (changed later if invalid)
+			zpid = query;
+			query_type = 'zpid';
+			
+			// for (let i=0; i<query.length; i++) {
+			// 	let letter = query[i];
+			// 	if ('1234567890'.indexOf(letter) === -1) {
+			// 		// return false;
+			// 		isZPID = false;
+			// 		zpid = '';
+			// 	}
+			// }
+		}
+		else if (query.indexOf('zillow.com') >= 0) {
+			console.log('--- Zillow URL detected ---');
+			let splitURL = query.split('/');
+			let zpid_part_url = splitURL.filter(ea => ea.indexOf('_zpid') >= 0 )[0];
+
+			zpid = zpid_part_url.substring(0,zpid_part_url.length-5);
+			query_type = 'zillow_url';
+			console.log('>>> Extracted zpid...',zpid);
+			
+			// console.log('>>> Calling Zillow API...');
+			// API.fetchListing(query)
+			// .then((res) => {
+				// 	console.log('>>> API fetchListing response received...');
+				// 	console.log('res',res);
+			// })
 		}
 		else {
-			for (let i=0; i<query.length; i++) {
-				let letter = query[i];
-				if ('1234567890'.indexOf(letter) === -1) {
-					// return false;
-					isZPID = false;
-				}
-			}
+			console.log('>>> Invalid/Unrecognized Query Type (!)');
 		}
 		
+		// If invalid query type, zpid is empty string & query_type is invalid
 		this.setState({
-			isZPID: isZPID
+			zpid: parseInt(zpid),
+			query_type: query_type,
 		})
-		console.log('>>> detecting ZPID...', isZPID);
-		// console.log('...',isZPID);
 	}
 	
 	handleFetch = event => {
 		event.preventDefault();
 		// const query = event.target.value.trim();
 		let query = this.state.fetch_query.trim();
-		// let isZPID = this.detectZPID(query);
-		// Basic validation
-		if (query.length === 0) {
-			return;
-		}
-		else if (this.state.isZPID) {
-			console.log('>>> Zillow Property ID detected...', query);
-
-		}
-		else if (query.indexOf('zillow.com') >= 0) {
-			console.log('>>> Zillow URL detected...');
-			let splitURL = query.split('/');
-			let zpid_part_url = splitURL.filter(ea => ea.indexOf('_zpid') >= 0 )[0];
-			const zpid = zpid_part_url.substring(0,zpid_part_url.length-5);
-			console.log('Extracted zpid...',zpid);
-			console.log('>>> Calling Zillow API');
+		// let isZPID = this.detectQueryType(query);
+		// Query Validation
+		if (this.state.query_type !== 'invalid') {
+			console.log('>>> Calling Zillow API...');
 			API.fetchListing(query)
 			.then((res) => {
-				console.log('>>> API fetchListing response received...');
-				console.log('res',res);
+				console.log('... API fetchListing response received');
+				// console.log('res',res);
+				let apiResponse = res.data;
+				console.log('--> API Response',apiResponse);
 			})
 		}
-		// else {
-		// 	let scrapeData = {
-		// 		agent: "",
-		// 		street: "",
-		// 		city: "",
-		// 		state: "",
-		// 		zip: "",
-		// 	}
-		// 	API.scrapeZillow(query)
-		// 	.then( (res) => {
-		// 		console.log('res',res);
-		// 	})
-		// }
 	}
 
 	handleFormSubmit = event => {
@@ -119,6 +134,7 @@ class NewVRoomForm extends Component {
 								type="text"
 								name="fetch_query"
 								placeholder="Zillow URL or Property ID"
+								value={this.state.zpid}
 								onChange={this.handleInputChange}
 							/>
 						</div>

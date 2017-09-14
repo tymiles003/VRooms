@@ -19,11 +19,12 @@ const loginRoutes = require("./routes/loginRoutes");
 const cheerio = require("cheerio");
 const request = require('request');
 const axios = require('axios');
+let parseString = require('xml2js').parseString; 
 
 // Import Zillow dependency and initiate
-const Zillow = require('node-zillow');
 const zillow_key = process.env.ZILLOW_KEY;
-const zillow = new Zillow(zillow_key);
+let Zillow = require('node-zillow');
+let zillow = new Zillow(zillow_key);
 
 
 // Set up a default port, configure mongoose, configure our middleware
@@ -100,17 +101,49 @@ app.post('/scrape', (req,res) => {
 })
 app.post('/fetch-listing', (req,res) => {
 	console.log('>>> POST /fetch-listing (server.js)');
-	const zpid = req.body;
+	// const zpid = req.body;
+	// const zpid = 48749425;
+	let zpid = req.body;
 	console.log('zpid',zpid);
+	// const baseAPIurl = 'http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm';
+	// let parameters = {
+		// 	zpid: zpid,
+		// 	'zws-id': zillow_key,
+		// }
+		// zillow.get('GetUpdatedPropertyDetails', parameters)
+		// .then( (results) => {
+			// 	console.log('zillow API results',results);
+			// 	res.json(results)
+			// })
+			// .catch( (err) => console.log('err',err))
+			// axios.get(baseAPIurl,parameters)
+	let qURL =`http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=${zillow_key}&zpid=${zpid}`;
+	console.log('qURL',qURL);
 
-	let parameters = {
-		zpid: zpid
-	}
-	zillow.get('getUpdatedPropertyDetails', parameters)
+	axios.get(qURL)
 	.then( (results) => {
-		res.json(results)
+		let raw = results.data;
+		console.log('raw',raw);
+		// console.log('typeof raw',typeof raw);
+		parseString(raw, (err,result) => {
+			// console.log('result',result);
+			let resultObj = result['UpdatedPropertyDetails:updatedPropertyDetails'];
+			let message = resultObj.message[0].text[0].trim();
+			console.log('resultObj',resultObj);
+			console.log('message',message);
+
+			if (message == 'Request successfully processed'){
+				let isolatedResponse = resultObj.response[0];
+				console.log('isolateResponse',isolatedResponse);
+				res.json(isolatedResponse)
+			}
+			else {
+				res.send(message)
+			}
+		})
+		// console.log('data',data);
+		// res.json(data);
 	})
-	.catch( (err) => console.log('err',err))
 })
 
 
