@@ -157,6 +157,16 @@ div, h1, h2, h3, h4, h5, h6, p {
   font-size: 1rem;
 }
 
+.ws-form .input-wrap i {
+  position: absolute;
+  font-size: 1.5em;
+  height: initial;
+  line-height: initial;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .ws-form .input-wrap label {
   position: absolute;
   font-size: .7em;
@@ -164,6 +174,15 @@ div, h1, h2, h3, h4, h5, h6, p {
   top: .6em;
   left: .6em;
   color: inherit;
+}
+
+.ws-form .input-wrap label.legend {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  font-weight: 700;
+  top: -1.5rem;
+  left: .5rem;
 }
 
 .ws-form .input-wrap input {
@@ -187,6 +206,10 @@ div, h1, h2, h3, h4, h5, h6, p {
   outline: 1px solid #95a5a6;
 }
 
+.ws-form .input-wrap.icon-prefix input {
+  padding-left: 2em;
+}
+
 .ws-form .input-wrap.input-street {
   flex: 1;
 }
@@ -201,10 +224,12 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .ws-form .input-wrap.input-zip {
   max-width: 8em;
+  min-width: 8em;
 }
 
 .ws-form .input-wrap.input-state {
   max-width: 6em;
+  min-width: 6em;
 }
 
 .ws-form fieldset legend {
@@ -213,6 +238,11 @@ div, h1, h2, h3, h4, h5, h6, p {
   font-size: 1rem;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.87);
+}
+
+.pg-newVRoom form fieldset {
+  width: 100%;
+  max-width: 500px;
 }
 
 body {
