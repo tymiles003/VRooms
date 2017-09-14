@@ -15,7 +15,7 @@ class NewVRoomForm extends Component {
 			city: "",
 			state: "",
 			zip: "",
-			
+			zillow_url: "https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true",
 		};
 	}
 		
@@ -29,27 +29,38 @@ class NewVRoomForm extends Component {
 	};
 
 	handleScrape = event => {
-		const zillow_url = event.target.value.trim();
-		let scrapeData = {
-			agent: "",
-			street: "",
-			city: "",
-			state: "",
-			zip: "",
+		event.preventDefault();
+		// const qURL = event.target.value.trim();
+		const qURL = this.state.zillow_url;
+		// Basic validation
+		if (qURL.length === 0) {
+			return;
 		}
-		// axios.get(zillow_url)
-		// .then( (response) => {
-		// 	let $ = cheerio.load(response.data);
-			
-		// 	let $header = $('header');
-		// 	let headerText = $header.text().trim();
-		// 	console.log('headerText',headerText);
-		// })
-		// .catch( error => console.log('error',error) )
-		API.scrapeZillow(zillow_url)
-		.then( (res) => {
-			console.log('res',res);
-		})
+		else if (qURL.indexOf('zillow.com') === -1) {
+			return alert('invalid zillow url')
+		}
+		else {
+			let scrapeData = {
+				agent: "",
+				street: "",
+				city: "",
+				state: "",
+				zip: "",
+			}
+			// axios.get(url)
+			// .then( (response) => {
+			// 	let $ = cheerio.load(response.data);
+				
+			// 	let $header = $('header');
+			// 	let headerText = $header.text().trim();
+			// 	console.log('headerText',headerText);
+			// })
+			// .catch( error => console.log('error',error) )
+			API.scrapeZillow(qURL)
+			.then( (res) => {
+				console.log('res',res);
+			})
+		}
 	}
 
 	handleFormSubmit = event => {
@@ -73,8 +84,13 @@ class NewVRoomForm extends Component {
 								type="text"
 								name="zillow_url"
 								placeholder="Zillow URL"
-								onChange={this.handleScrape}
+								onChange={this.handleInputChange}
 							/>
+							<button
+								className="ws-btn"
+								type="button"
+								onClick={this.handleScrape}
+							>Fetch</button>
 						</div>
 					</div>
 					<div className="form-row">

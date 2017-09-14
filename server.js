@@ -16,6 +16,7 @@ const loginRoutes = require("./routes/loginRoutes");
 
 const cheerio = require("cheerio");
 const request = require('request');
+const axios = require('axios');
 
 // Set up a default port, configure mongoose, configure our middleware
 const PORT = process.env.PORT || 5000;
@@ -57,23 +58,36 @@ app.use("/", loginRoutes);
 
 // API-related routes (maybe relocated in future)
 app.post('/scrape', (req,res) => {
-	console.log('>>> server.js GET /saved');
-	console.log('req.body',req.body);
+	console.log('>>> server.js SCRAPE ZILLOW REQUEST');
+	// console.log('req.body',req.body);
+	const qURL = req.body;
+	console.log('qURL',qURL);
 	// console.log('req',req);
+	// request(qURL, (error, response, html) => {
 
-	// let $ = cheerio.load(response.data);
-	// let scrapeData = {
+	// request(qURL, function(error, response, html){
+	// 	let $ = cheerio.load(html);
+	// 	let scrapeData = {};
 
-	// };
-	// let $header = $('header');
-	// let headerText = $header.text().trim();
-	// scrapeData.headerText = headerText;
-	// console.log('headerText',headerText);
-	
-	// return scrapeData;
-	// res.send(scrapeData);
+	// 	let $header = $('header');
+	// 	$header.each((i,el) => {
+	// 		let $el = $(el);
 
-	res.send('scrape return');
+	// 		let $h1 = $el.find('h1');
+	// 		let h1Text = $h1.text().trim();
+	// 		scrapeData.headline = h1Text;
+	// 	})
+	// 	console.log('scrapeData',scrapeData);
+	// 	res.json(scrapeData);
+	// })	
+	axios.get(qURL).then((response) => {
+		let $ = cheerio.load(response.data);
+		let h1 = $('h1').text();
+		console.log('h1',h1);
+		// return h1;
+		res.send('h1 '+h1);
+	})
+	// res.send('scrape return');
 })
 
 
