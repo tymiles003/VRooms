@@ -22,7 +22,7 @@ const About = (props) => {
 			
 			{/* CSS links for this page */}
 			<link rel="stylesheet" href="/css/pagestyle.css"></link>
-			<link rel="stylesheet" href="/src/css/pages/About.css"></link>
+			<link rel="stylesheet" href="/css/pages/About.css"></link>
 			
           </Helmet>
              

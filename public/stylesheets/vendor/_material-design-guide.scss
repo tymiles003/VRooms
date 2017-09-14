@@ -1,0 +1,17 @@
+
+// Ideal for Readability (based on Google's Material Design Guide)
+$ideal-primary:    rgba(0,0,0,.87);
+$ideal-secondary:  rgba(0,0,0,.54);
+$ideal-dividers:   rgba(0,0,0,.12);
+$ideal-disabled:   rgba(0,0,0,.38);
+$ideal-hint:       $ideal-disabled;
+$ideal-active:     rgba(0,0,0,.54);
+$ideal-inactive:   rgba(0,0,0,.38);
+
+$ideal-white-primary:    rgba(255,255,255,1);
+$ideal-white-secondary:  rgba(255,255,255,.7);
+$ideal-white-dividers:   rgba(255,255,255,.12);
+$ideal-white-disabled:   rgba(255,255,255,.5);
+$ideal-white-hint:       $ideal-disabled;
+$ideal-white-active:     rgba(255,255,255,1);
+$ideal-white-inactive:   rgba(255,255,255,.5);

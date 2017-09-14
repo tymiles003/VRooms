@@ -47,7 +47,7 @@ const Main = props => {
 
 				{/* CSS links for this page */}
 				<link rel="stylesheet" href="/css/pagestyle.css" />
-				<link href="/src/css/pages/Main.css" rel="stylesheet" />
+				<link href="/css/pages/Main.css" rel="stylesheet" />
 				<link rel="stylesheet" href="/css/panning.css" />
 			</Helmet>
 
