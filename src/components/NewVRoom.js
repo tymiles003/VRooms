@@ -10,13 +10,11 @@ class NewVRoom extends Component {
 		super(props);
 		this.state = {
 			agent: "",
-			address: {
-				street: "",
-				street2: "",
-				city: "",
-				state: "",
-				zip: ""
-			}
+			street: "",
+			city: "",
+			state: "",
+			zip: ""
+			
 		};
 	}
 		
@@ -64,18 +62,45 @@ class NewVRoom extends Component {
 				<form id="new-vroom-form" className="form ws-form">
 					<fieldset>
 						<legend>Address</legend>
-						<div className="form-field">
-							<div className="input-wrap">
+						<div className="form-field-row">
+							<div className="input-wrap input-full-width input-street">
 								<input
 									className="input ws-input"
 									type="text"
-									placeholder="Address"
+									placeholder="Street"
+									name="street"
 									onChange={this.handleInputChange}
 								/>
 							</div>
-							{/* <p className="form-field-notification fineprint">
-							{this.fieldNotification}
-						</p> */}
+						</div>
+						<div className="form-field-row">
+							<div className="input-wrap input-city">
+								<input
+									className="input ws-input"
+									type="text"
+									placeholder="City"
+									name="city"
+									onChange={this.handleInputChange}
+								/>
+							</div>
+							<div className="input-wrap input-state">
+								<input
+									className="input ws-input"
+									type="text"
+									placeholder="State"
+									name="state"
+									onChange={this.handleInputChange}
+								/>
+							</div>
+							<div className="input-wrap input-zip">
+								<input
+									className="input ws-input"
+									type="text"
+									placeholder="Zip"
+									name="zip"
+									onChange={this.handleInputChange}
+								/>
+							</div>
 						</div>
 					</fieldset>
 				</form>
