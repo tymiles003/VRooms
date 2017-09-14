@@ -40,7 +40,10 @@ const Main = props => {
 	//   render() {
 	return (
 		<div className="application">
+			{/* Helmet =========================================================*/}
 			<Helmet>
+            <title>VRooms - Virtual Reality for Real Estate</title>
+			
 				{/* customized script elements */}
 				<script src="./js/drift.js" type="text/javascript" />
 
