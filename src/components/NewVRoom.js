@@ -7,7 +7,7 @@ import "aframe-animation-component";
 import "aframe-particle-system-component";
 import "babel-polyfill";
 import Navbar from "./common/Navbar";
-import MobileMenu from "./common/MobileMenu";
+// import MobileMenu from "./common/MobileMenu";
 import NewVRoomForm from './common/Forms/NewVRoomForm';
 
 const NewVRoom = (props) => {
@@ -24,7 +24,7 @@ const NewVRoom = (props) => {
 				</Helmet>
 			{/* Navbar =========================================================*/}
 				<Navbar logo_filename="VRooms_V11_Hori_Gray" theme="opaque-white-bg" />
-				<MobileMenu />
+				{/* <MobileMenu /> */}
 			<main>
 			{/* Page Title =====================================================*/}
 				<header className="mini-header">

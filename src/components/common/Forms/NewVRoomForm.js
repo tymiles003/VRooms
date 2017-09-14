@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
+// Scraping imports
+// import axios from 'axios';
+// import cheerio from 'cheerio';
 import API from "../../../utils/API";
-import Navbar from '../Navbar';
-import MobileMenu from '../MobileMenu';
 import Helmet from 'react-helmet';
-// import Form from "../components/common/Forms/Form";
 
 class NewVRoomForm extends Component {
 	constructor(props){
@@ -30,7 +30,26 @@ class NewVRoomForm extends Component {
 
 	handleScrape = event => {
 		const zillow_url = event.target.value.trim();
-		
+		let scrapeData = {
+			agent: "",
+			street: "",
+			city: "",
+			state: "",
+			zip: "",
+		}
+		// axios.get(zillow_url)
+		// .then( (response) => {
+		// 	let $ = cheerio.load(response.data);
+			
+		// 	let $header = $('header');
+		// 	let headerText = $header.text().trim();
+		// 	console.log('headerText',headerText);
+		// })
+		// .catch( error => console.log('error',error) )
+		API.scrapeZillow(zillow_url)
+		.then( (res) => {
+			console.log('res',res);
+		})
 	}
 
 	handleFormSubmit = event => {

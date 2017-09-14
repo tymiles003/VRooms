@@ -47,12 +47,24 @@ const API = {
 
   signup: function(){
     return axios.post("/signup");
-  }
+  },
 
   // gLogin:function(){
   //   return axios.get("http://localhost:5000/glogin");
   // }
 
+  scrapeZillow: (qURL) => {
+	  return axios({
+		  method: 'POST',
+		  url: '/scrape',
+		  data: qURL
+	  })
+	  .then( (response) => {
+		//   console.log('response',response);
+		  return response;
+	  })
+	  .catch( error => console.log('error',error) )
+  }
 
 };
 
