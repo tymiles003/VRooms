@@ -47,12 +47,36 @@ const API = {
 
   signup: function(){
     return axios.post("/signup");
-  }
+  },
 
   // gLogin:function(){
   //   return axios.get("http://localhost:5000/glogin");
   // }
 
+//   scrapeZillow: (qURL) => {
+// 	  return axios({
+// 		  method: 'POST',
+// 		  url: '/scrape',
+// 		  data: qURL
+// 	  })
+// 	  .then( (response) => {
+// 		//   console.log('response',response);
+// 		  return response;
+// 	  })
+// 	  .catch( error => console.log('error',error) )
+//   }
+
+  fetchListing: (zpid) => {
+	//   const apiURL = 'http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm';
+	  return axios({
+		  method: 'POST',
+		  url: '/fetch-listing',
+		  data: zpid
+	  })
+	  .then( (response) => response)
+	  .catch( error => console.log('error',error) )
+
+  }
 
 };
 

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
+// Scraping imports
+// import axios from 'axios';
+// import cheerio from 'cheerio';
 import API from "../../../utils/API";
-import Navbar from '../Navbar';
 import Helmet from 'react-helmet';
-// import Form from "../components/common/Forms/Form";
 
 class NewVRoomForm extends Component {
 	constructor(props){
@@ -14,22 +15,102 @@ class NewVRoomForm extends Component {
 			city: "",
 			state: "",
 			zip: "",
-			
+			query_type: 'invalid',
+			zpid: '16732045',
+			zillow_url: 'https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true',
+			fetch_query: "https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true",
 		};
 	}
-		
+	
 	handleInputChange = event => {
+		event.preventDefault();
 		const value = event.target.value;
 		const name = event.target.name;
+		console.log(name, value);
 
+		if (name === 'fetch_query') {
+			this.detectQueryType(value.trim())
+		}
 		this.setState({
 			[name]: value
 		});
-	};
+	}
 
-	handleScrape = event => {
-		const zillow_url = event.target.value.trim();
+	detectQueryType = (query) => {
+		// let isZPID = false;
+		let zpid = '';
+		let query_type = 'invalid';
 		
+		let isNumber = (query) => {
+			let parsed = parseInt(query);
+			console.log('parsed',parsed);
+			console.log('typeof parsed',typeof parsed);
+			return isNaN(parsed);
+		}
+		let notOnlyDigits = isNumber(query);
+		console.log('notOnlyDigits',notOnlyDigits);
+
+		// Check if it is a zpid
+		// zpid should have 8 characters.
+		if (query.length === 8 && !notOnlyDigits) { 
+			console.log('--- Zillow Property ID detected ---');
+
+			// Set the zpid default assuming valid (changed later if invalid)
+			zpid = query;
+			query_type = 'zpid';
+			
+			// for (let i=0; i<query.length; i++) {
+			// 	let letter = query[i];
+			// 	if ('1234567890'.indexOf(letter) === -1) {
+			// 		// return false;
+			// 		isZPID = false;
+			// 		zpid = '';
+			// 	}
+			// }
+		}
+		else if (query.indexOf('zillow.com') >= 0) {
+			console.log('--- Zillow URL detected ---');
+			let splitURL = query.split('/');
+			let zpid_part_url = splitURL.filter(ea => ea.indexOf('_zpid') >= 0 )[0];
+
+			zpid = zpid_part_url.substring(0,zpid_part_url.length-5);
+			query_type = 'zillow_url';
+			console.log('>>> Extracted zpid...',zpid);
+			
+			// console.log('>>> Calling Zillow API...');
+			// API.fetchListing(query)
+			// .then((res) => {
+				// 	console.log('>>> API fetchListing response received...');
+				// 	console.log('res',res);
+			// })
+		}
+		else {
+			console.log('>>> Invalid/Unrecognized Query Type (!)');
+		}
+		
+		// If invalid query type, zpid is empty string & query_type is invalid
+		this.setState({
+			zpid: parseInt(zpid),
+			query_type: query_type,
+		})
+	}
+	
+	handleFetch = event => {
+		event.preventDefault();
+		// const query = event.target.value.trim();
+		let query = this.state.fetch_query.trim();
+		// let isZPID = this.detectQueryType(query);
+		// Query Validation
+		if (this.state.query_type !== 'invalid') {
+			console.log('>>> Calling Zillow API...');
+			API.fetchListing(query)
+			.then((res) => {
+				console.log('... API fetchListing response received');
+				// console.log('res',res);
+				let apiResponse = res.data;
+				console.log('--> API Response',apiResponse);
+			})
+		}
 	}
 
 	handleFormSubmit = event => {
@@ -38,7 +119,7 @@ class NewVRoomForm extends Component {
 
 		let { agent, street, city, state, zip } = this.state;
 		console.log('this.state',this.state);
-	};
+	}
 
 	render() {
 		return (
@@ -48,14 +129,20 @@ class NewVRoomForm extends Component {
 						<div className="input-wrap input-full-width input-street ws-input-wrap">
 							{/* <label for="street">Street</label> */}
 							<input
-								id="zillow_url"
+								id="fetch_query"
 								className="input ws-input"
 								type="text"
-								name="zillow_url"
-								placeholder="Zillow URL"
-								onChange={this.handleScrape}
+								name="fetch_query"
+								placeholder="Zillow URL or Property ID"
+								value={this.state.zpid}
+								onChange={this.handleInputChange}
 							/>
 						</div>
+							<button
+								className="ws-btn ws-btn-mini"
+								type="button"
+								onClick={this.handleFetch}
+							>Fetch</button>
 					</div>
 					<div className="form-row">
 						<fieldset>
@@ -104,6 +191,71 @@ class NewVRoomForm extends Component {
 										type="text"
 										name="zip"
 										placeholder="Zip"
+										onChange={this.handleInputChange}
+									/>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div className="form-row">
+						<fieldset>
+							<legend>Property Info</legend>
+			
+							<div className="form-field-row">
+								<div className="input-wrap input-beds">
+									{/* <label for="city">City</label> */}
+									<input
+										id="beds"
+										className="input ws-input"
+										type="text"
+										name="beds"
+										placeholder="Beds"
+										onChange={this.handleInputChange}
+									/>
+								</div>
+								<div className="input-wrap input-baths">
+									{/* <label for="state">State</label> */}
+									<input
+										id="baths"
+										className="input ws-input"
+										type="text"
+										name="baths"
+										placeholder="Baths"
+										onChange={this.handleInputChange}
+									/>
+								</div>
+								<div className="input-wrap input-sqft">
+									{/* <label for="zip">Zip</label> */}
+									<input
+										id="sqft"
+										className="input ws-input"
+										type="text"
+										name="sqft"
+										placeholder="Square Feet"
+										onChange={this.handleInputChange}
+									/>
+								</div>
+							</div>
+							<div className="form-field-row">
+								<div className="input-wrap input-price">
+									{/* <label for="city">City</label> */}
+									<input
+										id="price"
+										className="input ws-input"
+										type="text"
+										name="price"
+										placeholder="Asking Price"
+										onChange={this.handleInputChange}
+									/>
+								</div>
+								<div className="input-wrap input-year">
+									{/* <label for="state">State</label> */}
+									<input
+										id="year"
+										className="input ws-input"
+										type="text"
+										name="year"
+										placeholder="Year"
 										onChange={this.handleInputChange}
 									/>
 								</div>
