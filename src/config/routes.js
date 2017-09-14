@@ -6,6 +6,7 @@ import Favorites from "../components/Favorites";
 import Home from "../components/Home";
 import Showcase from "../components/Showcase";
 import About from "../components/About";
+import Agents from "../components/Agents";
 import LoginForm from "../components/authentication/LoginForm";
 import Signup from "../components/authentication/Signup";
 import NewVRoom from "../components/NewVRoom";
@@ -17,6 +18,7 @@ const routes = (
             <Route exact path="/" component={Main} />
             <Route path="/showcase" component={Showcase} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/agents" component={Agents} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/signup" component={Signup} />
             <Route path="/new-vroom" component={NewVRoom} />
