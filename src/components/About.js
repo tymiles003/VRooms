@@ -45,7 +45,7 @@ const About = (props) => {
 
                 <div className="marketing">
                   <section className="section-features" id="application-home-benefits">
-                    <div className="row expanded text--white">
+                    <div className="row expanded text--black">
                       <div className="small-centered small-12 columns">
                         <h1>Discover the Power of Virtual Reality Using VRooms</h1>
                       </div>

@@ -8647,9 +8647,18 @@ hr.benefit-divider-2::after {
 }
 
 .marketing .section-features h1 {
+    margin-top: 0rem;
     text-align: center;
-    margin-bottom: 2.5rem
+    margin-bottom: 2.7rem
 }
+
+@media screen and (min-width: 40em) {
+
+    .marketing .section-features h1 {
+        margin-top: 2.5rem
+    }
+}
+
 .marketing .section-features .feature-img {
     position: relative
 }
