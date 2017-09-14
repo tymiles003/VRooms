@@ -22,6 +22,7 @@
 @import "partials/_buttons";
 @import "partials/_figures";
 @import "partials/_grids";
+@import "partials/_forms";
 
 // Third-party
 @import "vendor/_colorpicker";
@@ -34,6 +35,20 @@ html {
 body {
 	// background-color: #fff;
 }
+
+// Temporary Outlines
+// .pg-form {
+// 	header,
+// 	h1,
+// 	main {
+// 		outline-width: 1px;
+// 		outline-style: solid;
+// 	}
+// 	header { outline-color: red }
+// 	h1     { outline-color: green }
+// }
+
+
 
 $pg-form-bg: $color-bg-light;
 $pg-form-bg: #fff;
@@ -63,21 +78,3 @@ $pg-form-bg: #fff;
 	}
 }
 
-
-// Temporary Outlines
-.pg-form {
-	form,
-	input,
-	header,
-	h1,
-	main {
-		outline-width: 1px;
-		outline-style: solid;
-	}
-
-
-	header { outline-color: red }
-	h1     { outline-color: green }
-	form   { outline-color: blue }
-	input  { outline-color: red }
-}

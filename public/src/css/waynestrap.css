@@ -17,8 +17,66 @@ html {
   font-weight: 400;
 }
 
+.transparent-bg {
+  background-color: transparent;
+}
+
+.white-bg {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
 div, h1, h2, h3, h4, h5, h6, p {
   margin: 0;
+}
+
+.ws-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 700px;
+  padding: 3rem 1rem;
+}
+
+.ws-form .form-field-row {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.ws-form .input-wrap {
+  flex: 1;
+}
+
+.ws-form .input-wrap input {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
+
+.ws-form .input-wrap input[type="text"] {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 1rem;
+  border: none;
+  outline: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: none;
+}
+
+.ws-form .input-wrap.input-street {
+  flex: 1;
+}
+
+.ws-form .input-wrap.input-city {
+  flex: 3;
+}
+
+.ws-form .input-wrap.input-state {
+  flex-basis: 0em;
+}
+
+.ws-form .input-wrap.input-zip {
+  flex-basis: 1.25em;
 }
 
 html {
@@ -54,29 +112,4 @@ html {
 .pg-form main header .headline,
 .pg-newVRoom main header .headline {
   font-weight: 700;
-}
-
-.pg-form form,
-.pg-form input,
-.pg-form header,
-.pg-form h1,
-.pg-form main {
-  outline-width: 1px;
-  outline-style: solid;
-}
-
-.pg-form header {
-  outline-color: red;
-}
-
-.pg-form h1 {
-  outline-color: green;
-}
-
-.pg-form form {
-  outline-color: blue;
-}
-
-.pg-form input {
-  outline-color: red;
 }
