@@ -37,6 +37,15 @@
 		flex: 1;
 		position: relative;
 		font-size: 1rem;
+		i {
+			position: absolute;
+			font-size: 1.5em;
+			height: initial;
+			line-height: initial;
+			left: 1rem;
+			top: 50%;
+			transform: translateY(-50%);
+		}
 		label {
 			position: absolute;
 			font-size: .7em;
@@ -44,6 +53,16 @@
 			top: .6em;
 			left: .6em;
 			color: inherit;
+			&.legend {
+				// position: absolute;
+				// position: relative;
+				font-size: 1rem;
+				color: $primary;
+				margin: 0;
+				font-weight: 700;
+				top: -1.5rem;
+				left: .5rem;
+			}
 		}
 		input {
 			width: 100%;
@@ -75,6 +94,11 @@
 				}
 			}
 		}
+		&.icon-prefix {
+			input {
+				padding-left: 2em;
+			}
+		}
 		
 		&.input-street {
 			flex: 1
@@ -89,9 +113,11 @@
 		}
 		&.input-zip {
 			max-width: 8em;
+			min-width: 8em;
 		}
 		&.input-state {
 			max-width: 6em;
+			min-width: 6em;
 		}
 	}
 	fieldset {
@@ -105,7 +131,14 @@
 	}
 
 }
-
+.pg-newVRoom {
+	form {
+		fieldset {
+			width: 100%;
+			max-width: 500px;
+		}
+	}
+}
 // .naked-form {
 // 	@extend %reset-form;
 // 	input {

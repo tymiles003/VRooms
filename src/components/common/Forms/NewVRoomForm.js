@@ -128,6 +128,7 @@ class NewVRoomForm extends Component {
 					<div className="form-row">
 						<div className="input-wrap input-full-width input-street ws-input-wrap">
 							{/* <label for="street">Street</label> */}
+							<label className="legend"> Fetch Property Data from Zillow </label>
 							<input
 								id="fetch_query"
 								className="input ws-input"
@@ -203,7 +204,6 @@ class NewVRoomForm extends Component {
 			
 							<div className="form-field-row">
 								<div className="input-wrap input-beds">
-									{/* <label for="city">City</label> */}
 									<input
 										id="beds"
 										className="input ws-input"
@@ -214,7 +214,6 @@ class NewVRoomForm extends Component {
 									/>
 								</div>
 								<div className="input-wrap input-baths">
-									{/* <label for="state">State</label> */}
 									<input
 										id="baths"
 										className="input ws-input"
@@ -224,32 +223,7 @@ class NewVRoomForm extends Component {
 										onChange={this.handleInputChange}
 									/>
 								</div>
-								<div className="input-wrap input-sqft">
-									{/* <label for="zip">Zip</label> */}
-									<input
-										id="sqft"
-										className="input ws-input"
-										type="text"
-										name="sqft"
-										placeholder="Square Feet"
-										onChange={this.handleInputChange}
-									/>
-								</div>
-							</div>
-							<div className="form-field-row">
-								<div className="input-wrap input-price">
-									{/* <label for="city">City</label> */}
-									<input
-										id="price"
-										className="input ws-input"
-										type="text"
-										name="price"
-										placeholder="Asking Price"
-										onChange={this.handleInputChange}
-									/>
-								</div>
 								<div className="input-wrap input-year">
-									{/* <label for="state">State</label> */}
 									<input
 										id="year"
 										className="input ws-input"
@@ -260,7 +234,43 @@ class NewVRoomForm extends Component {
 									/>
 								</div>
 							</div>
+							<div className="form-field-row">
+								<div className="input-wrap input-price icon-prefix">
+									<i className="fa fa-usd"></i>
+									<input
+										id="price"
+										className="input ws-input"
+										type="text"
+										name="price"
+										placeholder="Price"
+										onChange={this.handleInputChange}
+									/>
+								</div>
+								<div className="input-wrap input-sqft">
+									<input
+										id="sqft"
+										className="input ws-input"
+										type="text"
+										name="sqft"
+										placeholder="Square Feet"
+										onChange={this.handleInputChange}
+									/>
+								</div>
+							</div>
 						</fieldset>
+					</div>
+					<div className="form-row">
+						<div className="input-wrap input-photo">
+							<label className="legend"> Upload 360 Photo </label>
+								<input
+									id="photo"
+									className="input ws-input"
+									type="file"
+									name="photo"
+									accept="image/*"
+									onChange={this.handleInputChange}
+								/>
+						</div>
 					</div>
 					<div className="form-row">
 						<button
