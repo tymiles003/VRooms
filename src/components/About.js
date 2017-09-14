@@ -2,7 +2,6 @@ import React from 'react';
 import {Helmet} from "react-helmet";
 import Particles from 'react-particles-js';
 import Navbar from './common/Navbar';
-import MobileMenu from './common/MobileMenu';
 // import AboutCSS from './styles/About.css';
 // require('./styles/About.css');
 
@@ -43,8 +42,6 @@ const About = (props) => {
               <div className="aboutWrapper">  
 
                 <Navbar logo_filename="VRooms_V11_Hori_White" theme="opaque-black-bg"/>
-
-                <MobileMenu />
 
                 <div className="marketing">
                   <section className="section-features" id="application-home-benefits">
