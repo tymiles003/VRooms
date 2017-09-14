@@ -3,7 +3,8 @@
 // Can also break things down into much finer categories (typography, buttons, textboxes, selectboxes, etc…).
 
 // Import modules
-@import "../modules/_all";
+// @import "../modules/_all";
+@import "./modules/_all";
 
 html {
 	font-size: 16px;

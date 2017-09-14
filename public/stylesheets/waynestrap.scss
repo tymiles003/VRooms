@@ -1,4 +1,4 @@
-@import 'importAll';
+@import '_importAll';
  
 html {
 	// font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'sans-serif';
@@ -20,8 +20,8 @@ body {
 // 	h1     { outline-color: green }
 // }
 
+// $pg-form-bg: #fff;
 $pg-form-bg: $bg-light;
-$pg-form-bg: #fff;
 
 .pg-form,
 .pg-newVRoom {
@@ -40,7 +40,8 @@ $pg-form-bg: #fff;
 			padding: 3rem 0 1rem;
 			font-size: 1.2rem;
 			background-color: transparent;
-			color: $fg-primary;
+			color: $primary;
+			text-align: center;
 			.headline {
 				font-weight: 700;
 			}
