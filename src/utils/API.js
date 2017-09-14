@@ -1,4 +1,10 @@
 import axios from "axios";
+// import fs from 'fs';
+// require("dotenv").config();
+
+// Import Zillow dependency and initiate
+import Zillow from 'node-zillow';
+const zillow = new Zillow(process.env.ZILLOW_ID);
 
 const API = {
   // Retrieves all quotes from the db
@@ -53,17 +59,30 @@ const API = {
   //   return axios.get("http://localhost:5000/glogin");
   // }
 
-  scrapeZillow: (qURL) => {
+//   scrapeZillow: (qURL) => {
+// 	  return axios({
+// 		  method: 'POST',
+// 		  url: '/scrape',
+// 		  data: qURL
+// 	  })
+// 	  .then( (response) => {
+// 		//   console.log('response',response);
+// 		  return response;
+// 	  })
+// 	  .catch( error => console.log('error',error) )
+//   }
+
+  fetchListing: (zpid) => {
+	//   const apiURL = 'http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm';
 	  return axios({
 		  method: 'POST',
-		  url: '/scrape',
-		  data: qURL
+		  url: '/fetch-listing',
+		  data: zpid
 	  })
-	  .then( (response) => {
-		//   console.log('response',response);
-		  return response;
-	  })
+	  .then( (response) => response)
 	  .catch( error => console.log('error',error) )
+  
+
   }
 
 };

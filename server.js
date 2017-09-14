@@ -5,6 +5,8 @@ const bluebird = require("bluebird");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const fs = require('fs');
+require('dotenv').config();
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -18,6 +20,12 @@ const cheerio = require("cheerio");
 const request = require('request');
 const axios = require('axios');
 
+// Import Zillow dependency and initiate
+const Zillow = require('node-zillow');
+const zillow_key = process.env.ZILLOW_KEY;
+const zillow = new Zillow(zillow_key);
+
+
 // Set up a default port, configure mongoose, configure our middleware
 const PORT = process.env.PORT || 5000;
 mongoose.Promise = bluebird;
@@ -27,6 +35,7 @@ var app = express();
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
   next();
 });
 
@@ -88,6 +97,20 @@ app.post('/scrape', (req,res) => {
 		res.send('h1 '+h1);
 	})
 	// res.send('scrape return');
+})
+app.post('/fetch-listing', (req,res) => {
+	console.log('>>> POST /fetch-listing (server.js)');
+	const zpid = req.body;
+	console.log('zpid',zpid);
+
+	let parameters = {
+		zpid: zpid
+	}
+	zillow.get('getUpdatedPropertyDetails', parameters)
+	.then( (results) => {
+		res.json(results)
+	})
+	.catch( (err) => console.log('err',err))
 })
 
 
