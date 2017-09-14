@@ -1,8 +1,8 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
-import Particles from 'react-particles-js';
 import Navbar from './common/Navbar';
-import MobileMenu from './common/MobileMenu';
+// import MobileMenu from './common/MobileMenu';
+import BurgerMenu from './common/BurgerMenu';
 // import AboutCSS from './styles/About.css';
 // require('./styles/About.css');
 
@@ -30,7 +30,7 @@ const Agents = (props) => {
 
                 <Navbar logo_filename="VRooms_V11_Hori_White" theme="opaque-black-bg"/>
 
-                <MobileMenu />
+                <BurgerMenu />
 
                 <div className="marketing">
                   <section className="section-features" id="application-home-benefits">
