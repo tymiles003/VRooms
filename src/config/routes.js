@@ -19,7 +19,7 @@ const routes = (
             <Route exact path="/about" component={About} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/signup" component={Signup} />
-            <Route path="/new-vroom" component={NewVRoom} />
+            <Route exact path="/new-vroom" component={NewVRoom} />
         </Switch>
     </BrowserRouter>
 );

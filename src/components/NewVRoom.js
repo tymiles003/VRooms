@@ -1,121 +1,43 @@
-import React, { Component } from "react";
-import ReactDOM from 'react-dom';
-import API from "../utils/API";
-import Navbar from './common/Navbar';
-import MobileMenu from './common/MobileMenu';
-import Helmet from 'react-helmet';
-// import Form from "../components/common/Forms/Form";
+import React from "react";
+import Helmet from "react-helmet";
+// import Navbar from "./common/Navbar";
+// import Footer from "./common/Footer";
+import "aframe";
+import "aframe-animation-component";
+import "aframe-particle-system-component";
+import "babel-polyfill";
+import Navbar from "./common/Navbar";
+import MobileMenu from "./common/MobileMenu";
+import NewVRoomForm from './common/Forms/NewVRoomForm';
 
-class NewVRoom extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			agent: "",
-			street: "",
-			city: "",
-			state: "",
-			zip: ""
-			
-		};
-	}
-		
-	handleInputChange = event => {
-		const value = event.target.value;
-		const name = event.target.name;
-
-		this.setState({
-			[name]: value
-		});
-	};
-
-	handleFormSubmit = event => {
-		// Preventing the default behavior of the form submit (which is to refresh the page)
-		event.preventDefault();
-
-		let { topic, startYear, endYear } = this.state;
-	};
-
-	render() {
-		return (
-			<div className="pg-form pg-newVRoom">
-
+const NewVRoom = (props) => {
+	//   render() {
+	return (
+		<div className="pg-form pg-newVRoom">
 			{/* Helmet =========================================================*/}
-				<Helmet 
-					title="Create New VRoom"
-				/>
+				<Helmet>
+					<title>Create New VRoom</title>
+					{/* customized script elements */}
+					<script src="./js/drift.js" type="text/javascript" />
+
+					{/* CSS links for this page */}
+				</Helmet>
 			{/* Navbar =========================================================*/}
-				<Navbar
-					logo_filename="VRooms_V11_Hori_Gray"
-					theme="white-bg"
-					handleAuth={this.handleAuth}
-				/>
-				{this.state.signInClicked ? (
-					<Modal
-						ref={node => {
-							this.modal = node;
-						}}
-						modalIsOpen={true}
-					/>
-				) : null}
+				<Navbar logo_filename="VRooms_V11_Hori_Gray" theme="opaque-white-bg" />
 				<MobileMenu />
 			<main>
 			{/* Page Title =====================================================*/}
-					<header className="mini-header">
-						<h1 className="headline">Create New VRoom</h1>
-					</header>
+				<header className="mini-header">
+					<h1 className="headline">Create New VRoom</h1>
+				</header>
 
 			{/* Form ===========================================================*/}
-				<form id="new-vroom-form" className="form ws-form">
-					<fieldset>
-						<legend>Address</legend>
-						<div className="form-field-row">
-							<div className="input-wrap input-full-width input-street">
-								<input
-									className="input ws-input"
-									type="text"
-									placeholder="Street"
-									name="street"
-									onChange={this.handleInputChange}
-								/>
-							</div>
-						</div>
-						<div className="form-field-row">
-							<div className="input-wrap input-city">
-								<input
-									className="input ws-input"
-									type="text"
-									placeholder="City"
-									name="city"
-									onChange={this.handleInputChange}
-								/>
-							</div>
-							<div className="input-wrap input-state">
-								<input
-									className="input ws-input"
-									type="text"
-									placeholder="State"
-									name="state"
-									onChange={this.handleInputChange}
-								/>
-							</div>
-							<div className="input-wrap input-zip">
-								<input
-									className="input ws-input"
-									type="text"
-									placeholder="Zip"
-									name="zip"
-									onChange={this.handleInputChange}
-								/>
-							</div>
-						</div>
-					</fieldset>
-				</form>
+				<NewVRoomForm />
 			{/*=================================================================*/}
 			</main>
 			{/*=================================================================*/}
-			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
 export default NewVRoom;
