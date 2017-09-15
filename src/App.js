@@ -10,8 +10,4 @@ import "babel-polyfill";
 import { Entity, Scene } from "aframe-react";
 
 
-// const reactHelper = require('react-helper');
-// const ExpressReactHelperPage = require('./components/authentication/LoginForm');
-// reactHelper.register({ExpressReactHelperPage});
-// console.log("Inside App..",reactHelper);
 ReactDOM.render(routes, document.getElementById("app"));

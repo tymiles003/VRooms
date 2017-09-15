@@ -14,7 +14,6 @@ const routes = (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={Main} />
-            <Route exact path="/error/:message" component={Main} />
             <Route path="/showcase" component={Showcase} />
             <Route exact path="/about" component={About} />
             <Route exact path="/agents" component={Agents} />
