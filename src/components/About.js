@@ -90,9 +90,9 @@ const About = (props) => {
                         </div>
                         <div className="column column-block">
                           <img className="float-center customer-img" src="/assets/img/team/wayne.png" alt="Wayne Cheng" />
-                          <h6>“Lucas ipsum dolor sit amet chewbacca organa fisto yoda cade mandalore thrawn bothan organa dantooine. Maul calamari skywalker antilles windu ahsoka gonk. Organa organa watto moff calamari kashyyyk mon hutt grievous. Organa padmé twi'lek twi'lek moff darth qui-gon. Palpatine jawa endor mace mon moff.”</h6>
+                          <h6>“According to Silicon Valley (on HBO), VR is like all the rage these days, so that’s why I’m doing this”</h6>
                           <p><strong>Wayne Cheng</strong></p>
-                          <p>Founding Partner & COOL Wannabe</p>
+                          <p>Founding Partner & C3PO</p>
                         </div>
                         <div className="column column-block">
                           <img className="float-center customer-img" src="/assets/img/team/joseph.png" alt="Joseph Huynh" />
