@@ -40,8 +40,8 @@ const About = (props) => {
                       <div className="small-12 columns feature-container">
                         <div className="small-12 large-6 columns feature-content left">
                           <div className="feature-text">
-                            <h5>Engage</h5>
-                            <p>Lucas ipsum dolor sit amet maul dooku gamorrean kessel sith moff organa cade moff jango. Sidious lando solo dagobah ackbar calamari. Obi-wan hutt anakin organa tatooine moff mace. Solo greedo darth dagobah jabba coruscant dagobah organa wedge.</p>
+                            <h3>Engage</h3>
+                            <h5>Say hello to the next generation of homebuying. Engage buyers by providing the most immersive and realistic way to view listings on web, mobile, and virtual reality.</h5>
                             <hr className="benefit-divider-1" />
                           </div>
                         </div>
@@ -55,8 +55,8 @@ const About = (props) => {
                         </div>
                         <div className="small-12 large-6 columns feature-content">
                           <div className="feature-text">
-                            <h5>Improve</h5>
-                            <p>Lucas ipsum dolor sit amet maul dooku gamorrean kessel sith moff organa cade moff jango. Sidious lando solo dagobah ackbar calamari. Obi-wan hutt anakin organa tatooine moff mace. Solo greedo darth dagobah jabba coruscant dagobah organa wedge. </p>
+                            <h3>Improve</h3>
+                            <h5>Get innovative, reach out to overseas investors, increase your selling efficiency </h5>
                             <hr className="benefit-divider-2" />
                           </div>
                         </div>
