@@ -38,8 +38,7 @@ module.exports = {
                 test: /\.css$/,
                 loader: "style-loader!css-loader"
             }
-        ],
-        postLoaders: [ { loader: "transform?brfs" } ]
+        ]
     },
     // This lets us debug our react code in chrome dev tools. Errors will have lines and file names
     // Without this the console says all errors are coming from just coming from bundle.js

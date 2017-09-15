@@ -1,34 +1,17 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import Navbar from './common/Navbar';
-import ProgressiveImage from 'react-progressive-image';
-
 // import AboutCSS from './styles/About.css';
 // require('./styles/About.css');
 
-class About extends React.Component {
-	constructor(props) {
-	  super(props);
+// class About extends React.Component {
+	// constructor(props) {
+	//   super(props);
   
-   }
-
-      componentDidMount(){
-        const ele = document.getElementById('ipl-progress-indicator')
-        if(ele){
-          setTimeout(() => {
-            ele.classList.add('available')
-            setTimeout(() => {
-              ele.outerHTML = ''
-            }, 2000)
-          }, 1000)
-        }
-      }
-   
-   
-	render() {
+	//  }
+	// render() {
 	//   return (
-// const About = (props) => {
-  
+const About = (props) => {
 	return (
       <div className="application">
         {/* Helmet =========================================================*/}
@@ -65,10 +48,7 @@ class About extends React.Component {
                           </div>
                         </div>
                         <div className="small-12 large-6 columns image-right">
-                          {/* <img className="feature-img js-application-home-benefits-1-img" src="/assets/img/marketing/1.jpg" alt="Feature1" /> */}
-                          <ProgressiveImage src='/assets/img/marketing/1.jpg' placeholder='/assets/img/marketing/1-small.jpg'>
-                            {(src) => <img src={src} alt='an image'/>}
-                          </ProgressiveImage>
+                          <img className="feature-img js-application-home-benefits-1-img" src="/assets/img/marketing/1.jpg" alt="Feature1" />
                         </div>
                       </div>
                       <div className="small-12 columns feature-container">
@@ -144,9 +124,9 @@ class About extends React.Component {
 
           
       </div>
-    );
-  }
-	// )
+    // );
+//   }
+	)
 }
 
 export default About;
