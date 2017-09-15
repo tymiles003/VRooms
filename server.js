@@ -52,12 +52,14 @@ require("./controllers/config/passport")(passport);
 
 // Route to serve gzipped bundle.js file.
 // IMPORTANT: This NEEDS to be higher-priority than the static route
-app.get("*/bundle.js", function (req, res, next) {
-	req.url = req.url + ".gz";
-	res.set("Content-Encoding", "gzip");
-	res.set("Content-Type", "text/javascript");
-	next();
-});
+if(process.env.NODE_ENV === 'production') {
+	app.get("*/bundle.js", function (req, res, next) {
+		req.url = req.url + ".gz";
+		res.set("Content-Encoding", "gzip");
+		res.set("Content-Type", "text/javascript");
+		next();
+	});
+}
 
 app.use(express.static(__dirname + "/public"));
 // app.use("/", routes);
