@@ -16,8 +16,14 @@ const router = express.Router();
 //   res.render('profile.ejs', { user: req.user });
 // });
 
-router.get("/logout", function(req, res) {
+router.get("/logout/", function(req, res) {
     req.logout();
+    res.clearCookie("email", { path: '/' });
+    res.clearCookie('connect.sid', { path: '/' }); 
+    // req.session.destroy(function (err) {
+    //     res.redirect('/'); //Inside a callback… bulletproof!
+    // });
+
     res.redirect("/");
 });
 
@@ -29,12 +35,11 @@ router.post("/signup", passport.authenticate("local-signup", {
 
 router.post(
     "/login",
-    passport.authenticate("local-login", {
-        successRedirect: "/",
-        failureRedirect: "/login",
-        failureFlash: true
-    })
-);
+    passport.authenticate("local-login", { failureRedirect: "/login" }),
+  (req, res) => {
+      res.cookie("email",req.user.local.email);
+      res.redirect("/");
+  });
 
 router.get(
     "/auth/facebook",
@@ -43,21 +48,21 @@ router.get(
 
 router.get(
     "/auth/facebook/callback",
-    passport.authenticate("facebook", {
-        successRedirect: "/",
-        failureRedirect: "/login"
-    })
-);
+    passport.authenticate("facebook", { failureRedirect: "/login" }),
+  (req, res) => {
+      res.cookie("email",req.user.facebook.email);
+      res.redirect("/");
+  });
 
 router.get("/auth/twitter", passport.authenticate("twitter"));
 
 router.get(
     "/auth/twitter/callback",
-    passport.authenticate("twitter", {
-        successRedirect: "/",
-        failureRedirect: "/login"
-    })
-);
+    passport.authenticate("twitter", { failureRedirect: "/login" }),
+  (req, res) => {
+      res.cookie("email",req.user.twitter.displayName);
+      res.redirect("/");
+  });
 
 
 router.get(
@@ -66,17 +71,22 @@ router.get(
 );
 
 
-router.get(
-    "/auth/google/callback",
-    passport.authenticate("google", {
-        successRedirect: "/",
-        failureRedirect: "/login"
-    })
-);
+// router.get(
+//     "/auth/google/callback",
+//     passport.authenticate("google", {
+//         successRedirect: "/",
+//         failureRedirect: "/login"
+//     })
+// );
 
-// router.get("/auth/google/callback",
-//   passport.authenticate("google", { failureRedirect: "/auth/google" }),
-//   (req, res) => res.redirect("OAuthLogin://login?user=" + JSON.stringify(req.user)));
+router.get("/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res) => {
+      res.cookie("email",req.user.google.email);
+      res.redirect("/");
+  });
+
+
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
