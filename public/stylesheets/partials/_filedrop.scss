@@ -3,7 +3,7 @@
 	// Important that the dimensions of filedrop should reflect the aspect
 	// ratio of a 360 photo (i.e. the height should be half of the width.)
 	$filedrop-w: 90vw;
-	$filedrop-max-w: 500px;
+	$filedrop-max-w: 800px;
 	$filedrop-min-w: 300px;
 	width: $filedrop-w;
 	height: $filedrop-w/2;
@@ -23,7 +23,7 @@
 		font-size: 1rem;
 		border: none;
 		outline: none;
-		border-radius: 10px;
+		border-radius: 24px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -31,27 +31,40 @@
 		text-align: center;
 		cursor: pointer;
 		// border: 2px dashed $dividers;
-		border: 2px dashed $light-blue;
+		border: 2px dashed $v-light-gray;
 		// &:hover {
 		// 	border-color: rgba(52, 152, 219, 0.8);
 		// }
 		.dropzone-content {
-			color: inherit;
+			color: $blue;
 			font-size: 1.1em;
 			font-weight: 400;
-			opacity: 0.5;
+			// opacity: 0.5;
 			.feature-icon {
 				font-size: 5.5em;
 				margin-bottom: 1rem;
+				opacity: .15;
 				img {
-					height: 1em;
+					height: 1.5em;
 					width: initial;
 				}
 			}
 			i {
 				font-size: inherit;
 			}
-			
+			.direction-headline {
+				font-size: 3em;
+				line-height: 1em;
+				margin-bottom: 1rem;
+				color: $blue;
+				font-weight: 100;
+			}
+			.direction-subheadline {
+				font-size: 1em;
+				color: $v-light-gray;
+				line-height: 1em;
+				margin-bottom: .5rem;
+			}
 		}
 	}
 	#filedrop-preview,

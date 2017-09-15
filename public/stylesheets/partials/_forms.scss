@@ -37,14 +37,16 @@
 		flex: 1;
 		position: relative;
 		font-size: 1rem;
+		color: $secondary;
 		i {
 			position: absolute;
-			font-size: 1.5em;
+			font-size: 1.25em;
 			height: initial;
 			line-height: initial;
 			left: 1rem;
 			top: 50%;
 			transform: translateY(-50%);
+			color: inherit;
 		}
 		label {
 			position: absolute;
@@ -73,24 +75,41 @@
 			height: 3em;
 			line-height: 3em;
 			padding: 0 1em;
+			// position: relative;
+			// z-index: 100;
 				// with label.....
 				// padding-top: 1em;
 				// padding-bottom: .5em;
 			&[type="text"] {
-				background-color: #fff;
-				color: $primary;
-				// font-size: 1rem;
-				// padding-left: 0;
-				// text-indent: 1em;
-				// border: none;
-				// outline: 1px solid $dividers;
-				border:  1px solid $dividers;
+				// background-color: hsla(0,0,98%,1);
+				// background-color: hsla(0,0,99%,1);
+				background-color: $white;
+				color: $secondary;
+
+				// border:  1px solid $dividers;
 				box-shadow: none;
-				// box-shadow: 0px 0px 0px 1px $dividers inset;
+				outline: 1px solid $dividers;
+				outline-offset: 0;
+				&::placeholder {
+					color: $offwhite;
+					color: $light-gray;
+					// color: $red;
+					font-weight: 300;
+				}
+				
 				&:focus, &:active {
 					// border-color: $light-gray;
-					outline: 1px solid $gray;
+					// outline: 1px solid $gray;
 					// box-shadow: 0px 0px 0px 1px $light-gray inset;
+					// box-shadow: inset 0px 0px 3px -1px $blue;
+					// z-index: 999;
+					background-color: $white;
+					color: $primary;
+					&::placeholder {
+							// color: $secondary;
+							// color: $dark-gray;
+							color: $blue;
+					}
 				}
 			}
 		}
