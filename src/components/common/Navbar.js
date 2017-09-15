@@ -84,7 +84,6 @@ class Navbar extends Component {
 						</a>)
 					: (
 							<a 
-								href="/login" 
 								data-auth="no" 
 								className="mobile-menu__btn navigation-menu__sign_in a-login" 
 								onClick={this.handleAuth}
