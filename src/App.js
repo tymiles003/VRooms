@@ -9,4 +9,5 @@ import "aframe-particle-system-component";
 import "babel-polyfill";
 import { Entity, Scene } from "aframe-react";
 
+
 ReactDOM.render(routes, document.getElementById("app"));
