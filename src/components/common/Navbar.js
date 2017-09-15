@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 // Authentication Imports
 import Modal from "../common/CustomModal";
 import LoginForm from "../authentication/LoginForm";
+import cookie from 'react-cookies';
+import API from "../../utils/API";
+
 
 // const Navbar = (this.props) => (
 class Navbar extends Component {
@@ -20,11 +23,24 @@ class Navbar extends Component {
 		this.setState({addClass: !this.state.addClass});
 	}
 
+	componentWillMount() {
+		console.log("USer == ",cookie.loadAll());
+    	this.state =  { sessionId: cookie.load('connect.sid'), email: cookie.load("email") };
+  }
 	handleAuth = (event) =>{
 		event.preventDefault();
-		console.log("inside handle auth");
 		this.setState({signInClicked:true});
 		// this.forceUpdate();
+	}
+
+	handleLogout = (event) =>{
+		event.preventDefault();
+		cookie.remove("connect.sid", {path:'/'});
+		cookie.remove("email", {path:'/'});
+		API.logout().then(res => {
+			this.setState({sessionId:"", email: ""});
+		});
+
 	}
 
 	render() {
@@ -64,16 +80,32 @@ class Navbar extends Component {
 					<Link to="/contact" className="navigation-menu__link uppercase">Contact Us</Link>
 					<Link to="/new-vroom" className="navigation-menu__link uppercase">New</Link>
 
-					<Link rel="signup" to="/signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</Link>
-					{/* <Link data-auth="no" to="/login" className="navigation-menu__sign_in a-login" onClick={this.props.handleAuth} > Login </Link> */}
-					<Link 
-						to="/login" 
-						data-auth="no" 
-						className="navigation-menu__sign_in a-login" 
-						onClick={this.handleAuth}
-					> 
-						Login 
-					</Link>
+					{(this.state.sessionId && this.state.email) ? 
+						
+						(<Link 
+							to="/logout" 
+							data-auth="no" 
+							className="navigation-menu__sign_in a-login" 
+							onClick={this.handleLogout}
+						> 
+							Logout 
+						</Link>)
+					: (
+						<div>
+							<Link rel="signup" to="/signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</Link>
+							<Link 
+								to="/login" 
+								data-auth="no" 
+								className="navigation-menu__sign_in a-login" 
+								onClick={this.handleAuth}
+							> 
+								Login 
+							</Link>
+						</div>
+						)	
+				
+					}
+					
 				</nav>
 				</div>
 
