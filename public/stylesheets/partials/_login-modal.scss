@@ -1,7 +1,6 @@
 
 .ReactModalPortal {
 
-// Overlay ===========================================
 	.ReactModal__Overlay--after-open{
 		z-index: 9999;
 		opacity: 1;
@@ -17,7 +16,6 @@
 
 	.ReactModal__Overlay {
 		background: white;
-		// Content ===========================================
 		.ReactModal__Content{
 			width: 400px;
 	
@@ -33,6 +31,11 @@
 				box-sizing: border-box;
 				display: inline-block;
 				text-align: center;
+
+				.modal-title{
+					margin: 0;
+					line-height: 1.428571429;
+				}
 			}
 	
 			.close{
@@ -41,12 +44,12 @@
 				right: 20px;
 				width: 32px;
 				height: 32px;
+				background-color: transparent;
+				font-size: 1.5rem;
+				font-weight: 300;
+				border-radius: 50%;
 			}
 	
-			.modal-title{
-				margin: 0;
-				line-height: 1.428571429;
-			}
 	
 			input[type="text"],input[type="password"]{
 				border-radius: 3px;
