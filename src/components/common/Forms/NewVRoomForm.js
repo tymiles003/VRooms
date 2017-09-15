@@ -7,15 +7,20 @@ class NewVRoomForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			agent: "",
+			agent: "James Bond",
 			street: "",
 			city: "",
 			state: "",
 			zip: "",
+			beds: "",
+			baths: "",
+			year: "",
+			price: "",
+			sqft: "",
 			query_type: 'invalid',
-			zpid: '16732045',
+			zpid: '48749425',
 			zillow_url: 'https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true',
-			fetch_query: "https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true",
+			fetch_query: '',
 		};
 	}
 	
@@ -28,9 +33,11 @@ class NewVRoomForm extends Component {
 		if (name === 'fetch_query') {
 			this.detectQueryType(value.trim())
 		}
-		this.setState({
-			[name]: value
-		});
+		else {
+			this.setState({
+				[name]: value
+			});
+		}
 	}
 
 	detectQueryType = (query) => {
@@ -40,54 +47,38 @@ class NewVRoomForm extends Component {
 		
 		let isNumber = (query) => {
 			let parsed = parseInt(query);
-			console.log('parsed',parsed);
-			console.log('typeof parsed',typeof parsed);
 			return isNaN(parsed);
 		}
 		let notOnlyDigits = isNumber(query);
-		console.log('notOnlyDigits',notOnlyDigits);
 
 		// Check if it is a zpid
 		// zpid should have 8 characters.
 		if (query.length === 8 && !notOnlyDigits) { 
-			console.log('--- Zillow Property ID detected ---');
+			console.log('---> Zillow Property ID detected');
 
 			// Set the zpid default assuming valid (changed later if invalid)
 			zpid = query;
 			query_type = 'zpid';
-			
-			// for (let i=0; i<query.length; i++) {
-			// 	let letter = query[i];
-			// 	if ('1234567890'.indexOf(letter) === -1) {
-			// 		// return false;
-			// 		isZPID = false;
-			// 		zpid = '';
-			// 	}
-			// }
 		}
 		else if (query.indexOf('zillow.com') >= 0) {
-			console.log('--- Zillow URL detected ---');
+			console.log('--> Zillow URL detected');
 			let splitURL = query.split('/');
 			let zpid_part_url = splitURL.filter(ea => ea.indexOf('_zpid') >= 0 )[0];
 
 			zpid = zpid_part_url.substring(0,zpid_part_url.length-5);
 			query_type = 'zillow_url';
 			console.log('>>> Extracted zpid...',zpid);
-			
-			// console.log('>>> Calling Zillow API...');
-			// API.fetchListing(query)
-			// .then((res) => {
-				// 	console.log('>>> API fetchListing response received...');
-				// 	console.log('res',res);
-			// })
+		}
+		else if (query.length === 0) {
+			console.log('--> Empty Query');
 		}
 		else {
-			console.log('>>> Invalid/Unrecognized Query Type (!)');
+			return console.log('--> Invalid/Unrecognized Query Type (!)');
 		}
 		
 		// If invalid query type, zpid is empty string & query_type is invalid
 		this.setState({
-			zpid: parseInt(zpid),
+			zpid: zpid,
 			query_type: query_type,
 		})
 	}
@@ -95,17 +86,32 @@ class NewVRoomForm extends Component {
 	handleFetch = event => {
 		event.preventDefault();
 		// const query = event.target.value.trim();
-		let query = this.state.fetch_query.trim();
-		// let isZPID = this.detectQueryType(query);
-		// Query Validation
-		if (this.state.query_type !== 'invalid') {
+		let {zpid, query_type} = this.state;
+		let query = zpid;
+
+		// Proceed to API call as long as not invalid
+		if (query_type !== 'invalid') {
 			console.log('>>> Calling Zillow API...');
 			API.fetchListing(query)
 			.then((res) => {
 				console.log('... API fetchListing response received');
-				// console.log('res',res);
-				let apiResponse = res.data;
-				console.log('--> API Response',apiResponse);
+				let r = res.data;
+				console.log('--> API Response',r);
+				let address = r.address[0];
+				let info = r.editedFacts[0];
+				let stateData = {
+					street: address.street[0],
+					city: address.city[0],
+					state: address.state[0],
+					zip: address.zipcode[0],
+					beds: info.bedrooms[0],
+					baths: info.bathrooms[0],
+					sqft: info.finishedSqFt[0],
+					year: info.yearBuilt[0],
+					rooms: info.rooms[0],
+					links: r.links[0],
+				}
+				this.setState(stateData);
 			})
 		}
 	}
@@ -125,7 +131,7 @@ class NewVRoomForm extends Component {
 					<div className="form-row">
 						<div className="input-wrap input-full-width input-street ws-input-wrap">
 							{/* <label for="street">Street</label> */}
-							<label className="legend"> Fetch Property Data from Zillow </label>
+							<label className="legend"> Fetch Property Data from Zillow (beta)</label>
 							<input
 								id="fetch_query"
 								className="input ws-input"
@@ -140,7 +146,9 @@ class NewVRoomForm extends Component {
 								className="ws-btn ws-btn-mini"
 								type="button"
 								onClick={this.handleFetch}
-							>Fetch</button>
+							>
+							Fetch
+							</button>
 					</div>
 					<div className="form-row">
 						<fieldset>
@@ -154,6 +162,7 @@ class NewVRoomForm extends Component {
 										type="text"
 										name="street"
 										placeholder="Street"
+										value={this.state.street}
 										onChange={this.handleInputChange}
 									/>
 								</div>
@@ -167,28 +176,29 @@ class NewVRoomForm extends Component {
 										type="text"
 										name="city"
 										placeholder="City"
+										value={this.state.city}
 										onChange={this.handleInputChange}
 									/>
 								</div>
 								<div className="input-wrap input-state error">
-									{/* <label for="state">State</label> */}
 									<input
 										id="state"
 										className="input ws-input"
 										type="text"
 										name="state"
 										placeholder="State"
+										value={this.state.state}
 										onChange={this.handleInputChange}
 									/>
 								</div>
 								<div className="input-wrap input-zip">
-									{/* <label for="zip">Zip</label> */}
 									<input
 										id="zip"
 										className="input ws-input"
 										type="text"
 										name="zip"
 										placeholder="Zip"
+										value={this.state.zip}
 										onChange={this.handleInputChange}
 									/>
 								</div>
@@ -207,6 +217,7 @@ class NewVRoomForm extends Component {
 										type="text"
 										name="beds"
 										placeholder="Beds"
+										value={this.state.beds}
 										onChange={this.handleInputChange}
 									/>
 								</div>
@@ -217,6 +228,7 @@ class NewVRoomForm extends Component {
 										type="text"
 										name="baths"
 										placeholder="Baths"
+										value={this.state.baths}
 										onChange={this.handleInputChange}
 									/>
 								</div>
@@ -227,6 +239,7 @@ class NewVRoomForm extends Component {
 										type="text"
 										name="year"
 										placeholder="Year"
+										value={this.state.year}
 										onChange={this.handleInputChange}
 									/>
 								</div>
@@ -240,6 +253,7 @@ class NewVRoomForm extends Component {
 										type="text"
 										name="price"
 										placeholder="Price"
+										value={this.state.price}
 										onChange={this.handleInputChange}
 									/>
 								</div>
@@ -250,6 +264,7 @@ class NewVRoomForm extends Component {
 										type="text"
 										name="sqft"
 										placeholder="Square Feet"
+										value={this.state.sqft}
 										onChange={this.handleInputChange}
 									/>
 								</div>
@@ -257,17 +272,6 @@ class NewVRoomForm extends Component {
 						</fieldset>
 					</div>
 					<div className="form-row">
-						{/* <div className="input-wrap input-photo">
-							<label className="legend"> Upload 360 Photo </label>
-								<input
-									id="photo"
-									className="input ws-input"
-									type="file"
-									name="photo"
-									accept="image/*"
-									onChange={this.handleInputChange}
-								/>
-						</div> */}
 						<FileDrop />
 					</div>
 					<div className="form-row">
