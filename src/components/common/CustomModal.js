@@ -36,7 +36,7 @@ class CustomModal extends React.Component {
   }
 
   afterOpenModal() {
-    this.subtitle.style.color = '#f00';
+    // this.subtitle.style.color = '#f00';
   }
  
   closeModal() {
@@ -68,7 +68,7 @@ class CustomModal extends React.Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
+          contentLabel="Login Modal"
         >
 
           <div className="modal-header">
