@@ -31,11 +31,10 @@ const About = (props) => {
 			
           </Helmet>
 
-            <Loader />
-
               <div className="aboutWrapper">  
 
                 <Navbar logo_filename="VRooms_V11_Hori_White" theme="opaque-black-bg"/>
+                <Loader />
 
 			          <AboutContent />
 

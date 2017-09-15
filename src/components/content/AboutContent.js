@@ -14,8 +14,8 @@ class AboutContent extends Component {
             ele.classList.add('available')
             setTimeout(() => {
               ele.outerHTML = ''
-            }, 2000)
-          }, 1000)
+            }, 1000)
+          }, 500)
 		}
     }
 
