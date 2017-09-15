@@ -54,9 +54,15 @@ const Main = props => {
 				<link rel="stylesheet" href="/css/loader.css" />
 			</Helmet>
 
+			{/* Good example of conditional loading, can use for user auth */}
+			{/* <div>
+				{ true && <Loader /> }
+				{ false && <MainContent /> }
+			</div> */}
+
 			<Loader />
-			
 			<MainContent />
+			
 		</div>
 	);
 };
