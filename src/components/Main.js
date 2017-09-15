@@ -17,14 +17,14 @@ import Navbar from "./common/Navbar";
 
 // require('./styles/Main.css');
 
-// class Main extends Component {
-// constructor(props){
-//   super(props);
+class Main extends Component {
+constructor(props){
+  super(props);
 
 //   this.state={
 // 	signInClicked:false
 //   }
-// }
+}
 // this.state = {
 // 	signInClicked:false
 // }
@@ -36,7 +36,24 @@ import Navbar from "./common/Navbar";
 
 // 	// this.forceUpdate();
 // }
-const Main = props => {
+
+      componentDidMount(){
+        const ele = document.getElementById('ipl-progress-indicator')
+        if(ele){
+          setTimeout(() => {
+            ele.classList.add('available')
+            setTimeout(() => {
+              ele.outerHTML = ''
+            }, 2000)
+          }, 1000)
+        }
+      }
+   
+   
+	render() {
+
+
+// const Main = props => {
 	//   render() {
 	return (
 		<div className="application">
@@ -104,7 +121,7 @@ const Main = props => {
 		</div>
 	);
 };
-// }
+}
 
 export default Main;
 
