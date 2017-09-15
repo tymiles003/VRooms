@@ -40,8 +40,8 @@ const Agents = (props) => {
                       <div className="small-12 columns feature-container">
                         <div className="small-12 large-6 columns feature-content left">
                           <div className="feature-text">
-                            <h5>Experience</h5>
-                            <p>Lucas ipsum dolor sit amet maul dooku gamorrean kessel sith moff organa cade moff jango. Sidious lando solo dagobah ackbar calamari. Obi-wan hutt anakin organa tatooine moff mace. Solo greedo darth dagobah jabba coruscant dagobah organa wedge. </p>
+                            <h3>Experience</h3>
+                            <h5>Get ahead of the game. Revolutionize the homebuying process, provide your clients an immersive experience and make your listing more engaging. </h5>
                             <hr className="benefit-divider-1" />
                           </div>
                         </div>
@@ -55,8 +55,8 @@ const Agents = (props) => {
                         </div>
                         <div className="small-12 large-6 columns feature-content">
                           <div className="feature-text">
-                            <h5>Easy to Share</h5>
-                            <p>Share with people who don’t have a VR headset. Send them a mobile-compatible link and embed on your own web page.</p>
+                            <h3>Easy to Share</h3>
+                            <h5>Share with people who don’t have a VR headset. Send them a mobile-compatible link and embed on your own web page.</h5>
                             <hr className="benefit-divider-2" />
                           </div>
                         </div>
