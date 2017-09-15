@@ -61,10 +61,12 @@ class FileDrop extends Component {
 					<div className="dropzone-content">
 						<div className="feature-icon">
 							{/* <i className="fa fa-picture-o"></i> */}
-							<img className='img-icon' src="/assets/graphics/360-photo-black.svg"></img>
+							<img className='img-icon' src="/assets/graphics/360-photo-o-black.svg"></img>
+							{/* <img className='img-icon' src="/assets/graphics/360-photo-black.svg"></img> */}
 							{/* <img className='img-icon' src="/assets/graphics/360-photo-white.svg"></img> */}
 						</div>
-						<p>Drop Shit Here</p>
+						<h4 className="direction-headline"> Drag & Drop </h4>
+						<p className="direction-subheadline">or click to browse your files.</p>
 					</div>
 				</Dropzone>
 				<figure 
