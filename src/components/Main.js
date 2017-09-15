@@ -12,8 +12,8 @@ import "babel-polyfill";
 // Authentication imports
 // import LoginForm from "./authentication/LoginForm";
 // import Modal from "./common/CustomModal";
-
-import Navbar from "./common/Navbar";
+import Loader from "./common/Loader";
+import MainContent from "./content/MainContent";
 
 // require('./styles/Main.css');
 
@@ -51,56 +51,18 @@ const Main = props => {
 				<link rel="stylesheet" href="/css/pagestyle.css" />
 				<link href="/css/pages/Main.css" rel="stylesheet" />
 				<link rel="stylesheet" href="/css/panning.css" />
+				<link rel="stylesheet" href="/css/loader.css" />
 			</Helmet>
 
-			<div className="wrapper">
-				<video
-					className="video-container video-container-overlay"
-					id="video-background"
-					autoPlay="true"
-				>
-					<source
-						src="./assets/video/splashintro.mp4"
-						type="video/mp4"
-					/>
-				</video>
+			{/* Good example of conditional loading, can use for user auth */}
+			{/* <div>
+				{ true && <Loader /> }
+				{ false && <MainContent /> }
+			</div> */}
 
-				<Navbar
-					logo_filename="VRooms_V11_Hori_Gray"
-					theme="opaque-white-bg"
-				/>
-
-				<header
-					className="header header--main js-header a-page"
-					data-landing="yes"
-					data-page="Home"
-					data-page-name="Main"
-				>
-					<div className="description">
-						<h1
-							className="description__headline text--white emerge"
-							data-duration="600"
-							data-effect="slide"
-							data-down="64px"
-							data-hold="100"
-						>
-							Virtual Reality for Real Estate
-						</h1>
-						<span
-							className="description__sub_headline text--white emerge"
-							data-duration="600"
-							data-effect="slide"
-							data-down="64px"
-							data-hold="100"
-							data-continue="true"
-						>
-							Use VR to <strong>win</strong> more listings and{" "}
-							<br />
-							<strong>stay ahead</strong> of your competition
-						</span>
-					</div>
-				</header>
-			</div>
+			<Loader />
+			<MainContent />
+			
 		</div>
 	);
 };
