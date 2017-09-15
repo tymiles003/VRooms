@@ -39,8 +39,10 @@ class Navbar extends Component {
 		cookie.remove("email", {path:'/'});
 		API.logout().then(res => {
 			this.setState({sessionId:"", email: ""});
-		});
-
+			if(this.state.addClass)
+				this.toggle();
+			});
+		
 	}
 
 	render() {
@@ -69,7 +71,28 @@ class Navbar extends Component {
 					<a href="/contact" className="mobile-menu__link text--white text--bold ">Contact us</a>
 
 					<div className="mobile-menu-btn-wrapper">
-						<a data-auth="no" href="/login" className="mobile-menu__btn navigation-menu__sign_in a-login">sign in</a>
+
+					{(this.state.sessionId && this.state.email) ? 
+						
+						(<a 
+							href="/logout" 
+							data-auth="no" 
+							className="mobile-menu__btn navigation-menu__sign_in a-login" 
+							onClick={this.handleLogout}
+						> 
+							Logout 
+						</a>)
+					: (
+							<a 
+								data-auth="no" 
+								className="mobile-menu__btn navigation-menu__sign_in a-login" 
+								onClick={this.handleAuth}
+							> 
+								Login 
+							</a>
+						)	
+				
+					}
 					</div>
 				</div>
 				
