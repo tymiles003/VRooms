@@ -6115,6 +6115,10 @@ react-image-smooth-loading@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-image-smooth-loading/-/react-image-smooth-loading-2.0.0.tgz#b8b1b6075cf82ad075731041ffd189b7b9d77813"
 
+react-loading-animation@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-loading-animation/-/react-loading-animation-1.3.0.tgz#3b33d554c31a9a9d2c6a93ec48148af0c8d86aae"
+
 react-mdl@^1.10.3:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/react-mdl/-/react-mdl-1.10.3.tgz#f783e26a5eea4154a32129ab2562c09d5eeacf0d"
