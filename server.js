@@ -26,12 +26,10 @@ const zillow_key = process.env.ZILLOW_KEY;
 // let Zillow = require('node-zillow');
 // let zillow = new Zillow(zillow_key);
 
-
 // Set up a default port, configure mongoose, configure our middleware
 const PORT = process.env.PORT || 5000;
 mongoose.Promise = bluebird;
-var app = express();
-
+const app = express();
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -138,7 +136,6 @@ app.post('/fetch-listing', (req,res) => {
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
-
 
 // Change the MongoDB URI depending on environment.
 let db = "mongodb://localhost/vroomsDB";
