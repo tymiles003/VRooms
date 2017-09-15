@@ -42,7 +42,7 @@ const About = (props) => {
                           <div className="feature-text">
                             <h3>Engage</h3>
                             <h5>
-                                Say hello to the next generation of homebuying. <br />
+                                Say hello to the next generation of homebuying. 
                                 Engage buyers by providing the most immersive and realistic way to view listings on web, mobile, and virtual reality.</h5>
                             <hr className="benefit-divider-1" />
                           </div>

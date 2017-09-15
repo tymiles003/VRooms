@@ -8748,10 +8748,17 @@ screen and (min-width: 64em) {
     }
 }
 
+.marketing .feature-content {
+    margin: 0 5rem
+}
+
 @media screen and (max-width: 63.9375em) {
     .marketing .section-features .feature-container .feature-content {
         margin-top: 1.5rem;
-        margin-bottom: 2.5rem
+        margin-bottom: 2.5rem;
+        margin-left: 0;
+        margin-right: 0;
+        
     }
     .marketing .section-features .feature-container .feature-content:last-child {
         margin-bottom: 0
