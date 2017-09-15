@@ -31,14 +31,6 @@ const PORT = process.env.PORT || 5000;
 mongoose.Promise = bluebird;
 const app = express();
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  
-  next();
-});
-
-
 // Set Body Parser
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}));
@@ -131,6 +123,13 @@ app.post('/fetch-listing', (req,res) => {
 	})
 })
 
+// Route to serve .gz files
+app.get("*.js", function (req, res, next) {
+	req.url = req.url + ".gz";
+	res.set("Content-Encoding", "gzip");
+	res.set("Content-Type", "text/javascript");
+	next();
+});
 
 // Default React route
 app.get("*", (req, res) => {
