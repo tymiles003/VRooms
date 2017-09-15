@@ -3,25 +3,26 @@ import ReactDOM from 'react-dom';
 import API from "../../../utils/API";
 import Dropzone from 'react-dropzone';
 
-class FileDrop extends Component {
+class FileUpload extends Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			file: '',
-			bits: '',
-			fileStatus: 'no-file',
-		};
+		// this.state = {
+		// 	file: '',
+		// 	bits: '',
+		// 	fileStatus: 'no-file',
+		// };
+
+		this.handleChange = this.handleChange.bind(this);
+		// this.onDrop = this.onDrop.bind(this);
 	}
 	
-	handleInputChange = event => {
+	handleChange = event => {
 		event.preventDefault();
 		const value = event.target.value;
-		const name = event.target.name;
-		console.log(name, value);
+		// const name = event.target.name;
+		// console.log(name, value);
 
-		this.setState({
-			[name]: value
-		});
+		this.props.onDrop(value);
 	}
 
 	onDrop = acceptedFiles => {
@@ -34,10 +35,11 @@ class FileDrop extends Component {
 			const raw = reader.result;
 			let bits = raw;
 
-			this.setState({
-				bits: bits,
-				fileStatus: 'photo-ready'
-			})
+			// this.setState({
+			// 	bits: bits,
+			// 	fileStatus: 'photo-ready'
+			// })
+			this.props.onDrop(bits);
 		};
 		reader.onabort = () => console.log('file reading was aborted');
 		reader.onerror = () => console.log('file reading has failed');
@@ -46,10 +48,12 @@ class FileDrop extends Component {
 
 	
 	render() {
+		const bits = this.props.bits;
+		const fileStatus = this.props.fileStatus;
 		return (
 			<div className="filedrop-wrap">
 				<Dropzone 
-					onDrop={this.onDrop.bind(this)}
+					onDrop={this.handleChange}
 					className="dropzone"
 				>
 					<div className="dropzone-content">
@@ -67,12 +71,12 @@ class FileDrop extends Component {
 				</Dropzone>
 				<figure 
 					id="filedrop-preview"
-					className={"img-canvas "+ this.state.fileStatus}
-					style={{backgroundImage: `url("${this.state.bits}")`}}
+					className={"img-canvas "+ this.props.fileStatus}
+					style={{backgroundImage: `url("${this.props.bits}")`}}
 				></figure>
 			</div>
 		)
 	}
 }
 
-export default FileDrop;
+export default FileUpload;

@@ -2,28 +2,52 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import API from "../../../utils/API";
 import FileDrop from './FileDrop';
+// import FileUpload from './FileUpload';
+import FormInput from './FormInput';
 
 class NewVRoomForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			agent: "James Bond",
+
 			street: "",
 			city: "",
 			state: "",
 			zip: "",
+
 			beds: "",
 			baths: "",
 			year: "",
-			price: "",
 			sqft: "",
+			price: "",
+
 			query_type: 'invalid',
 			zpid: '48749425',
 			zillow_url: 'https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true',
 			fetch_query: '',
+
+			bits: '',
+			fileStatus: 'no-file',
+
+			extracted_input: '',
 		};
 	}
 	
+	handleXChange = (name,value) => {
+		console.log('inputValue',value);
+		this.setState({
+			[name]: value
+		})
+	}
+
+	handleFileUpload = (bits) => {
+		this.setState({
+			bits: bits,
+			fileStatus: 'photo-ready'
+		})
+	}
+
 	handleInputChange = event => {
 		event.preventDefault();
 		const value = event.target.value;
@@ -129,7 +153,14 @@ class NewVRoomForm extends Component {
 			<div>
 				<form id="new-vroom-form" className="form ws-form">
 					<div className="form-row">
-						<div className="input-wrap input-full-width input-street ws-input-wrap">
+						<FormInput 
+							name='extracted_input'
+							value={this.state.extracted_input}
+							onXChange={this.handleXChange}
+						/>
+					</div>
+					<div className="form-row">
+						<div className="input-wrap input-full-width input-fetch ws-input-wrap">
 							{/* <label for="street">Street</label> */}
 							<label className="legend"> Fetch Property Data from Zillow (beta)</label>
 							<input
@@ -273,6 +304,7 @@ class NewVRoomForm extends Component {
 					</div>
 					<div className="form-row">
 						<FileDrop />
+						{/* <FileUpload onDrop={this.handleFileUpload} /> */}
 					</div>
 					<div className="form-row">
 						<button
@@ -285,51 +317,6 @@ class NewVRoomForm extends Component {
 						</button>
 					</div>
 				</form>
-				{/* <form className="naked-form">
-					<fieldset>
-						<legend>Address</legend>
-						<div className="form-field-row">
-							<div className="input-wrap input-full-width input-street">
-								<input
-									className="input ws-input"
-									type="text"
-									placeholder="Street"
-									name="street"
-									onChange={this.handleInputChange}
-								/>
-							</div>
-						</div>
-						<div className="form-field-row">
-							<div className="input-wrap input-city">
-								<input
-									className="input ws-input validated"
-									type="text"
-									placeholder="City"
-									name="city"
-									onChange={this.handleInputChange}
-								/>
-							</div>
-							<div className="input-wrap input-state">
-								<input
-									className="input ws-input error"
-									type="text"
-									placeholder="State"
-									name="state"
-									onChange={this.handleInputChange}
-								/>
-							</div>
-							<div className="input-wrap input-zip">
-								<input
-									className="input ws-input"
-									type="text"
-									placeholder="Zip"
-									name="zip"
-									onChange={this.handleInputChange}
-								/>
-							</div>
-						</div>
-					</fieldset>
-				</form> */}
 			</div>
 		)
 	}

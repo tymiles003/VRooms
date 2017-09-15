@@ -292,6 +292,26 @@ div, h1, h2, h3, h4, h5, h6, p {
   color: #3498db;
   font-size: 1.1em;
   font-weight: 400;
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (max-width: 700px) {
+  .filedrop-wrap .dropzone .dropzone-content {
+    font-size: .9em;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .filedrop-wrap .dropzone .dropzone-content {
+    font-size: .8em;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .filedrop-wrap .dropzone .dropzone-content {
+    font-size: .6em;
+  }
 }
 
 .filedrop-wrap .dropzone .dropzone-content .feature-icon {
@@ -301,23 +321,36 @@ div, h1, h2, h3, h4, h5, h6, p {
 }
 
 .filedrop-wrap .dropzone .dropzone-content .feature-icon img {
-  height: 1.5em;
+  height: 1.2em;
   width: initial;
 }
 
-.filedrop-wrap .dropzone .dropzone-content i {
+.filedrop-wrap .dropzone .dropzone-content .feature-icon i {
   font-size: inherit;
 }
 
-.filedrop-wrap .dropzone .dropzone-content .direction-headline {
-  font-size: 3em;
+.filedrop-wrap .dropzone .dropzone-content .direction-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .filedrop-wrap .dropzone .dropzone-content .direction-wrap {
+    display: none;
+  }
+}
+
+.filedrop-wrap .dropzone .dropzone-content .direction-wrap .direction-headline {
+  font-size: 2.2em;
   line-height: 1em;
   margin-bottom: 1rem;
   color: #3498db;
   font-weight: 100;
 }
 
-.filedrop-wrap .dropzone .dropzone-content .direction-subheadline {
+.filedrop-wrap .dropzone .dropzone-content .direction-wrap .direction-subheadline {
   font-size: 1em;
   color: #c9d2da;
   line-height: 1em;
@@ -359,6 +392,152 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #57687c;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.5, transparent), to(transparent));
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  z-index: 9999;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.65) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  outline: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  background: white;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content {
+  width: 400px;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content .modal-header {
+  border: 0 none;
+  padding: 15px 15px 15px;
+  min-height: 16.428571429px;
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333333;
+  background-color: #ffffff;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content .modal-header .modal-title {
+  margin: 0;
+  line-height: 1.428571429;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-weight: 300;
+  border-radius: 50%;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content input[type="text"], .ReactModalPortal .ReactModal__Overlay .ReactModal__Content input[type="password"] {
+  border-radius: 3px;
+  border: none;
+  color: #333333;
+  font-size: 16px;
+  height: 46px;
+  margin-bottom: 5px;
+  padding: 13px 12px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.09);
+  box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.09) inset;
+  color: #555555;
+  margin-bottom: 10px;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content input[type="password"] {
+  -webkit-text-security: disc;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content input::placeholder {
+  color: #555555;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content .twitter {
+  background-color: #00BBFF;
+  border-color: #00BBFF;
+  border-width: 0;
+  color: #FFFFFF;
+  display: block;
+  margin: 0 auto;
+  padding: 15px 50px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content .login {
+  background-color: black;
+  border-color: black;
+  border-width: 0;
+  color: #FFFFFF;
+  display: block;
+  margin: 0 auto;
+  padding: 15px 50px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content .facebook {
+  background-color: #428bca;
+  border-color: #428bca;
+  border-width: 0;
+  color: #FFFFFF;
+  display: block;
+  margin: 0 auto;
+  padding: 15px 50px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content .google {
+  background-color: #F74933;
+  border-color: #F74933;
+  border-width: 0;
+  color: #FFFFFF;
+  display: block;
+  margin: 0 auto;
+  padding: 15px 50px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.ReactModalPortal .ReactModal__Overlay .ReactModal__Content .btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  height: 45px;
+  text-align: center;
 }
 
 html {
