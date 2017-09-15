@@ -20,6 +20,10 @@ const API = {
   //   return axios.patch(`/api/quotes/${_id}`, { favorited });
   // },
 
+  logout: function(){
+    return axios.get("/logout/");
+  },
+
   loginFacebook: function(){
   console.log("inside handle facebook login API function");
 
