@@ -8642,13 +8642,13 @@ hr.benefit-divider-2::after {
 }
 
 .marketing .section-features h5 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 2.5rem
 }
 
 .marketing .section-features h3 {
-    text-align: center;
-    margin-bottom: 2.5rem
+    text-align: left;
+    font-weight: bold
 }
 
 .marketing .section-features h1 {
