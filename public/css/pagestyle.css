@@ -8623,11 +8623,13 @@ hr.benefit-divider-2::after {
     right: -15px
 }
 
-
-
-
 .marketing .section-features {
     padding: 10px 0px
+}
+
+.marketing p {
+    color: #000;
+    line-height: 1.5rem;
 }
 
 @media screen and (max-width: 39.9375em) {
@@ -8794,6 +8796,11 @@ screen and (min-width: 64em) {
     }
 }
 
+.feature-text h5 {
+    color: #555;
+    line-height: 1.5rem
+
+}
 
 @media print,
 screen and (min-width: 40em) {
@@ -8875,4 +8882,83 @@ screen and (min-width: 64em) {
 .marketing .section-features hr.benefit-divider-2::after {
     top: 0;
     right: -15px
+}
+
+.testimonials h4 {
+    font-weight: bold;
+    text-align: center;
+    padding: 40px    
+}
+
+.testimonials .customer-img {
+    width: 160px;
+    margin-top: 1em;
+    margin-bottom: 1em
+}
+
+.testimonials h6, p{
+    text-align: center
+}
+
+.cta-module {
+    background: #3498db;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+    padding: 40px
+}
+
+@media screen and (max-width: 39.9375em) {
+    .cta-module {
+        padding: 40px 30px
+    }
+}
+
+.cta-module .cta-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.cta-module .cta-content h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-right: 10px;
+    margin-bottom: 0px
+}
+
+@media screen and (max-width: 39.9375em) {
+    .cta-module .cta-content h3 {
+        font-size: 1.15rem;
+        word-break: keep-all
+    }
+}
+
+.cta-module .button {
+    -webkit-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+    margin-top: 10px;
+    margin-bottom: 0;
+    display: inline-block;
+    color: #1FBAAE;
+    background: #fff
+}
+
+@media screen and (min-width: 30.625em) {
+    .cta-module .button {
+        margin-top: 0
+    }
+}
+
+.cta-module .button:hover {
+    background: #1FBAAE;
+    color: #fff
 }
