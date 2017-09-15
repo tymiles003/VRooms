@@ -1,7 +1,6 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import Navbar from './common/Navbar';
-
 // import AboutCSS from './styles/About.css';
 // require('./styles/About.css');
 
