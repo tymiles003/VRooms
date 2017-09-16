@@ -68,56 +68,24 @@ app.use(express.static(__dirname + "/public"));
 app.use("/", loginRoutes);
 
 // API-related routes (maybe relocated in future)
-app.post('/scrape', (req,res) => {
-	console.log('>>> server.js SCRAPE ZILLOW REQUEST');
-	// console.log('req.body',req.body);
-	const qURL = req.body;
-	console.log('qURL',qURL);
-	// console.log('req',req);
-	// request(qURL, (error, response, html) => {
-
-	// request(qURL, function(error, response, html){
-	// 	let $ = cheerio.load(html);
-	// 	let scrapeData = {};
-
-	// 	let $header = $('header');
-	// 	$header.each((i,el) => {
-	// 		let $el = $(el);
-
-	// 		let $h1 = $el.find('h1');
-	// 		let h1Text = $h1.text().trim();
-	// 		scrapeData.headline = h1Text;
-	// 	})
-	// 	console.log('scrapeData',scrapeData);
-	// 	res.json(scrapeData);
-	// })	
-	axios.get(qURL).then((response) => {
-		let $ = cheerio.load(response.data);
-		let h1 = $('h1').text();
-		console.log('h1',h1);
-		// return h1;
-		res.send('h1 '+h1);
-	})
-	// res.send('scrape return');
-})
 app.post('/fetch-listing', (req,res) => {
 	console.log('>>> POST /fetch-listing (server.js)');
 	// const zpid = 48749425;
 	let zpid = req.body;
 	console.log('zpid',zpid);
 	let qURL =`http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=${zillow_key}&zpid=${zpid}`;
-	console.log('qURL',qURL);
+	// console.log('qURL',qURL);
 
 	axios.get(qURL)
 	.then( (results) => {
 		let raw = results.data;
-		console.log('raw',raw);
+		// console.log('raw',raw);
 		// console.log('typeof raw',typeof raw);
 		parseString(raw, (err,result) => {
 			// console.log('result',result);
 			let resultObj = result['UpdatedPropertyDetails:updatedPropertyDetails'];
 			let message = resultObj.message[0].text[0].trim();
-			console.log('resultObj',resultObj);
+			// console.log('resultObj',resultObj);
 			console.log('message',message);
 
 			if (message == 'Request successfully processed'){

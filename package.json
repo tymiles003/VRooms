@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "webpack -w",
     "start": "node server.js",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+	"heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
+	"stop-mongo": "kill -2 `pgrep mongo`",
+	"start-mongo": "mongod",
+	"mongo": "yarn start-mongo || yarn stop-mongo && yarn start-mongo",
+	"watch": "browser-sync start -p localhost:5000 -f 'public/css'"
   },
   "keywords": [
     "aframe",
