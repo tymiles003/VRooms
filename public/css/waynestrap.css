@@ -1,3 +1,109 @@
+.ws-btn.ws-primary {
+  background-color: #3498db;
+}
+
+.ws-btn.ws-secondary {
+  background-color: #1abc9c;
+}
+
+.ws-btn.ws-success {
+  background-color: #2ecc71;
+}
+
+.ws-btn.ws-danger {
+  background-color: #e74c3c;
+}
+
+.ws-btn.ws-info {
+  background-color: #9b59b6;
+}
+
+.ws-btn.ws-warning {
+  background-color: #f39c12;
+}
+
+.ws-btn.ws-disabled {
+  background-color: #95a5a6;
+}
+
+.ws-btn.ws-black {
+  background-color: #000;
+}
+
+.ws-btn.ws-dark {
+  background-color: #34495e;
+}
+
+.ws-btn.ws-light {
+  background-color: #ecf0f1;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.ws-btn.ws-white {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.ws-btn.isOutlined {
+  border: 2px solid;
+  background-color: transparent;
+}
+
+.ws-btn.isOutlined.ws-primary {
+  color: #3498db;
+  border-color: #3498db;
+}
+
+.ws-btn.isOutlined.ws-secondary {
+  color: #1abc9c;
+  border-color: #1abc9c;
+}
+
+.ws-btn.isOutlined.ws-success {
+  color: #2ecc71;
+  border-color: #2ecc71;
+}
+
+.ws-btn.isOutlined.ws-danger {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.ws-btn.isOutlined.ws-info {
+  color: #9b59b6;
+  border-color: #9b59b6;
+}
+
+.ws-btn.isOutlined.ws-warning {
+  color: #f39c12;
+  border-color: #f39c12;
+}
+
+.ws-btn.isOutlined.ws-disabled {
+  color: #95a5a6;
+  border-color: #95a5a6;
+}
+
+.ws-btn.isOutlined.ws-black {
+  color: #000;
+  border-color: #000;
+}
+
+.ws-btn.isOutlined.ws-dark {
+  color: #34495e;
+  border-color: #34495e;
+}
+
+.ws-btn.isOutlined.ws-light {
+  color: #ecf0f1;
+  border-color: #ecf0f1;
+}
+
+.ws-btn.isOutlined.ws-white {
+  color: #fff;
+  border-color: #fff;
+}
+
 html {
   font-size: 16px;
 }
@@ -66,11 +172,13 @@ div, h1, h2, h3, h4, h5, h6, p {
 .ws-btn {
   font-size: 1.2rem;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   padding: 1rem 2rem;
   color: white;
   background-color: #7f8c8d;
   border-radius: 5px;
+  display: inline-block;
+  text-align: center;
 }
 
 .ws-btn.ws-btn-mini {
@@ -107,7 +215,7 @@ div, h1, h2, h3, h4, h5, h6, p {
 }
 
 .opaque-black-bg {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .white-bg {
@@ -124,6 +232,11 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .dark-bg {
   background-color: #242424;
+}
+
+.ws-root section {
+  width: 100%;
+  padding: 6rem 3rem;
 }
 
 .ws-form {
@@ -409,6 +522,7 @@ body::-webkit-scrollbar-thumb {
 
 .ReactModalPortal .ReactModal__Overlay {
   background: white;
+  z-index: 9999;
 }
 
 .ReactModalPortal .ReactModal__Overlay .ReactModal__Content {
@@ -538,6 +652,55 @@ body::-webkit-scrollbar-thumb {
   user-select: none;
   height: 45px;
   text-align: center;
+}
+
+.ws-sandbox section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.ws-sandbox section h4 {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1em;
+  margin-bottom: 1em;
+}
+
+.ws-sandbox section .section-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 640px;
+  margin: auto;
+}
+
+.ws-sandbox section .section-content .ws-btn {
+  margin: 5px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.ws-sandbox section .section-content .ws-btn.hasIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.ws-sandbox section .section-content .ws-btn.hasIcon i {
+  font-size: 1.5em;
+  margin-right: .4em;
+}
+
+.ws-sandbox section .section-content .ws-btn.hasIcon.ws-icon-right {
+  flex-direction: row-reverse;
+}
+
+.ws-sandbox section .section-content .ws-btn.hasIcon.ws-icon-right i {
+  margin-right: 0;
+  margin-left: .4em;
 }
 
 html {
