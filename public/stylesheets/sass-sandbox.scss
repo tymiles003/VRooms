@@ -1,0 +1,21 @@
+@import 'modules/_colors.scss';
+
+$schemeConfig: 
+	'primary' $blue, 
+	'secondary' $teal, 
+	'success' $green,
+	'danger' $red,
+	'info' $purple,
+	'warning' $orange,
+	'disabled' $gray,
+	'black' #000,
+	'dark' $darkblue,
+	'light' $offwhite,
+	'white' #fff
+;
+
+@each $tuple in $schemeConfig {
+	.ws-btn-#{nth($tuple, 1)} {
+		color: nth($tuple, 2);
+	}
+}

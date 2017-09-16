@@ -1,3 +1,4 @@
+
 $ws-primary: $blue;
 $ws-secondary: $teal;
 $ws-success: $green;
@@ -5,10 +6,10 @@ $ws-danger: $red;
 $ws-info: $purple;
 $ws-warning: $orange;
 $ws-disabled: $gray;
-$ws-black: #000;
+$ws-black: #000000;
 $ws-dark: $darkblue;
 $ws-light: $offwhite;
-$ws-white: #fff;
+$ws-white: #ffffff;
 
 // .ws-primary   { background-color: $ws-primary; }
 // .ws-secondary { background-color: $ws-secondary; }
@@ -51,3 +52,4 @@ $ws-white: #fff;
 		&.ws-white { color: $ws-white; border-color: $ws-white; }
 	}
 }
+

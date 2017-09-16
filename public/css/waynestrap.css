@@ -27,7 +27,7 @@
 }
 
 .ws-btn.ws-black {
-  background-color: #000;
+  background-color: #000000;
 }
 
 .ws-btn.ws-dark {
@@ -40,7 +40,7 @@
 }
 
 .ws-btn.ws-white {
-  background-color: #fff;
+  background-color: #ffffff;
   color: rgba(0, 0, 0, 0.87);
 }
 
@@ -85,8 +85,8 @@
 }
 
 .ws-btn.isOutlined.ws-black {
-  color: #000;
-  border-color: #000;
+  color: #000000;
+  border-color: #000000;
 }
 
 .ws-btn.isOutlined.ws-dark {
@@ -100,8 +100,8 @@
 }
 
 .ws-btn.isOutlined.ws-white {
-  color: #fff;
-  border-color: #fff;
+  color: #ffffff;
+  border-color: #ffffff;
 }
 
 html {

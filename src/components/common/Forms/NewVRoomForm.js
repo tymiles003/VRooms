@@ -42,10 +42,12 @@ class NewVRoomForm extends Component {
 		});
 	}
 
-	handleFileUpload = (bits, fileStatus) => {
+	handleFileUpload = (bits, fileStatus, fileName, fileSize ) => {
 		this.setState({
 			bits: bits,
-			fileStatus: 'photo-ready'
+			fileStatus: 'photo-ready',
+			fileName,
+			fileSize,
 		});
 	}
 
