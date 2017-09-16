@@ -37,7 +37,8 @@ class FileDrop extends Component {
 			this.setState({
 				bits: bits,
 				fileStatus: 'photo-ready'
-			})
+			});
+			this.props.handleFileUpload(this.state.bits, this.state.fileStatus);
 		};
 		reader.onabort = () => console.log('file reading was aborted');
 		reader.onerror = () => console.log('file reading has failed');
