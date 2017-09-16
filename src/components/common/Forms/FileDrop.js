@@ -10,12 +10,9 @@ class FileDrop extends Component {
 			fileStatus: "no-file",
 			file: "",
 			bits: "",
-			files: [],
 			accepted: [],
 			rejected: [],
 		};
-
-		// this.onDrop = this.onDrop.bind(this)
 	}
 
 	handleInputChange = event => {
@@ -42,19 +39,16 @@ class FileDrop extends Component {
 			reader.onload = () => {
 				const raw = reader.result;
 				let bits = raw;
-				// files: acceptedFiles,
 				this.setState({
 					bits: bits,
 					fileStatus: 'photo-ready',
 					fileName: file.name,
 					fileSize: file.size,
+					file,
 				});
-				this.props.handleFileUpload(
-					this.state.bits, 
-					this.state.fileStatus,
-					this.state.fileName,
-					this.state.fileSize
-				);
+				// Send this.state to parent handler, which inserts 
+				// all of these states into the parent's state
+				this.props.handleFileUpload(this.state);
 			};
 			reader.onabort = () => console.log("file reading was aborted");
 			reader.onerror = () => console.log("file reading has failed");
@@ -83,15 +77,6 @@ class FileDrop extends Component {
 						</div>
 					</div>
 				</Dropzone>
-				{this.state.files.map(f => {
-					{/* this.setState({
-						filename: f.name,
-						filesize: f.size,
-					}) */}
-					return ( 
-						<span key={f.name}> {f.name} - {f.size} bytes </span> 
-					)
-				})}
 				<figure
 					id="filedrop-preview"
 					className={"img-canvas " + this.state.fileStatus}
