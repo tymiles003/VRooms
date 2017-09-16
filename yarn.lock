@@ -4800,10 +4800,6 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-minify-css-string@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/minify-css-string/-/minify-css-string-1.0.0.tgz#201bd949271e19f6e0af0a1dc0ccc583de47c630"
-
 minimatch@0.3:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-0.3.0.tgz#275d8edaac4f1bb3326472089e7949c8394699dd"
@@ -6057,12 +6053,6 @@ react-dropzone@^4.1.2:
   dependencies:
     attr-accept "^1.0.3"
     prop-types "^15.5.7"
-
-react-fade@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-fade/-/react-fade-1.1.1.tgz#41f11ba8da671d2ac045f213eac3c1b314fc58fe"
-  dependencies:
-    minify-css-string "^1.0.0"
 
 react-helmet@^5.2.0:
   version "5.2.0"
