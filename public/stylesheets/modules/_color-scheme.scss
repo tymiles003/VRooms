@@ -1,0 +1,53 @@
+$ws-primary: $blue;
+$ws-secondary: $teal;
+$ws-success: $green;
+$ws-danger: $red;
+$ws-info: $purple;
+$ws-warning: $orange;
+$ws-disabled: $gray;
+$ws-black: #000;
+$ws-dark: $darkblue;
+$ws-light: $offwhite;
+$ws-white: #fff;
+
+// .ws-primary   { background-color: $ws-primary; }
+// .ws-secondary { background-color: $ws-secondary; }
+// .ws-danger    { background-color: $ws-danger; }
+// .ws-info      { background-color: $ws-info; }
+// .ws-success   { background-color: $ws-success; }
+// .ws-warning   { background-color: $ws-warning; }
+// .ws-disabled  { background-color: $ws-disabled; }
+// .ws-black     { background-color: $ws-black; }
+// .ws-dark      { background-color: $ws-dark; }
+// .ws-light     { background-color: $ws-light; }
+// .ws-white     { background-color: $ws-white; }
+
+.ws-btn {
+	&.ws-primary { background-color: $ws-primary; }
+	&.ws-secondary { background-color: $ws-secondary; }
+	&.ws-success { background-color: $ws-success; }
+	&.ws-danger { background-color: $ws-danger; }
+	&.ws-info { background-color: $ws-info; }
+	&.ws-warning { background-color: $ws-warning; }
+	&.ws-disabled { background-color: $ws-disabled; }
+	&.ws-black { background-color: $ws-black; }
+	&.ws-dark { background-color: $ws-dark; }
+	&.ws-light { background-color: $ws-light; color: $primary; }
+	&.ws-white { background-color: $ws-white; color: $primary; }
+
+	&.isOutlined {
+		border: 2px solid;
+		background-color: transparent;
+		&.ws-primary { color: $ws-primary; border-color: $ws-primary; }
+		&.ws-secondary { color: $ws-secondary; border-color: $ws-secondary; }
+		&.ws-success { color: $ws-success; border-color: $ws-success; }
+		&.ws-danger { color: $ws-danger; border-color: $ws-danger; }
+		&.ws-info { color: $ws-info; border-color: $ws-info; }
+		&.ws-warning { color: $ws-warning; border-color: $ws-warning; }
+		&.ws-disabled { color: $ws-disabled; border-color: $ws-disabled; }
+		&.ws-black { color: $ws-black; border-color: $ws-black; }
+		&.ws-dark { color: $ws-dark; border-color: $ws-dark; }
+		&.ws-light { color: $ws-light; border-color: $ws-light; }
+		&.ws-white { color: $ws-white; border-color: $ws-white; }
+	}
+}

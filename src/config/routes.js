@@ -8,7 +8,7 @@ import Agents from "../components/Agents";
 import LoginForm from "../components/authentication/LoginForm";
 import Signup from "../components/authentication/Signup";
 import NewVRoom from "../components/NewVRoom";
-
+import WaynestrapSandbox from '../components/WaynestrapSandbox';
 
 const routes = (
     <BrowserRouter>
@@ -20,6 +20,7 @@ const routes = (
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/new-vroom" component={NewVRoom} />
+            <Route exact path="/ws-sandbox" component={WaynestrapSandbox} />
         </Switch>
     </BrowserRouter>
 );
