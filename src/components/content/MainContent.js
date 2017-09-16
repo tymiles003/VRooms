@@ -36,9 +36,9 @@ class MainContent extends Component {
 						type="video/mp4"
 					/>
 				</video>
-
+			
 				<Navbar
-					logo_filename="VRooms_V11_Hori_Gray"
+					logo_filename="vrooms-logo-gray"
 					theme="opaque-white-bg"
 				/>
 

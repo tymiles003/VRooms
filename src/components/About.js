@@ -33,7 +33,7 @@ const About = (props) => {
 
               <div className="aboutWrapper">  
 
-                <Navbar logo_filename="VRooms_V11_Hori_White" theme="opaque-black-bg"/>
+                <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
                 <Loader />
 
 			          <AboutContent />

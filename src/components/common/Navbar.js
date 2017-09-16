@@ -58,7 +58,7 @@ class Navbar extends Component {
 			<div className={"navigation navigation--main--gradient "+ this.props.theme}>
 				<div className="navigation-wrapper">
 				<Link to="/" className="navigation__logo-link emerge" data-duration="600" data-effect="slide" data-right="64px"  >
-					<img className="navigation__logo" width="220" src={"/assets/img/logo/"+this.props.logo_filename+".png"} alt="VRooms" /> 
+					<img className="navigation__logo" width="220" src={"/assets/img/logo/"+this.props.logo_filename+".svg"} alt="VRoomsLogo" /> 
 				</Link>
 				<div className="navigation-mobile js-open-menu" onClick={this.toggle.bind(this)}>
 					<div className={"navigation-mobile__icon" + ' ' + mobileClassBtn.join( ' ')}></div>
