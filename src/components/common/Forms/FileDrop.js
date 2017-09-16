@@ -29,34 +29,41 @@ class FileDrop extends Component {
 		});
 	};
 
-	onDrop = acceptedFiles => {
+	onDrop = (acceptedFiles,rejectFiles) => {
 		console.log(">>> onDrop");
-		console.log("acceptedFiles.length", acceptedFiles.length);
 		const file = acceptedFiles[0];
 
-		const reader = new FileReader();
-		reader.onload = () => {
-			const raw = reader.result;
-			let bits = raw;
-
-			// files: acceptedFiles,
-			this.setState({
-				bits: bits,
-				fileStatus: 'photo-ready',
-				fileName: file.name,
-				fileSize: file.size,
-			});
-			this.props.handleFileUpload(
-				this.state.bits, 
-				this.state.fileStatus,
-				this.state.fileName,
-				this.state.fileSize
-			);
-		};
-		reader.onabort = () => console.log("file reading was aborted");
-		reader.onerror = () => console.log("file reading has failed");
-		if (file) {
-			reader.readAsDataURL(file);
+		const acceptedTypes = ['image/jpeg','image/png'];
+		const mimetype = file.type;
+		
+		// Continue if file's type is accepted
+		if (acceptedTypes.indexOf(mimetype) >= 0){
+			const reader = new FileReader();
+			reader.onload = () => {
+				const raw = reader.result;
+				let bits = raw;
+				// files: acceptedFiles,
+				this.setState({
+					bits: bits,
+					fileStatus: 'photo-ready',
+					fileName: file.name,
+					fileSize: file.size,
+				});
+				this.props.handleFileUpload(
+					this.state.bits, 
+					this.state.fileStatus,
+					this.state.fileName,
+					this.state.fileSize
+				);
+			};
+			reader.onabort = () => console.log("file reading was aborted");
+			reader.onerror = () => console.log("file reading has failed");
+			if (file) {
+				reader.readAsDataURL(file);
+			}
+		}
+		else {
+			alert('invalid file type');
 		}
 	};
 
@@ -64,14 +71,6 @@ class FileDrop extends Component {
 		return (
 			<div className="filedrop-wrap">
 				<Dropzone className="dropzone" onDrop={this.onDrop.bind(this)} >
-				{/* <Dropzone 
-					className="dropzone"
-					accept="image/jpeg, image/png"
-					onDrop={(accepted, rejected) => {
-						this.onDrop.bind(this);
-						this.setState({ accepted, rejected }); 
-					}}
-				> */}
 					<div className="dropzone-content">
 						<div className="feature-icon">
 							<img className="img-icon" src="/assets/graphics/360-photo-o-black.svg" />
