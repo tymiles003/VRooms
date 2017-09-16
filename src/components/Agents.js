@@ -28,7 +28,7 @@ const Agents = (props) => {
 
               <div className="aboutWrapper">  
 
-                <Navbar logo_filename="VRooms_V11_Hori_White" theme="opaque-black-bg"/>
+                <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
 
                 <div className="marketing">
                   <section className="section-features" id="application-home-benefits">
