@@ -4,6 +4,7 @@ import API from "../../../utils/API";
 import FileDrop from './FileDrop';
 // import FileUpload from './FileUpload';
 import FormInput from './FormInput';
+import axios from "axios";
 
 class NewVRoomForm extends Component {
 	constructor(props){
@@ -38,14 +39,16 @@ class NewVRoomForm extends Component {
 		console.log('inputValue',value);
 		this.setState({
 			[name]: value
-		})
+		});
 	}
 
-	handleFileUpload = (bits) => {
+	handleFileUpload = (bits, fileStatus, fileName, fileSize ) => {
 		this.setState({
 			bits: bits,
-			fileStatus: 'photo-ready'
-		})
+			fileStatus: 'photo-ready',
+			fileName,
+			fileSize,
+		});
 	}
 
 	handleInputChange = event => {
@@ -110,14 +113,14 @@ class NewVRoomForm extends Component {
 	handleFetch = event => {
 		event.preventDefault();
 		// const query = event.target.value.trim();
-		let {zpid, query_type} = this.state;
+		let { zpid, query_type } = this.state;
 		let query = zpid;
 
 		// Proceed to API call as long as not invalid
 		if (query_type !== 'invalid') {
 			console.log('>>> Calling Zillow API...');
 			API.fetchListing(query)
-			.then((res) => {
+			.then(res => {
 				console.log('... API fetchListing response received');
 				let r = res.data;
 				console.log('--> API Response',r);
@@ -145,7 +148,7 @@ class NewVRoomForm extends Component {
 		event.preventDefault();
 
 		let { agent, street, city, state, zip } = this.state;
-		console.log('this.state',this.state);
+		console.log('this.state', this.state);
 	}
 
 	render() {
@@ -303,7 +306,7 @@ class NewVRoomForm extends Component {
 						</fieldset>
 					</div>
 					<div className="form-row">
-						<FileDrop />
+						<FileDrop handleFileUpload={this.handleFileUpload} />
 						{/* <FileUpload onDrop={this.handleFileUpload} /> */}
 					</div>
 					<div className="form-row">

@@ -7,10 +7,15 @@ class FileDrop extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			fileStatus: "no-file",
 			file: "",
 			bits: "",
-			fileStatus: "no-file"
+			files: [],
+			accepted: [],
+			rejected: [],
 		};
+
+		// this.onDrop = this.onDrop.bind(this)
 	}
 
 	handleInputChange = event => {
@@ -34,10 +39,19 @@ class FileDrop extends Component {
 			const raw = reader.result;
 			let bits = raw;
 
+			// files: acceptedFiles,
 			this.setState({
 				bits: bits,
-				fileStatus: "photo-ready"
+				fileStatus: 'photo-ready',
+				fileName: file.name,
+				fileSize: file.size,
 			});
+			this.props.handleFileUpload(
+				this.state.bits, 
+				this.state.fileStatus,
+				this.state.fileName,
+				this.state.fileSize
+			);
 		};
 		reader.onabort = () => console.log("file reading was aborted");
 		reader.onerror = () => console.log("file reading has failed");
@@ -49,29 +63,36 @@ class FileDrop extends Component {
 	render() {
 		return (
 			<div className="filedrop-wrap">
-				<Dropzone onDrop={this.onDrop.bind(this)} className="dropzone">
+				<Dropzone className="dropzone" onDrop={this.onDrop.bind(this)} >
+				{/* <Dropzone 
+					className="dropzone"
+					accept="image/jpeg, image/png"
+					onDrop={(accepted, rejected) => {
+						this.onDrop.bind(this);
+						this.setState({ accepted, rejected }); 
+					}}
+				> */}
 					<div className="dropzone-content">
 						<div className="feature-icon">
-							{/* <i className="fa fa-picture-o"></i> */}
-							<img
-								className="img-icon"
-								src="/assets/graphics/360-photo-o-black.svg"
-							/>
-							{/* <img className='img-icon' src="/assets/graphics/360-photo-black.svg"></img> */}
-							{/* <img className='img-icon' src="/assets/graphics/360-photo-white.svg"></img> */}
+							<img className="img-icon" src="/assets/graphics/360-photo-o-black.svg" />
 						</div>
 						<div className="direction-wrap">
-							<h4 className="direction-headline">
-								{" "}
-								Drag & Drop{" "}
-							</h4>
+							<h4 className="direction-headline"> Drag & Drop </h4>
 							<p className="direction-subheadline">
 								or click to browse your files.
 							</p>
 						</div>
 					</div>
 				</Dropzone>
-				{this.state.files.map(f => ( <span key={f.name}> {f.name} - {f.size} bytes </span> ))}
+				{this.state.files.map(f => {
+					{/* this.setState({
+						filename: f.name,
+						filesize: f.size,
+					}) */}
+					return ( 
+						<span key={f.name}> {f.name} - {f.size} bytes </span> 
+					)
+				})}
 				<figure
 					id="filedrop-preview"
 					className={"img-canvas " + this.state.fileStatus}
