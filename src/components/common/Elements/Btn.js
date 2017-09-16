@@ -88,7 +88,7 @@ class Btn extends Component {
 			}
 		}
 		
-		console.log(flags);
+		// console.log(flags);
 		return flags;
 	}
 
@@ -131,7 +131,7 @@ class Btn extends Component {
 		
 		let allClasses = defaultClasses.concat(classArr,classes);
 		let classNameOutput = allClasses.join(' ');
-		console.log('classNameOutput',classNameOutput);
+		// console.log('classNameOutput',classNameOutput);
 
 		this.setState({
 			className: classNameOutput

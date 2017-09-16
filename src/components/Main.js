@@ -4,10 +4,10 @@ import { Helmet } from "react-helmet";
 // import { Link } from "react-router";
 // import Navbar from "./common/Navbar";
 // import Footer from "./common/Footer";
-import "aframe";
-import "aframe-animation-component";
-import "aframe-particle-system-component";
-import "babel-polyfill";
+// import "aframe";
+// import "aframe-animation-component";
+// import "aframe-particle-system-component";
+// import "babel-polyfill";
 
 // Authentication imports
 // import LoginForm from "./authentication/LoginForm";

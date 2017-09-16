@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import API from "../../../utils/API";
 import FileDrop from './FileDrop';
-// import FileUpload from './FileUpload';
-import FormInput from './FormInput';
+import Btn from '../Elements/Btn';
+import PreviewWindow from '../PreviewWindow';
+
 import axios from "axios";
 
 class NewVRoomForm extends Component {
@@ -142,7 +143,8 @@ class NewVRoomForm extends Component {
 
 	render() {
 		return (
-			<div>
+			<main className="pg-contains-aframe">
+				<PreviewWindow />
 				<form id="new-vroom-form" className="form ws-form">
 					<div className="form-row">
 						<div className="input-wrap input-full-width input-fetch ws-input-wrap">
@@ -284,8 +286,14 @@ class NewVRoomForm extends Component {
 							</div>
 						</fieldset>
 					</div>
-					<div className="form-row">
+					<div className="form-row stack-vertical">
 						<FileDrop handleFileUpload={this.handleFileUpload} />
+						<Btn 
+							text="Annotate"
+							theme="disabled"
+							classes={['ws-mini','bump-top']}
+							isOutlined
+						/>
 					</div>
 					<div className="form-row">
 						<button
@@ -298,7 +306,7 @@ class NewVRoomForm extends Component {
 						</button>
 					</div>
 				</form>
-			</div>
+			</main>
 		)
 	}
 }
