@@ -26,6 +26,11 @@
 		justify-content: center;
 		align-items: center;
 		position: relative;
+
+		&.stack-vertical {
+			display: flex;
+			flex-direction: column;	
+		}
 	}
 	.form-field-row {
 		padding: 0;
