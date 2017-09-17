@@ -24,7 +24,10 @@ let parseString = require('xml2js').parseString;
 
 // AWS S3 initialization
 const AWS = require("aws-sdk");
-const S3 = new AWS.S3();
+const S3 = new AWS.S3({
+	signatureVersion: "v4",
+	region: "us-west-1"
+});
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 // Import Zillow dependency and initiate
@@ -109,16 +112,18 @@ app.post('/fetch-listing', (req,res) => {
 
 // Route to serve S3 signed request to client 
 app.post('/sign-s3', (req, res) => {
-	console.log("ID: ", process.env.AWS_ACCESS_KEY_ID);
-	console.log("KEY: ", process.env.AWS_SECRET_ACCESS_KEY);
+	// console.log("ID: ", process.env.AWS_ACCESS_KEY_ID);
+	// console.log("KEY: ", process.env.AWS_SECRET_ACCESS_KEY);
 	console.log(">>> /sign-s3");
 	console.log("req.body: ", req.body);
 	const fileName = req.body.fileName;
 	const fileType = req.body.fileType;
+
+	let path = fileName; // Set path to /userName/fileName once we get user info
+
 	const s3Params = {
 		Bucket: BUCKET_NAME,
-		Key: fileName,
-		// ContentType: "image/png",
+		Key: path,
 		Expires: 60,
 		ACL: "public-read"
 	};

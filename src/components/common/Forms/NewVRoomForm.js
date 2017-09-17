@@ -141,7 +141,7 @@ class NewVRoomForm extends Component {
 		let { agent, street, city, state, zip } = this.state;
 		console.log('this.state', this.state);
 
-		// Get signed request from server
+		// Get signed request from express server and use it to upload to S3
 		s3API.getSignedRequest({
 			fileName: this.state.fileName,
 			data: this.state.bits
