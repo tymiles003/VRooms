@@ -48,10 +48,7 @@ const Main = props => {
 				<script src="./js/drift.js" type="text/javascript" />
 
 				{/* CSS links for this page */}
-				<link rel="stylesheet" href="/css/pagestyle.css" />
 				<link href="/css/pages/Main.css" rel="stylesheet" />
-				<link rel="stylesheet" href="/css/panning.css" />
-				<link rel="stylesheet" href="/css/loader.css" />
 			</Helmet>
 
 			{/* Good example of conditional loading, can use for user auth */}
