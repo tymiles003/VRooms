@@ -6,6 +6,7 @@ import Btn from '../Elements/Btn';
 import PreviewWindow from '../PreviewWindow';
 
 import axios from "axios";
+const s3API = require ("../../../utils/s3-API"); 
 
 class NewVRoomForm extends Component {
 	constructor(props){
@@ -139,6 +140,12 @@ class NewVRoomForm extends Component {
 
 		let { agent, street, city, state, zip } = this.state;
 		console.log('this.state', this.state);
+
+		// Get signed request from express server and use it to upload to S3
+		s3API.getSignedRequest({
+			fileName: this.state.fileName,
+			data: this.state.bits
+		});
 	}
 
 	render() {

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bluebird = require("bluebird");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+
 const path = require("path");
 const fs = require('fs');
 require('dotenv').config();
@@ -20,6 +21,14 @@ const cheerio = require("cheerio");
 const request = require('request');
 const axios = require('axios');
 let parseString = require('xml2js').parseString; 
+
+// AWS S3 initialization
+const AWS = require("aws-sdk");
+const S3 = new AWS.S3({
+	signatureVersion: "v4",
+	region: "us-west-1"
+});
+const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 // Import Zillow dependency and initiate
 const zillow_key = process.env.ZILLOW_KEY;
@@ -63,7 +72,6 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 app.use(express.static(__dirname + "/public"));
-// app.use("/", routes);
 
 app.use("/", loginRoutes);
 
@@ -100,7 +108,40 @@ app.post('/fetch-listing', (req,res) => {
 		// console.log('data',data);
 		// res.json(data);
 	})
-})
+});
+
+// Route to serve S3 signed request to client 
+app.post('/sign-s3', (req, res) => {
+	// console.log("ID: ", process.env.AWS_ACCESS_KEY_ID);
+	// console.log("KEY: ", process.env.AWS_SECRET_ACCESS_KEY);
+	console.log(">>> /sign-s3");
+	console.log("req.body: ", req.body);
+	const fileName = req.body.fileName;
+	const fileType = req.body.fileType;
+
+	let path = fileName; // Set path to /userName/fileName once we get user info
+
+	const s3Params = {
+		Bucket: BUCKET_NAME,
+		Key: path,
+		Expires: 60,
+		ACL: "public-read"
+	};
+
+	S3.getSignedUrl('putObject', s3Params, (err, data) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send();
+		} else {
+			const returnData = {
+				signedRequest: data,
+				url: `https://${BUCKET_NAME}.s3.amazonaws.com/${fileName}`
+			};
+			console.log("returnData: ", returnData);
+			res.json(returnData);
+		}
+	});
+});
 
 // Default React route
 app.get("*", (req, res) => {
