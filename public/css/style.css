@@ -44,6 +44,45 @@ body.body-notify {
     }
 }
 
+body {
+    background-color: #fafafa;
+}
+
+.application {
+	position: relative;
+}
+/*@media (min-width:1500px) {
+	canvas {
+		position: absolute;
+		top:0; 
+		left:0;
+		width: 100vw;
+	    height: 100vh;
+	}
+}*/
+
+canvas {
+	min-width: 100%;
+	min-height: 100%;
+	width: 100vw;
+	height: 100vh;
+	align-self: stretch;
+}
+
+.aboutWrapper {
+	position: absolute;
+	top:0; 
+	left:0;
+	width: 100vw;
+    height: 100vh;
+}
+
+.navigation-menu__sign_in_about {
+    color: #FFF;
+}
+
+
+
 .wrapper {
     position: fixed;
     top: 0;
