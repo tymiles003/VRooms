@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import API from "../../../utils/API";
 import FileDrop from './FileDrop';
-// import FileUpload from './FileUpload';
-import FormInput from './FormInput';
+import Btn from '../Elements/Btn';
+import PreviewWindow from '../PreviewWindow';
+
 import axios from "axios";
 const s3API = require ("../../../utils/s3-API"); 
 
@@ -36,20 +37,9 @@ class NewVRoomForm extends Component {
 		};
 	}
 	
-	handleXChange = (name,value) => {
-		console.log('inputValue',value);
-		this.setState({
-			[name]: value
-		});
-	}
-
-	handleFileUpload = (bits, fileStatus, fileName, fileSize ) => {
-		this.setState({
-			bits: bits,
-			fileStatus: 'photo-ready',
-			fileName,
-			fileSize,
-		});
+	// handleFileUpload = (bits, fileStatus, fileName, fileSize ) => {
+	handleFileUpload = (fileDropState) => {
+		this.setState(fileDropState);
 	}
 
 	handleInputChange = event => {
@@ -160,18 +150,11 @@ class NewVRoomForm extends Component {
 
 	render() {
 		return (
-			<div>
+			<main className="pg-contains-aframe">
+				<PreviewWindow />
 				<form id="new-vroom-form" className="form ws-form">
 					<div className="form-row">
-						<FormInput 
-							name='extracted_input'
-							value={this.state.extracted_input}
-							onXChange={this.handleXChange}
-						/>
-					</div>
-					<div className="form-row">
 						<div className="input-wrap input-full-width input-fetch ws-input-wrap">
-							{/* <label for="street">Street</label> */}
 							<label className="legend"> Fetch Property Data from Zillow (beta)</label>
 							<input
 								id="fetch_query"
@@ -196,7 +179,6 @@ class NewVRoomForm extends Component {
 							<legend>Address</legend>
 							<div className="form-field-row">
 								<div className="input-wrap input-full-width input-street ws-input-wrap">
-									{/* <label for="street">Street</label> */}
 									<input
 										id="street"
 										className="input ws-input"
@@ -210,7 +192,6 @@ class NewVRoomForm extends Component {
 							</div>
 							<div className="form-field-row">
 								<div className="input-wrap input-city validated">
-									{/* <label for="city">City</label> */}
 									<input
 										id="city"
 										className="input ws-input"
@@ -312,9 +293,14 @@ class NewVRoomForm extends Component {
 							</div>
 						</fieldset>
 					</div>
-					<div className="form-row">
+					<div className="form-row stack-vertical">
 						<FileDrop handleFileUpload={this.handleFileUpload} />
-						{/* <FileUpload onDrop={this.handleFileUpload} /> */}
+						<Btn 
+							text="Annotate"
+							theme="disabled"
+							classes={['ws-mini','bump-top']}
+							isOutlined
+						/>
 					</div>
 					<div className="form-row">
 						<button
@@ -327,7 +313,7 @@ class NewVRoomForm extends Component {
 						</button>
 					</div>
 				</form>
-			</div>
+			</main>
 		)
 	}
 }

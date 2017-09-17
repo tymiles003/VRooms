@@ -8,7 +8,9 @@
 	border-radius: 5px;
 	display: inline-block;
 	text-align: center;
-
+	&.ws-mini {
+		@extend .ws-mini;
+	}
 	&.ws-btn-mini {
 		font-size: 1rem;
 		padding: .7rem 1rem;

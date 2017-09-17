@@ -123,6 +123,15 @@ html {
   font-weight: 400;
 }
 
+.ws-mini, .ws-btn.ws-mini {
+  font-size: .9rem;
+  padding: .8em 1em;
+}
+
+.bump-top {
+  margin-top: 1rem;
+}
+
 div, h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
@@ -254,6 +263,11 @@ div, h1, h2, h3, h4, h5, h6, p {
   justify-content: center;
   align-items: center;
   position: relative;
+}
+
+.ws-form .form-row.stack-vertical {
+  display: flex;
+  flex-direction: column;
 }
 
 .ws-form .form-field-row {
@@ -701,6 +715,28 @@ body::-webkit-scrollbar-thumb {
 .ws-sandbox section .section-content .ws-btn.hasIcon.ws-icon-right i {
   margin-right: 0;
   margin-left: .4em;
+}
+
+.aframe-container {
+  outline: 1px solid red;
+}
+
+.aframe-container .aframe-wrap {
+  outline: 1px solid blue;
+}
+
+.embedded-window {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-height: 300px;
+  min-width: 300px;
+  outline: 2px solid red;
+}
+
+a-scene {
+  height: 200px;
+  width: 400px;
 }
 
 html {

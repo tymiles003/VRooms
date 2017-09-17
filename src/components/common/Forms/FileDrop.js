@@ -10,12 +10,9 @@ class FileDrop extends Component {
 			fileStatus: "no-file",
 			file: "",
 			bits: "",
-			files: [],
 			accepted: [],
 			rejected: [],
 		};
-
-		// this.onDrop = this.onDrop.bind(this)
 	}
 
 	handleInputChange = event => {
@@ -29,52 +26,45 @@ class FileDrop extends Component {
 		});
 	};
 
-	onDrop = acceptedFiles => {
+	onDrop = (acceptedFiles,rejectFiles) => {
 		console.log(">>> onDrop");
-		console.log("acceptedFiles.length", acceptedFiles.length);
 		const file = acceptedFiles[0];
 
-		console.log("acceptedFiles", acceptedFiles);
-
-		const reader = new FileReader();
-		if (file) {
-			reader.readAsDataURL(file);
+		const acceptedTypes = ['image/jpeg','image/png'];
+		const mimetype = file.type;
+		
+		// Continue if file's type is accepted
+		if (acceptedTypes.indexOf(mimetype) >= 0){
+			const reader = new FileReader();
+			reader.onload = () => {
+				const raw = reader.result;
+				let bits = raw;
+				this.setState({
+					bits: bits,
+					fileStatus: 'photo-ready',
+					fileName: file.name,
+					fileSize: file.size,
+					file,
+				});
+				// Send this.state to parent handler, which inserts 
+				// all of these states into the parent's state
+				this.props.handleFileUpload(this.state);
+			};
+			reader.onabort = () => console.log("file reading was aborted");
+			reader.onerror = () => console.log("file reading has failed");
+			if (file) {
+				reader.readAsDataURL(file);
+			}
 		}
-
-		reader.onload = () => {
-			const raw = reader.result;
-			let bits = raw;
-
-			// files: acceptedFiles,
-			this.setState({
-				bits: bits,
-				fileStatus: 'photo-ready',
-				fileName: file.name,
-				fileSize: file.size,
-			});
-			this.props.handleFileUpload(
-				this.state.bits, 
-				this.state.fileStatus,
-				this.state.fileName,
-				this.state.fileSize
-			);
-		};
-		reader.onabort = () => console.log("file reading was aborted");
-		reader.onerror = () => console.log("file reading has failed");
+		else {
+			alert('invalid file type');
+		}
 	};
 
 	render() {
 		return (
 			<div className="filedrop-wrap">
 				<Dropzone className="dropzone" onDrop={this.onDrop.bind(this)} >
-				{/* <Dropzone 
-					className="dropzone"
-					accept="image/jpeg, image/png"
-					onDrop={(accepted, rejected) => {
-						this.onDrop.bind(this);
-						this.setState({ accepted, rejected }); 
-					}}
-				> */}
 					<div className="dropzone-content">
 						<div className="feature-icon">
 							<img className="img-icon" src="/assets/graphics/360-photo-o-black.svg" />
@@ -87,15 +77,6 @@ class FileDrop extends Component {
 						</div>
 					</div>
 				</Dropzone>
-				{this.state.files.map(f => {
-					{/* this.setState({
-						filename: f.name,
-						filesize: f.size,
-					}) */}
-					return ( 
-						<span key={f.name}> {f.name} - {f.size} bytes </span> 
-					)
-				})}
 				<figure
 					id="filedrop-preview"
 					className={"img-canvas " + this.state.fileStatus}
