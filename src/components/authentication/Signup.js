@@ -5,8 +5,12 @@ import API from "../../utils/API.js"
 
 
 const style = {
-    invalidInput : {
-      borderBottom: "2px solid #16a085"
+    errMsg : {
+      color:"red", 
+      fontWeight:"bold", 
+      fontSize:"11px", 
+      marginTop: "-10px",
+      marginBottom: "20px" 
     }
 }
 
@@ -22,7 +26,9 @@ class Signup extends Component{
           password2:"",
           formErrors: [],
           emailValid: false,
-          passwordValid: false
+          passwordValid: false,
+          passwordMatches: false,
+          signUpDisable: true
       };
     }
 
@@ -33,7 +39,6 @@ class Signup extends Component{
         this.setState({[name]: value}, 
                       () => { this.validateField(name, value) });
 
-      // e.target.className = "inputError";               
 }
 
 validateField(fieldName, value) {
@@ -47,18 +52,24 @@ validateField(fieldName, value) {
       fieldValidationErrors.email = emailValid ? '' : 'Email Id is invalid';
       if(fieldValidationErrors.email === ""){
           let err = this.isEmailExists(value);
-          console.log("before if failure loop err == ", err);
           if(err === "failure"){
-            console.log("inside failure loop");
             emailValid = false;
             fieldValidationErrors.email = "Email Already taken";
-            // this.setState({errorMessage:"Email Already taken"});
           }
         }
       break;
     case 'password':
       passwordValid = value.length >= 6;
       fieldValidationErrors.password = passwordValid ? '': ' Password is too short';
+      break;
+    case 'password2':
+      if(this.state.password === value){
+        this.state.passwordMatches = true;
+      } else{
+        this.state.passwordMatches = false;
+        fieldValidationErrors.password2 = "Passwords do not match";
+        
+      }
       break;
     default:
       break;
@@ -67,7 +78,7 @@ validateField(fieldName, value) {
   this.setState({formErrors: fieldValidationErrors,
                   emailValid: emailValid,
                   passwordValid: passwordValid
-                }, this.validateForm);
+                });
 }
 
 
@@ -78,7 +89,13 @@ validateField(fieldName, value) {
       API.isEmailExists(email).then(res => {
         console.log("response of isEmailExists ==  ",res.data);
         if(res.data === "failure"){
-          this.setState({errorMessage:"Email Already taken"});
+          // this.setState({errorMessage:"Email Already taken"});
+          let formErr = this.state.formErrors;
+          formErr.email = "Email Already taken";
+          this.setState({
+            emailValid:false,
+            formErrors: formErr
+          });
         }
         console.log("Error Message == ", this.state.errorMessage);
         return res.data;
@@ -113,24 +130,26 @@ validateField(fieldName, value) {
             <h1>Sign up</h1>
             <form action="/signup" method="post">
                 <input type="text" name="email" placeholder="E-mail" className={(!this.state.emailValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {(!this.state.emailValid) ? <div style={{color:"red", fontWeight:"bold", fontSize:"11px" }}>{this.state.formErrors.email}</div> : ""}
+                {(!this.state.emailValid) ? <div style={style.errMsg}>{this.state.formErrors.email}</div> : ""}
                 
                 <input type="password" name="password" placeholder="Password" className={(!this.state.passwordValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {(!this.state.passwordValid) ? <div style={{color:"red", fontWeight:"bold", fontSize:"11px" }}>{this.state.formErrors.password}</div> : ""}
+                {(!this.state.passwordValid) ? <div style={style.errMsg}>{this.state.formErrors.password}</div> : ""}
                
-                <input type="password" name="password2" placeholder="Retype password" className={err ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {err ? <span style={{color:"red", fontWeight:"bold", fontSize:"11px" }}>{this.state.formErrors}</span> : ""}
+                <input type="password" name="password2" placeholder="Retype password" className={(!this.state.passwordMatches) ? "inputError" : "inputText"} onChange={this.handleUserInput} />
+                {(!this.state.passwordMatches) ? <div style={style.errMsg}>{this.state.formErrors.password2}</div> : ""}
                 
-                <input type="submit" name="signup_submit" value="Sign me up" />
+                <input type="submit" id="signup" name="signup_submit" value="Sign me up" disabled={!(this.state.emailValid 
+                                                                                      && this.state.passwordValid
+                                                                                      && this.state.passwordMatches)} />
               </form>
             </div>
 
           <div className="right">
             <span className="loginwith">Sign in with Social network</span>
             
-            <button className="social-signin facebook">Log in with facebook</button>
-            <button className="social-signin twitter">Log in with Twitter</button>
-            <button className="social-signin google">Log in with Google+</button>
+            <button className="social-signin facebook"><a href="auth/facebook" >Log in with facebook</a></button>
+            <button className="social-signin twitter"><a href="auth/twitter">Log in with Twitter</a></button>
+            <button className="social-signin google" ><a href="auth/google" >Log in with Google+</a></button>
           </div>
           <div className="line"></div>
           <div className="or">OR</div>
