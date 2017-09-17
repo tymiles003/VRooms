@@ -5,8 +5,12 @@ import API from "../../utils/API.js"
 
 
 const style = {
-    invalidInput : {
-      borderBottom: "2px solid #16a085"
+    errMsg : {
+      color:"red", 
+      fontWeight:"bold", 
+      fontSize:"11px", 
+      marginTop: "-10px",
+      marginBottom: "20px" 
     }
 }
 
@@ -113,13 +117,13 @@ validateField(fieldName, value) {
             <h1>Sign up</h1>
             <form action="/signup" method="post">
                 <input type="text" name="email" placeholder="E-mail" className={(!this.state.emailValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {(!this.state.emailValid) ? <div style={{color:"red", fontWeight:"bold", fontSize:"11px" }}>{this.state.formErrors.email}</div> : ""}
+                {(!this.state.emailValid) ? <div style={style.errMsg}>{this.state.formErrors.email}</div> : ""}
                 
                 <input type="password" name="password" placeholder="Password" className={(!this.state.passwordValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {(!this.state.passwordValid) ? <div style={{color:"red", fontWeight:"bold", fontSize:"11px" }}>{this.state.formErrors.password}</div> : ""}
+                {(!this.state.passwordValid) ? <div style={style.errMsg}>{this.state.formErrors.password}</div> : ""}
                
                 <input type="password" name="password2" placeholder="Retype password" className={err ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {err ? <span style={{color:"red", fontWeight:"bold", fontSize:"11px" }}>{this.state.formErrors}</span> : ""}
+                {err ? <span style={style.errMsg}>{this.state.formErrors}</span> : ""}
                 
                 <input type="submit" name="signup_submit" value="Sign me up" />
               </form>
@@ -128,9 +132,9 @@ validateField(fieldName, value) {
           <div className="right">
             <span className="loginwith">Sign in with Social network</span>
             
-            <button className="social-signin facebook">Log in with facebook</button>
-            <button className="social-signin twitter">Log in with Twitter</button>
-            <button className="social-signin google">Log in with Google+</button>
+            <button className="social-signin facebook"><a href="auth/facebook" >Log in with facebook</a></button>
+            <button className="social-signin twitter"><a href="auth/twitter">Log in with Twitter</a></button>
+            <button className="social-signin google" ><a href="auth/google" >Log in with Google+</a></button>
           </div>
           <div className="line"></div>
           <div className="or">OR</div>

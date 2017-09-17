@@ -151,9 +151,13 @@ input[type="submit"]:active {
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #FFF;
+  color: #FFF !important;
   text-align: center;
   font-weight: bold;
+}
+
+a{
+  color: white;
 }
 
 button.social-signin {
@@ -174,7 +178,7 @@ button.social-signin {
 
 button.social-signin:hover,
 button.social-signin:focus {
-  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.4);
   transition: 0.2s ease;
 }
 
