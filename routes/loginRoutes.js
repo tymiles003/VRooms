@@ -1,6 +1,8 @@
 const express = require("express");
 const passport = require("passport");
 const path = require("path");
+var User = require('../models/user');
+
 
 const router = express.Router();
 
@@ -27,6 +29,7 @@ router.get("/logout/", function(req, res) {
     res.redirect("/");
 });
 
+//Add email cookie to get user logged in..
 router.post("/signup", passport.authenticate("local-signup", {
   successRedirect: "/",
   failureRedirect: "/signup",
@@ -86,11 +89,28 @@ router.get("/auth/google/callback",
       res.redirect("/");
   });
 
+router.post("/emailExists",function(req,res){
+    console.log("req body == ", req.body);
+    
+    User.findOne({ 'local.email':  req.body.email }, function(err, user) {
+        if (err)
+            return res.send(err);
+        if (user) {
+          return res.send('failure');
+        }
+        else{
+            return res.send("success");
+        }
+    });
+});
 
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
     res.redirect("/");
 }
+
+
+
 
 module.exports = router;

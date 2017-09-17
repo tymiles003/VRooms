@@ -24,10 +24,10 @@ const API = {
     return axios.get("/logout/");
   },
 
-  loginFacebook: function(){
+  isEmailExists: function(email){
   console.log("inside handle facebook login API function");
 
-    return axios.get("/auth/facebook");
+    return axios.post("/emailExists", {email});
   },
 
   loginGoogle: function(){

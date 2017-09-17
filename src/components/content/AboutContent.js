@@ -62,7 +62,7 @@ class AboutContent extends Component {
                     <div className="row expanded">
                       <div className="small-12 medium-12 columns cta-content">
                         <h3>Be the Market Leader! Get VRooms!</h3>
-                        <a className="button" href="/login" id="marketing-signup">Sign Up</a>
+                        <a className="button" href="/signup" id="marketing-signup">Sign Up</a>
                       </div>
                     </div>
                   </section>
