@@ -26,7 +26,9 @@ class Signup extends Component{
           password2:"",
           formErrors: [],
           emailValid: false,
-          passwordValid: false
+          passwordValid: false,
+          passwordMatches: false,
+          signUpDisable: true
       };
     }
 
@@ -37,7 +39,6 @@ class Signup extends Component{
         this.setState({[name]: value}, 
                       () => { this.validateField(name, value) });
 
-      // e.target.className = "inputError";               
 }
 
 validateField(fieldName, value) {
@@ -51,18 +52,24 @@ validateField(fieldName, value) {
       fieldValidationErrors.email = emailValid ? '' : 'Email Id is invalid';
       if(fieldValidationErrors.email === ""){
           let err = this.isEmailExists(value);
-          console.log("before if failure loop err == ", err);
           if(err === "failure"){
-            console.log("inside failure loop");
             emailValid = false;
             fieldValidationErrors.email = "Email Already taken";
-            // this.setState({errorMessage:"Email Already taken"});
           }
         }
       break;
     case 'password':
       passwordValid = value.length >= 6;
       fieldValidationErrors.password = passwordValid ? '': ' Password is too short';
+      break;
+    case 'password2':
+      if(this.state.password === value){
+        this.state.passwordMatches = true;
+      } else{
+        this.state.passwordMatches = false;
+        fieldValidationErrors.password2 = "Passwords do not match";
+        
+      }
       break;
     default:
       break;
@@ -122,10 +129,12 @@ validateField(fieldName, value) {
                 <input type="password" name="password" placeholder="Password" className={(!this.state.passwordValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
                 {(!this.state.passwordValid) ? <div style={style.errMsg}>{this.state.formErrors.password}</div> : ""}
                
-                <input type="password" name="password2" placeholder="Retype password" className={err ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {err ? <span style={style.errMsg}>{this.state.formErrors}</span> : ""}
+                <input type="password" name="password2" placeholder="Retype password" className={(!this.state.passwordMatches) ? "inputError" : "inputText"} onChange={this.handleUserInput} />
+                {(!this.state.passwordMatches) ? <div style={style.errMsg}>{this.state.formErrors.password2}</div> : ""}
                 
-                <input type="submit" name="signup_submit" value="Sign me up" />
+                <input type="submit" id="signup" name="signup_submit" value="Sign me up" disabled={!(this.state.emailValid 
+                                                                                      && this.state.passwordValid
+                                                                                      && this.state.passwordMatches)} />
               </form>
             </div>
 
