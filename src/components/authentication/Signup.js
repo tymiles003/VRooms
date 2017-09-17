@@ -78,7 +78,7 @@ validateField(fieldName, value) {
   this.setState({formErrors: fieldValidationErrors,
                   emailValid: emailValid,
                   passwordValid: passwordValid
-                }, this.validateForm);
+                });
 }
 
 
@@ -89,7 +89,13 @@ validateField(fieldName, value) {
       API.isEmailExists(email).then(res => {
         console.log("response of isEmailExists ==  ",res.data);
         if(res.data === "failure"){
-          this.setState({errorMessage:"Email Already taken"});
+          // this.setState({errorMessage:"Email Already taken"});
+          let formErr = this.state.formErrors;
+          formErr.email = "Email Already taken";
+          this.setState({
+            emailValid:false,
+            formErrors: formErr
+          });
         }
         console.log("Error Message == ", this.state.errorMessage);
         return res.data;

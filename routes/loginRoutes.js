@@ -30,15 +30,32 @@ router.get("/logout/", function(req, res) {
 });
 
 //Add email cookie to get user logged in..
-router.post("/signup", passport.authenticate("local-signup", {
-  successRedirect: "/",
-  failureRedirect: "/signup",
-  failureFlash: true,
-}));
+// router.post("/signup", passport.authenticate("local-signup",{ failureRedirect: "/signup" },
+// //  {
+// //   successRedirect: "/",
+// //   failureRedirect: "/signup",
+// //   failureFlash: true,
+// // }
+// (req,res) => {
+//     console.log("USer after signup === ", req);
+//     // res.cookie("email",req.newUser.local.email);
+//     res.redirect("/");
+// }
+// ));
+
+
+router.post(
+    "/signup",
+    passport.authenticate("local-signup", { failureRedirect: "/signup" }),
+  (req, res) => {
+      res.cookie("email",req.user.local.email);
+      res.redirect("/");
+  });
+
 
 router.post(
     "/login",
-    passport.authenticate("local-login", { failureRedirect: "/login" }),
+    passport.authenticate("local-login", { failureRedirect: "/signup" }),
   (req, res) => {
       res.cookie("email",req.user.local.email);
       res.redirect("/");
@@ -51,7 +68,7 @@ router.get(
 
 router.get(
     "/auth/facebook/callback",
-    passport.authenticate("facebook", { failureRedirect: "/login" }),
+    passport.authenticate("facebook", { failureRedirect: "/signup" }),
   (req, res) => {
       res.cookie("email",req.user.facebook.email);
       res.redirect("/");
@@ -61,7 +78,7 @@ router.get("/auth/twitter", passport.authenticate("twitter"));
 
 router.get(
     "/auth/twitter/callback",
-    passport.authenticate("twitter", { failureRedirect: "/login" }),
+    passport.authenticate("twitter", { failureRedirect: "/signup" }),
   (req, res) => {
       res.cookie("email",req.user.twitter.displayName);
       res.redirect("/");
@@ -83,7 +100,7 @@ router.get(
 // );
 
 router.get("/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  passport.authenticate("google", { failureRedirect: "/signup" }),
   (req, res) => {
       res.cookie("email",req.user.google.email);
       res.redirect("/");
