@@ -21,7 +21,6 @@ const Agents = (props) => {
             <script src="/js/drift.js" type="text/javascript"></script>
 			
             {/* CSS links for this page */}
-            <link rel="stylesheet" href="/css/pagestyle.css"></link>
             <link rel="stylesheet" href="/css/pages/About.css"></link>
 			
           </Helmet>
