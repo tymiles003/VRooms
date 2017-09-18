@@ -125,6 +125,7 @@ app.post('/sign-s3', (req, res) => {
 		Bucket: BUCKET_NAME,
 		Key: path,
 		Expires: 60,
+		ContentType: "image/"+fileType,
 		ACL: "public-read"
 	};
 
