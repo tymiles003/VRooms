@@ -47,11 +47,11 @@ class LoginForm extends Component{
 						    <form action="/login" method="post">
 						      <div className="form-group">
 						         
-						          <input type="text" className="form-control" name="email" placeholder="email"/>
+						          <input type="text" className="form-control" name="email" placeholder="email" required/>
 						      </div>
 						      <div className="form-group">
 						        
-						        <input type="password" className="form-control" name="password" placeholder="password"/>
+						        <input type="password" className="form-control" name="password" placeholder="password" required/>
 						      </div>
 						        
 						        <button className="form-control" type="submit" className="btn login">Login</button>
