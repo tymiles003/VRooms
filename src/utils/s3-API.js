@@ -24,6 +24,7 @@ function getSignedRequest(file) {
     axios.post("/sign-s3", { fileName, fileType })
         .then(response => {
             console.log("response: ", response);
+            // Upload file to S3 using signed request
             if (response.status === 200) {
                 uploadFile(fileBlob, response.data.signedRequest, response.data.url);
             } else {
@@ -38,14 +39,18 @@ function getSignedRequest(file) {
 /** 
  * Uploads a file to our S3 bucket once we have a signed request
  */
-function uploadFile(file, signedRequest, url) {
+function uploadFile(fileBlob, signedRequest, url) {
     console.log(">>> uploadFile");
-    console.log("file: ", file);
+    console.log("file: ", fileBlob);
     console.log("signedRequest: ", signedRequest);
     console.log("url: ", url);
 
+    let options = {
+        headers: { "Content-Type": fileBlob.type }
+    }
+
     // Make PUT request to S3 using our signed request
-    axios.put(signedRequest, file)
+    axios.put(signedRequest, fileBlob, options)
         .then(response => {
             console.log("upload response: ", response);
             if (response.status === 200) {
