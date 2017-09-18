@@ -1603,3 +1603,7 @@ a-scene {
     position: absolute;
     z-index:101 !important;
 }
+
+.foundername {
+    margin-top: 1rem;
+}
