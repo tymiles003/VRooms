@@ -32,7 +32,7 @@ class MainContent extends Component {
 					autoPlay="true"
 				>
 					<source
-						src="./assets/video/splashintro.mp4"
+						src="./assets/video/vroomsintro.mp4"
 						type="video/mp4"
 					/>
 				</video>
