@@ -9,5 +9,4 @@ import routes from "./config/routes";
 // import "babel-polyfill";
 // import { Entity, Scene } from "aframe-react";
 
-
 ReactDOM.render(routes, document.getElementById("app"));

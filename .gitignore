@@ -9,9 +9,7 @@
 
 # production
 /build
-/public/bundle.js
-/public/bundle.js.map
-/public/bundle.js.gz
+/public/bundle.js*
 
 # misc
 .DS_Store
