@@ -217,3 +217,78 @@ button.social-signin.twitter {
 button.social-signin.google {
   background: #DD4B39;
 }
+
+
+
+
+@media print,
+screen and (min-width: 600px) {
+    /*.login-box {
+        margin: 10% auto;
+            width: auto;
+    }
+    .left{
+      top: 20px;
+      width: auto;
+
+    }
+    
+    .right{
+          top: 330px;
+          width: auto;
+    }*/
+    button.social-signin{
+            width: 75%;
+    }
+    input[type="text"], input[type="password"]{
+      width: 80%;
+    }
+    .or{
+          left: 44%;
+    }
+    /*.line{
+      top: 330px;
+      width: 400px;
+      height: 2px;
+      background: white;
+      border-bottom: 1px ridge #DDD;
+      border-right: 0;
+    }
+    */
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px) {
+    .login-box {
+        margin: 10% auto;
+            width: auto;
+    }
+    .left{
+      top: 20px;
+      width: auto;
+
+    }
+    input[type="text"], input[type="password"]{
+      width: 100%;
+    }
+    .right{
+          top: 330px;
+          width: auto;
+          left: 0;
+    }
+    button.social-signin{
+            width: 75%;
+    }
+    .line{
+      /*top: 330px;
+      width: 400px;
+      height: 2px;
+      background: white;*/
+      border-bottom: 0;
+      border-right: 0;
+    }
+    .or{
+          top: 320px
+    }
+}

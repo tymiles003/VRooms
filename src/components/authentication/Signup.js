@@ -134,7 +134,7 @@ validateField(fieldName, value) {
 				<link rel="stylesheet" href="/css/pages/signup.css" />
 			</Helmet>
       
-        <Navbar logo_filename="VRooms_V11_Hori_White" theme="opaque-black-bg"/>
+        <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
 
         <div className="error">{this.state.errorMessage}</div>
 
