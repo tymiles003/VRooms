@@ -34,7 +34,7 @@ body.body-notify {
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: 2;
+    z-index: 9999;
     /*display: none;*/
 }
 
