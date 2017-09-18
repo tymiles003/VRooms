@@ -18,8 +18,7 @@ const routes = (
             <Route path="/showcase" component={Showcase} />
             <Route exact path="/about" component={About} />
             <Route exact path="/agents" component={Agents} />
-            <Route exact path="/login" component={LoginForm} />
-            <Route exact path="/signup" component={Signup} />
+             <Route path="/signup" component={Signup} />
             <Route exact path="/new-vroom" component={NewVRoom} />
             <Route exact path="/embedded" component={EmbeddedAframe} />
         </Switch>

@@ -6,6 +6,9 @@ var User = require('../../models/user');
 var configAuth = require('./auth').dev;
 
 
+const ERR_USERNAME_NOT_EXISTS = "User Not Found";
+const ERR_WRONG_PASSWORD = "Wrong Password";
+
 if (process.env.NODE_ENV === "production") {
   configAuth = require('./auth').prod;
 }
@@ -58,9 +61,9 @@ module.exports = function(passport) {
       if (err)
           return done(err);
       if (!user)
-          return done(null, false, req.flash('loginMessage', 'No user found.'));
+          return done(null, false, req.flash('loginMessage', ERR_USERNAME_NOT_EXISTS));
       if (!user.validPassword(password))
-          return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+          return done(null, false, req.flash('loginMessage', ERR_WRONG_PASSWORD));
         console.log("USER ==== ",user);
       return done(null, user);
     });

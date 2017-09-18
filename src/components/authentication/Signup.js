@@ -14,6 +14,8 @@ const style = {
     }
 }
 
+const ERR_USERNAME_NOT_EXISTS = "User Not Found";
+const ERR_WRONG_PASSWORD = "Wrong Password";
 
 class Signup extends Component{
 
@@ -31,6 +33,21 @@ class Signup extends Component{
           signUpDisable: true
       };
     }
+
+componentWillMount(){
+  console.log("Err Message in props ==", this.props.match.params.query1);
+  console.log("query params == ", this.props.location.search);
+  const queryString = require('query-string');
+  const parsed = queryString.parse(this.props.location.search);
+  console.log(parsed);
+  if(parsed.message === ERR_USERNAME_NOT_EXISTS){
+    this.setState({errorMessage:"User does not exists. Please Register or use the below options to Login."});
+    
+  }
+  if(parsed.message === ERR_WRONG_PASSWORD){
+    this.setState({errorMessage:"Username and Password do not match. Please Register or use the below options to Login."});
+  }
+}
 
     handleUserInput =  (e) => {
 
@@ -85,7 +102,6 @@ validateField(fieldName, value) {
     isEmailExists = (email) => {
       // event.preventDefault();
       console.log("insided isEmailExists");
-      this.setState({errorMessage:""});
       API.isEmailExists(email).then(res => {
         console.log("response of isEmailExists ==  ",res.data);
         if(res.data === "failure"){
@@ -97,15 +113,12 @@ validateField(fieldName, value) {
             formErrors: formErr
           });
         }
-        console.log("Error Message == ", this.state.errorMessage);
         return res.data;
       });
       
     }
 
-    passwordMatches = (e) => {
-      e.preventDefault();
-    }
+   
 
     render(){
 

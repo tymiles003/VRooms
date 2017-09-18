@@ -53,13 +53,38 @@ router.post(
   });
 
 
-router.post(
-    "/login",
-    passport.authenticate("local-login", { failureRedirect: "/signup" }),
-  (req, res) => {
+// router.post(
+//     "/login",
+//     passport.authenticate("local-login", { failureRedirect: "/signup" }),
+//   (req, res) => {
+//       res.cookie("email",req.user.local.email);
+//       res.redirect("/");
+//   });
+
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local-login', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { 
+        if(req.session.flash){
+        console.log("login message === ", JSON.stringify(req.session.flash.loginMessage[0]));
+        let message = (req.session.flash.loginMessage[0]);
+        return res.redirect(`/signup?message=${message}`); 
+        }
+        else{
+            return res.redirect("/signup");
+        }
+    }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
       res.cookie("email",req.user.local.email);
-      res.redirect("/");
-  });
+      return res.redirect("/");
+    });
+  })(req, res, next);
+});
+
+
+
+
 
 router.get(
     "/auth/facebook",
