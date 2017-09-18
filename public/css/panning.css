@@ -58,11 +58,11 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  strong {
+  /* strong {
     font-weight: 600;
     letter-spacing: 2px;
     font-size: 22px;
-  }
+  } */
 
 
   html, body {
