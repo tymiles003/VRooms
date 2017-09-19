@@ -133,7 +133,7 @@ class ShowcaseContent extends Component {
 
   render() {
     return (
-      <div className="marketing">
+      <div className="showcase">
         <main>
           <section className="row introduction">
             <div className="small-centered small-12 medium-11 large-10 columns">
@@ -146,8 +146,7 @@ class ShowcaseContent extends Component {
             </div>
           </section>
 
-          <section className="row small-up-1 medium-up-2 large-up-3">            
-            <div id="our-results" className="panel-body">
+          <section id="our-results" className="row small-up-1 medium-up-2 large-up-3">          
               {this.state.allProperties.map((propertys, i) => (
 
                 <div key={i} id={"result_"+(i+1)} className="column column-block tour--block">
@@ -169,7 +168,7 @@ class ShowcaseContent extends Component {
 
                 ))
               }              
-            </div>
+         
           </section>
         </main>
       
