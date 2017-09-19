@@ -4,6 +4,9 @@ const propertySchema = mongoose.Schema({
     thumbnail_url: {
         type: String
     },
+    property_name: {
+        type: String
+    },
     street: {
         type: String
     },
@@ -14,6 +17,9 @@ const propertySchema = mongoose.Schema({
         type: String
     },
     zip: {
+        type: String
+    },
+    country: {
         type: String
     },
     bedrooms: Number,
