@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const propertySchema = mongoose.Schema({
-    thumbnail: {
+    thumbnail_url: {
         type: String
     },
     street: {
