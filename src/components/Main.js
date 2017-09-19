@@ -49,6 +49,7 @@ const Main = props => {
 
 				{/* CSS links for this page */}
 				<link href="/css/pages/Main.css" rel="stylesheet" />
+				<link href="/css/panning.css" rel="stylesheet" />
 			</Helmet>
 
 			{/* Good example of conditional loading, can use for user auth */}

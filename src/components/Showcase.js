@@ -1,66 +1,64 @@
-import 'aframe';
-import 'aframe-animation-component';
-import 'aframe-particle-system-component';
-import 'babel-polyfill';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Entity, Scene} from 'aframe-react';
 import {Helmet} from "react-helmet";
+import Navbar from './common/Navbar';
 
-// Showcasing gallery list of real estate
-class Showcase extends React.Component {
-  constructor(props) {
-    super(props);
-  //   this.state = {
-  //     quotes: []
-  //   };
-  //   // Binding getQuotes to this component since we'll be passing this method to 
-  //   // other components to use
-  //   this.getQuotes = this.getQuotes.bind(this);
-  // }
-  // // Getting all quotes once the component has mounted
- 
-    this.removejscssfile = this.removejscssfile.bind(this);
-	
-  }
+import Loader from "./common/Loader";
+import ShowcaseContent from "./content/ShowcaseContent";
+// import AboutCSS from './styles/About.css';
+// require('./styles/About.css');
 
-  removejscssfile(filename, filetype){
-    var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none"; //determine element type to create nodelist from
-    var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none"; //determine corresponding attribute to test for
-    var allsuspects=document.getElementsByTagName(targetelement);
+// class About extends React.Component {
+	// constructor(props) {
+	//   super(props);
+  
+	//  }
+	// render() {
+	//   return (
+const Showcase = (props) => {
+	return (
+      <div className="application">
+        {/* Helmet =========================================================*/}
+          <Helmet>
+            <title>VRooms Showcase</title>
 
-    for (var i=allsuspects.length; i>=0; i--)
-    { //search backwards within nodelist for matching elements to remove
-      if (allsuspects[i] && allsuspects[i].getAttribute(targetattr)!=null && allsuspects[i].getAttribute(targetattr).indexOf(filename)!=-1)
-        allsuspects[i].parentNode.removeChild(allsuspects[i]); //remove element by calling parentNode.removeChild()
-    }
-  }
+            {/* customized script elements */}
+            <script src="/js/drift.js" type="text/javascript"></script>
+			
+            {/* CSS links for this page */}
+            <link rel="stylesheet" href="/css/pages/About.css"></link>
+			
+          </Helmet>
 
-  componentDidMount = () => {
-    this.removejscssfile("drift.js", "js"); //remove all occurences of "drift.js" on VR page
-    this.removejscssfile("https://js.driftt.com/include/1505206200000/9ubdvirh8v4g.js", "js");
-    
-  }
+              <div className="aboutWrapper">  
 
-  render() {
-    return (
-      <a-scene>
-        <Entity primitive='a-sky' src="assets/img/gallery/test-world3.jpg"/>
-        <a-text font="kelsonsans" value="321 Ocean Dr, Miami Beach, Florida" width="6" position="-2 4.3 -3.5"
-              rotation="0 15 0"></a-text>       
-      </a-scene>
-    );
-  }
+                <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
+                <Loader />
+
+			          <ShowcaseContent />
+
+              </div>  
+      </div>
+    // );
+//   }
+	)
 }
 
 export default Showcase;
 
 
+// <header className="header header--main js-header a-page" data-landing="yes" data-page="Home" data-page-name="Main">
+//   <div className="description">
+//     <h1 className="description__headline text--white emerge" data-duration="600" data-effect="slide" data-down="64px" data-hold="100">
+//       Virtual Reality for Real Estate
+//     </h1>
+//     <span className="description__sub_headline text--white emerge" data-duration="600" data-effect="slide" data-down="64px" data-hold="100" data-continue="true">
+//       Use VR to <strong>win</strong> more listings and <br />
+//       <strong>stay ahead</strong> of your competition
+//     </span>
+      
+//   </div>
+
+// </header>
 
 
-// <a-scene>
 
-//         <a-sky src="assets/img/gallery/test-world3.jpg" rotation="0 -130 0"></a-sky>
-//         <a-text font="kelsonsans" value="Wayne's Home in Miami" width="6" position="-2.5 0.25 -1.5"
-//               rotation="0 15 0"></a-text>       
-//       </a-scene>
