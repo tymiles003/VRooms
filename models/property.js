@@ -19,6 +19,9 @@ const propertySchema = mongoose.Schema({
     zip: {
         type: String
     },
+    country: {
+        type: String
+    },
     bedrooms: Number,
     baths: Number,
     built_year: Number,
