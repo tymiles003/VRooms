@@ -81,7 +81,7 @@ class Navbar extends Component {
 							className="mobile-menu__btn navigation-menu__sign_in a-login" 
 							onClick={this.handleLogout}
 						> 
-							Logout 
+							Sign Out 
 						</a>)
 					: (
 							<a 
@@ -89,7 +89,7 @@ class Navbar extends Component {
 								className="mobile-menu__btn navigation-menu__sign_in a-login" 
 								onClick={this.handleAuth}
 							> 
-								Login 
+								Sign In 
 							</a>
 						)	
 				
@@ -113,7 +113,7 @@ class Navbar extends Component {
 							className="navigation-menu__sign_in a-login" 
 							onClick={this.handleLogout}
 						> 
-							Logout 
+							Sign Out
 						</Link>)
 					: (
 						<div>
@@ -124,7 +124,7 @@ class Navbar extends Component {
 								className="navigation-menu__sign_in a-login" 
 								onClick={this.handleAuth}
 							> 
-								Login 
+								Sign In 
 							</Link>
 						</div>
 						)	

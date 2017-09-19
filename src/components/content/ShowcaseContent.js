@@ -210,17 +210,13 @@ class ShowcaseContent extends Component {
             </div>
           </section>
         </main>
-        <section className="cta-module showcase-cta">
+      
+
+        <section className="benefits-header cta-module">
           <div className="row expanded">
             <div className="small-12 medium-12 columns cta-content">
               <h3>See how you can get started and create your tour today!</h3>
-              <a
-                className="button"
-                id="ga-cta-button-agents"
-                href="agents.html"
-              >
-                AGENTS
-              </a>
+              <a className="button" href="/signup" id="marketing-signup">Sign Up</a>
             </div>
           </div>
         </section>
