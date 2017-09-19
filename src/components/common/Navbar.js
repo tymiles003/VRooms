@@ -68,6 +68,7 @@ class Navbar extends Component {
 					<a href="/about" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">About</a>
 					<a href="/agents" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">Agents</a>
 					<a href="/showcase" className="mobile-menu__link text--white text--bold ">Showcase</a>
+					<a href="/showroom" className="mobile-menu__link text--white text--bold ">Showroom</a>
 					<a href="/contact" className="mobile-menu__link text--white text--bold ">Contact us</a>
 
 					<div className="mobile-menu-btn-wrapper">
@@ -100,6 +101,7 @@ class Navbar extends Component {
 					<Link to="/about" className="navigation-menu__link uppercase">About</Link>
 					<Link to="/agents" className="navigation-menu__link uppercase">Agents</Link>
 					<Link to="/showcase" className="navigation-menu__link uppercase">Showcase</Link>
+					<Link to="/showroom" className="navigation-menu__link uppercase">Showroom (temp)</Link>
 					<Link to="/contact" className="navigation-menu__link uppercase">Contact Us</Link>
 					<Link to="/new-vroom" className="navigation-menu__link uppercase">New</Link>
 

@@ -8912,7 +8912,7 @@ screen and (min-width: 64em) {
     color: #fff;
     font-weight: normal;
     text-align: center;
-    padding: 40px
+    padding: 30px
 }
 
 @media screen and (max-width: 39.9375em) {
@@ -8968,4 +8968,16 @@ screen and (min-width: 64em) {
 .cta-module .button:hover {
     background: #1FBAAE;
     color: #fff
+}
+
+
+.marketing .introduction {
+    text-align: center
+}
+
+.marketing .introduction h1.title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 60px
 }
