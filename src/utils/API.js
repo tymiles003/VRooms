@@ -20,6 +20,10 @@ const API = {
   //   return axios.patch(`/api/quotes/${_id}`, { favorited });
   // },
 
+  getAllProperties(): function() {
+    return axios.get("/api/allproperties");
+  },
+
   logout: function(){
     return axios.get("/logout/");
   },

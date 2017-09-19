@@ -1,13 +1,17 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
+import API from "../utils/API";
 
 // const Navbar = (this.props) => (
 class ShowcaseContent extends Component {
 	constructor(props) {
 		super(props);
-	}
-
+    }
+    
 	componentDidMount(){
+
+        this.getAllProperty();
+
         const ele = document.getElementById('ipl-progress-indicator')
         if(ele){
           setTimeout(() => {
@@ -17,6 +21,14 @@ class ShowcaseContent extends Component {
             }, 1000)
           }, 500)
 		}
+    }
+
+    getAllProperty = () => {
+        API.getAllProperties().then((response) => {
+            // if (response.data !== this.state.savedArticles) {
+            //     this.setState({ savedArticles: response.data });
+            // }
+        });
     }
 
 	render() {
