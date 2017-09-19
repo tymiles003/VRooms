@@ -4,6 +4,9 @@ const propertySchema = mongoose.Schema({
     thumbnail_url: {
         type: String
     },
+    property_name: {
+        type: String
+    },
     street: {
         type: String
     },
