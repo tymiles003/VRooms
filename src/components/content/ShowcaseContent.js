@@ -73,6 +73,51 @@ class ShowcaseContent extends Component {
         built_year: 2011,
         price: 4895000,
         square_feet: 3739
+      },
+      {
+        _id: "59c0885668a4a81b82c94430",
+        thumbnail_url:
+          "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+        street: "1605 Viewmont Drive",
+        city: "Los Angeles",
+        state: "CA",
+        zip: 90069,
+        country: "United States",
+        bedrooms: 3,
+        baths: 3,
+        built_year: 2011,
+        price: 11000000,
+        square_feet: 3000
+      },
+      {
+        _id: "59c0885668a4a81b82c94430",
+        thumbnail_url:
+          "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+        street: "1605 Viewmont Drive",
+        city: "Los Angeles",
+        state: "CA",
+        zip: 90069,
+        country: "United States",
+        bedrooms: 3,
+        baths: 3,
+        built_year: 2011,
+        price: 11000000,
+        square_feet: 3000
+      },
+      {
+        _id: "59c0885668a4a81b82c94430",
+        thumbnail_url:
+          "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+        street: "1605 Viewmont Drive",
+        city: "Los Angeles",
+        state: "CA",
+        zip: 90069,
+        country: "United States",
+        bedrooms: 3,
+        baths: 3,
+        built_year: 2011,
+        price: 11000000,
+        square_feet: 3000
       }
     ];
 
@@ -124,89 +169,6 @@ class ShowcaseContent extends Component {
 
                 ))
               }              
-            </div>
-          </section>
-
-          <section className="row small-up-1 medium-up-2 large-up-3">
-            <div className="column column-block tour--block">
-              <div className="content-block">
-                <a
-                  target="_blank"
-                  href="5904-village-drive-playa-vista-ca-90094/t/ZLeAxL1k.html"
-                >
-                  <img
-                    className="tour--image"
-                    src="../s3-us-west-1.amazonaws.com/transported-content/tours/ZLeAxL1k/Media/hero.jpg"
-                    alt="Hero"
-                  />
-                  <h4 className="tour--title">Street Name (1060 Palms Blvd)</h4>
-                </a>{" "}
-                <h6 className="tour--city">City (New York)</h6>
-              </div>
-            </div>
-            <div className="column column-block tour--block">
-              <div className="content-block">
-                <a
-                  target="_blank"
-                  href="200-east-66th-st-new-york-ny-10065/t/1U2xWpfR.html"
-                >
-                  <img
-                    className="tour--image"
-                    src="../s3-us-west-1.amazonaws.com/transported-content/tours/1U2xWpfR/hero.jpg"
-                    alt="Hero"
-                  />
-                  <h4 className="tour--title">Street Name</h4>
-                </a>{" "}
-                <h6 className="tour--city">City</h6>
-              </div>
-            </div>
-            <div className="column column-block tour--block">
-              <div className="content-block">
-                <a
-                  target="_blank"
-                  href="150-central-park-south-new-york-ny-10019/t/JnXBCecs.html"
-                >
-                  <img
-                    className="tour--image"
-                    src="../s3-us-west-1.amazonaws.com/transported-content/tours/JnXBCecs/hero.jpg"
-                    alt="Hero"
-                  />
-                  <h4 className="tour--title">Street Name</h4>
-                </a>{" "}
-                <h6 className="tour--city">City</h6>
-              </div>
-            </div>
-            <div className="column column-block tour--block">
-              <div className="content-block">
-                <a
-                  target="_blank"
-                  href="1542-n-easterly-terrace-los-angeles-ca-90026/t/Hl372O6Y.html"
-                >
-                  <img
-                    className="tour--image"
-                    src="../s3-us-west-1.amazonaws.com/transported-content/tours/Hl372O6Y/hero.jpg"
-                    alt="Hero"
-                  />
-                  <h4 className="tour--title">Street Name</h4>
-                </a>{" "}
-                <h6 className="tour--city">City (Los Angeles)</h6>
-              </div>
-            </div>
-            <div className="column column-block tour--block">
-              <div className="content-block">
-                <a
-                  target="_blank"
-                  href="18207-el-brazo-rd-rancho-santa-fe-ca-92067/t/xuhXmR7p.html"
-                >
-                  <img
-                    className="tour--image"
-                    src="../s3-us-west-1.amazonaws.com/transported-content/tours/xuhXmR7p/hero.jpg"
-                    alt="Hero"
-                  />
-                  <h4 className="tour--title">Street Name</h4>
-                </a>{" "}
-                <h6 className="tour--city">City</h6>
-              </div>
             </div>
           </section>
         </main>

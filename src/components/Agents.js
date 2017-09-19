@@ -1,6 +1,7 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import Navbar from './common/Navbar';
+import Footer from "./common/Footer";
 
 import Loader from "./common/Loader";
 import AgentContent from "./content/AgentContent";
@@ -34,6 +35,7 @@ const Agents = (props) => {
                 <Loader />
 
                 <AgentContent />
+                <Footer />
           </div>
 
           

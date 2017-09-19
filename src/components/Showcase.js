@@ -1,8 +1,8 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import Navbar from './common/Navbar';
-
 import Loader from "./common/Loader";
+import Footer from "./common/Footer";
 import ShowcaseContent from "./content/ShowcaseContent";
 // import AboutCSS from './styles/About.css';
 // require('./styles/About.css');
@@ -35,6 +35,7 @@ const Showcase = (props) => {
                 <Loader />
 
 			          <ShowcaseContent />
+                <Footer />
 
               </div>  
       </div>

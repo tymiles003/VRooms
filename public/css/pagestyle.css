@@ -1672,7 +1672,7 @@ a {
 
 a:hover,
 a:focus {
-    color: #1ba096
+    color:  #3498db
 }
 
 a img {
@@ -5085,7 +5085,7 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
 
 .tabs-title>a:hover {
     background: #fff;
-    color: #1ba096
+    color:  #3498db
 }
 
 .tabs-title>a:focus,
@@ -8431,8 +8431,8 @@ textarea {
 }
 
 footer {
-    background: #2C2E37;
-    padding: 2rem 0
+    background: #f2f2f2;
+    padding: 1rem 0
 }
 
 @media screen and (max-width: 39.9375em) {
@@ -8442,7 +8442,16 @@ footer {
 }
 
 footer p.footer-navigation.text-center {
-    color: #fff
+    color: #333
+}
+
+.footer-navigation a {
+    color: #333
+}
+
+.footer-navigation a:hover,
+a:focus {
+    color:  #3498db
 }
 
 .marketing footer h5 {
@@ -8493,19 +8502,19 @@ footer ul.footer-social .footer-twitter {
 footer ul.footer-social .footer-facebook {
     width: 30px;
     height: 30px;
-    background: no-repeat center center url(//transported-production.herokuapp.com/assets/facebook-on-dark-f918c7e17a1d71ef8efb58d9f74673b272887ab8eb7e33c71d982017c82fb9ab.png);
-    background-size: 8px 17px
+    background: no-repeat center center url(/assets/icons/if_06-facebook_104498.png);
+    background-size: 20px 20px
 }
 
 footer ul.footer-social .footer-twitter {
     width: 30px;
     height: 30px;
-    background: no-repeat center center url(//transported-production.herokuapp.com/assets/twitter-on-dark-c35af51bcb988fdbdc9081b9ae91c3b55860e44fd2a3b1a606dde6bfef101f14.png);
-    background-size: 19px 16px
+    background: no-repeat center center url(/assets/icons/if_03-twitter_104501.png);
+    background-size: 20px 20px
 }
 
 footer .footer-navigation {
-    color: #F0F1F2;
+    color: #333;
     font-size: 0.8rem;
     margin-top: 2rem
 }
@@ -8980,4 +8989,8 @@ screen and (min-width: 64em) {
     font-weight: 500;
     color: #333;
     margin-top: 60px
+}
+
+.introduction p {
+    padding: 1rem 1rem 1.7rem 1rem
 }
