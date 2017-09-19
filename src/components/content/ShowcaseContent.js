@@ -101,24 +101,31 @@ class ShowcaseContent extends Component {
             </div>
           </section>
 
-          <div id="our-results" className="panel-body">
-            {this.state.allProperties.map((propertys, i) => (
-            <div key={i} id={"result_"+(i+1)} className="well">
-                <h4>{propertys.thumbnail_url}</h4>
+          <section className="row small-up-1 medium-up-2 large-up-3">            
+            <div id="our-results" className="panel-body">
+              {this.state.allProperties.map((propertys, i) => (
+
+                <div key={i} id={"result_"+(i+1)} className="column column-block tour--block">
+                  <div className="content-block">
+                    <a
+                      target="_blank"
+                      href="#"
+                    >
+                      <img
+                        className="tour--image"
+                        src={propertys.thumbnail_url}
+                        alt="Thumbnail"
+                      />
+                      <h4 className="tour--title">{propertys.street}</h4>
+                    </a>{" "}
+                    <h6 className="tour--city">{propertys.city}</h6>
+                  </div>
+                </div>
+
+                ))
+              }              
             </div>
-              ))
-            }              
-          </div>
-
-
-
-
-
-
-
-
-
-
+          </section>
 
           <section className="row small-up-1 medium-up-2 large-up-3">
             <div className="column column-block tour--block">
