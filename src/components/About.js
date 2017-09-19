@@ -1,6 +1,7 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import Navbar from './common/Navbar';
+import Footer from "./common/Footer";
 
 import Loader from "./common/Loader";
 import AboutContent from "./content/AboutContent";
@@ -35,6 +36,7 @@ const About = (props) => {
                 <Loader />
 
 			          <AboutContent />
+                <Footer />
 
               </div>  
       </div>
