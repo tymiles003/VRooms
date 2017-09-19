@@ -37,6 +37,8 @@ class Navbar extends Component {
 		event.preventDefault();
 		cookie.remove("connect.sid", {path:'/'});
 		cookie.remove("email", {path:'/'});
+		cookie.remove("userId", {path:'/'});
+
 		API.logout().then(res => {
 			this.setState({sessionId:"", email: ""});
 			if(this.state.addClass)
