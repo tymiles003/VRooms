@@ -322,6 +322,12 @@ button {
     margin-left: auto
 }
 
+.showcase .row {
+    max-width: 90%;
+    margin-right: auto;
+    margin-left: auto
+}
+
 .row::before,
 .row::after {
     display: table;
@@ -1375,7 +1381,7 @@ screen and (min-width: 64em) {
     .large-up-3>.column,
     .large-up-3>.columns {
         float: left;
-        width: 33.33333%
+        width: 29%
     }
     .large-up-3>.column:nth-of-type(1n),
     .large-up-3>.columns:nth-of-type(1n) {
@@ -8984,6 +8990,10 @@ screen and (min-width: 64em) {
     text-align: center
 }
 
+.showcase .introduction {
+    text-align: center
+}
+
 .marketing .introduction h1.title {
     font-size: 2.5rem;
     font-weight: 500;
@@ -8991,6 +9001,53 @@ screen and (min-width: 64em) {
     margin-top: 60px
 }
 
+.showcase .introduction h1.title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 40px
+}
+
 .introduction p {
     padding: 1rem 1rem 1.7rem 1rem
+}
+
+.content-block:hover {
+    box-shadow: 0 40px 40px rgba(0, 0, 0, 0.16);
+    -webkit-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1)
+}
+
+.content-block {
+    padding: 1.5rem 2.5rem;
+    background: #fff;
+    border: 1px solid #F0F1F2;
+    border-radius: 2px
+}
+
+.tour--block .content-block {
+    padding: 0;
+    border: 0;
+    min-height: 320px;
+    padding-bottom: 1.5rem;
+    margin-bottom: 40px;
+    background: none
+}
+
+.tour--image {
+    width: 100%;
+    height: 240px
+}
+
+.showcase .tour--block .tour--title {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0 15px;
+    font-weight: 300
+}
+
+.showcase .tour--block .tour--city {
+    padding: 0 15px;
+    color: #999;
+    font-weight: 300
 }
