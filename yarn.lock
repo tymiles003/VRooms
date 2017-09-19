@@ -340,8 +340,8 @@ autoprefixer@^6.3.1:
     postcss-value-parser "^3.2.3"
 
 aws-sdk@^2.114.0:
-  version "2.117.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.117.0.tgz#9fcd7a0b2293c4ec717d292cb83b621ff61253e7"
+  version "2.118.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.118.0.tgz#19009d3b07dc1397d4dff1ac38b120f39aadd98f"
   dependencies:
     buffer "4.9.1"
     crypto-browserify "1.0.9"
@@ -4870,8 +4870,8 @@ mongodb@2.2.31:
     readable-stream "2.2.7"
 
 mongoose@^4.7.5:
-  version "4.11.11"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.11.11.tgz#ae9baf860241e086c90b226fdda52f1afddc6a7b"
+  version "4.11.12"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.11.12.tgz#48ebd5cad051f6ddfd46648b86a19c7fd30e36db"
   dependencies:
     async "2.1.4"
     bson "~1.0.4"
