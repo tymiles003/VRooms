@@ -1608,3 +1608,81 @@ a-scene {
     margin-top: 1rem;
 }
 
+.tour--block .tour--image {
+    width: 100%;
+    height: 240px
+}
+
+.tour--block {
+    width: 38%;
+    margin: 0 4%
+}
+
+@media (min-width: 1441px) {
+    .tour--block {
+        width: 29%;
+        margin: 0 2%
+    }
+}
+
+@media screen and (max-width: 63.9375em) {
+    .tour--block {
+        width: 100%;
+        max-width: 600px;
+        margin: 1rem auto
+    }
+}
+
+.tour--block .content-block {
+    padding: 0;
+    border: 0;
+    min-height: 320px;
+    padding-bottom: 1.5rem;
+    background: none
+}
+
+.tour--block .content-block:hover .tour--image:before {
+    border: 4px solid #1FBAAE
+}
+
+.tour--block .tour--image {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-radius: 2px
+}
+
+.tour--block .tour--image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px
+}
+
+.tour--block .tour--image:before {
+    border-radius: 3px;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 4px solid transparent;
+    -webkit-transition: border 100ms ease-in-out;
+    transition: border 100ms ease-in-out
+}
+
+.tour--block .tour--title {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem
+}
+
+.tour--block .tour--city {
+    font-size: 1rem;
+    color: #999
+}
+
+.tour--block .tour--city span:not(:last-child):after {
+    content: ' • '
+}

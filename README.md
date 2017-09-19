@@ -36,6 +36,8 @@ Experience homes online like never before infront of your computer or using comp
 * Front-end development (Vanilla CSS, HTML)
 * Responsive web design (Media queries)
 * Setup MVC folder structure
+* Database schema design
+* Preloader component module
 * Development for pages: Main, About, Agent
 * Front/back end development and integration for Showcase page
 
