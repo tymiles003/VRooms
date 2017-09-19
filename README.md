@@ -38,7 +38,7 @@ Experience homes online like never before infront of your computer or using comp
 * Setup MVC folder structure
 * Database schema design
 * Preloader component module
-* Development for pages: Main, About, Agent
+* Development for pages: Main, About, Agent, Navigation Bar, Page Footer
 * Front/back end development and integration for Showcase page
 
 - - -
