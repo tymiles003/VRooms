@@ -1,21 +1,20 @@
 const mongoose = require("mongoose");
 
 const propertySchema = mongoose.Schema({
+    thumbnail: {
+        type: String
+    },
     street: {
-        type: String,
-        required: true
+        type: String
     },
     city: {
-        type: String,
-        required: true
+        type: String
     },
     state: {
-        type: String,
-        required: true
+        type: String
     },
     zip: {
-        type: String,
-        required: true
+        type: String
     },
     bedrooms: Number,
     baths: Number,
