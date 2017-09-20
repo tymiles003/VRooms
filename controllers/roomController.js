@@ -1,9 +1,9 @@
 const Property = require("../models/property");
-const User = require("../models/user");
+const Room = require("../models/room");
 
 module.exports = {
     /**
-     * Lists all properties or a specific property
+     * Lists all rooms or a specific room
      */
     index: function(req, res) {
         let query;
@@ -12,7 +12,7 @@ module.exports = {
         } else {
             query = req.params.id ? { _id: req.params.id } : {};
         }
-        Property.find(query)
+        Room.find(query)
             .then(function(doc) {
                 res.json(doc);
             })
@@ -22,19 +22,18 @@ module.exports = {
     },
 
     /**
-     * Creates a new property and adds it to the given user_id
+     * Creates a new room and adds it to the given property_id
      */
     create: function(req, res) {
-        console.log(JSON.stringify(req.body, null, 2));
-        // Create new property
-        let newProperty = new Property(req.body.property);
-        newProperty.save((err, doc) => {
-            // Add property to user
-            User.findByIdAndUpdate(
-                req.params.user_id,
+        // Create new room
+        let newRoom = new Room(req.body.room);
+        newRoom.save((err, doc) => {
+            // Add Room to user
+            Property.findByIdAndUpdate(
+                req.params.property_id,
                 {
                     $push: {
-                        properties: doc._id
+                        rooms: doc._id
                     }
                 },
                 { new: true },
@@ -52,10 +51,10 @@ module.exports = {
     },
 
     /**
-     * Updates an existing property
+     * Updates an existing room
      */
     update: function(req, res) {
-        Property.update(
+        Room.update(
             {
                 _id: req.params.id
             },
@@ -70,10 +69,10 @@ module.exports = {
     },
 
     /**
-     * Deletes an existing property
+     * Deletes an existing room
      */
     destroy: function(req, res) {
-        Property.remove({
+        Room.remove({
             _id: req.params.id
         })
             .then(function(doc) {

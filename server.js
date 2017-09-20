@@ -73,6 +73,7 @@ if(process.env.NODE_ENV === 'production') {
 
 app.use(express.static(__dirname + "/public"));
 
+app.use("/api", apiRoutes);
 app.use("/", loginRoutes);
 
 // API-related routes (maybe relocated in future)
