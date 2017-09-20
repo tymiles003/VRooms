@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     local: {
         name: String,
         email: String,
@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
 
     // Saves properties' ObjectIds, ref refers to the Property model
     properties: [{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Property"
     }]
 });

@@ -1,15 +1,18 @@
 const Property = require("../models/property");
+const User = require("../models/user");
 
 module.exports = {
-    // This method handles retrieving quotes from the db
+    /**
+     * Lists all properties or a specific property
+     */
     index: function(req, res) {
-        var query;
+        let query;
         if (req.query) {
             query = req.query;
         } else {
             query = req.params.id ? { _id: req.params.id } : {};
         }
-        Quote.find(query)
+        Property.find(query)
             .then(function(doc) {
                 res.json(doc);
             })
@@ -17,19 +20,41 @@ module.exports = {
                 res.json(err);
             });
     },
-    // This method handles creating new quotes
+
+    /**
+     * Creates a new property and adds it to the given user_id
+     */
     create: function(req, res) {
-        Quote.create(req.body)
-            .then(function(doc) {
-                res.json(doc);
-            })
-            .catch(function(err) {
-                res.json(err);
-            });
+        // Create new property
+        let newProperty = new Property(req.body.property);
+        newProperty.save((err, doc) => {
+            // Add property to user
+            User.findByIdAndUpdate(
+                req.params.user_id,
+                {
+                    $push: {
+                        properties: doc._id
+                    }
+                },
+                { new: true },
+                (err, newdoc) => {
+                    // Send any errors to the browser
+                    if (err) {
+                        res.send(err);
+                    } else {
+                        // Or send the newdoc to the browser
+                        res.status(200).send(newdoc);
+                    }
+                }
+            );
+        });
     },
-    // This method handles updating quotes
+
+    /**
+     * Updates an existing property
+     */
     update: function(req, res) {
-        Quote.update(
+        Property.update(
             {
                 _id: req.params.id
             },
@@ -42,9 +67,12 @@ module.exports = {
                 res.json(err);
             });
     },
-    // This method handles deleting quotes
+
+    /**
+     * Deletes an existing property
+     */
     destroy: function(req, res) {
-        Quote.remove({
+        Property.remove({
             _id: req.params.id
         })
             .then(function(doc) {

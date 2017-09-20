@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const propertySchema = mongoose.Schema({
+const propertySchema = new mongoose.Schema({
     thumbnail_url: {
         type: String
     },
@@ -30,7 +30,7 @@ const propertySchema = mongoose.Schema({
 
     // Saves rooms' ObjectIds, ref refers to the Room model
     rooms: [{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Room"
     }]
 });
