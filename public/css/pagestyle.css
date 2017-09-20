@@ -8522,7 +8522,7 @@ footer ul.footer-social .footer-twitter {
 footer .footer-navigation {
     color: #333;
     font-size: 0.8rem;
-    margin-top: 2rem
+    margin-top: 1rem
 }
 
 @media screen and (max-width: 39.9375em) {
@@ -9008,6 +9008,13 @@ screen and (min-width: 64em) {
     margin-top: 40px
 }
 
+.introduction .title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #333;
+    /* margin-top: 40px */
+}
+
 .introduction p {
     padding: 1rem 1rem 1.7rem 1rem
 }
@@ -9050,4 +9057,86 @@ screen and (min-width: 64em) {
     padding: 0 15px;
     color: #999;
     font-weight: 300
+}
+
+.onerow {
+    display: inline-block;
+}
+
+.searchform {
+    width: 20vw;
+    float:right;
+    margin-top:40px;
+    margin-bottom: 0px;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-center {
+    flex: 0 1 auto;
+    position: absolute;             /* new */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.flex-right{
+    flex: 0 1 auto;
+    margin-left: auto;  
+    transform: translateY(-50%);
+} 
+
+.searchform input {
+    margin: 0px;
+}
+
+.showcase-header {
+    padding-right: 0px;
+    margin-top: 40px;
+    display: block;
+
+}
+
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    /* .hide-for-medium-only  */
+    /* .showcase-header {
+        border: 1px solid pink;
+    }  */
+
+    .flex-row-off, .flex-center-off, .flex-right-off {
+        display:block;
+        position: static;
+        transform: translateX(-0%);
+    }
+
+    .searchform {
+        padding: 0.5rem 0.5rem;
+        width: 100%;
+        margin-top:20px;
+        margin-bottom: 0px;
+        
+    }
+}
+
+@media screen and (max-width: 39.9999em){
+    /* .showcase-header {
+        border: 1px solid teal;
+    } */
+
+    .flex-row-off, .flex-center-off, .flex-right-off{
+        display:block;
+        position: static;
+        transform: translateX(-0%);
+    }
+    
+    .searchform {
+        padding: 0.5rem 0.5rem;
+        width: 100%;
+        margin-top:20px;
+        margin-bottom: 0px;
+    }
+    
 }
