@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ContactForm from "./ContactForm";
+import ContactForm from "./contactForm";
 import styled, { keyframes } from 'styled-components';
 import { Helmet } from "react-helmet";
 import Navbar from '../common/Navbar';
