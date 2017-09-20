@@ -23,6 +23,8 @@ const routes = (
              <Route path="/signup" component={Signup} />
             <Route exact path="/new-vroom" component={NewVRoom} />
             <Route exact path="/embedded" component={EmbeddedAframe} />
+            <Route path="/contact" component={Contact} />
+
         </Switch>
     </BrowserRouter>
 );
