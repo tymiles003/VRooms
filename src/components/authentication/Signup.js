@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from '../common/Navbar';
-import API from "../../utils/API.js"
+import API from "../../utils/API.js";
+import LoginForm from "./LoginForm";
 
 
 const style = {
@@ -158,14 +159,28 @@ validateField(fieldName, value) {
             </div>
 
           <div className="right">
-            <span className="loginwith">Sign in with Social network</span>
-            
-            <button className="social-signin facebook"><a href="auth/facebook" >Log in with facebook</a></button>
-            <button className="social-signin twitter"><a href="auth/twitter">Log in with Twitter</a></button>
-            <button className="social-signin google" ><a href="auth/google" >Log in with Google+</a></button>
+          <h1 className="loginwith">Sign In</h1>
+            <form action="/login" method="post" id="loginForm">
+                     
+                    <input type="text" className="social-signin" name="email" placeholder="email" required/>
+                    <input type="password" className="social-signin" name="password" placeholder="password" required/>
+                    <button className="social-signin login" type="submit" style={{marginTop:"20px"}}>Login</button>
+                     
+                    </form>
+
+                    <span><h2 style={{textAlign : "center", fontWeight: "500"}}>...or login with</h2></span>
+                  
+                    <div className="socialButtons">
+                      <a href="auth/facebook" className="button social-signin facebook social">
+                      <i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+                      <a href="auth/twitter" className="button social-signin twitter social">
+                      <i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+                      <a href="auth/google" className="button social-signin google social">
+                      <i className="fa fa-google-plus" aria-hidden="true"></i> Google</a>
+                    </div>
+                
           </div>
           <div className="line"></div>
-          <div className="or">OR</div>
       </div>
 
 </div>
@@ -202,3 +217,14 @@ export default Signup;
 //           </div>
 
             // <input type="text" name="username" placeholder="Username" />
+
+           // <div className="hrline"></div>
+          // <div className="or">OR</div>
+
+
+
+// <span className="loginwith">Sign in with Social network</span>
+            
+//             <button className="social-signin facebook"><a href="auth/facebook" >Log in with facebook</a></button>
+//             <button className="social-signin twitter"><a href="auth/twitter">Log in with Twitter</a></button>
+//             <button className="social-signin google" ><a href="auth/google" >Log in with Google+</a></button>

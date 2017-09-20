@@ -10,33 +10,7 @@ class LoginForm extends Component{
 		};
 	}
 
-	handleGoogleLogin = (event) =>{
-    	event.preventDefault();
-    	console.log("inside handle google login class function");
-		API.loginGoogle().then(function(res){
-			console.log("data ===",res);
-		});
-	}
-
-	handleFacebookLogin = () =>{
-		API.loginFacebook().then(function(res){
-			console.log(res);
-		});
-	}
-
-	handleTwitterLogin = () =>{
-		API.loginTwitter().then(function(res){
-			console.log(res);
-		});
-	}
-
-	handleLogin = () =>{
-		API.login().then(function(res){
-			console.log("DATA===",res.data);
-			console.log("User===",res.user);
-			console.log("Response===",res);
-		});
-	}
+	
 
 	render(){
 
