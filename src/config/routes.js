@@ -11,6 +11,8 @@ import Signup from "../components/authentication/Signup";
 import NewVRoom from "../components/NewVRoom";
 import WaynestrapSandbox from '../components/WaynestrapSandbox';
 import EmbeddedAframe from '../components/EmbeddedAframe';
+import Contact from "../components/contactUs/Content";
+
 
 const routes = (
     <BrowserRouter>
