@@ -25,7 +25,13 @@ const userSchema = mongoose.Schema({
         token: String,
         email: String,
         name: String
-    }
+    },
+
+    // Saves properties' ObjectIds, ref refers to the Property model
+    properties: [{
+        type: Schema.Types.ObjectId,
+        ref: "Property"
+    }]
 });
 
 userSchema.methods.generateHash = function(password) {
