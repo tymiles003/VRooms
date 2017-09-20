@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const propertySchema = mongoose.Schema({
+const propertySchema = new mongoose.Schema({
     thumbnail_url: {
         type: String
     },
@@ -26,7 +26,13 @@ const propertySchema = mongoose.Schema({
     baths: Number,
     built_year: Number,
     price: Number,
-    square_feet: Number
+    square_feet: Number,
+
+    // Saves rooms' ObjectIds, ref refers to the Room model
+    rooms: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Room"
+    }]
 });
 
 module.exports = mongoose.model("Property", propertySchema);

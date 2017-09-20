@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const roomSchema = mongoose.Schema({
+const roomSchema = new mongoose.Schema({
     pano_url: {
         type: String,
         required: true
