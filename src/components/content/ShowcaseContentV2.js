@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
 // const Navbar = (this.props) => (
-class ShowcaseContent extends Component {
+class ShowcaseContentV2 extends Component {
   constructor(props) {
     super(props);
 
@@ -11,6 +11,7 @@ class ShowcaseContent extends Component {
     this.state = {
       allProperties: []
     };
+    
   }
 
   componentDidMount() {
@@ -131,19 +132,51 @@ class ShowcaseContent extends Component {
     // });
   };
 
+  filterList = (event) => {
+    var updatedList = this.state.initialItems;
+    updatedList = updatedList.filter(function(item) {
+      return (
+        item.toLowerCase().search(event.target.value.toLowerCase()) !== -1
+      );
+    });
+    this.setState({ allProperties: updatedList });
+  };
+
+
   render() {
     return (
       <div className="showcase">
         <main>
-
           <section className="row introduction">
-            <div className="small-centered small-12 medium-11 large-10 columns">
-              <h1 className="title">VRooms Showcase Gallery</h1>
-              <p>
+            <div className="small-centered small-12 medium-11 large-11 columns showcase-header">
+
+            <div className="row expanded">
+                <div className="small-12 medium-12 columns onerow flex-row flex-row-off">
+                    <div className="title onerow flex-center flex-center-off text-center">VRooms Showcase Gallery                
+                    </div>
+                    <form className="onerow searchform flex-right flex-right-off">
+                            <fieldset className="form-group">
+                            <input
+                                type="text"
+                                className="form-control form-control-lg"
+                                placeholder="Search"
+                                onChange={this.filterList}
+                            />
+                            </fieldset>
+                        </form>
+                </div>
+            </div>
+
+            <div className="small-12 medium-12 columns onerow flex-row flex-row-off">  
+              <p className="flex-row-off">
                 Experience VRooms tours of outstanding properties in virtual
                 reality both in our web-compatible player or if you have a VR
                 headset, check these out in VR.
               </p>
+            </div>
+             
+
+              
             </div>
           </section>
 
@@ -187,4 +220,4 @@ class ShowcaseContent extends Component {
     );
   }
 }
-export default ShowcaseContent;
+export default ShowcaseContentV2;
