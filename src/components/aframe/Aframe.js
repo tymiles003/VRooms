@@ -100,6 +100,7 @@ class Aframe extends React.Component {
 					material="side: double; color: #3498db; opacity: 1"
 					className="teleport-link"
 					look-at="[camera]"
+					position={props.position}
 					events={{
 						click: this.teleport
 					}}
@@ -137,7 +138,6 @@ class Aframe extends React.Component {
 						angle: 5
 					}}
 					position={{ x: 0, y: 1, z: 0.1 }}
-					rotation={{ x: 0, y: 90, z: 0 }}
 				>
 					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
 					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
@@ -188,7 +188,7 @@ class Aframe extends React.Component {
 				<CameraCursor />
 				{/*==================================================*/}
 				{/* <ChoosePosition /> */}
-				<Entity layout={{
+				{/* <Entity layout={{
 					type: 'circle',
 					radius: 5,
 					plane: 'xz',
@@ -196,11 +196,11 @@ class Aframe extends React.Component {
 				}}
 					position={{ x:0, y:1, z:0.1 }}
 					rotation={{ x:0, y:90, z:0 }}
-				>
-					<Portal linkTo="#kitchen" label="Kitchen" />
-					<Portal linkTo="#bathroom" label="Bathroom" />
-					<Portal linkTo="#living-room" label="Living Room" />
-				</Entity>
+				> */}
+					<Portal linkTo="#kitchen" label="Kitchen" position={{x: -1.56, y: 1.8, z: -4.6}}/>
+					<Portal linkTo="#bathroom" label="Bathroom" position={{x: -6, y: 1.5, z: 0}}/>
+					<Portal linkTo="#living-room" label="Living Room" position={{x: 4, y: 1.3, z: 0}}/>
+				{/* </Entity> */}
 				{/*==================================================*/}
 			</Scene>
 		);
@@ -208,3 +208,8 @@ class Aframe extends React.Component {
 }
 
 export default Aframe;
+
+// x: -4.531538935158687, y: 1, z: -2.0130913087561733
+// x: 0.8682408884128335, y: 1, z: -4.824038765047255
+// x: 4.698463103962513, y: 1, z: -1.6101007165377579
+// x: -2.5517059836284813e-11, y: 1, z: 5.1
