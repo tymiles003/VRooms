@@ -51,7 +51,8 @@ class ContactForm extends Component{
         <FormContent id={this.props.id} 
                     quest={this.props.quest} 
                     handleChange={this.props.handleChange} 
-                    onEnter = {this.props.clicked}/>
+                    onEnter = {this.props.clicked}
+                    handleUserInput = {this.props.handleUserInput} />
 
 
      </div>
@@ -63,7 +64,9 @@ class ContactForm extends Component{
             <FormContent id={this.props.id} 
                     quest={this.props.quest} 
                     handleChange={this.props.handleChange} 
-                    onEnter = {this.props.clicked}/>
+                    onEnter = {this.props.clicked}
+                    handleUserInput = {this.props.handleUserInput}
+                    />
      </div>
  </li>
 
@@ -72,7 +75,9 @@ class ContactForm extends Component{
             <FormContent id={this.props.id} 
                     quest={this.props.quest} 
                     handleChange={this.props.handleChange} 
-                    onEnter = {this.props.clicked}/>
+                    onEnter = {this.props.clicked}
+                    handleUserInput = {this.props.handleUserInput}
+                    />
      </div>
  </li>
 
@@ -81,7 +86,9 @@ class ContactForm extends Component{
             <FormContent id={this.props.id} 
                     quest={this.props.quest} 
                     handleChange={this.props.handleChange} 
-                    onEnter = {this.props.clicked}/>
+                    onEnter = {this.props.clicked}
+                    handleUserInput = {this.props.handleUserInput}
+                    />
      </div>
  </li>
 

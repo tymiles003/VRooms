@@ -1,19 +1,19 @@
 
-		@keyframes slideInFromLeft {
-			0% {
-				transform: translateY(1000px);
-			}
-			100% {
-				transform: translateY(-2%);
-			}
-		}
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateY(1000px);
+    }
+    100% {
+        transform: translateY(-2%);
+    }
+}
 
 
-		li{
-			animation: .5s ease-out 0s 1 slideInFromLeft;
-		}
+li{
+    animation: .4s ease-out 0s 1 slideInFromLeft;
+}
 
-		.anim-enter {
+.anim-enter {
   opacity: 0.01;
   transition: opacity 1s ease-in;
 }
@@ -54,6 +54,47 @@
     background: azure;
     height: 500px;
     margin-top: 8%;
+    background-image: url("/assets/img/background/contactUs.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 2px 2px 0;
+    position:relative;
+}
+
+.form{
+    margin-top: 10%;
+}
+
+.textArea{
+    height:60px;
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+
+.textarea-wrapper{
+    height: 60px;
+    width: 800px;
+}
+
+.gr_ver_2{
+    width:800px;
+}
+
+.item{
+    float: left;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.question{
+    font-size: 25px;
+    font-weight: 500;
+    float: left;
+    padding: 0 20px;
+}
+
+.clear{
+    clear:both;
 }
 
 .inputField{
@@ -88,4 +129,14 @@ input[type="text"]{
     /*border-style: inset;
     border-color: initial;
     border-image: initial;*/
+}
+
+.listItem{
+    color: white;
+}
+
+.sendBtn{
+    position: absolute;
+    left: 50%;
+    margin-top: 60px;
 }
