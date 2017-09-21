@@ -166,17 +166,13 @@ class NewVRoomForm extends Component {
 					"price": this.state.price,
 					"square_feet": this.state.sqft
 				};
-				let userID = cookie.load("userId").split(":")[1];
+				let userID = cookie.load("userId");
 				console.log("cookie userId: ", userID);
 				console.log("property: ", property);
 				propertyAPI.addNewProperty(userID, property);
 			}
 		});
 	}
-	
-	// componentDidMount() {
-	// 	console.log("cookie userId: ", cookie.load("userId").split(":")[1]);
-	// }
 
 	render() {
 		return (
