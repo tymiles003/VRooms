@@ -21,13 +21,31 @@
 	
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/waynestrap.css">
-
+	
+	<link href="/css/aframe.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.6.1/aframe-master.min.js"></script>
+	<style>
+		.aframe-wrap {
+			height: initial;
+			width: initial;
+			padding: 0;
+			margin: 0;
+		}
+		a-scene {
+			height: 90vh;
+			width: 100%;
+			margin: 0;
+		}
+	</style>
 </head>
 
 <body>
 	
 	<!-- This is where React will deploy the contents it generates -->
 	<div id="app" style="height: 100%; width: 100%"></div>
+
+
+
 
 	<!-- All of our JS code will be transpiled into this bundle.js file -->
 	<script src="bundle.js"></script>
