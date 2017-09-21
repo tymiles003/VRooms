@@ -1,16 +1,25 @@
 import React from "react";
 import { Entity } from "aframe-react";
 import "aframe-animation-component";
+import 'aframe-mouse-cursor-component';
+
+// const handleMouse = () => {
+// 	console.log('mouseenter!')
+// 	document.getElementById('cursor').setAttribute('color', 'red')
+// }
 
 const CameraCursor = props => {
 	return (
 		<Entity 
 			primitive="a-camera"
-			look-controls="reverseMouseDrag: true" 
+			look-controls="reverseMouseDrag: true"
+			mouse-cursor
 			id="camera"
 			>
 			<Entity
 				primitive="a-cursor"
+				id="cursor"
+				color="white"
 			/>
 		</Entity>
 	);

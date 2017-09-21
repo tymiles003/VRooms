@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { Entity } from "aframe-react";
 import 'aframe-look-at-component';
+import 'aframe-mouse-cursor-component';
 
 ////////////////////////////////////////////////////
 class Portal extends React.Component {
@@ -19,6 +20,16 @@ class Portal extends React.Component {
 
 	};
 
+	handleMouse = () => {
+		console.log('mouseenter!')
+		document.getElementById('cursor').setAttribute('color', 'red')
+	}
+	handleMouseLeave = () => {
+		console.log('mouseleave!')
+		document.getElementById('cursor').setAttribute('color', 'white')
+	}
+
+
 	render () {
 		let { 
 			to,position,
@@ -35,7 +46,9 @@ class Portal extends React.Component {
 					className="portal-link"
 					look-at="#camera"
 					events={{
-						click: this.teleport
+						click: this.teleport,
+						mouseenter: this.handleMouse,
+						mouseleave: this.handleMouseLeave,
 					}}
 				>
 					<a-text
@@ -43,6 +56,10 @@ class Portal extends React.Component {
 						align="center"
 						scale={textScale}
 						position={textPos}
+					events={{
+						mouseenter: this.handleMouse,
+						mouseleave: this.handleMouseLeave,
+					}}
 					/>
 				</Entity>
 			);
