@@ -87,9 +87,9 @@ class Navbar extends Component {
 						</a>)
 					: (
 							<a 
+								href="/signup" 
 								data-auth="no" 
 								className="mobile-menu__btn navigation-menu__sign_in a-login" 
-								onClick={this.handleAuth}
 							> 
 								Sign In 
 							</a>
@@ -121,10 +121,10 @@ class Navbar extends Component {
 						<div>
 							<Link rel="signup" to="/signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</Link>
 							<Link 
-								to="/login" 
+								to="/signup" 
 								data-auth="no" 
 								className="navigation-menu__sign_in a-login" 
-								onClick={this.handleAuth}
+								
 							> 
 								Sign In 
 							</Link>
