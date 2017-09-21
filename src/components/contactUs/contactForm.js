@@ -46,12 +46,13 @@ class ContactForm extends Component{
         
 <li className={this.props.id === 1 ? "li-show" : "li-hide"} id="1" >
 
-	<div className="" style={{height: "269px", background:"",transitionDelay: "1s"}}>
+	<div className="" style={{background:"",transitionDelay: "1s"}}>
 
         <FormContent id={this.props.id} 
                     quest={this.props.quest} 
                     handleChange={this.props.handleChange} 
-                    onEnter = {this.props.clicked}/>
+                    onEnter = {this.props.clicked}
+                    handleUserInput = {this.props.handleUserInput} />
 
 
      </div>
@@ -63,7 +64,9 @@ class ContactForm extends Component{
             <FormContent id={this.props.id} 
                     quest={this.props.quest} 
                     handleChange={this.props.handleChange} 
-                    onEnter = {this.props.clicked}/>
+                    onEnter = {this.props.clicked}
+                    handleUserInput = {this.props.handleUserInput}
+                    />
      </div>
  </li>
 
@@ -72,7 +75,9 @@ class ContactForm extends Component{
             <FormContent id={this.props.id} 
                     quest={this.props.quest} 
                     handleChange={this.props.handleChange} 
-                    onEnter = {this.props.clicked}/>
+                    onEnter = {this.props.clicked}
+                    handleUserInput = {this.props.handleUserInput}
+                    />
      </div>
  </li>
 
@@ -81,7 +86,9 @@ class ContactForm extends Component{
             <FormContent id={this.props.id} 
                     quest={this.props.quest} 
                     handleChange={this.props.handleChange} 
-                    onEnter = {this.props.clicked}/>
+                    onEnter = {this.props.clicked}
+                    handleUserInput = {this.props.handleUserInput}
+                    />
      </div>
  </li>
 

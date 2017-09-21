@@ -3,8 +3,7 @@ import ContactForm from "./contactForm";
 import styled, { keyframes } from 'styled-components';
 import { Helmet } from "react-helmet";
 import Navbar from '../common/Navbar';
-
-
+import Footer from "../common/Footer";
 
 
 const keyFrameExampleOne = keyframes`
@@ -21,7 +20,10 @@ const questions = ["What's your first name, stranger?",
                    "What's the best email address for you?",
                    "What's your message about?",
                    "What's your message"];
-const questImage = ["img1","img2"];
+const questImage = ["https://images.typeform.com/images/8g37kjdgiQ/image/default#.gif",
+                    "https://images.typeform.com/images/uzCjAMwAFD/image/default#.gif",
+                    "",
+                    "https://images.typeform.com/images/Hicd2jwmsH/image/default#.gif"];
 
 
 class Content extends Component{
@@ -31,14 +33,11 @@ class Content extends Component{
         this.state={
             name:"",
             value:"",
-            listObj:[],
             quest:"",
             img:"",
             id:1,
             answers:[],
             userInput: "",
-            showForm: true,
-            liComp:[]
             
         }
     }
@@ -89,12 +88,22 @@ class Content extends Component{
         // console.log("li data == ", liData);
 
         // this.setState({liComp : liData});
+        let userInputs = this.state.answers;
+        userInputs.push(this.state.userInput);
 
         let listId = this.state.id;listId++;
         this.setState({
             id : listId,
-            quest : questions[listId-1]
+            quest : questions[listId-1],
+            answers : userInputs
         });
+
+        if(this.state.id === 4){
+            //set li visibility to none display
+            // and visible send button
+        }
+
+        console.log("ANSWERS ===== ", this.state.answers);
         
     }
 
@@ -104,26 +113,36 @@ class Content extends Component{
 
     render(){
         return (
-<div>
+<div className="pageWrapper">
         <Helmet>
 				<link rel="stylesheet" href="/css/pages/contactUs.css" />
 		</Helmet> 
 
         <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>   
 
-    <div className="formContainer">
-        <div className="form">
-        <div >
-
-        <ul className="questions" style={{marginTop: "5%", transition: "top ease-out 1000ms 0ms",
-        transitionDelay: "10s", animation: ".5s ease-out 0s infinite keyFrameExampleOne"}} >
-                        <ContactForm id={this.state.id} quest={this.state.quest} clicked={this.clicked}/>
+    <div className ="formWrapper">    
+        <div className="formContainer">
+            <div className="form form-mobile">
                 
-        </ul>
+                {(this.state.id <= 4) ? 
+                (<div >
 
+                    <ul className="questions" style={{marginTop: "5%", transition: "top ease-out 1000ms 0ms",
+                    transitionDelay: "10s", animation: ".5s ease-out 0s infinite keyFrameExampleOne"}} >
+                        <ContactForm id={this.state.id} 
+                                    quest={this.state.quest} 
+                                    clicked={this.clicked}
+                                    handleUserInput={this.handleUserInput}/>
+                            
+                    </ul>
+
+                </div>)
+                : <h2 style={{color:"black", textAlign:"center"}}> Thank you! We will be in touch!</h2>
+                }
+             </div>
         </div>
-    </div>
-    </div>
+    </div>            
+        <Footer />
 </div>    
 
 

@@ -14,44 +14,53 @@ class FormContent extends Component{
 
         return (
 
-    <div className="" style={{height: "269px", background:""}}>
+    <div className="listItem" style={{height: "269px", background:""}}>
 		<div className="item">
 			<span>{this.props.id}</span>
-			<div className="arrow"><div className="arrow-right"></div></div>
 		</div>
-        <div className="question"><span>{this.props.quest}<span className="asterisk">*</span></span></div>
+        <div className="question"><span>{this.props.quest}<span className="asterisk"> *</span></span></div>
+        <div className="clear"></div>
 		<div className="content">
-							<div className="description">
-					Mine's Pedro. Let's not be strangers for much longer.
-				</div>
-							<div className="content-wrapper">
-		<div className="attachment-wrapper">
-			<div className="attachment">
-				<img src="https://images.typeform.com/images/8g37kjdgiQ/image/default#.gif" 
-                    data-original="https://images.typeform.com/images/8g37kjdgiQ/image/default#.gif" 
-                    data-first-frame="https://images.typeform.com/images/8g37kjdgiQ/image/default.gif" 
-                    style={{width: "105px",height:"105px", display:"block", opacity:"1" }}
-                    className="freezeframe_done" 
-                    animated="https://images.typeform.com/images/8g37kjdgiQ/image/default#.gif" />
-			<div className="control">
-				<div className="">
-					<input className="inputField" type="text" autocomplete="off" name="userInput" onChange={this.props.handleUserInput}/>
-				</div>
+			<div className="" style={{fontStyle: "italic", marginBottom: "20px", padding:"0 35px"}}>
+					Let's not be strangers for much longer.
 			</div>
-			<div className="clear"></div>
-		</div>
+		<div className="content-wrapper">
+		    <div className="attachment-wrapper">
+			    <div className="attachment">
+				    <img src="https://images.typeform.com/images/8g37kjdgiQ/image/default#.gif" 
+                        style={{width: "105px",height:"105px", display:"block", opacity:"1" }}
+                        className="freezeframe_done" 
+                     />
+			        <div className="control">
+
+                    {(this.props.id < 4) ? 
+				        (<div className="">
+					        <input className="inputField" type="text" autoComplete="off" name="userInput" onChange={this.props.handleUserInput}/>
+				        </div>)
+                        :
+                        (<div className="textarea-wrapper">
+					        <textarea className="textArea" maxlength="800" autoComplete="off" style={{overflow: "hidden", wordWrap: "break-word", resize: "none", height: "80px"}}></textarea>
+											<span className="txtarea-tip"><strong>SHIFT</strong> + <strong>ENTER</strong> to make a line break</span>
+									</div>)
+                    }
+			        </div>
+			        <div className="clear"></div>
+		        </div>
 		<div className="clear"></div>
 		
-		<div className="confirm container step0">
+		<div className={(this.props.id < 4) ?"confirm container step0"  :"sendBtn"} >
 			<div className="button-wrapper confirm">
-				<div className="button nav enabled" onClick={this.props.onEnter}><span>OK</span><span className="confirm"></span> 	</div>
-			</div>
-			<div className="text">press <strong>ENTER</strong></div>
-		</div>
+				<div className="button nav enabled contact-us-button" onClick={this.props.onEnter}>
+                    {(this.props.id < 4) ? 
+                        <span>OK</span>
+                      : <span >SEND</span>}
+                </div>
 			</div>
 		</div>
 	</div>
-    </div>
+</div>
+</div>
+</div>
 
         );
     }

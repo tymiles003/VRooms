@@ -13,6 +13,7 @@ module.exports = {
             query = req.params.id ? { _id: req.params.id } : {};
         }
         Property.find(query)
+            .populate("rooms")
             .then(function(doc) {
                 res.json(doc);
             })
@@ -25,6 +26,7 @@ module.exports = {
      * Creates a new property and adds it to the given user_id
      */
     create: function(req, res) {
+        console.log(">>> propertyController.js - adding new property")
         console.log(JSON.stringify(req.body, null, 2));
         // Create new property
         let newProperty = new Property(req.body.property);
@@ -39,6 +41,7 @@ module.exports = {
                 },
                 { new: true },
                 (err, newdoc) => {
+                    console.log("Property added to user: ", newdoc)
                     // Send any errors to the browser
                     if (err) {
                         res.send(err);

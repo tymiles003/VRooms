@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import API from "../../../utils/API";
 import FileDrop from './FileDrop';
+import ZillowFetch from './ZillowFetch';
 import Btn from '../Elements/Btn';
 import PreviewWindow from '../PreviewWindow';
-
+import cookie from "react-cookies";
 import axios from "axios";
-const s3API = require ("../../../utils/s3-API"); 
+
+import propertyAPI from "../../../utils/propertyAPI"; 
+const s3API = require ("../../../utils/s3API");
 
 class NewVRoomForm extends Component {
 	constructor(props){
@@ -25,9 +28,9 @@ class NewVRoomForm extends Component {
 			sqft: "",
 			price: "",
 
-			query_type: 'invalid',
-			zpid: '48749425',
-			zillow_url: 'https://www.zillow.com/homedetails/17111-El-Vuelo-Rancho-Santa-Fe-CA-92067/16732045_zpid/?fullpage=true',
+			query_type: '',
+			zpid: '',
+			zillow_url: '',
 			fetch_query: '',
 
 			bits: '',
@@ -37,7 +40,6 @@ class NewVRoomForm extends Component {
 		};
 	}
 	
-	// handleFileUpload = (bits, fileStatus, fileName, fileSize ) => {
 	handleFileUpload = (fileDropState) => {
 		this.setState(fileDropState);
 	}
@@ -48,92 +50,23 @@ class NewVRoomForm extends Component {
 		const name = event.target.name;
 		console.log(name, value);
 
-		if (name === 'fetch_query') {
-			this.detectQueryType(value.trim())
-		}
-		else {
+		// if (name === 'fetch_query') {
+		// 	this.detectQueryType(value.trim())
+		// }
+		// else {
 			this.setState({
 				[name]: value
 			});
-		}
+		// }
 	}
 
-	detectQueryType = (query) => {
-		// let isZPID = false;
-		let zpid = '';
-		let query_type = 'invalid';
-		
-		let isNumber = (query) => {
-			let parsed = parseInt(query);
-			return isNaN(parsed);
-		}
-		let notOnlyDigits = isNumber(query);
 
-		// Check if it is a zpid
-		// zpid should have 8 characters.
-		if (query.length === 8 && !notOnlyDigits) { 
-			console.log('---> Zillow Property ID detected');
+	portZillowState = stateData => this.setState(stateData);
 
-			// Set the zpid default assuming valid (changed later if invalid)
-			zpid = query;
-			query_type = 'zpid';
-		}
-		else if (query.indexOf('zillow.com') >= 0) {
-			console.log('--> Zillow URL detected');
-			let splitURL = query.split('/');
-			let zpid_part_url = splitURL.filter(ea => ea.indexOf('_zpid') >= 0 )[0];
-
-			zpid = zpid_part_url.substring(0,zpid_part_url.length-5);
-			query_type = 'zillow_url';
-			console.log('>>> Extracted zpid...',zpid);
-		}
-		else if (query.length === 0) {
-			console.log('--> Empty Query');
-		}
-		else {
-			return console.log('--> Invalid/Unrecognized Query Type (!)');
-		}
-		
-		// If invalid query type, zpid is empty string & query_type is invalid
-		this.setState({
-			zpid: zpid,
-			query_type: query_type,
-		})
-	}
-	
-	handleFetch = event => {
-		event.preventDefault();
-		// const query = event.target.value.trim();
-		let { zpid, query_type } = this.state;
-		let query = zpid;
-
-		// Proceed to API call as long as not invalid
-		if (query_type !== 'invalid') {
-			console.log('>>> Calling Zillow API...');
-			API.fetchListing(query)
-			.then(res => {
-				console.log('... API fetchListing response received');
-				let r = res.data;
-				console.log('--> API Response',r);
-				let address = r.address[0];
-				let info = r.editedFacts[0];
-				let stateData = {
-					street: address.street[0],
-					city: address.city[0],
-					state: address.state[0],
-					zip: address.zipcode[0],
-					beds: info.bedrooms[0],
-					baths: info.bathrooms[0],
-					sqft: info.finishedSqFt[0],
-					year: info.yearBuilt[0],
-					rooms: info.rooms[0],
-					links: r.links[0],
-				}
-				this.setState(stateData);
-			})
-		}
-	}
-
+	/**
+	 * - Creates a new Property and Room document
+	 * - Uploads image to S3 and saves link in Room document
+	 */
 	handleFormSubmit = event => {
 		// Preventing the default behavior of the form submit (which is to refresh the page)
 		event.preventDefault();
@@ -145,6 +78,27 @@ class NewVRoomForm extends Component {
 		s3API.getSignedRequest({
 			fileName: this.state.fileName,
 			data: this.state.bits
+		}, (url) => {
+			// If upload successful then create new Property and Room
+			if (url){
+				let property = {
+					"thumbnail_url": url,
+					"street": this.state.street,
+					"city": this.state.city,
+					"state": this.state.state,
+					"zip": this.state.zip,
+					"country": this.state.country,
+					"bedrooms": this.state.beds,
+					"baths": this.state.baths,
+					"built_year": this.state.year,
+					"price": this.state.price,
+					"square_feet": this.state.sqft
+				};
+				let userID = cookie.load("userId");
+				console.log("cookie userId: ", userID);
+				console.log("property: ", property);
+				propertyAPI.addNewProperty(userID, property);
+			}
 		});
 	}
 
@@ -154,6 +108,9 @@ class NewVRoomForm extends Component {
 				{/* <PreviewWindow /> */}
 				<form id="new-vroom-form" className="form ws-form">
 					<div className="form-row">
+						<ZillowFetch port={this.portZillowState}/>
+					</div>
+					{/* <div className="form-row">
 						<div className="input-wrap input-full-width input-fetch ws-input-wrap">
 							<label className="legend"> Fetch Property Data from Zillow (beta)</label>
 							<input
@@ -173,7 +130,7 @@ class NewVRoomForm extends Component {
 							>
 							Fetch
 							</button>
-					</div>
+					</div> */}
 					<div className="form-row">
 						<fieldset>
 							<legend>Address</legend>

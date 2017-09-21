@@ -32,6 +32,9 @@
 			flex-direction: column;	
 		}
 	}
+	.form-group {
+		position: relative;
+	}
 	.form-field-row {
 		padding: 0;
 		margin: 0;
@@ -157,7 +160,7 @@
 }
 .pg-newVRoom {
 	form {
-		fieldset {
+		fieldset, .form-group {
 			width: 100%;
 			max-width: 600px;
 		}
