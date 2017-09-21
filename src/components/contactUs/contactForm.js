@@ -46,7 +46,7 @@ class ContactForm extends Component{
         
 <li className={this.props.id === 1 ? "li-show" : "li-hide"} id="1" >
 
-	<div className="" style={{height: "269px", background:"",transitionDelay: "1s"}}>
+	<div className="" style={{background:"",transitionDelay: "1s"}}>
 
         <FormContent id={this.props.id} 
                     quest={this.props.quest} 

@@ -155,6 +155,10 @@ footer {
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .formWrapper {
+        width: 100vw;
+    }
+
     .formContainer {
         width: 100%;
         height: 100%
