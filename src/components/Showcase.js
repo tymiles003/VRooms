@@ -30,7 +30,7 @@ const Showcase = (props) => {
 			
           </Helmet>
 
-              <div className="aboutWrapper">  
+              <div className="pageWrapper">  
 
                 <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
                 <Loader />

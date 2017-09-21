@@ -4,6 +4,8 @@ import Navbar from '../common/Navbar';
 import API from "../../utils/API.js";
 import LoginForm from "./LoginForm";
 
+import Footer from "../common/Footer";
+
 
 const style = {
     errMsg : {
@@ -130,58 +132,64 @@ validateField(fieldName, value) {
      
       return (
 
-<div>
+<div className="pageWrapper">
       <Helmet>
+        <link rel="stylesheet" href="/css/pages/About.css"></link>
 				<link rel="stylesheet" href="/css/pages/signup.css" />
 			</Helmet>
       
         <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
 
-        <div className="error">{this.state.errorMessage}</div>
+        <div className="loginWrapper">
 
-        <div id="login-box">
-          <div className="left">
-            <h1>Sign up</h1>
-            <form action="/signup" method="post">
-                <input type="text" name="email" placeholder="E-mail" className={(!this.state.emailValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {(!this.state.emailValid) ? <div style={style.errMsg}>{this.state.formErrors.email}</div> : ""}
-                
-                <input type="password" name="password" placeholder="Password" className={(!this.state.passwordValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
-                {(!this.state.passwordValid) ? <div style={style.errMsg}>{this.state.formErrors.password}</div> : ""}
-               
-                <input type="password" name="password2" placeholder="Retype password" className={(!this.state.passwordMatches) ? "inputError" : "inputText"} onChange={this.handleUserInput} />
-                {(!this.state.passwordMatches) ? <div style={style.errMsg}>{this.state.formErrors.password2}</div> : ""}
-                
-                <input type="submit" id="signup" name="signup_submit" value="Sign me up" disabled={!(this.state.emailValid 
-                                                                                      && this.state.passwordValid
-                                                                                      && this.state.passwordMatches)} />
-              </form>
-            </div>
+          <div className="error">{this.state.errorMessage}</div>
 
-          <div className="right">
-          <h1 className="loginwith">Sign In</h1>
-            <form action="/login" method="post" id="loginForm">
-                     
-                    <input type="text" className="social-signin" name="email" placeholder="email" required/>
-                    <input type="password" className="social-signin" name="password" placeholder="password" required/>
-                    <button className="social-signin login" type="submit" style={{marginTop:"20px"}}>Login</button>
-                     
-                    </form>
-
-                    <span><h2 style={{textAlign : "center", fontWeight: "500"}}>...or login with</h2></span>
+          <div id="login-box">
+            <div className="left">
+              <h1>Sign up</h1>
+              <form action="/signup" method="post">
+                  <input type="text" name="email" placeholder="E-mail" className={(!this.state.emailValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
+                  {(!this.state.emailValid) ? <div style={style.errMsg}>{this.state.formErrors.email}</div> : ""}
                   
-                    <div className="socialButtons">
-                      <a href="auth/facebook" className="button social-signin facebook social">
-                      <i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
-                      <a href="auth/twitter" className="button social-signin twitter social">
-                      <i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
-                      <a href="auth/google" className="button social-signin google social">
-                      <i className="fa fa-google-plus" aria-hidden="true"></i> Google</a>
-                    </div>
+                  <input type="password" name="password" placeholder="Password" className={(!this.state.passwordValid) ? "inputError" : "inputText"} onChange={this.handleUserInput}/>
+                  {(!this.state.passwordValid) ? <div style={style.errMsg}>{this.state.formErrors.password}</div> : ""}
                 
-          </div>
-          <div className="line"></div>
+                  <input type="password" name="password2" placeholder="Retype password" className={(!this.state.passwordMatches) ? "inputError" : "inputText"} onChange={this.handleUserInput} />
+                  {(!this.state.passwordMatches) ? <div style={style.errMsg}>{this.state.formErrors.password2}</div> : ""}
+                  
+                  <input type="submit" id="signup" name="signup_submit" value="Sign me up" disabled={!(this.state.emailValid 
+                                                                                        && this.state.passwordValid
+                                                                                        && this.state.passwordMatches)} />
+                </form>
+              </div>
+
+            <div className="right">
+            <h1 className="loginwith">Sign In</h1>
+              <form action="/login" method="post" id="loginForm">
+                      
+                      <input type="text" className="social-signin" name="email" placeholder="email" required/>
+                      <input type="password" className="social-signin" name="password" placeholder="password" required/>
+                      <button className="social-signin login" type="submit" style={{marginTop:"20px"}}>Login</button>
+                      
+                      </form>
+
+                      <span><h5 style={{textAlign : "center", fontWeight: "500"}}>...or login with</h5></span>
+                    
+                      <div className="socialButtons">
+                        <a href="auth/facebook" className="button social-signin facebook social">
+                        <i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+                        <a href="auth/twitter" className="button social-signin twitter social">
+                        <i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+                        <a href="auth/google" className="button social-signin google social">
+                        <i className="fa fa-google-plus" aria-hidden="true"></i> Google</a>
+                      </div>
+                  
+            </div>
+            <div className="line"></div>
+        </div>
       </div>
+
+      <Footer />
 
 </div>
 
