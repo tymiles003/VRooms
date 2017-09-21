@@ -15,9 +15,7 @@ class Portal extends React.Component {
 		
 		let dest = event.target.getAttribute("to");
 		console.log("---- teleport --->", dest);
-		this.props.port({
-			sky_source: dest
-		})
+		this.props.port(dest)
 
 	};
 

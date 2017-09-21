@@ -11,13 +11,14 @@ import RotatingBox from "./components/RotatingBox";
 // import "aframe-inspector";
 import Portal from "./components/Portal";
 import PhotoAssets from "./components/PhotoAssets";
+import RoomElements from "./components/RoomElements";
 
 
 class Aframe extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			sky_source: "#img-kitchen"
+			sky_source: "kitchen"
 		};
 		// this.handlePhotoAssets(this.props.photos)
 	}
@@ -29,30 +30,18 @@ class Aframe extends React.Component {
 		const photos = this.props.photos;
 		// this.handlePhotoAssets(photos);
 		this.setState(photos)
-		console.log('this.state.photos',this.state.photos);
+		// console.log('this.state.photos',this.state.photos);
 		// Build elements for current page
 	}
-	// componentDidMount = () => console.log("---- componentDidMount --->");
-
-
-	handlePhotoAssets = (allPhotos) => {
-		// const allPhotos = this.state.photos;
-		console.log('allPhotos',allPhotos);
-		// <img id="balcony-1" src="assets/img/aframe/balcony-1.jpg" />
-		// For each photo in the array, import into a-asset
-		allPhotos.map( (photo) => {
-			let{pano_url,name,id} = photo;
-			
-			// create id to be used in aframe
-			let imgID = 'img-' + name.replace(/[^a-zA-Z0-9-]/g,'-');
-
-			console.log('imgID',imgID);
-
-			return (
-				<img id={imgID} src={pano_url}/>
-			)
-		})
+	
+	
+	
+	componentDidMount = () => {
+		console.log("---- componentDidMount --->");
+		// console.log('this.state.photos',this.state.photos);
 	}
+
+
 
 	buildAsssets = roomPhotos => {
 		
@@ -61,9 +50,13 @@ class Aframe extends React.Component {
 	handleBoxState = boxState => { this.setState(boxState); }
 
 
-	handlePortalState = portalState => {
+	handlePortalState = dest => {
 		// console.log('---- handlePortalState --->', portalState);
-		this.setState(portalState)
+		this.setState({ sky_source: dest })
+	}
+	handleRoomStates = state => {
+		// console.log('---- handleElementState --->', state);
+		this.setState(state)
 	}
 
 
@@ -74,20 +67,21 @@ class Aframe extends React.Component {
 				{/*==================================================*/}
 					<PhotoAssets photos={this.props.photos}/>
 				{/*==================================================*/}
-				<Entity layout={{ type: 'circle', radius: 5, plane: 'xz', angle: 20, }}
-					position={{ x:0, y:0.25, z:0.1 }} rotation={{ x:0, y:165, z:0 }}
-				>
-					{/* <Portal to="#kitchen" label="Kitchen" position={{x: -1.56, y: 1.8, z: -4.6}}/>
-					<Portal to="#bathroom" label="Bathroom" position={{x: -6, y: 1.5, z: 0}}/>
-					<Portal to="#living-room" label="Living Room" position={{x: 4, y: 1.3, z: 0}}/> */}
-					<Portal to="#balcony-1" label="balcony-1" port={this.handlePortalState}/>
-					<Portal to="#balcony-2" label="balcony-2" port={this.handlePortalState} />
-					<Portal to="#balcony-3" label="balcony-3" port={this.handlePortalState} />
-					<Portal to="#balcony-4" label="balcony-4" port={this.handlePortalState} />
-					<Portal to="#balcony-5" />
+				<Entity layout={{ type: 'circle', radius: 5, plane: 'xz', angle: 20, }} position={{ x:0, y:0.25, z:0.1 }} rotation={{ x:0, y:165, z:0 }} >
+					<Portal to="kitchen" label="Kitchen" port={this.handlePortalState}/>
+					<Portal to="bathroom" label="Bathroom" port={this.handlePortalState}/>
+					<Portal to="living-room" label="Living Room" port={this.handlePortalState}/>
+					{/* <Portal to="balcony-1" label="balcony-1" port={this.handlePortalState}/> */}
+					{/* <Portal to="balcony-2" label="balcony-2" port={this.handlePortalState} /> */}
+					{/* <Portal to="#balcony-3" label="balcony-3" port={this.handlePortalState} /> */}
+					{/* <Portal to="#balcony-4" label="balcony-4" port={this.handlePortalState} /> */}
+					{/* <Portal to="#balcony-5" /> */}
 				</Entity>
+
+				{/* <RoomElements current={this.state.sky_source} data={this.props.photos} port={this.handleRoomStates} /> */}
+				
 				{/*==================================================*/}
-				<Entity primitive="a-sky" id="sky" src={this.state.sky_source} />
+				<Entity primitive="a-sky" id="sky" src={'#'+this.state.sky_source} />
 				<Raycaster/>
 				<CameraCursor />
 				{/*==================================================*/}
