@@ -24,10 +24,6 @@ class PositioningUnit extends Component {
 
 		event.target.addEventListener('raycaster-intersected', this.handleRay);
 		
-		const pos = event.target.getAttribute('position');
-		console.log('getPosition -------> '+pos);
-		
-		event.target.removeEventListener('raycaster-intersected',this.handleRay);
 	};
 
 	

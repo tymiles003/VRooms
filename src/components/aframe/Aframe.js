@@ -10,61 +10,55 @@ import RotatingBox from "./components/RotatingBox";
 // import 'aframe-gridhelper-component';
 // import "aframe-inspector";
 import Portal from "./components/Portal";
+import PhotoAssets from "./components/PhotoAssets";
 
 
 class Aframe extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			sky_source: "#balcony-1"
+			sky_source: "#img-kitchen"
 		};
-		// this.teleport = this.teleport.bind(this);
-		// this.getBearings = this.getBearings.bind(this);
+		// this.handlePhotoAssets(this.props.photos)
 	}
 
-	// componentWillMount = () => console.log("---- componentWillMount --->");
+	componentWillMount = () => {
+		console.log("---- componentWillMount --->");
+		
+		// Import photo assets
+		const photos = this.props.photos;
+		// this.handlePhotoAssets(photos);
+		this.setState(photos)
+		console.log('this.state.photos',this.state.photos);
+		// Build elements for current page
+	}
 	// componentDidMount = () => console.log("---- componentDidMount --->");
 
 
-	buildAsssets = roomPhotos => {};
+	handlePhotoAssets = (allPhotos) => {
+		// const allPhotos = this.state.photos;
+		console.log('allPhotos',allPhotos);
+		// <img id="balcony-1" src="assets/img/aframe/balcony-1.jpg" />
+		// For each photo in the array, import into a-asset
+		allPhotos.map( (photo) => {
+			let{pano_url,name,id} = photo;
+			
+			// create id to be used in aframe
+			let imgID = 'img-' + name.replace(/[^a-zA-Z0-9-]/g,'-');
 
-	// getBearings = event => {
-	// 	console.log("getBearings --->");
-	// 	event.preventDefault();
-	// 	// Camera Rotation Data
-	// 	const cam = document.getElementById("camera");
-	// 	let components = cam.components;
-	// 	let { rotation, position, scale } = components;
-	// 	let { x, y, z } = rotation.data;
-	// 	console.log("x", x, "y", y, "z", z);
-	// };
+			console.log('imgID',imgID);
 
-	// handleRay = (event) => {
-	// 	event.preventDefault();
-
-	// 	const pos = event.target.getAttribute('position');
-	// 	console.log('pos',pos);
-	// 	event.target.removeEventListener('raycaster-intersected',this.handleRay);
-
-	// 	// const ray = document.getElementById("ray");
-	// 	// const rc = ray.components;
-	// 	// let { position, rotation, raycaster, scale, visible } = ray.components;
-	// 	// console.log("position", position);
-	// 	// console.log("rotation", rotation);
-	// 	// // console.log('raycaster',raycaster);
-	// };
-
-
-	// getPosition = event => {
-	// 	event.preventDefault();
-	// 	console.log('getPosition ------->');
-	// 	event.target.addEventListener('raycaster-intersected', this.handleRay);
-	// };
-
-	handleBoxState = boxState => {
-		// console.log('---- handleBoxState --->')
-		this.setState(boxState);
+			return (
+				<img id={imgID} src={pano_url}/>
+			)
+		})
 	}
+
+	buildAsssets = roomPhotos => {
+		
+	};
+
+	handleBoxState = boxState => { this.setState(boxState); }
 
 
 	handlePortalState = portalState => {
@@ -74,58 +68,11 @@ class Aframe extends React.Component {
 
 
 	render() {
-		// const portalTextScale = "1 1 1";
-		// const portalTextPos = "0 0 0";
-		// const portalDimensions = "height: .5; width: 1.5";
-		// const portalHeight = 0.5;
-		// const portalWidth = 1.5;
-
-		// Extract this later
-		// const Portal = props => {
-		// 	return (
-		// 		<Entity
-		// 			geometry={{
-		// 				primitive: "plane",
-		// 				height: portalHeight,
-		// 				width: portalWidth
-		// 			}}
-		// 			value={props.to}
-		// 			material="side: double; color: #3498db; opacity: 1"
-		// 			className="teleport-link"
-		// 			look-at="[camera]"
-		// 			position={props.position}
-		// 			events={{
-		// 				click: this.teleport
-		// 			}}
-		// 		>
-		// 			<a-text
-		// 				value={props.label}
-		// 				align="center"
-		// 				scale={portalTextScale}
-		// 				position={portalTextPos}
-		// 			/>
-		// 		</Entity>
-		// 	);
-		// };
-
-		// 'raycaster-intersected': this.handleRay,
-
 
 		return (
 			<Scene embedded vr-mode-ui="enabled: false" inspector>
 				{/*==================================================*/}
-				<a-assets>
-					{/* <img id="living-room" src="assets/img/aframe/living-room.jpg" />
-					<img id="kitchen" src="assets/img/aframe/kitchen.jpg" />
-					<img id="bathroom" src="assets/img/aframe/bathroom.jpg" />
-					<img id="driveway" src="assets/img/aframe/driveway.jpg" /> */}
-					<img id="balcony-1" src="assets/img/aframe/balcony-1.jpg" />
-					<img id="balcony-2" src="assets/img/aframe/balcony-2.jpg" />
-					<img id="balcony-3" src="assets/img/aframe/balcony-3.jpg" />
-					<img id="balcony-4" src="assets/img/aframe/balcony-4.jpg" />
-					<img id="balcony-5" src="assets/img/aframe/balcony-5.jpg" />
-					
-				</a-assets>
+					<PhotoAssets photos={this.props.photos}/>
 				{/*==================================================*/}
 				<Entity layout={{ type: 'circle', radius: 5, plane: 'xz', angle: 20, }}
 					position={{ x:0, y:0.25, z:0.1 }} rotation={{ x:0, y:165, z:0 }}
