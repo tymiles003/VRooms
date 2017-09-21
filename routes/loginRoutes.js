@@ -51,7 +51,7 @@ router.post(
     passport.authenticate("local-signup", { failureRedirect: "/signup" }),
   (req, res) => {
       res.cookie("email",req.user.local.email);
-      res.cookie("userId",req.user._id);
+      res.cookie("userId",String(req.user._id));
       res.redirect("/");
   });
 
@@ -80,7 +80,7 @@ router.post('/login', function(req, res, next) {
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       res.cookie("email",req.user.local.email);
-      res.cookie("userId",req.user._id);
+      res.cookie("userId",String(req.user._id));
 
       return res.redirect("/");
     });
@@ -101,7 +101,7 @@ router.get(
     passport.authenticate("facebook", { failureRedirect: "/signup" }),
   (req, res) => {
       res.cookie("email",req.user.facebook.email);
-      res.cookie("userId",req.user._id);
+      res.cookie("userId",String(req.user._id));
 
       res.redirect("/");
   });
@@ -113,7 +113,7 @@ router.get(
     passport.authenticate("twitter", { failureRedirect: "/signup" }),
   (req, res) => {
       res.cookie("email",req.user.twitter.displayName);
-      res.cookie("userId",req.user._id);
+      res.cookie("userId",String(req.user._id));
 
       res.redirect("/");
   });
@@ -137,7 +137,7 @@ router.get("/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/signup" }),
   (req, res) => {
       res.cookie("email",req.user.google.email);
-      res.cookie("userId",req.user._id);
+      res.cookie("userId",String(req.user._id));
 
       res.redirect("/");
   });
