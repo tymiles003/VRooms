@@ -4,12 +4,13 @@ html {
 }
 
 #app {
-  padding: 2rem;
+  /* padding: 2rem; */
 }
 
 .aframe-wrap {
   border-radius: 12px;
-  overflow: hidden;
+	overflow: hidden;
+	padding: 0;
 }
 
 a-scene .teleport-link a-text {
