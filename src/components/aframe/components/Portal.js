@@ -1,56 +1,67 @@
-// import { Entity } from "aframe-react";
-import React from "react";
+import React, {Component} from "react";
+import { Entity } from "aframe-react";
+import 'aframe-look-at-component';
 
 ////////////////////////////////////////////////////
-// const destinations = [
-// 	{
-// 		name: 'home',
-// 		path: 'img/gallery/test-world7.jpg',
-// 		position: '0 0 5',
-// 	},
-// 	{
-// 		name: 'kitchen',
-// 		path: 'img/gallery/test-world4.jpg',
-// 		position: '1 0 5',
-// 	},
-// 	{
-// 		name: 'master',
-// 		path: 'img/gallery/test-world2.jpg',
-// 		position: '2 0 5',
-// 	}
-// ];
-////////////////////////////////////////////////////
-const Portal = props => {
+class Portal extends React.Component {
 	////////////////////////////////////////////////////
-	// setImage = (e) => {
-	// 	e.preventDefault();
-	// 	// Locate the desired destination using filter, which returns an array
-	// 	let dest = destinations.filter( ea => ea.name === this.props.to );
-	// 	let{path,position} = dest[0];
-	// 	console.log('this.props.to',this.props.to);
-	// 	console.log('path',path);
-	// 	console.log('position',position);
+	constructor(props){
+		super(props);
+		this.state={ }
+	}
+	////////////////////////////////////////////////////
+	teleport = event => {
+		event.preventDefault();
+		
+		let dest = event.target.getAttribute("to");
+		console.log("---- teleport --->", dest);
+		this.props.port({
+			sky_source: dest
+		})
 
-	// 	this.props.teleport(this.props.to);
-	// };
+	};
 
-	return (
-		<a-entity
-			geometry={"primitive: plane; height: .5; width: 1.5"}
-			material="side: double; color: #e74c3c"
-			position="0 0 -4"
-			className="teleport-link"
-			onClick={this.props.teleport}
-			value="#room2"
-		>
-			<a-text
-				value="Kitchen"
-				align="center"
-				scale={props.portalTextScale || "1 1 1"}
-				position={props.portalTextPos || "0 0 0"}
-			/>
-		</a-entity>
-	);
+	render () {
+		let { 
+			to,position,
+			label,textScale,textPos,
+			primitive,height,width,
+			color,opacity,side 
+		} = this.props;
+
+			return (
+				<Entity
+					geometry={{ primitive, height, width }}
+					to={to}
+					material={{ side, color, opacity }}
+					className="portal-link"
+					look-at="#camera"
+					events={{
+						click: this.teleport
+					}}
+				>
+					<a-text
+						value={ label ? label : to.substring(1) } // If label, use that. But if not, use this.props.to (minus the hashtag),
+						align="center"
+						scale={textScale}
+						position={textPos}
+					/>
+				</Entity>
+			);
+		}
+	
 };
+
+Portal.defaultProps = {
+	color: '#3498db',
+	side: 'double',
+	opacity: 1,
+	primitive: 'plane',
+	height: 0.5,
+	width: 1.5,
+	textScale: '1 1 1',
+	textPos: '0 0 0',
+}
+
 
 export default Portal;

@@ -3,7 +3,9 @@ import Aframe from './aframe/Aframe';
 // import {Helmet} from 'react-helmet';
 
 // Fetch photos for this property and load the assets onto the page
-let roomPhotos = [];
+let roomPhotos = [
+	
+];
 
 
 const AframePage = props => {

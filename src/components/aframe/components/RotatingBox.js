@@ -14,7 +14,7 @@ class RotatingBox extends Component {
 			color: '#3498db'
 		})
 
-		this.props.handleBox(this.state);
+		this.props.handleBoxState(this.state);
 	}
 
 	render(){
