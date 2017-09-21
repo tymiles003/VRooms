@@ -4,9 +4,11 @@ import API from "../../../utils/API";
 import FileDrop from './FileDrop';
 import Btn from '../Elements/Btn';
 import PreviewWindow from '../PreviewWindow';
-
+import cookie from "react-cookies";
 import axios from "axios";
-const s3API = require ("../../../utils/s3API"); 
+
+import propertyAPI from "../../../utils/propertyAPI"; 
+const s3API = require ("../../../utils/s3API");
 
 class NewVRoomForm extends Component {
 	constructor(props){
@@ -133,6 +135,10 @@ class NewVRoomForm extends Component {
 		}
 	}
 
+	/**
+	 * - Creates a new Property and Room document
+	 * - Uploads image to S3 and saves link in Room document
+	 */
 	handleFormSubmit = event => {
 		// Preventing the default behavior of the form submit (which is to refresh the page)
 		event.preventDefault();
@@ -144,8 +150,33 @@ class NewVRoomForm extends Component {
 		s3API.getSignedRequest({
 			fileName: this.state.fileName,
 			data: this.state.bits
+		}, (url) => {
+			// If upload successful then create new Property and Room
+			if (url){
+				let property = {
+					"thumbnail_url": url,
+					"street": this.state.street,
+					"city": this.state.city,
+					"state": this.state.state,
+					"zip": this.state.zip,
+					"country": this.state.country,
+					"bedrooms": this.state.beds,
+					"baths": this.state.baths,
+					"built_year": this.state.year,
+					"price": this.state.price,
+					"square_feet": this.state.sqft
+				};
+				let userID = cookie.load("userId").split(":")[1];
+				console.log("cookie userId: ", userID);
+				console.log("property: ", property);
+				propertyAPI.addNewProperty(userID, property);
+			}
 		});
 	}
+	
+	// componentDidMount() {
+	// 	console.log("cookie userId: ", cookie.load("userId").split(":")[1]);
+	// }
 
 	render() {
 		return (
