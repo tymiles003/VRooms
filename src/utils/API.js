@@ -21,7 +21,7 @@ const API = {
     // },
 
     getAllProperties: function() {
-        return axios.get("/api/allproperties");
+        return axios.get("/api/property");
     },
 
     logout: function() {
