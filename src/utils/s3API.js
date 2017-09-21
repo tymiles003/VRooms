@@ -7,7 +7,7 @@ const axios = require("axios");
  *  If request successful, continue to upload the file using this signed
  *  request.
  */
-function getSignedRequest(file) {
+function getSignedRequest(file, cb) {
     console.log(">>> getSignedRequest");
     console.log("file: ", file);
 
@@ -26,7 +26,7 @@ function getSignedRequest(file) {
             console.log("response: ", response);
             // Upload file to S3 using signed request
             if (response.status === 200) {
-                uploadFile(fileBlob, response.data.signedRequest, response.data.url);
+                uploadFile(fileBlob, response.data.signedRequest, response.data.url, cb);
             } else {
                 console.log("Could not get signed URL.");
             }
@@ -39,7 +39,7 @@ function getSignedRequest(file) {
 /** 
  * Uploads a file to our S3 bucket once we have a signed request
  */
-function uploadFile(fileBlob, signedRequest, url) {
+function uploadFile(fileBlob, signedRequest, url, cb) {
     console.log(">>> uploadFile");
     console.log("file: ", fileBlob);
     console.log("signedRequest: ", signedRequest);
@@ -56,8 +56,14 @@ function uploadFile(fileBlob, signedRequest, url) {
             if (response.status === 200) {
                 console.log("File uploaded successfully to: ", url);
                 alert ("File uploaded successfully to: " + url);
+                if (cb) {
+                    cb(url);
+                }
             } else {
                 console.log("Could not upload file");
+                if (cb) {
+                    cb(undefined);
+                }
             }
         })
         .catch(error => {
