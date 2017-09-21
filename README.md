@@ -3,7 +3,7 @@
 
 Welcome to the next generation of homebuying as we revolutionize the real estate industry. Discover an immersive and lifelike home tour experience using Virtual Reality (VR) technology. VRooms makes Virtual Reality for real estates engaging and accessible on both web and mobile platform. 
 
-Experience homes online like never before infront of your computer or using compatible mobile device such as iPhone or Android phones paired with a VR headset. 
+VRooms allows you to create your VR app by using 360 images or videos without coding or special equipment. Just upload your 360 images and you are ready to go!  Experience homes online like never before in front of your computer or using a compatible mobile device such as iPhone or Android phones paired with a VR headset.
 
 
 ![VRooms](https://lorempixel.com/output/abstract-q-c-640-480-7.jpg)
