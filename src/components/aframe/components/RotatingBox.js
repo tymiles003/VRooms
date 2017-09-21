@@ -7,12 +7,14 @@ class RotatingBox extends Component {
 		super(props);
 		this.state = { }
 	}
-	changeColor() {
+	changeColor = () => {
 		const colors = ['#e74c3c', '#f39c12', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
 		
 		this.setState({
 			color: '#3498db'
 		})
+
+		this.props.handleBox(this.state);
 	}
 
 	render(){
@@ -22,7 +24,7 @@ class RotatingBox extends Component {
 			geometry={{primitive: 'box', width: 0.3, height: 0.3, depth: 0.3}}
 			material={{color: this.state.color, opacity: 0.6}}
 			animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
-			events={{click: this.changeColor.bind(this)}}>
+			events={{click: this.changeColor}}>
 		</Entity>		
 		)
 	}

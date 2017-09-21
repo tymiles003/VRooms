@@ -77,7 +77,12 @@ class Aframe extends React.Component {
 		event.target.addEventListener('raycaster-intersected', this.handleRay);
 	};
 
-
+handleBox = boxState => {
+	// e.preventDefault();
+	console.log('Aframe ---- handleBox --->')
+	this.setState(boxState);
+	console.log('this.state',this.state);
+}
 
 	render() {
 		const portalTextScale = "1 1 1";
@@ -139,14 +144,6 @@ class Aframe extends React.Component {
 					position={{ x: 0, y: 1, z: 0.1 }}
 				>
 					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
 				</Entity>
 			);
 		};
@@ -200,7 +197,7 @@ class Aframe extends React.Component {
 					<Portal linkTo="#balcony-3" label="balcony-3" />
 					<Portal linkTo="#balcony-4" label="balcony-4" />
 					<Portal linkTo="#balcony-5" label="balcony-5" />
-					
+					{/* <RotatingBox handleBox={this.handleBox}/> */}
 				</Entity>
 				{/*==================================================*/}
 				{/* <Entity primitive="a-text" position="-2 2 -5" /> */}
