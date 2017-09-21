@@ -228,7 +228,8 @@ class ShowcaseContentV2 extends Component {
     var updatedList = this.state.testdata;
     updatedList = updatedList.filter(function(allProperties) {
       return (
-        allProperties.street.toLowerCase().search(event.target.value.toLowerCase()) !== -1
+        allProperties.street.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1 ||
+        allProperties.city.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1 
       );
     });
     this.setState({ allProperties: updatedList });
