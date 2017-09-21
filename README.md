@@ -25,7 +25,7 @@ VRooms allows you to create your VR app by using 360 images or videos without co
 
 * Establishes scope by studying strategic project drivers
 * Project research, planning & prototyping
-* Drive team to complete project according to pre-defined timeline 
+* Drive team to complete project according to predefined timeline 
 * Data consolidation & preparation
 * Write, proofread, edit and maintains content
 * Graphics, logo design (SVG vector) and art direction
@@ -40,6 +40,7 @@ VRooms allows you to create your VR app by using 360 images or videos without co
 * Preloader component module
 * Development for pages: Main, About, Agent, Navigation Bar, Page Footer
 * Front/back end development and integration for Showcase page
+* Mobile responsive implementation for Sign up/Sign in page
 
 - - -
 

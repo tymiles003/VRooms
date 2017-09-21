@@ -122,7 +122,7 @@ class Content extends Component{
 
     <div className ="formWrapper">    
         <div className="formContainer">
-            <div className="form">
+            <div className="form form-mobile">
                 
                 {(this.state.id <= 4) ? 
                 (<div >
