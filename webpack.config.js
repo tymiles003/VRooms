@@ -19,7 +19,7 @@ module.exports = {
 
     // This section desribes the transformations we will perform
     module: {
-        noParse: ["/node_modules/aframe/dist/aframe-master.js"],
+        // noParse: ["/node_modules/aframe/dist/aframe-master.js"],
         loaders: [
             {
                 // Only working with files that in in a .js or .jsx extension

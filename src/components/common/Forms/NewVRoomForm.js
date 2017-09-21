@@ -151,7 +151,7 @@ class NewVRoomForm extends Component {
 	render() {
 		return (
 			<main className="pg-contains-aframe">
-				<PreviewWindow />
+				{/* <PreviewWindow /> */}
 				<form id="new-vroom-form" className="form ws-form">
 					<div className="form-row">
 						<div className="input-wrap input-full-width input-fetch ws-input-wrap">
