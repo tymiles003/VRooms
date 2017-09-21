@@ -3,8 +3,7 @@ import ContactForm from "./contactForm";
 import styled, { keyframes } from 'styled-components';
 import { Helmet } from "react-helmet";
 import Navbar from '../common/Navbar';
-
-
+import Footer from "../common/Footer";
 
 
 const keyFrameExampleOne = keyframes`
@@ -114,13 +113,14 @@ class Content extends Component{
 
     render(){
         return (
-<div>
+<div className="pageWrapper">
         <Helmet>
 				<link rel="stylesheet" href="/css/pages/contactUs.css" />
 		</Helmet> 
 
         <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>   
 
+    <div className ="formWrapper">    
         <div className="formContainer">
             <div className="form">
                 
@@ -137,10 +137,12 @@ class Content extends Component{
                     </ul>
 
                 </div>)
-                : <h2 style={{color:"white", textAlign:"center"}}> We will contact you soon...</h2>
+                : <h2 style={{color:"black", textAlign:"center"}}> Thank you! We will be in touch!</h2>
                 }
              </div>
         </div>
+    </div>            
+        <Footer />
 </div>    
 
 

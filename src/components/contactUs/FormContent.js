@@ -35,11 +35,11 @@ class FormContent extends Component{
 
                     {(this.props.id < 4) ? 
 				        (<div className="">
-					        <input className="inputField" type="text" autocomplete="off" name="userInput" onChange={this.props.handleUserInput}/>
+					        <input className="inputField" type="text" autoComplete="off" name="userInput" onChange={this.props.handleUserInput}/>
 				        </div>)
                         :
                         (<div className="textarea-wrapper">
-					        <textarea className="textArea" maxlength="800" autocomplete="off" style={{overflow: "hidden", wordWrap: "break-word", resize: "none", height: "80px"}}></textarea>
+					        <textarea className="textArea" maxlength="800" autoComplete="off" style={{overflow: "hidden", wordWrap: "break-word", resize: "none", height: "80px"}}></textarea>
 											<span className="txtarea-tip"><strong>SHIFT</strong> + <strong>ENTER</strong> to make a line break</span>
 									</div>)
                     }
@@ -50,7 +50,7 @@ class FormContent extends Component{
 		
 		<div className={(this.props.id < 4) ?"confirm container step0"  :"sendBtn"} >
 			<div className="button-wrapper confirm">
-				<div className="button nav enabled" onClick={this.props.onEnter}>
+				<div className="button nav enabled contact-us-button" onClick={this.props.onEnter}>
                     {(this.props.id < 4) ? 
                         <span>OK</span>
                       : <span >SEND</span>}
