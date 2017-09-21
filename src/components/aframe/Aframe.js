@@ -16,7 +16,7 @@ class Aframe extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			sky_source: "#driveway",
+			sky_source: "#balcony-1",
 			destination: ""
 		};
 		// this.teleport = this.teleport.bind(this);
@@ -34,10 +34,9 @@ class Aframe extends React.Component {
 
 	teleport = event => {
 		event.preventDefault();
-		console.log("---- teleport --->");
-
+		
 		let dest = event.target.getAttribute("value");
-		console.log("dest", dest);
+		console.log("---- teleport --->", dest);
 
 		this.setState({
 			sky_source: dest
@@ -148,16 +147,6 @@ class Aframe extends React.Component {
 					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
 					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
 					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
-					<Panel /> <Panel /> <Panel /> <Panel /> <Panel /> <Panel />
 				</Entity>
 			);
 		};
@@ -166,10 +155,16 @@ class Aframe extends React.Component {
 			<Scene embedded vr-mode-ui="enabled: false" inspector>
 				{/*==================================================*/}
 				<a-assets>
-					<img id="living-room" src="assets/img/aframe/living-room.jpg" />
+					{/* <img id="living-room" src="assets/img/aframe/living-room.jpg" />
 					<img id="kitchen" src="assets/img/aframe/kitchen.jpg" />
 					<img id="bathroom" src="assets/img/aframe/bathroom.jpg" />
-					<img id="driveway" src="assets/img/aframe/driveway.jpg" />
+					<img id="driveway" src="assets/img/aframe/driveway.jpg" /> */}
+					<img id="balcony-1" src="assets/img/aframe/balcony-1.jpg" />
+					<img id="balcony-2" src="assets/img/aframe/balcony-2.jpg" />
+					<img id="balcony-3" src="assets/img/aframe/balcony-3.jpg" />
+					<img id="balcony-4" src="assets/img/aframe/balcony-4.jpg" />
+					<img id="balcony-5" src="assets/img/aframe/balcony-5.jpg" />
+					
 					{/* <img id="front-entrance" src="assets/img/aframe/front-entrance.jpg" /> */}
 					{/* <img id="vineyard" src="assets/img/aframe/vineyard.jpg" /> */}
 					{/* <img id="theater" src="assets/img/aframe/theater.jpg" /> */}
@@ -188,19 +183,27 @@ class Aframe extends React.Component {
 				<CameraCursor />
 				{/*==================================================*/}
 				{/* <ChoosePosition /> */}
-				{/* <Entity layout={{
+				<Entity layout={{
 					type: 'circle',
 					radius: 5,
 					plane: 'xz',
-					angle: 30,
+					angle: 20,
 				}}
-					position={{ x:0, y:1, z:0.1 }}
-					rotation={{ x:0, y:90, z:0 }}
-				> */}
-					<Portal linkTo="#kitchen" label="Kitchen" position={{x: -1.56, y: 1.8, z: -4.6}}/>
+					position={{ x:0, y:0.25, z:0.1 }}
+					rotation={{ x:0, y:165, z:0 }}
+				>
+					{/* <Portal linkTo="#kitchen" label="Kitchen" position={{x: -1.56, y: 1.8, z: -4.6}}/>
 					<Portal linkTo="#bathroom" label="Bathroom" position={{x: -6, y: 1.5, z: 0}}/>
-					<Portal linkTo="#living-room" label="Living Room" position={{x: 4, y: 1.3, z: 0}}/>
-				{/* </Entity> */}
+					<Portal linkTo="#living-room" label="Living Room" position={{x: 4, y: 1.3, z: 0}}/> */}
+					<Portal linkTo="#balcony-1" label="balcony-1" />
+					<Portal linkTo="#balcony-2" label="balcony-2" />
+					<Portal linkTo="#balcony-3" label="balcony-3" />
+					<Portal linkTo="#balcony-4" label="balcony-4" />
+					<Portal linkTo="#balcony-5" label="balcony-5" />
+					
+				</Entity>
+				{/*==================================================*/}
+				{/* <Entity primitive="a-text" position="-2 2 -5" /> */}
 				{/*==================================================*/}
 			</Scene>
 		);
