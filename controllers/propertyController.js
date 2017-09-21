@@ -13,6 +13,7 @@ module.exports = {
             query = req.params.id ? { _id: req.params.id } : {};
         }
         Property.find(query)
+            .populate("rooms")
             .then(function(doc) {
                 res.json(doc);
             })

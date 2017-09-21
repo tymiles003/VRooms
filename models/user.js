@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
+const Property = require("./property");
 
 const userSchema = new mongoose.Schema({
     local: {
@@ -41,5 +42,16 @@ userSchema.methods.generateHash = function(password) {
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
+
+// Middleware to delete all of the user's properties when this user is removed
+userSchema.pre("remove", function(next) {
+    console.log(">>> user.js - removing user's properties");
+    // Loop through each of the property_id's and remove the property
+    for (let property_id of this.properties){
+        console.log("Removing property_id: ", property_id);
+        Property.remove({ _id: property_id }).exec();
+    }
+    next();
+});
 
 module.exports = mongoose.model("User", userSchema);

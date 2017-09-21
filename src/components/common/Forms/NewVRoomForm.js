@@ -6,7 +6,7 @@ import Btn from '../Elements/Btn';
 import PreviewWindow from '../PreviewWindow';
 
 import axios from "axios";
-const s3API = require ("../../../utils/s3-API"); 
+const s3API = require ("../../../utils/s3API"); 
 
 class NewVRoomForm extends Component {
 	constructor(props){
@@ -37,7 +37,6 @@ class NewVRoomForm extends Component {
 		};
 	}
 	
-	// handleFileUpload = (bits, fileStatus, fileName, fileSize ) => {
 	handleFileUpload = (fileDropState) => {
 		this.setState(fileDropState);
 	}
