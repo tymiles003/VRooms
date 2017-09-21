@@ -9,13 +9,104 @@ class ShowcaseContentV2 extends Component {
 
     //init states
     this.state = {
-      allProperties: []
+      allProperties: [], 
+      testdata : [
+        {
+          _id: "59c0885668a4a81b82c94430",
+          thumbnail_url:
+            "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+          street: "1605 Viewmont Drive",
+          city: "Los Angeles",
+          state: "CA",
+          zip: 90069,
+          country: "United States",
+          bedrooms: 3,
+          baths: 3,
+          built_year: 2011,
+          price: 11000000,
+          square_feet: 3000
+        },
+        {
+          _id: "59c0885668a4a81b82c94431",
+          thumbnail_url:
+            "https://s3-us-west-1.amazonaws.com/transported-content/tours/BKgSBxGX/hero.jpg",
+          street: "11808 Kearsarge Street",
+          city: "Los Angeles",
+          state: "CA",
+          zip: 90049,
+          country: "United States",
+          bedrooms: 4,
+          baths: 5,
+          built_year: 2011,
+          price: 4895000,
+          square_feet: 3739
+        },
+        {
+          _id: "59c0885668a4a81b82c94432",
+          thumbnail_url:
+            "https://s3-us-west-1.amazonaws.com/transported-content/tours/BKgSBxGX/hero.jpg",
+          street: "18207 El Brazo Rd",
+          city: "Rancho Santa Fe",
+          state: "CA",
+          zip: 92067,
+          country: "United States",
+          bedrooms: 4,
+          baths: 5,
+          built_year: 2011,
+          price: 4895000,
+          square_feet: 3739
+        },
+        {
+          _id: "59c0885668a4a81b82c94430",
+          thumbnail_url:
+            "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+          street: "1605 Viewmont Drive",
+          city: "Los Angeles",
+          state: "CA",
+          zip: 90069,
+          country: "United States",
+          bedrooms: 3,
+          baths: 3,
+          built_year: 2011,
+          price: 11000000,
+          square_feet: 3000
+        },
+        {
+          _id: "59c0885668a4a81b82c94430",
+          thumbnail_url:
+            "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+          street: "1605 Viewmont Drive",
+          city: "Los Angeles",
+          state: "CA",
+          zip: 90069,
+          country: "United States",
+          bedrooms: 3,
+          baths: 3,
+          built_year: 2011,
+          price: 11000000,
+          square_feet: 3000
+        },
+        {
+          _id: "59c0885668a4a81b82c94430",
+          thumbnail_url:
+            "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+          street: "1605 Viewmont Drive",
+          city: "Los Angeles",
+          state: "CA",
+          zip: 90069,
+          country: "United States",
+          bedrooms: 3,
+          baths: 3,
+          built_year: 2011,
+          price: 11000000,
+          square_feet: 3000
+        }
+      ]
     };
-    
   }
 
   componentDidMount() {
-    this.getAllProperty();
+    // this.getAllProperty();
 
     const ele = document.getElementById("ipl-progress-indicator");
     if (ele) {
@@ -133,14 +224,20 @@ class ShowcaseContentV2 extends Component {
   };
 
   filterList = (event) => {
-    var updatedList = this.state.initialItems;
-    updatedList = updatedList.filter(function(item) {
+
+    var updatedList = this.state.testdata;
+    updatedList = updatedList.filter(function(allProperties) {
       return (
-        item.toLowerCase().search(event.target.value.toLowerCase()) !== -1
+        allProperties.street.toLowerCase().search(event.target.value.toLowerCase()) !== -1
       );
     });
     this.setState({ allProperties: updatedList });
   };
+
+
+  componentWillMount(){
+    this.setState({allProperties: this.state.testdata})
+  }
 
 
   render() {
@@ -220,4 +317,5 @@ class ShowcaseContentV2 extends Component {
     );
   }
 }
+
 export default ShowcaseContentV2;
