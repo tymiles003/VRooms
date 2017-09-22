@@ -29,7 +29,7 @@ module.exports = {
 
     var mailOptions = {
 			    from: emailAddress, // sender address
-			    to: 'aqupriyanka@gmail.com', // list of receivers
+			    to: 'vroomsus@gmail.com', // list of receivers
 			    subject: `Regarding ${messageType}`, // Subject line
 			    // text: message //, // plaintext body
 			    html: 'Hello, <br><br>'+message // You can choose to send an HTML body instead
