@@ -80,9 +80,11 @@ module.exports = {
         console.log("Searching for property_id: ", req.params.property_id);
         Property.findById(req.params.property_id)
             .then(function(property){
-                property.remove().exec(); // Using document-remove in order to trigger middleware
+                property.remove(); // Using document-remove in order to trigger middleware
                 console.log("Success: Property removed");
                 res.status(200).send();
+                // return a non-undefined value to signal that we didn't forget to return
+                return null;
             })
             .catch(function(err) {
                 console.log("Error: ", err);
