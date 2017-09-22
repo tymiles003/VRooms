@@ -32,7 +32,7 @@ module.exports = {
 			    to: 'vroomsus@gmail.com', // list of receivers
 			    subject: `Regarding ${messageType}`, // Subject line
 			    // text: message //, // plaintext body
-			    html: 'Hello, <br><br>'+message // You can choose to send an HTML body instead
+			    html: 'Hello, <br><br>'+message + '<br><br>From, <br>'+username + '<br>' + emailAddress // You can choose to send an HTML body instead
 			};
 		transporter.sendMail(mailOptions, function(error, info){
 		    if(error){
