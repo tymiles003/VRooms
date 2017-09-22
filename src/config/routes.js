@@ -11,6 +11,7 @@ import Signup from "../components/authentication/Signup";
 import NewVRoom from "../components/NewVRoom";
 import WaynestrapSandbox from '../components/WaynestrapSandbox';
 import EmbeddedAframe from '../components/EmbeddedAframe';
+import AnnotationPage from '../components/AnnotationPage';
 import Contact from "../components/contactUs/Content";
 
 
@@ -26,6 +27,7 @@ const routes = (
             <Route exact path="/new-vroom" component={NewVRoom} />
             <Route exact path="/embed" component={EmbeddedAframe} />
             <Route path="/contact" component={Contact} />
+            <Route path="/annotate" component={AnnotationPage} />
 
         </Switch>
     </BrowserRouter>
