@@ -29,7 +29,7 @@ module.exports = {
                 res.status(200).send();
             })
             .catch(function(err) {
-                console.log("Error: Could not find user");
+                console.log("Error: ", err);
                 res.status(500).send();
             });
     }

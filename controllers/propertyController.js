@@ -76,14 +76,17 @@ module.exports = {
      * Deletes an existing property
      */
     destroy: function(req, res) {
-        Property.remove({
-            _id: req.params.id
-        })
-            .then(function(doc) {
-                res.json(doc);
+        console.log(">>> propertyController.js");
+        console.log("Searching for property_id: ", req.params.property_id);
+        Property.findById(req.params.property_id)
+            .then(function(property){
+                property.remove().exec(); // Using document-remove in order to trigger middleware
+                console.log("Success: Property removed");
+                res.status(200).send();
             })
             .catch(function(err) {
-                res.json(err);
+                console.log("Error: ", err);
+                res.status(500).send();
             });
     }
 };
