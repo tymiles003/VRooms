@@ -35,4 +35,15 @@ const propertySchema = new mongoose.Schema({
     }]
 });
 
+// Middleware to delete all of the property's rooms when this property is removed
+propertySchema.pre("remove", function(next) {
+    console.log(">>> property.js - removing property's rooms");
+    // Loop through each of the room_id's and remove the room
+    for (let room_id of this.rooms){
+        console.log("Removing room_id: ", room_id);
+        Room.remove({ _id: room_id }).exec();
+    }
+    next();
+});
+
 module.exports = mongoose.model("Property", propertySchema);

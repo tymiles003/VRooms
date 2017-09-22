@@ -377,8 +377,8 @@ autoprefixer@^6.3.1:
     postcss-value-parser "^3.2.3"
 
 aws-sdk@^2.114.0:
-  version "2.120.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.120.0.tgz#44857ecb476936fce891850ff27a502210814fb6"
+  version "2.121.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.121.0.tgz#9994b1497dfc0cf882571e78401839cb0ad416de"
   dependencies:
     buffer "4.9.1"
     crypto-browserify "1.0.9"
