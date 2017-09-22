@@ -6,13 +6,13 @@ import FormContent from "./FormContent";
 
 
 
-const keyFrameExampleOne = keyframes`
-  0% {
-        transform: translateY(1000px);
-    }
-    100% {
-        transform: translateY(-2%);
-    }`;
+// const keyFrameExampleOne = keyframes`
+//   0% {
+//         transform: translateY(1000px);
+//     }
+//     100% {
+//         transform: translateY(-2%);
+//     }`;
 
 class ContactForm extends Component{
 
