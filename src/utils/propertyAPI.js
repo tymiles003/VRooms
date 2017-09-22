@@ -12,6 +12,7 @@ const propertyAPI = {
      * Searches the db for specific property
      */
     getProperty: propertyID => {
+        console.log("reached " + propertyID);
         return axios.get("/api/property/" + propertyID);
     },
 

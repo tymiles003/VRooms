@@ -7,10 +7,16 @@ module.exports = {
      */
     index: function(req, res) {
         let query;
-        if (req.query) {
+        
+        // if (req.query) {
+        //     query = req.query;
+        
+        // if no property id exist, get all properties
+        if((req.query && req.params.property_id=="undefined" ||
+            req.query && req.params.property_id=="")){
             query = req.query;
         } else {
-            query = req.params.id ? { _id: req.params.id } : {};
+            query = req.params.property_id ? { _id: req.params.property_id } : {};
         }
         Property.find(query)
             .populate("rooms")
