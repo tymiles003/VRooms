@@ -1,6 +1,3 @@
-import "aframe";
-import "aframe-animation-component";
-import "aframe-particle-system-component";
 import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
