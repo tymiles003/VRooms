@@ -41,11 +41,11 @@ module.exports = {
                 },
                 { new: true },
                 (err, newdoc) => {
-                    console.log("Property added to user: ", newdoc)
                     // Send any errors to the browser
                     if (err) {
                         res.send(err);
                     } else {
+                        console.log("Property added to user: ", JSON.stringify(newdoc, null, 2));
                         // Or send the newdoc to the browser
                         res.status(200).send(newdoc);
                     }
