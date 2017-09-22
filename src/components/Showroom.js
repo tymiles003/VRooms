@@ -1,4 +1,4 @@
-
+// import 'aframe';
 import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -45,11 +45,29 @@ class Showroom extends React.Component {
   render() {
     return (
 
+    //   <section id="our-results" className="row small-up-1 medium-up-2 large-up-3">
+    //   { this.state.selectedProperty.map((properties, i) => (
+    //         <div key={ i } id={ "result_" + (i + 1) } className="column column-block tour--block">
+    //           <div className="content-block">
+    //             <a target="_blank" href="#">
+    //               <img className="tour--image" src={ properties.thumbnail_url } alt="Thumbnail" />
+    //               <h4 className="tour--title">{ properties.street }</h4>
+    //             </a>
+    //             { " " }
+    //             <h6 className="tour--city">{ properties.city }</h6>
+    //           </div>
+    //         </div>
+    //     )) }
+    // </section>
+    
+
       <a-scene embedded>
-      
+{/*       
         {this.state.selectedProperty.map((property, i) => (
             <Entity key={ i } crossOrigin="anonymous" primitive="a-sky" src={property.thumbnail_url} />      
-        ))}
+        ))} */}
+
+        <Entity primitive='a-sky' src="https://vrooms-s3.s3.amazonaws.com/test-world2.jpg"/>
 
         <a-text
           font="kelsonsans"
