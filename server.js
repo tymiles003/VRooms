@@ -40,6 +40,15 @@ const PORT = process.env.PORT || 5000;
 mongoose.Promise = bluebird;
 const app = express();
 
+// enable CORS, use:
+// https://enable-cors.org/server_expressjs.html
+// ...there also CORS modules to do this.
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*')
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+//   next();
+// });
+
 // Set Body Parser
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}));
