@@ -1,4 +1,4 @@
-import 'aframe';
+// import 'aframe';
 import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -62,11 +62,12 @@ class Showroom extends React.Component {
     
 
       <a-scene embedded>
-      
+{/*       
         {this.state.selectedProperty.map((property, i) => (
-            {/* <Entity key={ i } crossOrigin="anonymous" primitive="a-sky" src={property.thumbnail_url} />       */}
-            <Entity key={ i } crossOrigin="anonymous" primitive="a-sky" src="https://vrooms-s3.s3.amazonaws.com/test-world2.jpg" />      
-        ))}
+            <Entity key={ i } crossOrigin="anonymous" primitive="a-sky" src={property.thumbnail_url} />      
+        ))} */}
+
+        <Entity primitive='a-sky' src="https://vrooms-s3.s3.amazonaws.com/test-world2.jpg"/>
 
         <a-text
           font="kelsonsans"
