@@ -22,7 +22,7 @@ module.exports = {
 		service: 'Gmail',
         auth: {
             user: 'vroomsus@gmail.com', // Your email id
-            pass: 'ucsd20170403' // Your password
+            pass: '!!ucsd20170403' // Your password
         },
         rejectUnauthorized:false
 	    }));
@@ -32,7 +32,7 @@ module.exports = {
 			    to: 'aqupriyanka@gmail.com', // list of receivers
 			    subject: `Regarding ${messageType}`, // Subject line
 			    // text: message //, // plaintext body
-			    html: '<b>Hello Admin, <br>'+message + '</b>' // You can choose to send an HTML body instead
+			    html: 'Hello, <br><br>'+message; // You can choose to send an HTML body instead
 			};
 		transporter.sendMail(mailOptions, function(error, info){
 		    if(error){
