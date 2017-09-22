@@ -24,7 +24,7 @@ const routes = (
             <Route exact path="/agents" component={Agents} />
              <Route path="/signup" component={Signup} />
             <Route exact path="/new-vroom" component={NewVRoom} />
-            <Route exact path="/embedded" component={EmbeddedAframe} />
+            <Route exact path="/embed" component={EmbeddedAframe} />
             <Route path="/contact" component={Contact} />
 
         </Switch>
