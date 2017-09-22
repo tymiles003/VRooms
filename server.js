@@ -43,11 +43,11 @@ const app = express();
 // enable CORS, use:
 // https://enable-cors.org/server_expressjs.html
 // ...there also CORS modules to do this.
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*')
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+//   next();
+// });
 
 // Set Body Parser
 app.use(bodyParser.json());
@@ -155,7 +155,7 @@ app.post('/sign-s3', (req, res) => {
 });
 
 // Default React route
-app.get("*", (req, res, next) => {
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 

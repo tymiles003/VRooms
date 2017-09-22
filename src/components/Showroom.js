@@ -46,14 +46,13 @@ class Showroom extends React.Component {
 
   render() {
     return (
-      <a-scene embedded>
-        <Entity primitive="a-sky" src="assets/img/gallery/test-world3.jpg" />
 
+      <a-scene embedded>
+      
         {this.state.selectedProperty.map((property, i) => (
-        
-          <Entity key={ i } crossOrigin="anonymous" primitive="a-sky" src={property.thumbnail_url} />
+            <Entity key={ i } crossOrigin="anonymous" primitive="a-sky" src={property.thumbnail_url} />      
         ))}
-        
+
         <a-text
           font="kelsonsans"
           value="321 Ocean Dr, Miami Beach, Florida"
