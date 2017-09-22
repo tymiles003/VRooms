@@ -86,7 +86,8 @@ class Content extends Component{
         });
 
         if(this.state.id === 4){
-
+            console.log("calling send email API");
+            API.sendEmail(this.state.answers);
         }
         
     }
