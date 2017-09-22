@@ -110,27 +110,6 @@ class NewVRoomForm extends Component {
 					<div className="form-row">
 						<ZillowFetch port={this.portZillowState}/>
 					</div>
-					{/* <div className="form-row">
-						<div className="input-wrap input-full-width input-fetch ws-input-wrap">
-							<label className="legend"> Fetch Property Data from Zillow (beta)</label>
-							<input
-								id="fetch_query"
-								className="input ws-input"
-								type="text"
-								name="fetch_query"
-								placeholder="Zillow URL or Property ID"
-								value={this.state.zpid}
-								onChange={this.handleInputChange}
-							/>
-						</div>
-							<button
-								className="ws-btn ws-btn-mini"
-								type="button"
-								onClick={this.handleFetch}
-							>
-							Fetch
-							</button>
-					</div> */}
 					<div className="form-row">
 						<fieldset>
 							<legend>Address</legend>
