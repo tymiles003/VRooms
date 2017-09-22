@@ -45,7 +45,11 @@ class Showroom extends React.Component {
   render() {
     return (
       <a-scene embedded>
-        <Entity primitive='a-sky' src="assets/img/gallery/test-world3.jpg"/>
+        <a-assets>
+        <img id="asset-scene-url" src="https://vrooms-s3.s3.amazonaws.com/test-world2.jpg" crossorigin="anonymous" />
+      </a-assets>
+
+         <a-sky ng-click="print()" src="#asset-scene-url"></a-sky>
         <a-text font="kelsonsans" value="321 Ocean Dr, Miami Beach, Florida" width="6" position="-2 4.3 -3.5"
               rotation="0 15 0"></a-text>       
       </a-scene>
