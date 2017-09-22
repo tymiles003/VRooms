@@ -25,6 +25,9 @@ module.exports = function(passport) {
     });
   });
 
+
+/**USER SIGNUP USING EMAIL AND PASSWORD */
+
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -51,6 +54,7 @@ module.exports = function(passport) {
     });
   }));
 
+/** USER LOGIN VIA USERNAME AND PASSWORD OPTION */
   passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -69,6 +73,7 @@ module.exports = function(passport) {
     });
   }));
 
+/** USER LOGIN VIA FACEBOOK */
   passport.use(new FacebookStrategy({
     clientID: configAuth.facebookAuth.clientID,
     clientSecret: configAuth.facebookAuth.clientSecret,
@@ -99,6 +104,7 @@ module.exports = function(passport) {
     });
   }));
 
+/** USER LOGIN VIA TWITTER */
   passport.use(new TwitterStrategy({
     consumerKey: configAuth.twitterAuth.consumerKey,
     consumerSecret: configAuth.twitterAuth.consumerSecret,
@@ -127,6 +133,7 @@ module.exports = function(passport) {
     });
   }));
 
+/**USER LOGIN VIA GOOGLE */
   passport.use(new GoogleStrategy({
     clientID: configAuth.googleAuth.clientID,
     clientSecret: configAuth.googleAuth.clientSecret,

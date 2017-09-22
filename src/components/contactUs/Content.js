@@ -4,15 +4,17 @@ import styled, { keyframes } from 'styled-components';
 import { Helmet } from "react-helmet";
 import Navbar from '../common/Navbar';
 import Footer from "../common/Footer";
+import API from "../../utils/API.js";
 
 
-const keyFrameExampleOne = keyframes`
-  0% {
-        transform: translateY(1000px);
-    }
-    100% {
-        transform: translateY(-2%);
-    }`;
+
+// const keyFrameExampleOne = keyframes`
+//   0% {
+//         transform: translateY(1000px);
+//     }
+//     100% {
+//         transform: translateY(-2%);
+//     }`;
 
 
 const listIds = [1,2,3,4];
@@ -22,7 +24,7 @@ const questions = ["What's your first name, stranger?",
                    "What's your message"];
 const questImage = ["https://images.typeform.com/images/8g37kjdgiQ/image/default#.gif",
                     "https://images.typeform.com/images/uzCjAMwAFD/image/default#.gif",
-                    "",
+                    "https://images.typeform.com/images/Hicd2jwmsH/image/default#.gif",
                     "https://images.typeform.com/images/Hicd2jwmsH/image/default#.gif"];
 
 
@@ -38,13 +40,17 @@ class Content extends Component{
             id:1,
             answers:[],
             userInput: "",
+            enableOk: false
             
         }
     }
 
     componentDidMount(){
 
-        this.setState({quest:questions[this.state.id - 1]});
+        this.setState({quest:questions[this.state.id - 1],
+                       img:questImage[this.state.id - 1],
+                     });
+                       
     }
 
     handleUserInput = (e) =>{
@@ -52,42 +58,21 @@ class Content extends Component{
          const name = e.target.name;
         const value = e.target.value;
          this.setState({[name]: value});
+
+         if(this.state.userInput){
+             this.setState({enableOk:true});
+         } else{
+             this.setState({enableOk:false});
+             
+         }
     }
 
-    handleOK = (event) => {
-        event.preventDefault();
-        let userInputs = this.state.answers;
-        userInputs.push(this.state.userInput);
-        let qId = this.state.id;
-        qId++;
-        this.setState({
-            id : qId,
-            quest : questions[qId-1],
-            answers : userInputs
-
-        });
-
-        if(qId === 4){
-            //set li visibility to none display
-            // and visible send button
-        }
-
-        console.log("ANSWERS ===== ", this.state.answers);
-    }
+    
 
     clicked = (e) => {
         e.preventDefault();
-        console.log("inside clicked");
-        // this.setState({showForm:false});
-        // this.setState({showForm:true});
-        // this.forceUpdate();
-
-        // let liData = this.state.liComp;
-        // liData.push('<ContactForm>');
-
-        // console.log("li data == ", liData);
-
-        // this.setState({liComp : liData});
+        console.log("user input ===== ", this.state.userInput);
+       
         let userInputs = this.state.answers;
         userInputs.push(this.state.userInput);
 
@@ -95,21 +80,17 @@ class Content extends Component{
         this.setState({
             id : listId,
             quest : questions[listId-1],
-            answers : userInputs
+            answers : userInputs,
+            img : questImage[listId-1],
+            enableOk:false
         });
 
         if(this.state.id === 4){
-            //set li visibility to none display
-            // and visible send button
-        }
 
-        console.log("ANSWERS ===== ", this.state.answers);
+        }
         
     }
 
-    shouldComponentUpdate(nextProps) {
-        return true;
-    }
 
     render(){
         return (
@@ -132,8 +113,10 @@ class Content extends Component{
                         <ContactForm id={this.state.id} 
                                     quest={this.state.quest} 
                                     clicked={this.clicked}
-                                    handleUserInput={this.handleUserInput}/>
-                            
+                                    handleUserInput={this.handleUserInput}
+                                    img = {this.state.img}
+                                    enableOk = {this.state.enableOk}
+                                    />
                     </ul>
 
                 </div>)
