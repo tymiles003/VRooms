@@ -6,13 +6,6 @@ import FormContent from "./FormContent";
 
 
 
-const keyFrameExampleOne = keyframes`
-  0% {
-        transform: translateY(1000px);
-    }
-    100% {
-        transform: translateY(-2%);
-    }`;
 
 class ContactForm extends Component{
 
@@ -23,14 +16,8 @@ class ContactForm extends Component{
         }
     }
     componentDidMount(){
-        // var myEl = ReactDOM.findDOMNode(this.refs.collection);
-        // myEl.css("animation", ".5s ease-out 0s infinite keyFrameExampleOne");
-        // console.log("CSS Animation == ", myEl.css("animation"));
-
-        setTimeout(function(){
-            this.setState({visible:false});
-    }, 5000);
-}
+       
+    }
 
     render(){
         return (
@@ -108,20 +95,6 @@ class ContactForm extends Component{
     }
 }
 
-// const ContactForm = props => {
-// 	//   render() {
-// 	 
 
-
-// }
-
-// : (<li className="textfield required attachment  visible active focus ready" id="1" 
-// style={{}}
-// data-model="{&quot;id&quot;:&quot;6914119&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;name&quot;:&quot;&quot;,&quot;requied&quot;:true,&quot;showPadlockIcon&quot;:false}">
-// 	<div className="" style={{height: "269px", background:"",transitionDelay: "1s"}}>
-//         HELLO WORLD  123
-//         </div>
-//         </li>) 
-// }
 
 export default ContactForm;

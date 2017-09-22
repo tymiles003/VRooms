@@ -2,6 +2,8 @@ const express = require("express");
 const propertyController = require("../controllers/propertyController");
 const roomController = require("../controllers/roomController");
 const userController = require("../controllers/userController");
+const emailController = require("../controllers/emailController");
+
 const router = new express.Router();
 
 /**
@@ -36,5 +38,10 @@ router.delete("/room/:room_id", roomController.destroy);
 router.get("/user/:user_id", userController.index);
 // Delete a specific user using the id in req.params.user_id
 router.delete("/user/:user_id", userController.destroy);
+
+/**
+ * Email API
+ */
+router.post("/email", emailController.sendEmail);
 
 module.exports = router;

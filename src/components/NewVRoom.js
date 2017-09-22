@@ -2,10 +2,6 @@ import React from "react";
 import Helmet from "react-helmet";
 // import Navbar from "./common/Navbar";
 // import Footer from "./common/Footer";
-import "aframe";
-import "aframe-animation-component";
-import "aframe-particle-system-component";
-import "babel-polyfill";
 import Navbar from "./common/Navbar";
 import NewVRoomForm from './common/Forms/NewVRoomForm';
 

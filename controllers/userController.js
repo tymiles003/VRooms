@@ -24,12 +24,14 @@ module.exports = {
         console.log("Searching for user_id: ", req.params.user_id);
         User.findById(req.params.user_id)
             .then(function(user){
-                user.remove().exec(); // Using document-remove in order to trigger middleware
+                user.remove(); // Using document-remove in order to trigger middleware
                 console.log("Success: User removed");
                 res.status(200).send();
+                // return a non-undefined value to signal that we didn't forget to return
+                return null
             })
             .catch(function(err) {
-                console.log("Error: Could not find user");
+                console.log("Error: ", err);
                 res.status(500).send();
             });
     }

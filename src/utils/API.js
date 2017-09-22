@@ -63,7 +63,7 @@ const API = {
 
     sendEmail: (answers) => {
         console.log("inside send email API");
-        return axios.post("/email", {answers});
+        return axios.post("/api/email", {answers});
 
     }
 };

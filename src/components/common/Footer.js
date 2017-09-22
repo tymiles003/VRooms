@@ -27,7 +27,7 @@ class Footer extends Component {
             <div className="medium-5 columns footer--column">
               <h5>Get in Touch</h5>
               <ul>
-                <li><a id="ga-footer-contact" href="#">Contact</a></li>
+                <li><a id="ga-footer-contact" href="/contact">Contact</a></li>
                 <li><a id="ga-footer-github" href="https://github.com/novialim/VRooms">Github</a></li>
                 <ul className='footer-social'>
                   <li><a className="footer-facebook" target="_blank" href="#">Facebook</a></li>

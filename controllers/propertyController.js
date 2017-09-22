@@ -47,11 +47,11 @@ module.exports = {
                 },
                 { new: true },
                 (err, newdoc) => {
-                    console.log("Property added to user: ", newdoc)
                     // Send any errors to the browser
                     if (err) {
                         res.send(err);
                     } else {
+                        console.log("Property added to user: ", JSON.stringify(newdoc, null, 2));
                         // Or send the newdoc to the browser
                         res.status(200).send(newdoc);
                     }
@@ -82,14 +82,19 @@ module.exports = {
      * Deletes an existing property
      */
     destroy: function(req, res) {
-        Property.remove({
-            _id: req.params.id
-        })
-            .then(function(doc) {
-                res.json(doc);
+        console.log(">>> propertyController.js");
+        console.log("Searching for property_id: ", req.params.property_id);
+        Property.findById(req.params.property_id)
+            .then(function(property){
+                property.remove(); // Using document-remove in order to trigger middleware
+                console.log("Success: Property removed");
+                res.status(200).send();
+                // return a non-undefined value to signal that we didn't forget to return
+                return null;
             })
             .catch(function(err) {
-                res.json(err);
+                console.log("Error: ", err);
+                res.status(500).send();
             });
     }
 };
