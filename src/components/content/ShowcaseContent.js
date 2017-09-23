@@ -31,7 +31,7 @@ class ShowcaseContent extends Component {
     getAllProperty = () => {
 
         propertyAPI.getAllProperties().then(response => {
-            console.log(response);
+            console.log("inside showContentV2",response);
             this.setState({
                 initProperties: response.data,
                 allProperties: response.data
@@ -91,7 +91,7 @@ class ShowcaseContent extends Component {
                                 pathname: "/showroom",
                                 state: { 
                                     room: properties.rooms[0],
-                                    property: properties
+                                    property: properties    
                                 }
                             }}>
                                 <img className="tour--image" src={ properties.thumbnail_url } alt="Thumbnail" />

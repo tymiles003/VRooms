@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import propertyAPI from "../../utils/propertyAPI";
 
 // const Navbar = (this.props) => (
-class ShowcaseContentV2 extends Component {
+class ShowcaseContent extends Component {
     constructor(props) {
         super(props);
 
@@ -31,7 +31,7 @@ class ShowcaseContentV2 extends Component {
     getAllProperty = () => {
 
         propertyAPI.getAllProperties().then(response => {
-            console.log("inside showContentV2",response);
+            console.log(response);
             this.setState({
                 initProperties: response.data,
                 allProperties: response.data
@@ -91,7 +91,7 @@ class ShowcaseContentV2 extends Component {
                                 pathname: "/showroom",
                                 state: { 
                                     room: properties.rooms[0],
-                                    property: properties    
+                                    property: properties
                                 }
                             }}>
                                 <img className="tour--image" src={ properties.thumbnail_url } alt="Thumbnail" />
@@ -118,4 +118,4 @@ class ShowcaseContentV2 extends Component {
     }
 }
 
-export default ShowcaseContentV2;
+export default ShowcaseContent;
