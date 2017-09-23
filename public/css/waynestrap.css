@@ -44,6 +44,10 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
+.ws-btn:hover {
+  color: #ffffff;
+}
+
 .ws-btn.isOutlined {
   border: 2px solid;
   background-color: transparent;
@@ -287,6 +291,8 @@ div, h1, h2, h3, h4, h5, h6, p {
   position: relative;
   font-size: 1rem;
   color: rgba(0, 0, 0, 0.54);
+  outline: 1px solid rgba(0, 0, 0, 0.12);
+  outline-offset: 0;
 }
 
 .ws-form .input-wrap i {
@@ -353,6 +359,38 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .ws-form .input-wrap.icon-prefix input {
   padding-left: 2em;
+}
+
+.ws-form .input-wrap.prefixed {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  font-size: 1.25rem;
+  height: 3em;
+  line-height: 3em;
+  background-color: #fff;
+  padding: 0;
+}
+
+.ws-form .input-wrap.prefixed input, .ws-form .input-wrap.prefixed label {
+  background-color: transparent;
+  font-size: inherit;
+  line-height: inherit;
+  position: relative;
+  display: inline-block;
+  top: unset;
+  left: unset;
+  padding: 0 1em;
+  outline: none;
+}
+
+.ws-form .input-wrap.prefixed label {
+  font-weight: 500;
+}
+
+.ws-form .input-wrap.prefixed input {
+  padding-left: 0;
 }
 
 .ws-form .input-wrap.input-street {
