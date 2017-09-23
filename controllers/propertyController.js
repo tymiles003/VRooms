@@ -6,18 +6,7 @@ module.exports = {
      * Lists all properties or a specific property
      */
     index: function(req, res) {
-        let query;
-        
-        // if (req.query) {
-        //     query = req.query;
-        
-        // if no property id exist, get all properties
-        if((req.query && req.params.property_id=="undefined" ||
-            req.query && req.params.property_id=="")){
-            query = req.query;
-        } else {
-            query = req.params.property_id ? { _id: req.params.property_id } : {};
-        }
+        let query = req.params.property_id ? { _id: req.params.property_id } : {};
         Property.find(query)
             .populate("rooms")
             .then(function(doc) {
@@ -30,6 +19,7 @@ module.exports = {
 
     /**
      * Creates a new property and adds it to the given user_id
+     * Returns: The new property document as a JSON
      */
     create: function(req, res) {
         console.log(">>> propertyController.js - adding new property")
@@ -49,11 +39,12 @@ module.exports = {
                 (err, newdoc) => {
                     // Send any errors to the browser
                     if (err) {
+                        console.log("Error: ", err);
                         res.send(err);
                     } else {
                         console.log("Property added to user: ", JSON.stringify(newdoc, null, 2));
                         // Or send the newdoc to the browser
-                        res.status(200).send(newdoc);
+                        res.status(200).send(newProperty);
                     }
                 }
             );
@@ -66,7 +57,7 @@ module.exports = {
     update: function(req, res) {
         Property.update(
             {
-                _id: req.params.id
+                _id: req.params.property_id
             },
             req.body
         )
