@@ -45,7 +45,7 @@ class ShowroomMain extends React.Component {
     };
 
     render() {
-        return <Showroom selectedProperty={this.state.selectedProperty} />;
+        return <Showroom selectedProperty={(this.props.location.state.property) ? this.props.location.state.property : ""} />;
     }
 }
 
