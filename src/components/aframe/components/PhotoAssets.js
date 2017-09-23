@@ -10,7 +10,7 @@ const PhotoAssets = (props) => {
 				console.log('imgID',imgID);
 
 				return(
-					<img id={id} src={pano_url}/>
+					<img id={id} src={pano_url} crossOrigin="anonymous"/>
 				)
 			})}
 		</a-assets>
