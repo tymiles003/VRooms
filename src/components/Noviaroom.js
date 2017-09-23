@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Entity, Scene } from "aframe-react";
 
-const Showroom = props => {
+const Noviaroom = props => {
     console.log("Showroom.props: ", props);
     return (
         <a-scene embedded>
-            <Entity
+            <Entity 
                 primitive="a-sky"
-                src="https://upload.wikimedia.org/wikipedia/commons/6/65/SonyCenter_360panorama.jpg"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/360-degree_Panorama_of_the_Southern_Sky.jpg"
             />
             <a-text
                 font="kelsonsans"
@@ -20,4 +20,4 @@ const Showroom = props => {
     );
 };
 
-export default Showroom;
+export default Noviaroom;
