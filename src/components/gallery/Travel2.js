@@ -7,7 +7,7 @@ const Travel2 = props => {
             <Entity 
                 crossOrigin="anonymous"
                 primitive="a-sky"
-                src="https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/travel-place-des-jacobins-tn.jpg"
+                src="https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/travel-place-des-jacobins.jpg"
             />
             <a-text
                 font="kelsonsans"
