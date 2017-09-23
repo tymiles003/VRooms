@@ -13,6 +13,7 @@ import Portal from "./components/Portal";
 import PhotoAssets from "./components/PhotoAssets";
 import RoomElements from "./components/RoomElements";
 import propertyAPI from "../../utils/propertyAPI";
+import roomAPI from "../../utils/roomAPI";
 
 
 class AnnotationAframe extends React.Component {
@@ -23,6 +24,9 @@ class AnnotationAframe extends React.Component {
 			photo_url: '',
 			selectedProperty: {
 				thumbnail_url: ''
+			},
+			room: {
+				pano_url: ''
 			}
 		};
 		// sky_source: this.props.photo_url
@@ -64,10 +68,22 @@ class AnnotationAframe extends React.Component {
 		});
 	}
 
+	getRoom = () => {
+		roomAPI.getRoom(this.props.roomID).then(response => {
+			console.log(response);
+			this.setState({
+				room: response.data[0]
+			});
+			console.log("this.state", this.state);
+		});
+
+	}
+
 	componentDidMount = () => {
 		console.log("---- componentDidMount --->");
 		// console.log('this.state.photos',this.state.photos);
-		this.getProperty();
+		// this.getProperty();
+		this.getRoom();
 	};
 
 	// handlePortalState = dest => { this.setState({ sky_source: dest }) }
@@ -80,7 +96,8 @@ class AnnotationAframe extends React.Component {
 			<Scene embedded vr-mode-ui="enabled: false" inspector>
 				{/*==================================================*/}
 					<a-assets timeout="5000">
-						<img id="annotation-photo" src={this.state.selectedProperty.thumbnail_url} crossOrigin="anonymous"/>
+						{/* <img id="annotation-photo" src={this.state.room.pano_url} crossOrigin="anonymous"/> */}
+						<img id="annotation-photo" src={this.state.room.pano_url}/>
 					</a-assets>
 				{/*==================================================*/}
 				<Entity primitive="a-sky" id="sky" src='#annotation-photo' />

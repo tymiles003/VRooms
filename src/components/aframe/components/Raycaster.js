@@ -19,7 +19,13 @@ const Raycaster = props => {
 	return (
 		<Entity
 			id="ray"
-			raycaster="objects: #sky"
+			raycaster="objects: #sky; near: 0; origin 0 1 0; showLine: true"
+			raycaster={{
+				objects: '#sky', 
+				near: 0, 
+				origin: '0 1 0', 
+				showLine: true
+			}}
 			position="0 -0.9 0"
 			rotation="90 0 0"
 		/>

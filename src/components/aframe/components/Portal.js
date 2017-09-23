@@ -22,11 +22,16 @@ class Portal extends React.Component {
 
 	handleMouse = () => {
 		console.log('mouseenter!')
-		document.getElementById('cursor').setAttribute('color', 'red')
+		let cursor = document.getElementById('cursor');
+		cursor.setAttribute('color', '#f1c40f');
+		cursor.setAttribute('scale', '1.5 1.5 1.5');
 	}
+
 	handleMouseLeave = () => {
-		console.log('mouseleave!')
-		document.getElementById('cursor').setAttribute('color', 'white')
+		console.log('mouseleave!');
+		let cursor = document.getElementById('cursor');
+		cursor.setAttribute('color', 'white');
+		cursor.setAttribute('scale', '1 1 1');
 	}
 
 
