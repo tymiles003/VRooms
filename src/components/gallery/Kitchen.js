@@ -11,7 +11,7 @@ const Kitchen = props => {
              <img
                id="asset-scene-url"
                src= {room_url}
-               crossOrigin="anonymous"
+              
              />
            </a-assets>
            <a-sky ng-click="print()" src="#asset-scene-url" />
