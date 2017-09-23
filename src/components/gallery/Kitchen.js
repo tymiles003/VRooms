@@ -11,10 +11,10 @@ const Kitchen = props => {
              <img
                id="asset-scene-url"
                src= {room_url}
-              
+               crossOrigin="anonymous"
              />
            </a-assets>
-           <a-sky ng-click="print()" src="#asset-scene-url" />
+           <a-sky crossOrigin="anonymous" src="https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/property-kitchen.jpg?v=132" />
 
             <a-text
                 font="kelsonsans"
