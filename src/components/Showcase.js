@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet";
 import Navbar from './common/Navbar';
 import Loader from "./common/Loader";
 import Footer from "./common/Footer";
-import ShowcaseContentV2 from "./content/ShowcaseContentV2";
+import ShowcaseContent from "./content/ShowcaseContent";
 // import ShowcaseContent from "./content/ShowcaseContent";
 // import AboutCSS from './styles/About.css';
 // require('./styles/About.css');
@@ -35,7 +35,7 @@ const Showcase = (props) => {
                 <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
                 <Loader />
 
-			          <ShowcaseContentV2 />
+			          <ShowcaseContent />
                 <Footer />
 
               </div>  
