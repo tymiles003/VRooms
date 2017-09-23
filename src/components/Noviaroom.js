@@ -6,9 +6,8 @@ const Showroom = props => {
     return (
         <a-scene embedded>
             <Entity
-                crossOrigin="anonymous"
                 primitive="a-sky"
-                src={props.selectedProperty.rooms[0].pano_url}
+                src="https://upload.wikimedia.org/wikipedia/commons/6/65/SonyCenter_360panorama.jpg"
             />
             <a-text
                 font="kelsonsans"
