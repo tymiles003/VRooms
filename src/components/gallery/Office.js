@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { Entity, Scene } from "aframe-react";
 
-const Noviaroom = props => {
-    console.log("Showroom.props: ", props);
+const Office = props => {
     return (
         <a-scene embedded>
             <Entity 
+                crossOrigin="anonymous"
                 primitive="a-sky"
-                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/360-degree_Panorama_of_the_Southern_Sky.jpg"
+                src="https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/office.jpg"
             />
             <a-text
                 font="kelsonsans"
-                value="321 Ocean Dr, Miami Beach, Florida"
+                value="Real Estate Office Space Demo"
                 width="6"
                 position="-2 4.3 -3.5"
                 rotation="0 15 0"
@@ -20,4 +20,4 @@ const Noviaroom = props => {
     );
 };
 
-export default Noviaroom;
+export default Office;

@@ -23,45 +23,52 @@ class Gallery extends Component {
         thumbnail_url:
           "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/property-living1-tn.jpg",
         type: "Real Estate",
-        title: "Living Room 1"
+        title: "Living Room 1",
+        link: "/living1"
       },
       {
         _id: "59c0885668a4a81b82c94430",
         thumbnail_url:
           "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/property-living2-tn.jpg",
         type: "Real Estate",
-        title: "Living Room 2"
+        title: "Living Room 2",
+        link: "/living2"
       },{
         _id: "59c0885668a4a81b82c94430",
         thumbnail_url:
           "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/property-kitchen-tn.jpg",
         type: "Real Estate",
-        title: "Kitchen"
+        title: "Kitchen",
+        link: "/kitchen"
       },{
         _id: "59c0885668a4a81b82c94430",
         thumbnail_url:
-          "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+          "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/office-tn.jpg",
         type: "Real Estate",
-        title: "Office Space"
+        title: "Office Space",
+        link: "/office"
       },{
         _id: "59c0885668a4a81b82c94430",
         thumbnail_url:
-          "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+          "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/travel-fairmont-le-chateau-frontenac-tn.jpg",
         type: "Travel",
-        title: "Fairmont Le Chateau Frontenac"
+        title: "Fairmont Le Chateau Frontenac",
+        link: "/travel1"
       },{
         _id: "59c0885668a4a81b82c94430",
         thumbnail_url:
-          "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+          "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/travel-place-des-jacobins-tn.jpg",
         type: "Travel",
-        title: "Place des Jacobins"
+        title: "Place des Jacobins",
+        link: "/travel2"
       },
       {
         _id: "59c0885668a4a81b82c94430",
         thumbnail_url:
-          "https://s3-us-west-1.amazonaws.com/transported-content/tours/xjjIM4Fg/Media/hero.jpg",
+          "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/directions-subway-tn.jpg",
         type: "Directions",
-        title: "NYC Subway"
+        title: "NYC Subway",
+        link: "/subway"
       }
     ];
 
@@ -96,7 +103,7 @@ class Gallery extends Component {
                 className="column column-block tour--block"
               >
                 <div className="content-block">
-                  <a target="_blank" href="#">
+                  <a target="_blank" href={examples.link}>
                     <img
                       className="tour--image"
                       src={examples.thumbnail_url}
