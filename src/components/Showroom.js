@@ -22,7 +22,7 @@ const Showroom = props => {
         <img
           id="asset-scene-url"
           src={props.selectedProperty.rooms[0].pano_url}
-          crossOrigin="anonymous"
+          {/* crossOrigin="anonymous" */}
         />
       </a-assets>
       <a-sky ng-click="print()" src="#asset-scene-url" />
