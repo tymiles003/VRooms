@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { Entity, Scene } from "aframe-react";
 
 const Travel2 = props => {
+
+    const room_url = props.selectedProperty.rooms[0].pano_url + "?v=1230";
+
     return (
         <a-scene embedded>
             <Entity 
                 crossOrigin="anonymous"
                 primitive="a-sky"
-                src="https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/travel-place-des-jacobins.jpg"
+                src={room_url}
             />
             <a-text
                 font="kelsonsans"
