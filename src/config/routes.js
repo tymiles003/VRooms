@@ -14,6 +14,8 @@ import EmbeddedAframe from "../components/EmbeddedAframe";
 import AnnotationPage from "../components/AnnotationPage";
 import Contact from "../components/contactUs/Content";
 
+import Noviaroom from "../components/Noviaroom";
+
 const routes = (
     <BrowserRouter>
         <Switch>
@@ -27,6 +29,8 @@ const routes = (
             <Route exact path="/embed" component={EmbeddedAframe} />
             <Route path="/contact" component={Contact} />
             <Route path="/annotate" component={AnnotationPage} />
+
+            <Route path="/noviaroom" component={Noviaroom} />            
         </Switch>
     </BrowserRouter>
 );
