@@ -30,6 +30,7 @@ module.exports = {
 
     /**
      * Creates a new property and adds it to the given user_id
+     * Returns: The new property document as a JSON
      */
     create: function(req, res) {
         console.log(">>> propertyController.js - adding new property")
@@ -49,11 +50,12 @@ module.exports = {
                 (err, newdoc) => {
                     // Send any errors to the browser
                     if (err) {
+                        console.log("Error: ", err);
                         res.send(err);
                     } else {
                         console.log("Property added to user: ", JSON.stringify(newdoc, null, 2));
                         // Or send the newdoc to the browser
-                        res.status(200).send(newdoc);
+                        res.status(200).send(newProperty);
                     }
                 }
             );

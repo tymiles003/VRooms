@@ -25,6 +25,8 @@ module.exports = {
      * Creates a new room and adds it to the given property_id
      */
     create: function(req, res) {
+        console.log(">>> roomController.js - adding new room")
+        console.log(JSON.stringify(req.body, null, 2));
         // Create new room
         let newRoom = new Room(req.body.room);
         newRoom.save((err, doc) => {
@@ -40,8 +42,10 @@ module.exports = {
                 (err, newdoc) => {
                     // Send any errors to the browser
                     if (err) {
+                        console.log("Error: ", err);
                         res.send(err);
                     } else {
+                        console.log("Room added to property: ", JSON.stringify(newdoc, null, 2));
                         // Or send the newdoc to the browser
                         res.status(200).send(newdoc);
                     }
