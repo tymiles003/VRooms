@@ -87,11 +87,16 @@ class ShowcaseContentV2 extends Component {
                   { this.state.allProperties.map((properties, i) => (
                         <div key={ i } id={ "result_" + (i + 1) } className="column column-block tour--block">
                           <div className="content-block">
-                            <a target="_blank" href="#">
-                              <img className="tour--image" src={ properties.thumbnail_url } alt="Thumbnail" />
-                              <h4 className="tour--title">{ properties.street }</h4>
-                            </a>
-                            { " " }
+                            <Link to={{
+                                pathname: "/showroom",
+                                state: { 
+                                    room: properties.rooms[0],
+                                    property: properties
+                                }
+                            }}>
+                                <img className="tour--image" src={ properties.thumbnail_url } alt="Thumbnail" />
+                                <h4 className="tour--title">{ properties.street }</h4>
+                            </Link>
                             <h6 className="tour--city">{ properties.city }</h6>
                           </div>
                         </div>
