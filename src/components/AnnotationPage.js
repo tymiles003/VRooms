@@ -3,19 +3,14 @@ import AnnotationAframe from "./aframe/AnnotationAframe";
 import AnnotationForm from "./common/Forms/AnnotationForm";
 // import {Helmet} from 'react-helmet';
 
-// Fetch photos for this property and load the assets onto the page
-let props = {
-	name: "kitchen",
-	photo_url: "assets/img/gallery/test-world6.jpg"
-};
-let photo_url: "assets/img/gallery/test-world6.jpg"
 
-// Pass photo url to this page via props
+// Pass roomID to this page via props
 class AnnotationPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			photo_url: photo_url
+			photo_url: '',
+			roomID: '',
 		};
 	}
 	
@@ -32,7 +27,11 @@ class AnnotationPage extends Component {
 	render() {
 		return (
 			<div className="aframe-wrap">
-				<AnnotationAframe photo_url={'assets/img/gallery/test-world6.jpg'} port={this.portAnnotationState}/>
+				<AnnotationAframe 
+					propID={this.props.propID} 
+					roomID={this.props.roomID} 
+					port={this.portAnnotationState}
+				/>
 				<AnnotationForm />
 			</div>
 		);
@@ -41,7 +40,7 @@ class AnnotationPage extends Component {
 
 export default AnnotationPage;
 
-// <Helmet>
-// <link href="/css/aframe.css" rel="stylesheet"/>
-// <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.6.1/aframe-master.min.js"></script>
-// </Helmet>
+AnnotationPage.defaultProps = {
+	propID: "59c5a00ba4d2290012cbdfaa",
+	roomID: "59c5a24b7f69c2255b616d18",
+}
