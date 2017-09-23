@@ -6,12 +6,7 @@ module.exports = {
      * Lists all rooms or a specific room
      */
     index: function(req, res) {
-        let query;
-        if (req.query) {
-            query = req.query;
-        } else {
-            query = req.params.id ? { _id: req.params.id } : {};
-        }
+        let query = req.params.room_id ? { _id: req.params.room_id } : {};
         Room.find(query)
             .then(function(doc) {
                 res.json(doc);
@@ -60,7 +55,7 @@ module.exports = {
     update: function(req, res) {
         Room.update(
             {
-                _id: req.params.id
+                _id: req.params.room_id
             },
             req.body
         )
@@ -77,7 +72,7 @@ module.exports = {
      */
     destroy: function(req, res) {
         Room.remove({
-            _id: req.params.id
+            _id: req.params.room_id
         })
             .then(function(doc) {
                 res.json(doc);
