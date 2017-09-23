@@ -82,6 +82,21 @@ canvas {
     color: #FFF;
 }
 
+.mobile-new {
+    font-size: 30px;
+    margin-left: 50px;
+    padding: 8px 0;
+    /* opacity: 0; */
+    -webkit-transition: all .4s ease .51s;
+    transition: all .4s ease .51s;
+    
+}
+
+.mobile-new-div {
+    opacity: 1;
+    margin-top: 20px;
+}
+
 
 
 .wrapper {
@@ -734,6 +749,10 @@ button {
 }
 
 .mobile-menu__link+.mobile-menu__link {
+    margin-top: 20px
+}
+
+.mobile-menu__link+div+.mobile-menu__link {
     margin-top: 20px
 }
 
