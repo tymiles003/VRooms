@@ -1,0 +1,455 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+*:focus {
+    outline: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #FFF;
+    font-size: 16px;
+    color: #222;
+    font-family: 'Roboto', sans-serif;
+    /* font-weight: 300; */
+}
+
+#login-box {
+    position: relative;
+    margin: 10vh auto 0 auto;
+    width: 80%;
+    height: 80vh;
+    background: #FFF;
+    border-radius: 2px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); */
+}
+
+.left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 50%;
+    height: 100%;
+}
+
+h1 {
+    margin: 0 0 20px 0;
+    font-weight: 500;
+    font-size: 28px;
+}
+
+input[type="text"],
+input[type="password"] {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 420px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #AAA;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+
+/*input[type="text"]:focus,*/
+
+input[type="password"]:focus {
+    border-bottom: 2px solid #16a085;
+    color: #16a085;
+    transition: 0.2s ease;
+}
+
+.inputError {
+    border-bottom: 2px solid #DD4B39;
+    color: #DD4B39;
+    transition: 0.2s ease;
+}
+
+.inputText:focus {
+    border-bottom: 2px solid #16a085;
+    color: #16a085;
+    transition: 0.2s ease;
+}
+
+.error {
+    margin-top: 5%;
+    color: red;
+    font-weight: bold;
+    margin-bottom: -95px;
+    text-align: center;
+}
+
+input[type="submit"] {
+    margin-top: 28px;
+    width: 120px;
+    height: 32px;
+    background: #3498db;
+    border: none;
+    border-radius: 2px;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    /*text-transform: uppercase;*/
+    transition: 0.1s ease;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover:not([disabled]),
+input[type="submit"]:focus {
+    opacity: 0.8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+}
+
+input[type="submit"]:active {
+    opacity: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+}
+
+.or {
+    position: absolute;
+    top: 285px;
+    left: 75%;
+    width: 40px;
+    height: 40px;
+    background: #16a085;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.line {
+    position: absolute;
+    /*top: 180px;*/
+    left: 48%;
+    /*width: 40px;*/
+    height: 420px;
+    background: #16a085;
+    /*border-radius: 50%;*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    line-height: 500px;
+    text-align: center;
+    font-weight: bold;
+    border-right: 1px ridge #DDD;
+}
+
+.hrline {
+    position: absolute;
+    top: 290px;
+    left: 68%;
+    width: 200px;
+    height: 10px;
+    /* background: #16a085; */
+    /* border-radius: 50%; */
+    box-shadow: 4px 4px 4px rgba(244, 244, 0, 0.4);
+    line-height: 500px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px ridge #DDD;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 48%;
+    height: 420px;
+    /*background: url('https://goo.gl/YbktSj');*/
+    /*background: url('/assets/img/signupPage1.jpg');*/
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 2px 2px 0;
+    margin-left: 10%;
+}
+
+.right .loginwith {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 28px;
+    /*color: #FFF !important;*/
+    /*text-align: center;*/
+    font-weight: 500;
+    margin-left: 10%;
+}
+
+#loginForm {
+    z-index: 1000;
+    filter: none;
+    text-align: center;
+}
+
+a {
+    color: white;
+}
+
+input[disabled] {
+    background: #3498db;
+    opacity: 0.55;
+}
+
+input[disabled]:hover {
+    opacity: 0.55;
+    box-shadow: 0 0 0;
+    transition: none;
+}
+
+h5.social-signin {
+    margin-left: 15%;
+    margin-bottom: 20px;
+    color: white;
+}
+
+input.social-signin {
+    margin-left: 10%;
+    margin-right: 50%;
+    margin-bottom: 10px;
+    /*width: 320px;
+  height: 40px;*/
+}
+
+button.login {
+    margin-top: 20px;
+}
+
+button.social-signin.login {
+    background: #3498db;
+    color: white;
+    width: 80%;
+    height: 40px;
+    margin: auto;
+    margin-bottom: 30px;
+    /*margin-top: 10px;*/
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    transition: 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.socialButtons {
+    margin-left: 10%;
+}
+
+.social {
+    width: 135px;
+    height: 40px;
+    /*border-radius: 100%;*/
+    margin: auto;
+    /*margin-left: 5%;*/
+    margin-top: 3%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    text-transform: capitalize;
+}
+
+.social-signin {
+    margin-right: 2px;
+    margin-bottom: 20px;
+    border: none;
+    /*color: #FFF;*/
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    transition: 0.2s ease;
+    cursor: pointer;
+    /*box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.4);*/
+}
+
+button.social-signin:hover,
+button.social-signin:focus {
+    box-shadow: 8px 16px 16px rgba(0, 0, 0, 0.4);
+    transition: 0.2s ease;
+}
+
+button.social-signin:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.2s ease;
+}
+
+a.social-signin:hover,
+a.social-signin:focus {
+    box-shadow: 8px 16px 16px rgba(0, 0, 0, 0.4);
+    transition: 0.2s ease;
+}
+
+a.social-signin:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.2s ease;
+}
+
+.facebook {
+    background: #32508E;
+}
+
+.twitter {
+    background: #55ACEE;
+}
+
+.google {
+    background: #DD4B39;
+}
+
+button.social-signin.login {
+    background: #3498db;
+    color: white;
+    width: 80%;
+    height: 40px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+@media print,
+screen and (min-width: 600px) {
+    /*.login-box {
+        margin: 10% auto;
+            width: auto;
+    }
+    .left{
+      top: 20px;
+      width: auto;
+
+    }
+    
+    .right{
+          top: 330px;
+          width: auto;
+    }*/
+    /* button.social-signin{
+            width: 75%;
+    } */
+    input[type="text"],
+    input[type="password"] {
+        width: 80%;
+    }
+    .or {
+        left: 44%;
+    }
+    /*.line{
+      top: 330px;
+      width: 400px;
+      height: 2px;
+      background: white;
+      border-bottom: 1px ridge #DDD;
+      border-right: 0;
+    }
+    */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  
+    #login-box {
+        margin: 0;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        /* works with row or column */
+        flex-direction: row;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+        justify-content: center;
+        height: 100%
+        
+    }
+    .left {
+        position: relative;
+        width: 90vw;
+        display: inline-block;
+        height: auto;
+        padding-bottom: 20px;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .right {
+        position: relative;
+        width: 90vw;
+        display: inline-block;
+        margin-left: 0;
+        padding: 5px 40px;
+    }
+
+    input.social-signin {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    
+
+    .right .loginwith {
+      margin-left: 0
+    }
+
+    button.social-signin {
+        width: 100%;
+    }
+
+    button.social-signin.login {
+      width: 100%;
+    }
+
+    .socialButtons {
+      margin-left: 0;
+    }
+
+    .social {
+      width: 100%;
+      margin-bottom: 0px;
+
+    }
+
+    .line {
+        /*top: 330px;
+      width: 400px;
+      height: 2px;
+      background: white;*/
+        border-bottom: 0;
+        border-right: 0;
+    }
+    .or {
+        top: 320px
+    }
+    .loginWrapper {
+        display: block;
+    }
+    footer {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+    }
+}
+
+
+/* Styling adjustments */
+
+.loginWrapper {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    /* works with row or column */
+    flex-direction: row;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}

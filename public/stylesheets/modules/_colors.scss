@@ -1,0 +1,104 @@
+// Imports ===================================
+	// @import "./vendor/_materialize-colors";
+	// @import "./vendor/_material-design-guide";
+	// @import "./vendor/_flat-colors";
+		@import "../vendor/_materialize-colors";
+		@import "../vendor/_material-design-guide";
+		@import "../vendor/_flat-colors";
+//============================================
+
+// Define General Colors =====================
+	$red:            $flat-red;
+	$orange:         $flat-orange;
+	$yellow:         $flat-yellow;
+	$green:          $flat-green;
+	$teal:           $flat-teal;
+	$blue:           $flat-blue;
+	$purple:         $flat-purple;
+	$darkblue:       $flat-darkblue;
+
+	$dark-red:       $flat-red-d;
+	$dark-orange:    $flat-orange-d;
+	$dark-green:     $flat-green-d;
+	$dark-teal:      $flat-teal-d;
+	$dark-blue:      $flat-blue-d;
+	$dark-purple:    $flat-purple-d;
+	$dark-darkblue:  $flat-darkblue-d;
+
+	$light-blue:     rgba(52, 152, 219, 0.5);
+
+	$white:          #fff;
+	$offwhite:       $flat-mono-white;
+	$u-light-gray:   #d0d7dc;
+	$v-light-gray:   #c9d2da;
+	$light-gray:     $flat-mono-light;
+	$gray:           $flat-mono;
+	$dark-gray:      $flat-mono-dark;
+
+// Background Colors =========================
+	$bg-light: $offwhite;
+	$bg-dark: $dark-darkblue;
+
+// Text Colors ===============================
+	$link: #08c;
+
+	$primary:     $ideal-primary;
+	$secondary:   $ideal-secondary;
+	$dividers:       $ideal-dividers;
+	$disabled:       $ideal-disabled;
+	$hint:           $ideal-hint;
+	$icon-active:    $ideal-active;
+	$icon-inactive:  $ideal-inactive;
+
+	$light-primary:   $ideal-white-primary;
+	$light-secondary: $ideal-white-secondary;
+	$light-dividers:  $ideal-white-dividers;
+	$light-disabled:  $ideal-white-disabled;
+	$light-hint:      $ideal-white-hint;
+	$light-active:    $ideal-white-active;
+	$light-inactive:  $ideal-white-inactive;
+
+
+// Form Colors ===============================
+$input-bg: $white;
+$input-text: $primary;
+
+// State Colors ===============================
+$bg-active: $white;
+$color-good: $green;
+$color-bad: $red;
+
+%color-theme-states {
+	color: $secondary;
+	background-color: $offwhite;
+	outline-color: $dividers;
+	border-color: $dividers;
+	
+	&.validated,
+	&.active,
+	&:hover, 
+	&:active,
+	&:focus {
+		color: $primary;
+		background-color: $bg-active;
+	}
+	
+	&.disabled {
+		color: $disabled;
+		background-color: $gray;
+	}
+
+	&.validated {
+		outline-color: $color-good;
+		border-color: $color-good;
+	}
+	&.error,
+	&.invalid {
+		outline-color: $color-bad;
+		border-color: $color-bad;
+	}
+
+}
+
+// @import 'modules/_color-scheme';
+// @import '_color-scheme';

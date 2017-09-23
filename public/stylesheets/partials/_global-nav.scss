@@ -1,0 +1,37 @@
+
+//===============================================
+// Default Text Colors
+	.transparent-bg,
+	.opaque-black-bg,
+	.black-bg, 
+	.dark-bg
+	{
+		a {
+			color: $light-secondary;
+		}
+	}
+
+	.opaque-white-bg,
+	.white-bg, 
+	.light-bg
+	{
+		a {
+			color: $secondary;
+		}
+	}
+//===============================================
+// Transparent
+.transparent-bg {
+	background-color: transparent;
+}
+
+// Translucent
+.opaque-white-bg { background-color: rgba(255,255,255,0.8) }
+.opaque-black-bg { background-color: rgba(0,0,0,0.9) }
+
+// Solid
+.white-bg { background-color: #fff }
+.black-bg { background-color: #000 }
+.light-bg { background-color: $offwhite }
+.dark-bg  { background-color: #242424 }
+//===============================================

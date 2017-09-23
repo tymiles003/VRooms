@@ -1,0 +1,100 @@
+
+.filedrop-wrap {
+	// Important that the dimensions of filedrop should reflect the aspect
+	// ratio of a 360 photo (i.e. the height should be half of the width.)
+	$filedrop-w: 90vw;
+	$filedrop-max-w: 800px;
+	$filedrop-min-w: 300px;
+	width: $filedrop-w;
+	height: $filedrop-w/2;
+	max-width: $filedrop-max-w;
+	max-height: $filedrop-max-w/2;
+	min-width: $filedrop-min-w;
+	min-height: $filedrop-min-w/2;
+	position: relative;
+
+	.dropzone {
+		background-color: $white;
+		color: $primary;
+		height: 100%;
+		width: 100%;
+		position: relative;
+		z-index: 100;
+		font-size: 1rem;
+		border: none;
+		outline: none;
+		border-radius: 24px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		cursor: pointer;
+		// border: 2px dashed $dividers;
+		border: 2px dashed $v-light-gray;
+		// &:hover {
+		// 	border-color: rgba(52, 152, 219, 0.8);
+		// }
+		.dropzone-content {
+			
+			color: $blue;
+			font-size: 1.1em;
+			font-weight: 400;
+			// opacity: 0.5;
+			display: flex;
+			flex-direction: column;
+			@media all and (max-width: 700px){ font-size: .9em; }
+			@media all and (max-width: 600px){ font-size: .8em; }
+			@media all and (max-width: 500px){ font-size: .6em; }
+			
+			.feature-icon {
+				font-size: 5.5em;
+				margin-bottom: 1rem;
+				opacity: .15;
+				img {
+					height: 1.2em;
+					width: initial;
+				}
+				i {
+					font-size: inherit;
+				}
+			}
+			.direction-wrap {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				@media screen and (max-width: 500px) {
+					display: none;
+				}
+				.direction-headline {
+					font-size: 2.2em;
+					line-height: 1em;
+					margin-bottom: 1rem;
+					color: $blue;
+					font-weight: 100;
+				}
+				.direction-subheadline {
+					font-size: 1em;
+					color: $v-light-gray;
+					line-height: 1em;
+					margin-bottom: .5rem;
+				}
+			}
+		}
+	}
+	#filedrop-preview,
+	.img-canvas {
+		background-size: cover;
+		height: 100%;
+		width: 100%;
+		margin: 0;
+		z-index: 101;
+		position: absolute;
+		top: 0;
+		left: 0;
+		&.no-file {
+			z-index: 99;
+		}
+	}
+}

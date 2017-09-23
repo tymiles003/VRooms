@@ -1,0 +1,112 @@
+div, h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+}
+
+// %reset-spacing {
+// 	margin: 0;
+// 	padding: 0;
+// }
+// %reset-border {
+// 	outline: none;
+// 	border: none;
+// }
+// %reset-color-no-bg {
+// 	color: #000;
+// 	background: none;
+// }
+// %reset-color {
+// 	color: #000;
+// 	background-color: #fff;
+// }
+%reset {
+	&-spacing {
+		margin: 0;
+		padding: 0;
+	}
+	&-border {
+		outline: none;
+		border: none;
+	}
+	&-color {
+		color: #000;
+		&-with-bg {
+			color: #000;
+			background-color: #fff;
+		}
+	}
+	&-text {
+		font-size: inherit;
+		font-family: inherit;
+		line-height: 1em;
+		word-spacing: initial;
+		letter-spacing: initial;
+		font-weight: normal;
+		text-decoration: none;
+		font-style: none;
+		text-decoration: none;
+	}
+	&-states {
+		&:hover, &:active, &:focus { 
+			@extend %reset-border;
+			@extend %reset-color;
+			// @extend %reset-bg-none;
+			// color: initial;
+			background-color: initial;
+		}
+		&-bg-white {
+			&:hover, &:active, &:focus { 
+				@extend %reset-border;
+				@extend %reset-color;
+				// @extend %reset-bg-white;
+			}
+		}
+	}
+	&-bg {
+		background-color: inherit;
+		@extend %reset-states;
+
+		&-white { 
+			background-color: #fff;
+			@extend %reset-states-bg-white;
+		}
+		&-clear { 
+			background-color: transparent; 
+			@extend %reset-states;
+		}
+		&-none  {
+			background: none; 
+			@extend %reset-states;
+		}
+	}
+	&-all {
+		@extend %reset-spacing !optional;
+		@extend %reset-border !optional;
+		@extend %reset-color !optional;
+		@extend %reset-text !optional;
+	}
+}
+
+%reset-form {
+	// @extend %reset-spacing;
+	@extend %reset-all;
+	@extend %reset-bg-none;
+	// outline: 1px solid red;
+	font-size: 1rem;
+	fieldset {
+		@extend %reset-all;
+		@extend %reset-bg-none;
+		// @extend %reset-states-no-bg;
+		// outline: 1px solid blue;
+		legend {
+			@extend %reset-all;
+		}
+	}
+	input {
+		@extend %reset-all;
+		@extend %reset-bg-white;
+	}
+	// div {
+	// 	@extend %reset-all;
+	// 	@extend %reset-bg-none;
+	// }
+}

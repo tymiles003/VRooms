@@ -1,61 +1,66 @@
-import 'aframe';
-import 'aframe-animation-component';
-import 'aframe-particle-system-component';
-import 'babel-polyfill';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Entity, Scene} from 'aframe-react';
+import {Helmet} from "react-helmet";
+import Navbar from './common/Navbar';
+import Loader from "./common/Loader";
+import Footer from "./common/Footer";
+import ShowcaseContent from "./content/ShowcaseContent";
+// import ShowcaseContent from "./content/ShowcaseContent";
+// import AboutCSS from './styles/About.css';
+// require('./styles/About.css');
 
-// Showcasing gallery list of real estate
-class Showcase extends React.Component {
-  constructor(props) {
-    super(props);
-  //   this.state = {
-  //     quotes: []
-  //   };
-  //   // Binding getQuotes to this component since we'll be passing this method to 
-  //   // other components to use
-  //   this.getQuotes = this.getQuotes.bind(this);
-  // }
-  // // Getting all quotes once the component has mounted
-  // componentDidMount() {
-  //   this.getQuotes();
-  //   // getQuotes() {}
+// class About extends React.Component {
+	// constructor(props) {
+	//   super(props);
+  
+	//  }
+	// render() {
+	//   return (
+const Showcase = (props) => {
+	return (
+      <div className="application">
+        {/* Helmet =========================================================*/}
+          <Helmet>
+            <title>VRooms Showcase</title>
 
-  //   API.getQuotes().then((res) => {
-  //     const favoriteQuotes = res.data.filter(quote => quote.favorited);
-  //     this.setState({ quotes: favoriteQuotes });
-  //   });
-  // }
-  // // A helper method for rendering one panel for each quote
-  // renderQuotes() {
-  //   return this.state.quotes.map(quote => (
-  //     <Panel
-  //       quote={quote}
-  //       key={quote._id}
-  //       getQuotes={this.getQuotes}
-  //     />
-  //   ));
-   }
-  render() {
-    return (
-      <a-scene>
-        <Entity primitive='a-sky' src="assets/img/gallery/test-world3.jpg"/>
-        <a-text font="kelsonsans" value="Wayne's Home in Miami" width="6" position="-2.5 1 -1.5"
-              rotation="0 15 0"></a-text>       
-      </a-scene>
-    );
-  }
+            {/* customized script elements */}
+            <script src="/js/drift.js" type="text/javascript"></script>
+			
+            {/* CSS links for this page */}
+            <link rel="stylesheet" href="/css/pages/About.css"></link>
+			
+          </Helmet>
+
+              <div className="pageWrapper">  
+
+                <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
+                <Loader />
+
+			          <ShowcaseContent />
+                <Footer />
+
+              </div>  
+      </div>
+    // );
+//   }
+	)
 }
 
 export default Showcase;
 
 
+// <header className="header header--main js-header a-page" data-landing="yes" data-page="Home" data-page-name="Main">
+//   <div className="description">
+//     <h1 className="description__headline text--white emerge" data-duration="600" data-effect="slide" data-down="64px" data-hold="100">
+//       Virtual Reality for Real Estate
+//     </h1>
+//     <span className="description__sub_headline text--white emerge" data-duration="600" data-effect="slide" data-down="64px" data-hold="100" data-continue="true">
+//       Use VR to <strong>win</strong> more listings and <br />
+//       <strong>stay ahead</strong> of your competition
+//     </span>
+      
+//   </div>
+
+// </header>
 
 
-// <a-scene>
 
-//         <a-sky src="assets/img/gallery/test-world3.jpg" rotation="0 -130 0"></a-sky>
-//         <a-text font="kelsonsans" value="Wayne's Home in Miami" width="6" position="-2.5 0.25 -1.5"
-//               rotation="0 15 0"></a-text>       
-//       </a-scene>

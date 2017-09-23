@@ -1,0 +1,34 @@
+/* About Page Styling (in public folder) */
+
+.application {
+	position: relative;
+}
+/*@media (min-width:1500px) {
+	canvas {
+		position: absolute;
+		top:0; 
+		left:0;
+		width: 100vw;
+	    height: 100vh;
+	}
+}*/ 
+
+canvas {
+	min-width: 100%;
+	min-height: 100%;
+	width: 100vw;
+	height: 100vh;
+	align-self: stretch;
+}
+
+.pageWrapper {
+	position: absolute;
+	top:0; 
+	left:0;
+	width: 100vw;
+    height: 100vh;
+}
+
+.navigation-menu__sign_in {
+    border: 1px solid #FFF;
+}

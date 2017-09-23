@@ -1,71 +1,85 @@
+// import React, { Component } from "react";
 import React from "react";
+import { Helmet } from "react-helmet";
 // import { Link } from "react-router";
 // import Navbar from "./common/Navbar";
 // import Footer from "./common/Footer";
+// import "aframe";
+// import "aframe-animation-component";
+// import "aframe-particle-system-component";
+// import "babel-polyfill";
 
-import 'aframe';
-import 'aframe-animation-component';
-import 'aframe-particle-system-component';
-import 'babel-polyfill';
+// Authentication imports
+// import LoginForm from "./authentication/LoginForm";
+// import Modal from "./common/CustomModal";
+import Loader from "./common/Loader";
+import MainContent from "./content/MainContent";
 
-const Main = props => (
-  <div className="wrapper">
+// require('./styles/Main.css');
 
-      <video className="video-container video-container-overlay" id="video-background" autoPlay="true" >
-        <source src="https://s3.amazonaws.com/vrooms/splashintro.mp4" type="video/mp4" />
-      </video>
+// class Main extends Component {
+// constructor(props){
+//   super(props);
 
-        <div className="navigation navigation--main">
-          <div className="navigation-wrapper">
-            <a className="navigation__logo-link emerge" data-duration="600" data-effect="slide" data-right="64px"  >
-              <img className="navigation__logo" width="220" src="/assets/img/logo/VRooms_V8Logo180.png" alt="VRooms" /> 
+//   this.state={
+// 	signInClicked:false
+//   }
+// }
+// this.state = {
+// 	signInClicked:false
+// }
 
-            </a>
-            <div className="navigation-mobile js-open-menu">
-              <div className="navigation-mobile__icon js-open-menu-btn"></div>
-            </div>
-            <nav className="navigation-menu emerge" data-duration="600" data-effect="slide" data-left="64px">
-                <a href="/about" className="navigation-menu__link ">ABOUT</a>
-                <a href="/agents" className="navigation-menu__link ">AGENTS</a>
-                <a href="/showcase" className="navigation-menu__link ">SHOWCASE</a>
-                <a href="/contact" className="navigation-menu__link ">CONTACT US</a>
+// handleAuth = (event) =>{
+// 	event.preventDefault();
+// 	console.log("inside handle auth");
+// 	this.setState({signInClicked:true});
 
-                <a rel="signup" href="#signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</a>
-                <a data-auth="no" href="https://watch.appfollow.io?ref=github.com" className="navigation-menu__sign_in a-login">sign in</a>
-            </nav>
-          </div>
-        </div>
+// 	// this.forceUpdate();
+// }
+const Main = props => {
+	//   render() {
+	return (
+		<div className="application">
+			{/* Helmet =========================================================*/}
+			<Helmet>
+            <title>VRooms - Virtual Reality for Real Estate</title>
+			
+				{/* customized script elements */}
+				<script src="./js/drift.js" type="text/javascript" />
 
-        <div className="mobile-menu js-mobile-menu">
-            <a href="/about" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">About</a>
-            <a href="/agents" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">Agents</a>
-            <a href="/showcase" className="mobile-menu__link text--white text--bold ">Showcase</a>
-            <a href="/contact" className="mobile-menu__link text--white text--bold ">Contact us</a>
+				{/* CSS links for this page */}
+				<link href="/css/pages/Main.css" rel="stylesheet" />
+				<link href="/css/panning.css" rel="stylesheet" />
+			</Helmet>
 
-          <div className="mobile-menu-btn-wrapper">
-              <a data-auth="no" href="https://watch.appfollow.io?ref=github.com" className="mobile-menu__btn navigation-menu__sign_in a-login">sign in</a>
-          </div>
-        </div>
+			{/* Good example of conditional loading, can use for user auth */}
+			{/* <div>
+				{ true && <Loader /> }
+				{ false && <MainContent /> }
+			</div> */}
 
-
-  </div> 
-);
+			<Loader />
+			<MainContent />
+			
+		</div>
+	);
+};
+// }
 
 export default Main;
 
-
-    // <Navbar />
-    // {props.children}
-    // <Footer />
+// <Navbar />
+// {props.children}
+// <Footer />
 
 // ================================================================================
 
-     // Navigation link code for content refresh within same page
-     // <ul className="nav navbar-nav">
-     //    <li className={location.pathname === "/" && "active"}>
-     //      <Link to="/">Home</Link>
-     //    </li>
-     //    <li className={location.pathname === "/favorites" && "active"}>
-     //      <Link to="/favorites">Favorites</Link>
-     //    </li>
-     //  </ul>
+// Navigation link code for content refresh within same page
+// <ul className="nav navbar-nav">
+//    <li className={location.pathname === "/" && "active"}>
+//      <Link to="/">Home</Link>
+//    </li>
+//    <li className={location.pathname === "/favorites" && "active"}>
+//      <Link to="/favorites">Favorites</Link>
+//    </li>
+//  </ul>
