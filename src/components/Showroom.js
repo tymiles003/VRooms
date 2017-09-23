@@ -20,15 +20,15 @@ const Showroom = props => {
         position="-2 4.3 -3.5"
         rotation="0 15 0"
       /> */}
-
+{/* 
       <a-assets>
         <img
           id="asset-scene-url"
           src= {room_url}
           crossOrigin="anonymous"
         />
-      </a-assets>
-      <a-sky ng-click="print()" src="#asset-scene-url" />
+      </a-assets> */}
+      <a-sky crossOrigin="anonymous" src={room_url} />
       <a-text
         font="kelsonsans"
         value="321 Ocean Dr, Miami Beach, Florida"
