@@ -5,7 +5,7 @@ const Showroom = props => {
   console.log("Showroom.props: ", props);
   return (
     <a-scene embedded>
-      <Entity
+      {/* <Entity
         crossOrigin="anonymous"
         primitive="a-sky"
         src={props.selectedProperty.rooms[0].pano_url}
@@ -16,9 +16,9 @@ const Showroom = props => {
         width="6"
         position="-2 4.3 -3.5"
         rotation="0 15 0"
-      />
+      /> */}
 
-      {/* <a-assets>
+      <a-assets>
         <img
           id="asset-scene-url"
           src={props.selectedProperty.rooms[0].pano_url}
@@ -32,7 +32,7 @@ const Showroom = props => {
         width="6"
         position="-2 4.3 -3.5"
         rotation="0 15 0"
-      /> */}
+      />
     </a-scene>
   );
 };
