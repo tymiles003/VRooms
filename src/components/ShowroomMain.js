@@ -26,7 +26,7 @@ class ShowroomMain extends React.Component {
 
         // Set property using location object passed from <Link>
         console.log("this.props.location: ", this.props.location);
-        console.log("this.props.location.state.property: ", this.props.location.property);
+        console.log("this.props.location.state.property: ", this.props.location.state.property);
         this.setState({
             selectedProperty: this.props.location.state.property
         });
