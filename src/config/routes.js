@@ -14,7 +14,7 @@ import EmbeddedAframe from "../components/EmbeddedAframe";
 import AnnotationPage from "../components/AnnotationPage";
 import Contact from "../components/contactUs/Content";
 
-import Noviaroom from "../components/Noviaroom";
+import Gallery from "../components/Gallery";
 
 const routes = (
     <BrowserRouter>
@@ -30,7 +30,7 @@ const routes = (
             <Route path="/contact" component={Contact} />
             <Route path="/annotate" component={AnnotationPage} />
 
-            <Route path="/noviaroom" component={Noviaroom} />            
+            <Route path="/gallery" component={Gallery} />            
         </Switch>
     </BrowserRouter>
 );

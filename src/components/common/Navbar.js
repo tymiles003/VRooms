@@ -105,18 +105,21 @@ class Navbar extends Component {
 					<Link to="/showcase" className="navigation-menu__link uppercase">Showcase</Link>
 					<Link to="/showroom" className="navigation-menu__link uppercase">Showroom (temp)</Link>
 					<Link to="/contact" className="navigation-menu__link uppercase">Contact Us</Link>
-					<Link to="/new-vroom" className="navigation-menu__link uppercase">New</Link>
+					
 
 					{(this.state.sessionId && this.state.email) ? 
 						
-						(<Link 
-							to="/logout" 
-							data-auth="no" 
-							className="navigation-menu__sign_in a-login" 
-							onClick={this.handleLogout}
-						> 
-							Sign Out
-						</Link>)
+						(<div>
+							<Link to="/new-vroom" className="navigation-menu__link uppercase">New</Link>
+							<Link 
+								to="/logout" 
+								data-auth="no" 
+								className="navigation-menu__sign_in a-login" 
+								onClick={this.handleLogout}
+							> 
+								Sign Out
+							</Link>
+							</div>)
 					: (
 						<div>
 							<Link rel="signup" to="/signup" className="navigation-menu__link navigation-menu__link--hidden navigation-menu__link--lng a-signup">sign up</Link>

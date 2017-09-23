@@ -6,10 +6,9 @@ const Showroom = props => {
     return (
         <a-scene embedded>
             <a-assets>
-                <img id="asset-scene-url" src={props.selectedProperty.rooms[0].pano_url} />
+                <img id="asset-scene-url" src={props.selectedProperty.rooms[0].pano_url}  />
             </a-assets>
-
-  <a-sky ng-click="print()" src="#asset-scene-url"></a-sky>
+            <a-sky ng-click="print()" src="#asset-scene-url"></a-sky>
             <a-text
                 font="kelsonsans"
                 value="321 Ocean Dr, Miami Beach, Florida"
