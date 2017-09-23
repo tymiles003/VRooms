@@ -15,6 +15,13 @@ import AnnotationPage from "../components/AnnotationPage";
 import Contact from "../components/contactUs/Content";
 
 import Gallery from "../components/Gallery";
+import Living1 from "../components/gallery/Living1";
+import Living2 from "../components/gallery/Living2";
+import Kitchen from "../components/gallery/Kitchen";
+import Office from "../components/gallery/Office";
+import Travel1 from "../components/gallery/Travel1";
+import Travel2 from "../components/gallery/Travel2";
+import Subway from "../components/gallery/Subway";
 
 const routes = (
     <BrowserRouter>
@@ -31,6 +38,14 @@ const routes = (
             <Route path="/annotate" component={AnnotationPage} />
 
             <Route path="/gallery" component={Gallery} />            
+            <Route path="/living1" component={Living1} />            
+            <Route path="/living2" component={Living2} />            
+            <Route path="/kitchen" component={Kitchen} />            
+            <Route path="/office" component={Office} />            
+            <Route path="/travel1" component={Travel1} /> 
+            <Route path="/travel2" component={Travel2} />            
+            <Route path="/subway" component={Subway} /> 
+            
         </Switch>
     </BrowserRouter>
 );
