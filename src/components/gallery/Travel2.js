@@ -3,15 +3,18 @@ import { Entity, Scene } from "aframe-react";
 
 const Travel2 = props => {
 
-    const room_url = props.selectedProperty.rooms[0].pano_url + "?v=1230";
-
+    const room_url = "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/travel-place-des-jacobins.jpg?v=132";
+    
     return (
         <a-scene embedded>
-            <Entity 
-                crossOrigin="anonymous"
-                primitive="a-sky"
-                src={room_url}
-            />
+             <a-assets>
+             <img
+               id="asset-scene-url"
+               src= {room_url}
+               crossOrigin="anonymous"
+             />
+           </a-assets>
+           <a-sky ng-click="print()" src="#asset-scene-url" />
             <a-text
                 font="kelsonsans"
                 value="Place des Jacobins"
