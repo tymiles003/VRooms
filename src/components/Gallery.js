@@ -103,7 +103,7 @@ class Gallery extends Component {
                 className="column column-block tour--block"
               >
                 <div className="content-block">
-                  <a target="_blank" href={examples.link}>
+                  <a href={examples.link}>
                     <img
                       className="tour--image"
                       src={examples.thumbnail_url}
