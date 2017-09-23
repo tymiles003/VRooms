@@ -71,21 +71,30 @@ class Navbar extends Component {
 					<a href="/agents" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">Agents</a>
 					<a href="/showcase" className="mobile-menu__link text--white text--bold ">Showcase</a>
 					<a href="/showroom" className="mobile-menu__link text--white text--bold ">Showroom</a>
-					<a href="/contact" className="mobile-menu__link text--white text--bold ">Contact us</a>
+					<a href="/contact" className="mobile-menu__link text--white text--bold">Contact us</a>
 
-					<div className="mobile-menu-btn-wrapper">
+					
 
 					{(this.state.sessionId && this.state.email) ? 
 						
-						(<a 
-							href="/logout" 
-							data-auth="no" 
-							className="mobile-menu__btn navigation-menu__sign_in a-login" 
-							onClick={this.handleLogout}
-						> 
-							Sign Out 
-						</a>)
+						(
+							<div className="mobile-new-div" data-duration="600" data-effect="slide">
+								<a href="/new-vroom" className="text--white text--bold mobile-new">New</a>
+
+								<div className="mobile-menu-btn-wrapper">
+									<a 
+									href="/logout" 
+									data-auth="no" 
+									className="mobile-menu__btn navigation-menu__sign_in a-login" 
+									onClick={this.handleLogout}
+									> 
+										Sign Out 
+									</a>
+								</div>
+							</div>
+						)
 					: (
+						<div className="mobile-menu-btn-wrapper">
 							<a 
 								href="/signup" 
 								data-auth="no" 
@@ -93,10 +102,11 @@ class Navbar extends Component {
 							> 
 								Sign In 
 							</a>
+						</div>
 						)	
 				
 					}
-					</div>
+					
 				</div>
 				
 				<nav className="navigation-menu emerge" data-duration="600" data-effect="slide" data-left="64px">

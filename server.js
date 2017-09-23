@@ -22,6 +22,8 @@ const request = require('request');
 const axios = require('axios');
 let parseString = require('xml2js').parseString; 
 
+let cors = require('cors');
+
 // AWS S3 initialization
 const AWS = require("aws-sdk");
 const S3 = new AWS.S3({
@@ -39,6 +41,9 @@ const zillow_key = process.env.ZILLOW_KEY;
 const PORT = process.env.PORT || 5000;
 mongoose.Promise = bluebird;
 const app = express();
+
+app.use(cors());
+
 
 // enable CORS, use:
 // https://enable-cors.org/server_expressjs.html
