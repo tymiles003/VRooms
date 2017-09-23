@@ -17,12 +17,13 @@ const Showroom = props => {
         position="-2 4.3 -3.5"
         rotation="0 15 0"
       /> */}
+      {/* crossOrigin="anonymous" */}
 
       <a-assets>
         <img
           id="asset-scene-url"
           src={props.selectedProperty.rooms[0].pano_url}
-          {/* crossOrigin="anonymous" */}
+          
         />
       </a-assets>
       <a-sky ng-click="print()" src="#asset-scene-url" />
