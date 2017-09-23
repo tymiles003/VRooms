@@ -16,66 +16,75 @@ class Annotation extends React.Component {
 	handleClick = event => {
 		event.preventDefault();
 		
-		let dest = event.target.getAttribute("to");
-		console.log("---- teleport --->", dest);
-		this.props.port(dest)
-
+		let el = event.target;
+		let kids = el.firstChild;
+		let grandkids = kids.firstChild;
+		kids.setAttribute('scale', '3 3 3');
+		el.removeAttribute('animation__rotate')
+		el.setAttribute('rotation', '0 0 0')
+		grandkids.setAttribute('value',this.props.data.text)
 	};
 
-	handleMouseOver = () => {
-		console.log('mouseenter!')
-		let cursor = document.getElementById('cursor');
-		cursor.setAttribute('color', '#f1c40f');
-		cursor.setAttribute('scale', '1.5 1.5 1.5');
+	handleMouseEnter = (event) => {
+		// console.log('mouseenter!')
+		// let cursor = document.getElementById('cursor');
+		// cursor.setAttribute('color', '#f1c40f');
+		// cursor.setAttribute('scale', '1.5 1.5 1.5');
 	}
 
-	handleMouseLeave = () => {
-		console.log('mouseleave!');
-		let cursor = document.getElementById('cursor');
-		cursor.setAttribute('color', 'white');
-		cursor.setAttribute('scale', '1 1 1');
+	handleMouseLeave = (event) => {
+		// console.log('mouseleave!');
+		let me = event.target;
+		let grandkids = me.firstChild;
+
+		me.setAttribute('scale', '0 0 0');
+		me.parentNode.setAttribute('animation__rotate',{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'})
+		
+		grandkids.setAttribute('value',this.props.data.label)
+		// animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
 	}
 
 
 	render () {
-		let { label, text, image, link, width, xAxis, yAxis, zAxis } = this.props.data;
-		let { primitive,textScale,textPos, tScale, tPos } = this.props;
+		let { label, text, image, link, xAxis, yAxis, zAxis } = this.props.data;
+		let { primitive,textScale,textPos,height,width, tScale, tPos } = this.props;
 		// let { to,position, label,textScale,textPos, primitive,height,width, color,opacity,side } = this.props;
 
 			return (
-				<Entity
-					geometry={{ primitive, width }}
-					material={{ color: '#9b59b6', }}
-					position={{ x: xAxis, y: yAxis, z: zAxis }}
-					className="annotation-link"
-					look-at="#camera"
+				<Entity id="box"
+				geometry={{primitive: 'box', width: 0.3, height: 0.3, depth: 0.3}}
+				material={{ color: '#3498db', opacity: 0.6}}
+				animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
+				
+				className="annotation-toggle"
 					events={{
+						mouseenter: this.handleMouseEnter,
 						click: this.handleClick,
-						mouseenter: this.handleMouseOver,
-						mouseleave: this.handleMouseLeave,
 					}}
-					animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
+						position={{ x: xAxis, y: yAxis, z: zAxis }}
 				>
-				{/* <Entity
-					text={{ value: label }}
-						align="center"
-						scale={tScale}
-						position={tPos}
-					events={{
-						mouseenter: this.handleMouse,
-						mouseleave: this.handleMouseLeave,
-					}}
-					/> */}
-					<a-text
-						value={ label } // If label, use that. But if not, use this.props.to (minus the hashtag),
-						align="center"
-						scale={textScale}
-						position={textPos}
-					events={{
-						mouseenter: this.handleMouse,
-						mouseleave: this.handleMouseLeave,
-					}}
-					/>
+					<Entity
+						geometry={{ primitive, height, width }}
+						material={{ color: '#9b59b6', }}
+						className="annotation-text"
+						look-at="#camera"
+						scale={{x:0,y:0,z:0}}
+						events={{
+							mouseleave: this.handleMouseLeave,
+						}}
+					>
+						{/* animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}} */}
+						<a-text
+							value={ label } // If label, use that. But if not, use this.props.to (minus the hashtag),
+							align="center"
+							scale={textScale}
+							position={textPos}
+						events={{
+							mouseenter: this.handleMouse,
+							mouseleave: this.handleMouseLeave,
+						}}
+						/>
+					</Entity>
 				</Entity>
 			);
 		}
@@ -87,8 +96,8 @@ Annotation.defaultProps = {
 	side: 'double',
 	opacity: 1,
 	primitive: 'plane',
-	height: 0.5,
-	width: 1.5,
+	height: 1,
+	width: 2.5,
 	textScale: '1 1 1',
 	textPos: '0 0 0',
 	tScale: { x:1, y:1, z:1 },
@@ -104,7 +113,7 @@ export default Annotation;
 	scale={textScale}
 	position={textPos}
 events={{
-	mouseenter: this.handleMouseOver,
+	mouseenter: this.handleMouseEnter,
 	mouseleave: this.handleMouseLeave,
 }} 
 />

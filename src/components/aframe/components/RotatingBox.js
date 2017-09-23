@@ -19,16 +19,22 @@ class RotatingBox extends Component {
 
 	render(){
 		return (
-				
+			
+			// material={{color: this.state.color, opacity: 0.6}}
 		<Entity id="box"
 			geometry={{primitive: 'box', width: 0.3, height: 0.3, depth: 0.3}}
-			material={{color: this.state.color, opacity: 0.6}}
+			material={{ opacity: 0.6}}
 			animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
-			events={{click: this.changeColor}}>
+			>
 		</Entity>		
 		)
 	}
 }
+
+// RotatingBox.defaultProps = {
+// 	events: {click: this.changeColor},
+// }
+
 export default RotatingBox;
 
 
