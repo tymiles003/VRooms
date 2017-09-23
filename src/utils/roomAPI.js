@@ -27,7 +27,7 @@ const roomAPI = {
     /**
      *  Adds a new room to the specified property 
      */
-    addNewProperty: (propertyID, room) => {
+    addNewRoom: (propertyID, room) => {
         return axios.post("/api/room/" + propertyID, { room });
     }
 };

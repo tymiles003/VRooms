@@ -8,7 +8,8 @@ import PreviewWindow from '../PreviewWindow';
 import cookie from "react-cookies";
 import axios from "axios";
 
-import propertyAPI from "../../../utils/propertyAPI"; 
+import propertyAPI from "../../../utils/propertyAPI";
+import roomAPI from "../../../utils/roomAPI"; 
 const s3API = require ("../../../utils/s3API");
 
 class NewVRoomForm extends Component {
@@ -94,10 +95,18 @@ class NewVRoomForm extends Component {
 					"price": this.state.price,
 					"square_feet": this.state.sqft
 				};
+				let room = {
+					"pano_url": url
+				};
 				let userID = cookie.load("userId");
 				console.log("cookie userId: ", userID);
 				console.log("property: ", property);
-				propertyAPI.addNewProperty(userID, property);
+				// Add new property to signed-in user, then add new room
+				// to the property that was just added
+				propertyAPI.addNewProperty(userID, property, addedProperty => {
+					console.log("addedProperty: ", addedProperty.data);
+					roomAPI.addNewRoom(addedProperty.data._id, room);
+				});
 			}
 		});
 	}

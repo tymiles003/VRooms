@@ -20,7 +20,7 @@ const propertyAPI = {
      * Get all properties of specific user
      */
     getAllUserProperties: userID => {
-        axios.get("/api/user/" + userID, result => {
+        axios.get("/api/user/" + userID).then(result => {
             return result.properties;
         });
     },
@@ -28,8 +28,14 @@ const propertyAPI = {
     /**
      *  Adds a new property to the specified user 
      */
-    addNewProperty: (userID, property) => {
-        return axios.post("/api/property/" + userID, { property });
+    addNewProperty: (userID, property, cb) => {
+        axios.post("/api/property/" + userID, { property }).then(response => {
+            if (cb) {
+                cb(response);
+            } else {
+                return response;
+            }
+        });
     }
 };
 
