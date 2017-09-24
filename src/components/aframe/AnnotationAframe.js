@@ -30,7 +30,8 @@ class AnnotationAframe extends React.Component {
 			room: {
 				pano_url: ""
 			},
-			inCreationMode: false
+			inCreationMode: false,
+			newAnnotationData: {},
 		};
 		// sky_source: this.props.photo_url
 		// this.handlePhotoAssets(this.props.photos)
@@ -39,12 +40,12 @@ class AnnotationAframe extends React.Component {
 	componentWillReceiveProps = nextProps => {
 		console.log("---- componentWillReceiveProps --->");
 		// console.log('nextProps.creationMode',nextProps.creationMode);
-		// console.log('this.props.creationMode',this.props.creationMode);
+		// console.log('this.props.inCreationMode',this.props.inCreationMode);
 		// Not called on initial render
 		this.setState({
-			inCreationMode: nextProps.creationMode
+			inCreationMode: nextProps.inCreationMode
 		});
-		console.log("this.state", this.state.inCreationMode);
+		console.log("this.state.inCreationMode", this.state.inCreationMode);
 	};
 
 	getProperty = () => {
@@ -92,11 +93,11 @@ class AnnotationAframe extends React.Component {
 			});
 		}
 
-		// if (this.props.creationMode) {
-		// 	this.setState({
-		// 		inCreationMode: true,
-		// 	})
-		// }
+		if (this.props.inCreationMode) {
+			this.setState({
+				inCreationMode: true,
+			})
+		}
 	};
 
 	// handlePortalState = dest => { this.setState({ sky_source: dest }) }
@@ -109,26 +110,22 @@ class AnnotationAframe extends React.Component {
 	handleRay = (event) => {
 		event.preventDefault();
 		console.log('---- handleRay --->');
-		const sky = document.getElementById('sky');
-		const ray = document.getElementById("ray");
-		// document.addEventListener('raycaster-intersected', function () {
+		console.log('event.detail',event.detail);
 			
-			
-			// const rc = ray.components;
-			// let { position, rotation, raycaster, scale, visible } = ray.components;
-			
-			// console.log("position", position);
-			// console.log("rotation", rotation);
-			// // console.log('raycaster',raycaster);
-		// });
-		const et = sky;
+		const intersectionPoint = event.detail.intersection.point;
+		let { x,y,z } = intersectionPoint;
+		// console.log('ray.components',ray.components);
 		
-		const pos = et.getAttribute('position');
-		console.log('pos',pos);
+		this.setState({
+			newAnnotationData: {
+				x,y,z
+			}
+		})
+		
+		console.log('this.state.newAnnotationData',this.state.newAnnotationData);
 
-		console.log('ray.components',ray.components);
-		
-		et.removeEventListener('raycaster-intersected', this.handleRay);
+
+		event.target.removeEventListener('raycaster-intersected', this.handleRay);
 	};
 	
 	getPosition = event => {
@@ -136,39 +133,19 @@ class AnnotationAframe extends React.Component {
 		console.log('---- getPosition --->');
 		// console.log('event.target',event.target);
 		
-		const sky = document.getElementById('sky');
-		const ray = document.getElementById("ray");
+		const et = event.target;
+
 		// this.handleRay;
 		// const et = document.getElementById('#sky');
 		// event.target.addEventListener('raycaster-intersected', this.handleRay)
 		
-		// sky.addEventListener('raycaster-intersected', function(){
-		ray.addEventListener('raycaster-intersection', function(){
-			console.log('---- rayCallback --->');
-			// document.addEventListener('raycaster-intersected', function () {
-				
-				
-				// const rc = ray.components;
-				// let { position, rotation, raycaster, scale, visible } = ray.components;
-				
-				// console.log("position", position);
-				// console.log("rotation", rotation);
-				// // console.log('raycaster',raycaster);
-			// });
-			const et = sky;
-			
-			const pos = et.getAttribute('position');
-			console.log('pos',pos);
-	
-			console.log('ray.components',ray.components);
-		})
+		event.target.addEventListener('raycaster-intersected', this.handleRay)
 	}
 	render() {
 		return (
 			// add embedded to embed
 			<Scene 
 				inspector
-				events={{ click: this.getPosition }}
 			>
 				{/*==================================================*/}
 				<a-assets timeout="5000">
@@ -178,7 +155,8 @@ class AnnotationAframe extends React.Component {
 				{/*==================================================*/}
 				<Entity 
 					primitive="a-sky" 
-					id="sky" 
+					id="sky"
+					className="ray-intersect"
 					src="#annotation-photo" 
 					
 					/>
@@ -194,7 +172,7 @@ class AnnotationAframe extends React.Component {
 					{this.state.inCreationMode && (
 						<Entity
 							id="new-annotation"
-							className="box annotation-toggle"
+							className="box annotation-toggle ray-intersect"
 							geometry={{
 								primitive: "box",
 								width: 0.3,
@@ -210,9 +188,9 @@ class AnnotationAframe extends React.Component {
 							}}
 							events={{
 								mouseenter: this.handleMouseEnter,
-								click: this.handleClick
+								click: this.getPosition
 							}}
-							position={{ x: 0, y: 0, z: 0 }}
+							position={{ x: 0, y: 0, z: -4 }}
 						/>
 					)}
 				</Entity>

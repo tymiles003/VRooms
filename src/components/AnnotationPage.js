@@ -56,6 +56,13 @@ class AnnotationPage extends Component {
 					xAxis: 7.35,
 					yAxis: 2,
 					zAxis: -1.8
+				},
+				{
+					label: "test",
+					text: "Testy McTestFace",
+					xAxis: 2.426,
+					yAxis: 1.615,
+					zAxis: -3
 				}
 			],
 			newAnnotation: {}
@@ -131,7 +138,7 @@ class AnnotationPage extends Component {
 					<AnnotationAframe
 						addedAnnotations={this.state.annotations}
 						port={this.portAnnotationState}
-						creationMode={this.state.inCreationMode}
+						inCreationMode={this.state.inCreationMode}
 					/>
 
 				
