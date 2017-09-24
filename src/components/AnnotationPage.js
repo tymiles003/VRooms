@@ -18,8 +18,6 @@ class AnnotationPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			inCreationMode: false,
-			creationMode: "New",
 			property: {
 				street: "",
 				city: "",
@@ -65,7 +63,13 @@ class AnnotationPage extends Component {
 					zAxis: -3
 				}
 			],
-			newAnnotation: {}
+			newAnnotation: {},
+
+			inCreationMode: false,
+			creationMode: "idle",
+			inPosition: true,
+			positionConfirmed: true,
+			annotationConfirmed: true,
 		};
 	}
 
@@ -75,14 +79,22 @@ class AnnotationPage extends Component {
 	portAnnotationState = formState => {
 		console.log("---- INCOMING ANNOTATION STATE ---> " + formState);
 
-		// formState is the object for a single annotation.
-		// Need to use special form of setState that accepts a function
-		// instead of an object in order to push to array
-		this.setState((prevState, formState) => {
-			annotations: {
-				prevState.annotations.push(formState);
+		this.setState(formState);
+		console.log('this.state',this.state);
+		
+		if(this.state.creationMode === 'annotation confirmed'){
+
+			
+			// formState is the object for a single annotation.
+			// Need to use special form of setState that accepts a function
+			// instead of an object in order to push to array
+			this.setState((prevState, formState) => {
+				annotations: {
+					prevState.annotations.push(formState);
+				}
 			}
-		});
+		)
+	}
 
 		// let { label, text, image, link, width, xAxis, yAxis, zAxis } = this.state;
 		console.log("---- LIFTED  STATE ---> " + this.state); // just viewing the entire state for now.
@@ -110,9 +122,36 @@ class AnnotationPage extends Component {
 		console.log("---- toggle Creation Mode --->");
 		this.setState({
 			inCreationMode: true,
+			creationMode: 'positioning',
+			positionConfirmed: false,
 		});
 		// creationMode: "Add"
 	};
+
+
+	confirmPosition = () => {
+		this.setState({ 
+			newAnnotation: formState,
+			positionConfirmed: true,
+			creationMode: "position confirmed"
+		})
+	}
+	submitAnnotation = () => {
+		this.setState({ 
+			submitAnnotation: true,
+			creationMode: "annotation confirmed"
+		})
+
+		console.log('this.state',this.state);
+		alert('submit annotation attempt')
+	}
+
+	// portAnnotationForm = (formState) => {
+	// 	this.setState({
+	// 		newAnnotation: formState,
+	// 	})
+	// 	console.log('this.state.newAnnotation',this.state.newAnnotation);
+	// }
 
 	componentDidMount = () => {
 		this.handleAnnotations();
@@ -139,21 +178,38 @@ class AnnotationPage extends Component {
 						addedAnnotations={this.state.annotations}
 						port={this.portAnnotationState}
 						inCreationMode={this.state.inCreationMode}
+						positionConfirmed={this.state.positionConfirmed}
 					/>
 
 				
-
-					{this.state.inCreationMode &&
-						<section className={'ws-row ws-foldout'}>
-							<AnnotationForm />
-						</section>
-					}
 					<Btn
 						id="new-annotation-btn"
 						href="#new"
 						onClick={this.handleNewClick}
 						text="New"
-					/>	
+					/>
+
+
+					{/* {(this.state.inPosition && !this.state.positionConfirmed) && */}
+					{(this.state.creationMode === 'positioned') &&
+						<Btn
+							id="confirm-position"
+							href="#!"
+							onClick={this.confirmPosition}
+							text="Confirm Position"
+						/>	
+					}
+
+
+					{this.state.creationMode === 'position confirmed' &&
+						<section className={'ws-row ws-foldout'}>
+							<AnnotationForm port={this.submitAnnotation}/>
+	
+						</section>
+					}
+	
+
+					
 				</div>
 			</main>
 		);

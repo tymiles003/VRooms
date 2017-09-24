@@ -51,11 +51,18 @@
 			left: 1rem;
 			position: fixed;
 		}
+		#confirm-position {
+			position: fixed;
+			top: 60vh;
+			left: 50%;
+			transform: translateX(-50%);
+		}
 		.ws-form {
-			top: 1rem;
-			left: 1rem;
-			width: 100%;
-			max-width: 200px;
+			bottom: 55vh;
+			left: 50vw;
+			transform: translateX(-50%);
+			width: 90vw;
+			max-width: 400px;
 			position: fixed;
 		}
 	}

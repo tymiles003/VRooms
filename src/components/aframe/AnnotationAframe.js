@@ -31,7 +31,10 @@ class AnnotationAframe extends React.Component {
 				pano_url: ""
 			},
 			inCreationMode: false,
-			newAnnotationData: {},
+			inPosition: false,
+			positionConfirmed: false,
+			currentMode: 'ready',
+			newAnnotation: {},
 		};
 		// sky_source: this.props.photo_url
 		// this.handlePhotoAssets(this.props.photos)
@@ -42,10 +45,12 @@ class AnnotationAframe extends React.Component {
 		// console.log('nextProps.creationMode',nextProps.creationMode);
 		// console.log('this.props.inCreationMode',this.props.inCreationMode);
 		// Not called on initial render
+		let{inCreationMode,positionConfirmed} = nextProps;
 		this.setState({
-			inCreationMode: nextProps.inCreationMode
+			inCreationMode, positionConfirmed
 		});
 		console.log("this.state.inCreationMode", this.state.inCreationMode);
+		console.log("this.state.positionConfirmed", this.state.positionConfirmed);
 	};
 
 	getProperty = () => {
@@ -93,11 +98,11 @@ class AnnotationAframe extends React.Component {
 			});
 		}
 
-		if (this.props.inCreationMode) {
-			this.setState({
-				inCreationMode: true,
-			})
-		}
+		// if (this.props.inCreationMode) {
+		// 	this.setState({
+		// 		inCreationMode: true,
+		// 	})
+		// }
 	};
 
 	// handlePortalState = dest => { this.setState({ sky_source: dest }) }
@@ -106,41 +111,51 @@ class AnnotationAframe extends React.Component {
 	// portRaycaster = rayProps => {
 	// 	console.log("---- portRaycaster --->");
 	// 	console.log("rayProps", rayProps);
-	// };
-	handleRay = (event) => {
-		event.preventDefault();
-		console.log('---- handleRay --->');
-		console.log('event.detail',event.detail);
-			
-		const intersectionPoint = event.detail.intersection.point;
-		let { x,y,z } = intersectionPoint;
-		// console.log('ray.components',ray.components);
-		
-		this.setState({
-			newAnnotationData: {
-				x,y,z
-			}
-		})
-		
-		console.log('this.state.newAnnotationData',this.state.newAnnotationData);
+	// };	
 
 
-		event.target.removeEventListener('raycaster-intersected', this.handleRay);
-	};
-	
 	getPosition = event => {
-		event.preventDefault();
-		console.log('---- getPosition --->');
-		// console.log('event.target',event.target);
-		
-		const et = event.target;
+			event.preventDefault();
+			console.log('---- getPosition --->');
+			
+			if(!this.state.inPosition){
+				// Bind the event looking for where raycaster intersects anno
+				event.target.addEventListener('raycaster-intersected', this.handleRay)
+			}
+		}
 
-		// this.handleRay;
-		// const et = document.getElementById('#sky');
-		// event.target.addEventListener('raycaster-intersected', this.handleRay)
-		
-		event.target.addEventListener('raycaster-intersected', this.handleRay)
-	}
+
+	handleRay = (event) => {
+			event.preventDefault();
+			console.log('---- handleRay --->');
+			console.log('event.detail',event.detail);
+			
+			// event.detail is the holy grail
+			// contains intersection world coordinates. (not relative)
+			const intersectionPoint = event.detail.intersection.point;
+			let { x,y,z } = intersectionPoint;
+			// console.log('ray.components',ray.components);
+			let posState = {
+				newAnnotation: {x,y,z},
+				inPosition: true,
+				creationMode: 'positioned'
+			}
+			// this.setState({
+			// 	newAnnotation: { x,y,z }
+			// })
+			this.props.port(posState)
+			
+			console.log('this.state.newAnnotation',this.state.newAnnotation);
+
+			// Remove event so it only fires once. (or else it would fire constantly)
+			event.target.removeEventListener('raycaster-intersected', this.handleRay);
+
+			// Switch state so it will not fire again until new is clicked;
+			this.setState({
+				inPosition: true
+			})
+		};
+
 	render() {
 		return (
 			// add embedded to embed

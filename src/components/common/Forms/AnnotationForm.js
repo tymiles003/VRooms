@@ -12,10 +12,6 @@ class AnnotationForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			roomID: '',
-			xAxis: '',
-			yAxis: '',
-			zAxis: '',
 			label: '',
 			text: '',
 		};
@@ -34,7 +30,7 @@ class AnnotationForm extends Component {
 	}
 
 	// Add new annotation or portal
-	handleAdd = event => {
+	submitAnnotation = event => {
 		event.preventDefault();
 		// Send state up to AnnotationPage
 		this.props.port(this.state);
@@ -45,12 +41,12 @@ class AnnotationForm extends Component {
 	render(){
 		return(
 
-			<form id="new-vroom-form" className="form ws-form">
+			<form id="new-annotation-form" className="form ws-form">
 					{/* <section className="form-row"> */}
 					{/* <fieldset> */}
 							{/* <legend>Add Annotation</legend> */}
 			
-							<div className="form-field-row">
+							{/* <div className="form-field-row">
 								<div className="input-wrap input-x prefixed">
 									<label htmlFor="xAxis" className="input-label-sib prefix-label"> X: </label>
 									<input
@@ -87,7 +83,7 @@ class AnnotationForm extends Component {
 										onChange={this.handleInputChange}
 									/>
 								</div>
-							</div>
+							</div> */}
 							{/* <div className="form-field-row"> */}
 								<div className="input-wrap input-label">
 									<label htmlFor="label" className="input-label-sib"></label>
@@ -120,12 +116,14 @@ class AnnotationForm extends Component {
 						{/* </fieldset> */}
 						{/* </section> */}
 						{/* <section className="form-row"> */}
-							{/* <Btn 
-								id="add-annotation" 
-								theme="primary"
-								text="Add Annotation"
-								onClick={this.handleAdd}
-								/> */}
+
+								<Btn
+							id="submit-annotation"
+							href="#!"
+							theme="primary"
+							onClick={this.submitAnnotation}
+							text="Submit"
+						/>
 						{/* </section> */}
 						</form>
 		)
