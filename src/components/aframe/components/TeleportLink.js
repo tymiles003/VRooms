@@ -23,20 +23,9 @@ import React, {Component} from "react";
 class TeleportLink extends React.Component {
 	constructor(props) {
 		super(props);
-<<<<<<< HEAD
 		this.state = { };
 
 	};
-=======
-		this.state = {
-		};
-
-	};	
-	////////////////////////////////////////////////////
-	componentWillMount(){
-		
-	}
->>>>>>> 2c02b4cb93833ea3020cb8b6942ab8def89ae14d
 	////////////////////////////////////////////////////
 	setImage = (e) => {
 		e.preventDefault();
@@ -47,15 +36,6 @@ class TeleportLink extends React.Component {
 		console.log('path',path);
 		console.log('position',position);
 
-<<<<<<< HEAD
-		// this.setState({
-		// 	name: this.props.to,
-		// 	path: dest[0].path,
-		// 	position: dest[0].position,
-		// })
-
-		this.props.teleport(this.props.to);
-=======
 		this.setState({
 			name: this.props.to,
 			path: path,
@@ -63,7 +43,6 @@ class TeleportLink extends React.Component {
 		})
 
 		this.props.teleport(path);
->>>>>>> 2c02b4cb93833ea3020cb8b6942ab8def89ae14d
 	};
 	
 	////////////////////////////////////////////////////
@@ -72,11 +51,7 @@ class TeleportLink extends React.Component {
 			<Entity
 				primitive="a-circle"
 				className="teleport-link"
-<<<<<<< HEAD
 				radius="0.3"
-=======
-				radius=".3"
->>>>>>> 2c02b4cb93833ea3020cb8b6942ab8def89ae14d
 				color="#3498db"
 				to={this.props.to}
 				events={{
@@ -96,14 +71,6 @@ class TeleportLink extends React.Component {
 		)
 	}
 };
-<<<<<<< HEAD
 
 
-=======
-// mousedown: 'scale: 1 1 1',
-// mouseenter: 'scale: 1.2 1.2 1',
-// const TeleportLink = props => {
-
-
->>>>>>> 2c02b4cb93833ea3020cb8b6942ab8def89ae14d
 export default TeleportLink;

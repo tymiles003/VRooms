@@ -36,6 +36,10 @@ $ws-white: #ffffff;
 	&.ws-light { background-color: $ws-light; color: $primary; }
 	&.ws-white { background-color: $ws-white; color: $primary; }
 
+	&:hover, &:active, &:focus {
+		color: #fff;
+	}
+
 	&.isOutlined {
 		border: 2px solid;
 		background-color: transparent;
@@ -50,6 +54,10 @@ $ws-white: #ffffff;
 		&.ws-dark { color: $ws-dark; border-color: $ws-dark; }
 		&.ws-light { color: $ws-light; border-color: $ws-light; }
 		&.ws-white { color: $ws-white; border-color: $ws-white; }
+		
+		&:hover, &:active, &:focus {
+			color: initial;
+		}
 	}
 }
 

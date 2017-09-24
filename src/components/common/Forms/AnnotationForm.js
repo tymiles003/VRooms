@@ -12,14 +12,23 @@ class AnnotationForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			roomID: '',
+			xAxis: '',
+			yAxis: '',
+			zAxis: '',
+			label: '',
+			text: '',
 		};
 	}
 
+	
+
 	handleInputChange = event => {
 		event.preventDefault();
-		const value = event.target.value;
-		const name = event.target.name;
-		// console.log(name, value);
+		// const value = event.target.value;
+		// const name = event.target.name;
+		let { name, value } = event.target;
+		console.log(name, value);
 
 		this.setState({ [name]: value });
 	}
@@ -32,16 +41,18 @@ class AnnotationForm extends Component {
 	}
 
 
+
 	render(){
 		return(
 
 			<form id="new-vroom-form" className="form ws-form">
-					<section className="form-row">
-					<fieldset>
-							<legend>Add Annotation</legend>
+					{/* <section className="form-row"> */}
+					{/* <fieldset> */}
+							{/* <legend>Add Annotation</legend> */}
 			
 							<div className="form-field-row">
-								<div className="input-wrap input-x">
+								<div className="input-wrap input-x prefixed">
+									<label htmlFor="xAxis" className="input-label-sib prefix-label"> X: </label>
 									<input
 										id="xAxis"
 										className="input ws-input"
@@ -52,7 +63,8 @@ class AnnotationForm extends Component {
 										onChange={this.handleInputChange}
 									/>
 								</div>
-								<div className="input-wrap input-y">
+								<div className="input-wrap input-y prefixed">
+								<label htmlFor="yAxis" className="input-label-sib prefix-label"> Y: </label>
 									<input
 										id="yAxis"
 										className="input ws-input"
@@ -63,7 +75,8 @@ class AnnotationForm extends Component {
 										onChange={this.handleInputChange}
 									/>
 								</div>
-								<div className="input-wrap input-z">
+								<div className="input-wrap input-z prefixed">
+								<label htmlFor="zAxis" className="input-label-sib prefix-label"> Z: </label>
 									<input
 										id="zAxis"
 										className="input ws-input"
@@ -75,8 +88,9 @@ class AnnotationForm extends Component {
 									/>
 								</div>
 							</div>
-							<div className="form-field-row">
+							{/* <div className="form-field-row"> */}
 								<div className="input-wrap input-label">
+									<label htmlFor="label" className="input-label-sib"></label>
 									<input
 										id="label"
 										className="input ws-input"
@@ -86,10 +100,12 @@ class AnnotationForm extends Component {
 										value={this.state.label}
 										onChange={this.handleInputChange}
 									/>
+									
 								</div>
-							</div>
-							<div className="form-field-row">
+							{/* </div> */}
+							{/* <div className="form-field-row"> */}
 								<div className="input-wrap input-text">
+									<label htmlFor="text" className="input-label-sib"></label>
 									<input
 										id="text"
 										className="input ws-input"
@@ -100,19 +116,19 @@ class AnnotationForm extends Component {
 										onChange={this.handleInputChange}
 									/>
 								</div>
-							</div>
-						</fieldset>
-						</section>
-						<section className="form-row">
-							<Btn 
+							{/* </div> */}
+						{/* </fieldset> */}
+						{/* </section> */}
+						{/* <section className="form-row"> */}
+							{/* <Btn 
 								id="add-annotation" 
 								theme="primary"
 								text="Add Annotation"
 								onClick={this.handleAdd}
-								/>
-						</section>
+								/> */}
+						{/* </section> */}
 						</form>
-								)
+		)
 	}
 }
 

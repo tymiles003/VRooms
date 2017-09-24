@@ -149,6 +149,7 @@ class Btn extends Component {
 				id={this.props.id}
 				href={this.props.href || '#!'}
 				className={this.state.className} 
+				onClick={this.props.onClick}
 			>
 				{this.buildIcon()}
 				{this.props.text}
