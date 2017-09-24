@@ -4,7 +4,7 @@ import { Entity, Scene } from "aframe-react";
 const Showroom = props => {
   console.log("Showroom.props: ", props);
 
-  const room_url = "https://cors-anywhere.herokuapp.com/" + props.selectedProperty.rooms[0].pano_url + "?v=1230";
+  const room_url = props.selectedProperty.rooms[0].pano_url + "?v=1230";
 
   return (
     <a-scene embedded crossOrigin="anonymous">
