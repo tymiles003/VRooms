@@ -5863,6 +5863,10 @@ react-modal@^2.3.2:
     prop-types "^15.5.10"
     react-dom-factories "^1.0.0"
 
+react-preload@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/react-preload/-/react-preload-0.5.1.tgz#ab38ec9e004862914d6b6137d057e647410d988c"
+
 react-router-dom@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
