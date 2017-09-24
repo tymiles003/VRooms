@@ -160,7 +160,7 @@ app.post('/sign-s3', (req, res) => {
 });
 
 // Default React route
-app.get("*", (req, res, next) => {
+app.get("/", (req, res, next) => {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
