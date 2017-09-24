@@ -8468,9 +8468,15 @@ footer .footer--column {
     width: 20%
 }
 
-@media screen and (max-width: 39.9375em) {
+/* @media screen and (max-width: 39.9375em) {
     footer .footer--column {
         width: 100%
+    }
+} */
+
+@media screen and (max-width: 39.9375em) {
+    footer .footer--row {
+        width: 50%
     }
 }
 
@@ -8527,12 +8533,18 @@ footer .footer-navigation {
 
 @media screen and (max-width: 39.9375em) {
     footer .footer-navigation .columns {
-        margin-bottom: 2.5rem
+        margin-bottom: 0.5rem
+    }
+
+    .team-github {
+        padding: 10px 40px;
     }
 }
 
 footer .footer-navigation h5 {
-    font-size: 1rem
+    font-size: 1rem;
+    margin-bottom: 20px;
+
 }
 
 footer .footer-navigation ul:not(.footer-social) {
