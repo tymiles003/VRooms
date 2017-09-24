@@ -7,7 +7,7 @@ const Showroom = props => {
   const room_url = props.selectedProperty.rooms[0].pano_url + "?v=1230";
 
   return (
-    <a-scene embedded>
+    <a-scene embedded crossOrigin="anonymous">
       {/* <Entity
         crossOrigin="anonymous"
         primitive="a-sky"
