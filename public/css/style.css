@@ -1721,3 +1721,7 @@ a-scene {
 .tour--block .tour--city span:not(:last-child):after {
     content: ' • '
 }
+
+.showroomWrapper {
+    height: 100vh;
+}
