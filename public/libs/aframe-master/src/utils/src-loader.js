@@ -88,19 +88,19 @@ function parseUrl (src) {
  * @param {string|Element} src - URL or element that will be tested.
  * @param {function} onResult - Callback with whether `src` is an image.
  */
-function checkIsImage (src, onResult) {
-  if (src.tagName) {
-    onResult(src.tagName === 'IMG');
-    return;
-  }
+// function checkIsImage (src, onResult) {
+//   if (src.tagName) {
+//     onResult(src.tagName === 'IMG');
+//     return;
+//   }
 
-  var tester = new Image();
-  tester.addEventListener('load', onLoad);
-  function onLoad () { onResult(true); }
-  tester.addEventListener('error', onError);
-  function onError () { onResult(false); }
-  tester.src = src;
-}
+//   var tester = new Image();
+//   tester.addEventListener('load', onLoad);
+//   function onLoad () { onResult(true); }
+//   tester.addEventListener('error', onError);
+//   function onError () { onResult(false); }
+//   tester.src = src;
+// }
 
 /**
  * Query and validate a query selector,
