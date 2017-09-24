@@ -4,7 +4,7 @@ import { Entity, Scene } from "aframe-react";
 import "aframe-layout-component";
 import "aframe-look-at-component";
 import "aframe-animation-component";
-import 'aframe-mouse-cursor-component';
+import "aframe-mouse-cursor-component";
 // import "aframe-click-drag-component";
 import CameraCursor from "./components/CameraCursor";
 import Raycaster from "./components/Raycaster";
@@ -37,14 +37,14 @@ class AnnotationAframe extends React.Component {
 	}
 
 	componentWillReceiveProps = nextProps => {
-		console.log('---- componentWillReceiveProps --->')
+		console.log("---- componentWillReceiveProps --->");
 		// console.log('nextProps.creationMode',nextProps.creationMode);
 		// console.log('this.props.creationMode',this.props.creationMode);
 		// Not called on initial render
 		this.setState({
 			inCreationMode: nextProps.creationMode
 		});
-		console.log('this.state',this.state.inCreationMode);
+		console.log("this.state", this.state.inCreationMode);
 	};
 
 	getProperty = () => {
@@ -102,27 +102,112 @@ class AnnotationAframe extends React.Component {
 	// handlePortalState = dest => { this.setState({ sky_source: dest }) }
 	// handleRoomStates = state => { this.setState(state) }
 
+	// portRaycaster = rayProps => {
+	// 	console.log("---- portRaycaster --->");
+	// 	console.log("rayProps", rayProps);
+	// };
+	handleRay = (event) => {
+		event.preventDefault();
+		console.log('---- handleRay --->');
+		const sky = document.getElementById('sky');
+		const ray = document.getElementById("ray");
+		// document.addEventListener('raycaster-intersected', function () {
+			
+			
+			// const rc = ray.components;
+			// let { position, rotation, raycaster, scale, visible } = ray.components;
+			
+			// console.log("position", position);
+			// console.log("rotation", rotation);
+			// // console.log('raycaster',raycaster);
+		// });
+		const et = sky;
+		
+		const pos = et.getAttribute('position');
+		console.log('pos',pos);
+
+		console.log('ray.components',ray.components);
+		
+		et.removeEventListener('raycaster-intersected', this.handleRay);
+	};
+	
+	getPosition = event => {
+		event.preventDefault();
+		console.log('---- getPosition --->');
+		// console.log('event.target',event.target);
+		
+		const sky = document.getElementById('sky');
+		const ray = document.getElementById("ray");
+		// this.handleRay;
+		// const et = document.getElementById('#sky');
+		// event.target.addEventListener('raycaster-intersected', this.handleRay)
+		
+		// sky.addEventListener('raycaster-intersected', function(){
+		ray.addEventListener('raycaster-intersection', function(){
+			console.log('---- rayCallback --->');
+			// document.addEventListener('raycaster-intersected', function () {
+				
+				
+				// const rc = ray.components;
+				// let { position, rotation, raycaster, scale, visible } = ray.components;
+				
+				// console.log("position", position);
+				// console.log("rotation", rotation);
+				// // console.log('raycaster',raycaster);
+			// });
+			const et = sky;
+			
+			const pos = et.getAttribute('position');
+			console.log('pos',pos);
+	
+			console.log('ray.components',ray.components);
+		})
+	}
 	render() {
 		return (
-			<Scene embedded inspector>
+			// add embedded to embed
+			<Scene 
+				inspector
+				events={{ click: this.getPosition }}
+			>
 				{/*==================================================*/}
 				<a-assets timeout="5000">
 					{/* <img id="annotation-photo" src={this.state.room.pano_url} crossOrigin="anonymous"/> */}
 					<img id="annotation-photo" src={this.state.room.pano_url} />
 				</a-assets>
 				{/*==================================================*/}
-				<Entity primitive="a-sky" id="sky" src="#annotation-photo" />
+				<Entity 
+					primitive="a-sky" 
+					id="sky" 
+					src="#annotation-photo" 
+					
+					/>
 				<Raycaster />
-				<Entity primitive="a-camera" look-controls="reverseMouseDrag: true" mouse-cursor id="camera" >
+				<Entity
+					primitive="a-camera"
+					look-controls="reverseMouseDrag: true"
+					mouse-cursor
+					id="camera"
+				>
 					<Entity primitive="a-cursor" id="cursor" color="white" />
-	
+
 					{this.state.inCreationMode && (
 						<Entity
 							id="new-annotation"
 							className="box annotation-toggle"
-							geometry={{ primitive: "box", width: 0.3, height: 0.3, depth: 0.3 }}
+							geometry={{
+								primitive: "box",
+								width: 0.3,
+								height: 0.3,
+								depth: 0.3
+							}}
 							material={{ color: "white" }}
-							animation__rotate={{ property: "rotation", dur: 5000, loop: true, to: "360 360 360" }}
+							animation__rotate={{
+								property: "rotation",
+								dur: 5000,
+								loop: true,
+								to: "360 360 360"
+							}}
 							events={{
 								mouseenter: this.handleMouseEnter,
 								click: this.handleClick

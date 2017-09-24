@@ -44,8 +44,8 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
-.ws-btn:hover {
-  color: #ffffff;
+.ws-btn:hover, .ws-btn:active, .ws-btn:focus {
+  color: #fff;
 }
 
 .ws-btn.isOutlined {
@@ -106,6 +106,10 @@
 .ws-btn.isOutlined.ws-white {
   color: #ffffff;
   border-color: #ffffff;
+}
+
+.ws-btn.isOutlined:hover, .ws-btn.isOutlined:active, .ws-btn.isOutlined:focus {
+  color: initial;
 }
 
 html {
@@ -760,14 +764,6 @@ body::-webkit-scrollbar-thumb {
   margin-left: .4em;
 }
 
-.aframe-container {
-  outline: 1px solid red;
-}
-
-.aframe-container .aframe-wrap {
-  outline: 1px solid blue;
-}
-
 .embedded-window {
   position: relative;
   height: 100%;
@@ -777,9 +773,50 @@ body::-webkit-scrollbar-thumb {
   outline: 2px solid red;
 }
 
-a-scene {
-  height: 200px;
-  width: 400px;
+.aframe-wrap {
+  height: initial;
+  width: initial;
+  padding: 0;
+  margin: 2rem;
+  border-radius: 1rem;
+}
+
+.aframe-wrap a-scene {
+  height: 90vh;
+  width: 100%;
+  margin: 0;
+}
+
+.aframe-wrap.fullscreen {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  border-radius: 0;
+  z-index: 900;
+  margin: 0;
+  padding: 0;
+}
+
+.aframe-wrap.fullscreen * {
+  z-index: 950;
+}
+
+.aframe-wrap.fullscreen a-scene {
+  z-index: 900;
+}
+
+.aframe-wrap.fullscreen #new-annotation-btn {
+  bottom: 1rem;
+  left: 1rem;
+  position: fixed;
+}
+
+.aframe-wrap.fullscreen .ws-form {
+  top: 1rem;
+  left: 1rem;
+  width: 100%;
+  max-width: 200px;
+  position: fixed;
 }
 
 html {

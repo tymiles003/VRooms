@@ -46,9 +46,9 @@ class AnnotationForm extends Component {
 		return(
 
 			<form id="new-vroom-form" className="form ws-form">
-					<section className="form-row">
-					<fieldset>
-							<legend>Add Annotation</legend>
+					{/* <section className="form-row"> */}
+					{/* <fieldset> */}
+							{/* <legend>Add Annotation</legend> */}
 			
 							<div className="form-field-row">
 								<div className="input-wrap input-x prefixed">
@@ -88,7 +88,7 @@ class AnnotationForm extends Component {
 									/>
 								</div>
 							</div>
-							<div className="form-field-row">
+							{/* <div className="form-field-row"> */}
 								<div className="input-wrap input-label">
 									<label htmlFor="label" className="input-label-sib"></label>
 									<input
@@ -102,8 +102,8 @@ class AnnotationForm extends Component {
 									/>
 									
 								</div>
-							</div>
-							<div className="form-field-row">
+							{/* </div> */}
+							{/* <div className="form-field-row"> */}
 								<div className="input-wrap input-text">
 									<label htmlFor="text" className="input-label-sib"></label>
 									<input
@@ -116,17 +116,17 @@ class AnnotationForm extends Component {
 										onChange={this.handleInputChange}
 									/>
 								</div>
-							</div>
-						</fieldset>
-						</section>
-						<section className="form-row">
-							<Btn 
+							{/* </div> */}
+						{/* </fieldset> */}
+						{/* </section> */}
+						{/* <section className="form-row"> */}
+							{/* <Btn 
 								id="add-annotation" 
 								theme="primary"
 								text="Add Annotation"
 								onClick={this.handleAdd}
-								/>
-						</section>
+								/> */}
+						{/* </section> */}
 						</form>
 		)
 	}

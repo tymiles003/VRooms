@@ -117,11 +117,11 @@ class AnnotationPage extends Component {
 		// let {street,city,state,zip,country,bedrooms,baths,built_year,price,square_feet,property_name} = this.state.property;
 		return (
 			<main>
-				<header className="ws-compact">
+				{/* <header className="ws-compact">
 					<h5>Annotating:</h5>
 	
-				</header>
-				<div className="aframe-wrap">
+				</header> */}
+				<div className="aframe-wrap fullscreen">
 					{/* <AnnotationAframe 
 						propID={this.props.propID} 
 						roomID={this.props.roomID} 
@@ -135,7 +135,6 @@ class AnnotationPage extends Component {
 					/>
 
 				
-				</div>
 
 					{this.state.inCreationMode &&
 						<section className={'ws-row ws-foldout'}>
@@ -143,11 +142,12 @@ class AnnotationPage extends Component {
 						</section>
 					}
 					<Btn
-						href="#new-annotation"
-						isOutlined
+						id="new-annotation-btn"
+						href="#new"
 						onClick={this.handleNewClick}
 						text="New"
 					/>	
+				</div>
 			</main>
 		);
 	}
