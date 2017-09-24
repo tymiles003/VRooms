@@ -2,12 +2,18 @@ import React, { Component } from "react";
 import { Entity, Scene } from "aframe-react";
 
 const Living2 = props => {
-    
-    return (
-        <a-scene embedded>
-             
-           <a-sky crossOrigin="anonymous" src="https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/property-living2.jpg?v=132" />
 
+    const room_url =
+    "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/property-living2.jpg?v=132";
+
+  return (
+    <a-scene embedded crossOrigin="anonymous">
+      <a-assets>
+        <img id="asset-scene-url" src={room_url} />
+      </a-assets>
+      <a-sky crossOrigin="anonymous" src="#asset-scene-url" />
+    
+    
             <a-text
                 font="kelsonsans"
                 value="Real Estate Living Room Demo"
