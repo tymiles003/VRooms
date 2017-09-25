@@ -67,18 +67,20 @@ class AnnotationPage extends Component {
 
 			inCreationMode: false,
 			mode: "idle",
-			inPosition: false,
 			positionConfirmed: false,
+			formConfirmed: false,
+			
+			inPosition: false,
 			annotationConfirmed: false,
-			isSubmitted: false,
+			submitted: false,
 		};
 	}
 // componentDidMount ===============================
-	componentDidMount = () => {
-		// this.handleAnnotations();
-		this.getProperty(); // not super essential. for extra info on page.
-		console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
-	};
+	// componentDidMount = () => {
+	// 	// this.handleAnnotations();
+	// 	this.getProperty(); // not super essential. for extra info on page.
+	// 	console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
+	// };
 
 // getProperty =====================================
 	getProperty = () => {
@@ -90,18 +92,30 @@ class AnnotationPage extends Component {
 			console.log("this.state", this.state);
 		});
 	};
-// portAnnotationState =============================
-	// Whenever an anno is added/deleted, this sets the state,
-	// which triggers AnnotationAframe to update
-	// addedAnnotations, which will trigger the change in aframe
-	portAnnotationState = annoState => {
+
+
+// handleNewClick ==================================
+	handleNewClick = e => {
+		e.preventDefault();
+		console.log("---- toggle Creation Mode --->");
+		this.setState({
+			inCreationMode: true,
+			mode: 'in progress',
+		});
+		// positionConfirmed: false,
+	};
+
+
+// portAframe =============================
+
+	portAframe = aframeState => {
 		// annoState is the object for a single annotation.
-		console.log("---- portAnnotationState ---> " + annoState);
+		console.log("---- portAframe ---> " + aframeState);
 
-		this.setState(annoState);
+		this.setState(aframeState);
 
-		console.log(' mode ====' , this.state.mode )
-		console.log('state ====' , this.state )
+		// console.log(' mode ====' , this.state.mode )
+		// console.log('state ====' , this.state )
 
 		// if(this.state.mode === 'submitted'){
 		// 	this.saveAnnotation()
@@ -116,28 +130,17 @@ class AnnotationPage extends Component {
 	// };
 
 
-// handleNewClick ==================================
-	handleNewClick = e => {
-		e.preventDefault();
-		console.log("---- toggle Creation Mode --->");
-		this.setState({
-			inCreationMode: true,
-			mode: 'positioning',
-		});
-		// positionConfirmed: false,
-	};
-
 // confirmPosition =================================
-	confirmPosition = (event) => {
-		event.preventDefault();
+	// confirmPosition = (event) => {
+	// 	event.preventDefault();
 
-		this.setState({
-			mode: "placed",
-			positionConfirmed: true,
-		})
-		// 		newAnnotation: annoState,
-		// 		positionConfirmed: true,
-	}
+	// 	this.setState({
+	// 		mode: "placed",
+	// 		positionConfirmed: true,
+	// 	})
+	// 	// 		newAnnotation: annoState,
+	// 	// 		positionConfirmed: true,
+	// }
 
 
 
@@ -163,44 +166,47 @@ class AnnotationPage extends Component {
 	}
 
 // submitAnnotation ================================
-	submitAnnotation = (event) => {
-		event.preventDefault();
+	// submitAnnotation = (event) => {
+	// 	event.preventDefault();
 
-		console.log('---- (Page) submitAnnotation --->');
-		console.log('label ====' , this.state.label )
-		console.log('text ====' , this.state.text  )
+	// 	console.log('---- (Page) submitAnnotation --->');
+	// 	// console.log('label ====' , this.state.label )
+	// 	// console.log('text ====' , this.state.text  )
 
-		this.setState({ 
-			mode: 'submitted',
-			isSubmitted: true,
-		})
-		// console.log('this.state.mode',this.state.mode);
+	// 	// this.setState({ 
+	// 	// 	mode: 'gathering',
+	// 	// })
+	// 	// submitted: true,
+	// 	// console.log('this.state.mode',this.state.mode);
 
-		this.saveAnnotation()
-	}
+	// 	// this.saveAnnotation()
+	// }
 
 
 // saveAnnotation ==================================
-	saveAnnotation = () => {
+	saveAnnotation = (e) => {
+		e.preventDefault();
 		// this.setState({ mode: "saved" })
-		console.log('(Page) ---- saveAnnotation --->');
-		console.log('(Page) state ====',this.state);
+		console.log('---- saveAnnotation --->');
+		console.log('state ====',this.state);
 
 		// Grab relevant info from state
 		let { xAxis, yAxis, zAxis, label, text } = this.state;
 
 		// Put together annotation to add to annotation array in state
-		let newAnno =  { xAxis, yAxis, zAxis, label, text };
-		console.log('newAnno',newAnno);
+		let newAnno =  [{ label, text, xAxis, yAxis, zAxis }];
+		// console.log('newAnno',newAnno);
 
 		// let newAnnoArray = this.state.annotations.push(newAnno);
+		let newAnnoArray = this.state.annotations.concat(newAnno);
+		// newAnnotation: newAnno,
 		this.setState({
-			newAnnotation: newAnno,
-			annotations: this.state.annotations.push(newAnno),
+			annotations: newAnnoArray,
 			inCreationMode: false,
 			isSaved: true,
 			mode: 'saved'
 		})
+		// inCreationMode: false,
 		// annotations: newAnnoArray
 
 		console.log('this.state.annotations',this.state.annotations);
@@ -214,13 +220,14 @@ class AnnotationPage extends Component {
 					{/* <AnnotationAframe 
 						propID={this.props.propID} 
 						roomID={this.props.roomID} 
-						port={this.portAnnotationState}
+						port={this.portAframe}
 					/> */}
 
 					<AnnotationAframe
-						annotations={this.state.annotations}
-						port={this.portAnnotationState}
 						inCreationMode={this.state.inCreationMode}
+						port={this.portAframe}
+						annotations={this.state.annotations}
+
 						positionConfirmed={this.state.positionConfirmed}
 						mode={this.state.mode}
 						newAnnotation={this.state.newAnnotation}
@@ -229,35 +236,36 @@ class AnnotationPage extends Component {
 				
 					<Btn
 						id="new-annotation-btn"
-						href="#new"
+						href="#!"
 						onClick={this.handleNewClick}
 						text="New"
 					/>
 
 
-					{/* {(this.state.inPosition && !this.state.positionConfirmed) && */}
-					{(this.state.mode === 'positioned') &&
+					{/* {(this.state.mode === 'positioned') &&
 						<Btn
 							id="confirm-position"
 							href="#!"
 							onClick={this.confirmPosition}
 							text="Confirm Position"
 						/>	
-					}
+					} */}
 
 
 					{/* { (this.state.mode === 'placed' && !this.state.isSubmitted) && */}
-					{ (this.state.positionConfirmed && !this.state.isSubmitted) &&
+					{/* { (this.state.positionConfirmed && !this.state.isSubmitted) && */}
+					{ (this.state.inCreationMode) &&
 						<section className='ws-row ws-foldout'>
 							<AnnotationForm 
 								port={this.portForm}
+								mode={this.state.mode}
 							/>
 
 							<Btn
 								id="submit-annotation"
 								href="#!"
 								theme="primary"
-								onClick={this.submitAnnotation}
+								onClick={this.saveAnnotation}
 								text="Submit"
 							/>
 						</section>
