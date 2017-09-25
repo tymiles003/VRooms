@@ -23,7 +23,7 @@ module.exports = {
         console.log(">>> roomController.js - adding new room")
         console.log(JSON.stringify(req.body, null, 2));
         // Create new room
-        let newRoom = new Room(req.body.room);
+        let newRoom = new Room(req.body);
         newRoom.save((err, doc) => {
             // Add Room to user
             Property.findByIdAndUpdate(
@@ -42,7 +42,7 @@ module.exports = {
                     } else {
                         console.log("Room added to property: ", JSON.stringify(newdoc, null, 2));
                         // Or send the newdoc to the browser
-                        res.status(200).send(newdoc);
+                        res.json(newRoom);
                     }
                 }
             );
@@ -53,13 +53,14 @@ module.exports = {
      * Updates an existing room
      */
     update: function(req, res) {
-        Room.update(
-            {
-                _id: req.params.room_id
-            },
-            req.body
+        console.log(">>> roomController.js - Updating room");
+        Room.findByIdAndUpdate(
+            req.params.room_id,
+            req.body,
+            { new: true }
         )
             .then(function(doc) {
+                console.log("Success, room updated: ", JSON.stringify(doc, null, 2));
                 res.json(doc);
             })
             .catch(function(err) {

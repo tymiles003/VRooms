@@ -44,7 +44,7 @@ module.exports = {
                     } else {
                         console.log("Property added to user: ", JSON.stringify(newdoc, null, 2));
                         // Or send the newdoc to the browser
-                        res.status(200).send(newProperty);
+                        res.json(newProperty);
                     }
                 }
             );

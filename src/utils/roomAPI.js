@@ -28,7 +28,17 @@ const roomAPI = {
      *  Adds a new room to the specified property 
      */
     addNewRoom: (propertyID, room) => {
-        return axios.post("/api/room/" + propertyID, { room });
+        return axios.post("/api/room/" + propertyID, room);
+    },
+
+    /**
+     * Add new annotation to the specified room
+     */
+    addNewAnnotation: (roomID, annotation) => {
+        let update = {
+            $push: { annotations: annotation }
+        };
+        return axios.patch("/api/room/" + roomID, update);
     }
 };
 
