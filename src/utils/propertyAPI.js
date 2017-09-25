@@ -36,6 +36,13 @@ const propertyAPI = {
                 return response;
             }
         });
+    },
+
+    /**
+     * Update an existing property
+     */
+    updateProperty: (propertyID, property) => {
+        return axios.patch("/api/property/" + propertyID, { property });
     }
 };
 
