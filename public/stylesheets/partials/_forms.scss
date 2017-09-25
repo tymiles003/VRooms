@@ -46,6 +46,8 @@
 		position: relative;
 		font-size: 1rem;
 		color: $secondary;
+		outline: 1px solid $dividers;
+		outline-offset: 0;
 		i {
 			position: absolute;
 			font-size: 1.25em;
@@ -126,6 +128,37 @@
 				padding-left: 2em;
 			}
 		}
+		&.prefixed {
+			display: flex;
+			flex-direction: row;
+			justify-content: stretch;
+			align-items: stretch;
+			font-size: 1.25rem;
+			height: 3em;
+			line-height: 3em;
+			background-color: #fff;
+			padding: 0;
+			input, label {
+				background-color: transparent;
+				font-size: inherit;
+				line-height: inherit;
+				position: relative;
+				display: inline-block;
+				top: unset;
+				left: unset;
+				padding: 0 1em;
+				outline: none;
+			}
+			label {
+				font-weight: 500;
+				// outline-color: transparent;
+				// background-color: $ws-primary;
+				// color: $ws-light;
+			}
+			input {
+				padding-left: 0;
+			}
+		}
 		
 		&.input-street {
 			flex: 1
@@ -156,7 +189,10 @@
 			color: $primary;
 		}
 	}
-
+	// .input-x { &::before { content: 'x =' } }
+	// .input-y { &::before { content: 'y =' } }
+	// .input-z { &::before { content: 'z =' } }
+	
 }
 .pg-newVRoom {
 	form {
