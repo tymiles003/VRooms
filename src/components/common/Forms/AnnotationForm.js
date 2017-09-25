@@ -18,21 +18,31 @@ class AnnotationForm extends Component {
 	}
 
 	componentWillReceiveProps = (nextProps) => {
-		let { inCreationMode, mode, submitted } = nextProps;
+		// let { inCreationMode, mode, submitted } = nextProps;
 
-		this.setState({
-			inCreationMode,
-			mode,
-			submitted,
-		})
+		// this.setState({
+		// 	inCreationMode,
+		// 	mode,
+		// 	submitted,
+		// })
 
-		if ( nextProps.mode == 'gathering' && !nextProps.formConfirmed ) {
-			this.props.port({
-				label: this.state.label,
-				text: this.state.text,
-				formConfirmed: true,
-			});
+		// When exiting creation mode, clear inputs and update
+		// inCreationMode in form state.
+		if ( !nextProps.inCreationMode && this.props.inCreationMode ) {
+			this.setState({
+				label: '',
+				text: '',
+				inCreationMode: false,
+			})
 		}
+
+		// if ( nextProps.mode == 'gathering' && !nextProps.formConfirmed ) {
+		// 	this.props.port({
+		// 		label: this.state.label,
+		// 		text: this.state.text,
+		// 		formConfirmed: true,
+		// 	});
+		// }
 	}	
 
 	handleInputChange = event => {

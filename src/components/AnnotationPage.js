@@ -76,11 +76,11 @@ class AnnotationPage extends Component {
 		};
 	}
 // componentDidMount ===============================
-	componentDidMount = () => {
-		// this.handleAnnotations();
-		this.getProperty(); // not super essential. for extra info on page.
-		console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
-	};
+	// componentDidMount = () => {
+	// 	// this.handleAnnotations();
+	// 	this.getProperty(); // not super essential. for extra info on page.
+	// 	console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
+	// };
 
 // getProperty =====================================
 	getProperty = () => {
@@ -194,17 +194,19 @@ class AnnotationPage extends Component {
 		let { xAxis, yAxis, zAxis, label, text } = this.state;
 
 		// Put together annotation to add to annotation array in state
-		let newAnno =  { xAxis, yAxis, zAxis, label, text };
-		console.log('newAnno',newAnno);
+		let newAnno =  [{ label, text, xAxis, yAxis, zAxis }];
+		// console.log('newAnno',newAnno);
 
 		// let newAnnoArray = this.state.annotations.push(newAnno);
+		let newAnnoArray = this.state.annotations.concat(newAnno);
+		// newAnnotation: newAnno,
 		this.setState({
-			newAnnotation: newAnno,
-			annotations: this.state.annotations.push(newAnno),
+			annotations: newAnnoArray,
 			inCreationMode: false,
 			isSaved: true,
 			mode: 'saved'
 		})
+		// inCreationMode: false,
 		// annotations: newAnnoArray
 
 		console.log('this.state.annotations',this.state.annotations);
@@ -224,8 +226,8 @@ class AnnotationPage extends Component {
 					<AnnotationAframe
 						inCreationMode={this.state.inCreationMode}
 						port={this.portAframe}
-
 						annotations={this.state.annotations}
+
 						positionConfirmed={this.state.positionConfirmed}
 						mode={this.state.mode}
 						newAnnotation={this.state.newAnnotation}
@@ -234,7 +236,7 @@ class AnnotationPage extends Component {
 				
 					<Btn
 						id="new-annotation-btn"
-						href="#new"
+						href="#!"
 						onClick={this.handleNewClick}
 						text="New"
 					/>
@@ -252,7 +254,7 @@ class AnnotationPage extends Component {
 
 					{/* { (this.state.mode === 'placed' && !this.state.isSubmitted) && */}
 					{/* { (this.state.positionConfirmed && !this.state.isSubmitted) && */}
-					{this.state.inCreationMode ? (
+					{ (this.state.inCreationMode) &&
 						<section className='ws-row ws-foldout'>
 							<AnnotationForm 
 								port={this.portForm}
@@ -267,7 +269,7 @@ class AnnotationPage extends Component {
 								text="Submit"
 							/>
 						</section>
-					) : null }
+					}
 	
 
 					
