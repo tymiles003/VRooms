@@ -119,7 +119,7 @@ class Navbar extends Component {
 
 					{(this.state.sessionId && this.state.email) ? 
 						
-						(<div>
+						(<div className="navigation-menu emerge">
 							<Link to="/new-vroom" className="navigation-menu__link uppercase">New</Link>
 							<Link 
 								to="/logout" 
