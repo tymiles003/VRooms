@@ -1,11 +1,11 @@
 
 
-.aframe-container {
-	outline: 1px solid red;
-	.aframe-wrap {
-		outline: 1px solid blue;
-	}
-}
+// .aframe-container {
+// 	outline: 1px solid red;
+// 	.aframe-wrap {
+// 		outline: 1px solid blue;
+// 	}
+// }
 
 
 .embedded-window {
@@ -17,9 +17,62 @@
 	outline: 2px solid red;
 }
 
-a-scene {
-	height: 200px;
-	width: 400px;
+.aframe-wrap {
+	height: initial;
+	width: initial;
+	padding: 0;
+	margin: 2rem;
+	border-radius: 1rem;
+	a-scene {
+		height: 90vh;
+		width: 100%;
+		margin: 0;
+	}
+
+	&.fullscreen {
+		position: fixed;
+		height: 100vh;
+		width: 100vw;
+		border-radius: 0;
+		z-index: 900;
+		margin: 0;
+		padding: 0;
+		
+		
+		* {
+			z-index: 950
+		}
+		a-scene {
+			z-index: 900;
+		}
+
+		#new-annotation-btn {
+			top: 1rem;
+			right: 1rem;
+			position: fixed;
+		}
+		#confirm-position {
+			position: fixed;
+			top: 60vh;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		#submit-annotation {
+			position: fixed;
+			top: 60vh;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		.ws-form {
+			bottom: 60vh;
+			left: 50vw;
+			transform: translateX(-50%);
+			width: 90vw;
+			max-width: 400px;
+			padding: 0;
+			position: fixed;
+		}
+	}
 }
 
 

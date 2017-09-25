@@ -12,71 +12,56 @@ class AnnotationForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			label: '',
+			text: '',
 		};
 	}
 
+	
+
 	handleInputChange = event => {
 		event.preventDefault();
-		const value = event.target.value;
-		const name = event.target.name;
+		// const value = event.target.value;
+		// const name = event.target.name;
+		let { name, value } = event.target;
 		// console.log(name, value);
+		let newState = {
+			[name]: value
+		}
+		
+		this.setState(newState);
 
-		this.setState({ [name]: value });
+		// Lift state up to Page
+		// this.props.port(this.state)
+
+		this.props.port(newState)
+
 	}
 
-	// Add new annotation or portal
-	handleAdd = event => {
-		event.preventDefault();
-		// Send state up to AnnotationPage
-		this.props.port(this.state);
-	}
+	// submitAnnotation = event => {
+	// 	event.preventDefault();
+
+	// 	this.setState({ mode: 'submitted' })
+	// 	// console.log('this.state',this.state);
+
+	// 	// Send state up to AnnotationPage
+	// 	this.props.port({
+	// 		label: this.state.label,
+	// 		text: this.state.text,
+	// 		mode: 'submitted'
+	// 	});
+	// }
+
 
 
 	render(){
 		return(
 
-			<form id="new-vroom-form" className="form ws-form">
-					<section className="form-row">
-					<fieldset>
-							<legend>Add Annotation</legend>
-			
-							<div className="form-field-row">
-								<div className="input-wrap input-x">
-									<input
-										id="xAxis"
-										className="input ws-input"
-										type="text"
-										name="xAxis"
-										placeholder="X"
-										value={this.state.xAxis}
-										onChange={this.handleInputChange}
-									/>
-								</div>
-								<div className="input-wrap input-y">
-									<input
-										id="yAxis"
-										className="input ws-input"
-										type="text"
-										name="yAxis"
-										placeholder="Y"
-										value={this.state.yAxis}
-										onChange={this.handleInputChange}
-									/>
-								</div>
-								<div className="input-wrap input-z">
-									<input
-										id="zAxis"
-										className="input ws-input"
-										type="text"
-										name="zAxis"
-										placeholder="Z"
-										value={this.state.zAxis}
-										onChange={this.handleInputChange}
-									/>
-								</div>
-							</div>
-							<div className="form-field-row">
+			<form id="new-annotation-form" className="form ws-form">
+
+							{/* <div className="form-field-row"> */}
 								<div className="input-wrap input-label">
+									<label htmlFor="label" className="input-label-sib"></label>
 									<input
 										id="label"
 										className="input ws-input"
@@ -86,10 +71,12 @@ class AnnotationForm extends Component {
 										value={this.state.label}
 										onChange={this.handleInputChange}
 									/>
+									
 								</div>
-							</div>
-							<div className="form-field-row">
+							{/* </div> */}
+							{/* <div className="form-field-row"> */}
 								<div className="input-wrap input-text">
+									<label htmlFor="text" className="input-label-sib"></label>
 									<input
 										id="text"
 										className="input ws-input"
@@ -100,20 +87,64 @@ class AnnotationForm extends Component {
 										onChange={this.handleInputChange}
 									/>
 								</div>
-							</div>
-						</fieldset>
-						</section>
-						<section className="form-row">
-							<Btn 
-								id="add-annotation" 
-								theme="primary"
-								text="Add Annotation"
-								onClick={this.handleAdd}
-								/>
-						</section>
-						</form>
-								)
+							{/* </div> */}
+
+
+						{/* <Btn
+							id="submit-annotation"
+							href="#!"
+							theme="primary"
+							onClick={this.submitAnnotation}
+							text="Submit"
+						/> */}
+			</form>
+		)
 	}
 }
 
 export default AnnotationForm;
+
+					// {/* <section className="form-row"> */}
+					// {/* <fieldset> */}
+					// 		{/* <legend>Add Annotation</legend> */}
+							// {/* <div className="form-field-row">
+							// 	<div className="input-wrap input-x prefixed">
+							// 		<label htmlFor="xAxis" className="input-label-sib prefix-label"> X: </label>
+							// 		<input
+							// 			id="xAxis"
+							// 			className="input ws-input"
+							// 			type="text"
+							// 			name="xAxis"
+							// 			placeholder="X"
+							// 			value={this.state.xAxis}
+							// 			onChange={this.handleInputChange}
+							// 		/>
+							// 	</div>
+							// 	<div className="input-wrap input-y prefixed">
+							// 	<label htmlFor="yAxis" className="input-label-sib prefix-label"> Y: </label>
+							// 		<input
+							// 			id="yAxis"
+							// 			className="input ws-input"
+							// 			type="text"
+							// 			name="yAxis"
+							// 			placeholder="Y"
+							// 			value={this.state.yAxis}
+							// 			onChange={this.handleInputChange}
+							// 		/>
+							// 	</div>
+							// 	<div className="input-wrap input-z prefixed">
+							// 	<label htmlFor="zAxis" className="input-label-sib prefix-label"> Z: </label>
+							// 		<input
+							// 			id="zAxis"
+							// 			className="input ws-input"
+							// 			type="text"
+							// 			name="zAxis"
+							// 			placeholder="Z"
+							// 			value={this.state.zAxis}
+							// 			onChange={this.handleInputChange}
+							// 		/>
+							// 	</div>
+							// </div> */}
+						// 							{/* </fieldset> */}
+						// {/* </section> */}
+						// {/* <section className="form-row"> */}

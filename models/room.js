@@ -18,7 +18,7 @@ const roomSchema = new mongoose.Schema({
         },
         yAxis: {
             type: Number,
-            default: 0
+            default: 1.5
         },
         zAxis: {
             type: Number,
