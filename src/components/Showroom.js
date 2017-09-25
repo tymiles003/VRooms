@@ -5,10 +5,12 @@ const Showroom = props => {
   console.log("Showroom.props: ", props);
 
   const room_url = props.selectedProperty.rooms[0].pano_url + "?v=1230";
-  const xAxis = props.selectedProperty.rooms[0].annotations[0].xAxis;
-  const yAxis = props.selectedProperty.rooms[0].annotations[0].yAxis;
-  const zAxis = props.selectedProperty.rooms[0].annotations[0].zAxis;
+  const xAxis = props.selectedProperty.rooms[0].annotations[0].xAxis || -2;
+  const yAxis = props.selectedProperty.rooms[0].annotations[0].yAxis || 4;
+  const zAxis = props.selectedProperty.rooms[0].annotations[0].zAxis || -3;
   const txtPosition = xAxis + " " + yAxis + " " + zAxis;
+  const width = props.selectedProperty.rooms[0].annotations[0].width || 8;
+  const annotationtxt = props.selectedProperty.rooms[0].annotations[0].text || " ";
   
   return (
     <a-scene embedded crossOrigin="anonymous">
@@ -18,8 +20,8 @@ const Showroom = props => {
       <a-sky crossOrigin="anonymous" src="#asset-scene-url" />
       <a-text
         font="kelsonsans"
-        value={props.selectedProperty.rooms[0].annotations[0].text}
-        width={props.selectedProperty.rooms[0].annotations[0].width}
+        value={annotationtxt}
+        width={width}
         position={txtPosition}
         rotation="0 15 0"
       />

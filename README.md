@@ -41,6 +41,8 @@ VRooms allows you to create your VR app by using 360 images or videos without co
 * Development for pages: Main, About, Agent, Navigation Bar, Page Footer
 * Front/back end development and integration for Showcase page
 * Mobile responsive implementation for Sign up/Sign in page
+* Prepare, insert, update and maintain database test data
+* Planning and integration across team members' modules
 
 - - -
 
