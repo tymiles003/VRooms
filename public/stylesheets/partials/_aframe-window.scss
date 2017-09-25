@@ -59,7 +59,7 @@
 		}
 		#submit-annotation {
 			position: fixed;
-			top: 40vh;
+			top: 60vh;
 			left: 50%;
 			transform: translateX(-50%);
 		}
@@ -69,6 +69,7 @@
 			transform: translateX(-50%);
 			width: 90vw;
 			max-width: 400px;
+			padding: 0;
 			position: fixed;
 		}
 	}

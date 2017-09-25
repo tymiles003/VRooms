@@ -67,9 +67,10 @@ class AnnotationPage extends Component {
 
 			inCreationMode: false,
 			mode: "idle",
-			inPosition: true,
-			positionConfirmed: true,
-			annotationConfirmed: true,
+			inPosition: false,
+			positionConfirmed: false,
+			annotationConfirmed: false,
+			isSubmitted: false,
 		};
 	}
 // componentDidMount ===============================
@@ -131,7 +132,8 @@ class AnnotationPage extends Component {
 		event.preventDefault();
 
 		this.setState({
-			mode: "placed"
+			mode: "placed",
+			positionConfirmed: true,
 		})
 		// 		newAnnotation: annoState,
 		// 		positionConfirmed: true,
@@ -161,17 +163,18 @@ class AnnotationPage extends Component {
 	}
 
 // submitAnnotation ================================
-	submitAnnotation = event => {
+	submitAnnotation = (event) => {
 		event.preventDefault();
 
 		console.log('---- (Page) submitAnnotation --->');
-		console.log('-------- label ====' , this.state.label )
-		console.log('--------  text ====' , this.state.text  )
+		console.log('label ====' , this.state.label )
+		console.log('text ====' , this.state.text  )
 
 		this.setState({ 
 			mode: 'submitted',
+			isSubmitted: true,
 		})
-		console.log('this.state.mode',this.state.mode);
+		// console.log('this.state.mode',this.state.mode);
 
 		this.saveAnnotation()
 	}
@@ -181,6 +184,7 @@ class AnnotationPage extends Component {
 	saveAnnotation = () => {
 		// this.setState({ mode: "saved" })
 		console.log('(Page) ---- saveAnnotation --->');
+		console.log('(Page) state ====',this.state);
 
 		// Grab relevant info from state
 		let { xAxis, yAxis, zAxis, label, text } = this.state;
@@ -188,10 +192,14 @@ class AnnotationPage extends Component {
 		// Put together annotation to add to annotation array in state
 		let newAnno =  { xAxis, yAxis, zAxis, label, text };
 		console.log('newAnno',newAnno);
-		// let newAnnoArray = this.state.annotations.push(newAnno);
 
+		// let newAnnoArray = this.state.annotations.push(newAnno);
 		this.setState({
-			annotations: this.state.annotations.push(newAnno)
+			newAnnotation: newAnno,
+			annotations: this.state.annotations.push(newAnno),
+			inCreationMode: false,
+			isSaved: true,
+			mode: 'saved'
 		})
 		// annotations: newAnnoArray
 
@@ -215,6 +223,7 @@ class AnnotationPage extends Component {
 						inCreationMode={this.state.inCreationMode}
 						positionConfirmed={this.state.positionConfirmed}
 						mode={this.state.mode}
+						newAnnotation={this.state.newAnnotation}
 					/>
 
 				
@@ -237,7 +246,8 @@ class AnnotationPage extends Component {
 					}
 
 
-					{ (this.state.mode === 'placed') &&
+					{/* { (this.state.mode === 'placed' && !this.state.isSubmitted) && */}
+					{ (this.state.positionConfirmed && !this.state.isSubmitted) &&
 						<section className='ws-row ws-foldout'>
 							<AnnotationForm 
 								port={this.portForm}

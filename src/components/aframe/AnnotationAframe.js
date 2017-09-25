@@ -33,40 +33,22 @@ class AnnotationAframe extends React.Component {
 			inCreationMode: false,
 			mode: 'idle',
 			newAnnotation: {},
+			annotations: [],
 		};
 	}
-////////////////////////////////////////////////////
+// componentWillReceiveProps =======================
 	componentWillReceiveProps = nextProps => { // Not called on initial render
+		// console.log('componentWillReceiveProps');
 		// console.log('nextProps.mode',nextProps.mode);
 		// console.log('this.props.inCreationMode',this.props.inCreationMode);
-		let { inCreationMode, mode, annotations } = nextProps;
+		let { inCreationMode, mode, newAnnotation } = nextProps;
 		
-		this.setState({ inCreationMode, mode, annotations });
+		this.setState({ inCreationMode, mode, newAnnotation});
 
 		console.log('Aframe mode ====',this.state.mode);
 	};
-////////////////////////////////////////////////////
-	getProperty = () => {
-		propertyAPI.getProperty(this.props.propID).then(response => {
-			// console.log(response);
-			this.setState({
-				selectedProperty: response.data[0]
-			});
-			console.log("this.state", this.state);
-		});
-	};
-////////////////////////////////////////////////////
-	getRoom = () => {
-		roomAPI.getRoom(this.props.roomID).then(response => {
-			// console.log(response);
-			this.setState({
-				room: response.data[0]
-			});
-			console.log("getRoom.state", this.state);
-		});
-	};
 
-////////////////////////////////////////////////////
+// componentDidMount ===============================
 	componentDidMount = () => {
 		console.log("---- componentDidMount --->");
 		// this.getProperty();
@@ -84,22 +66,34 @@ class AnnotationAframe extends React.Component {
 			});
 		}
 
-		this.setState({
-			annotations: this.props.annotations
-		})
-		// if (this.props.inCreationMode) {
-		// 	this.setState({
-		// 		inCreationMode: true,
-		// 	})
-		// }
+		// this.setState({
+		// 	annotations: this.props.annotations
+		// })
+
 	};
-
-	// handlePortalState = dest => { this.setState({ sky_source: dest }) }
-	// handleRoomStates = state => { this.setState(state) }
-
-
-////////////////////////////////////////////////////
-// getPosition /////////////////////////////////////
+//==================================================
+// getProperty =====================================
+	getProperty = () => {
+		propertyAPI.getProperty(this.props.propID).then(response => {
+			// console.log(response);
+			this.setState({
+				selectedProperty: response.data[0]
+			});
+			console.log("this.state", this.state);
+		});
+	};
+// getRoom =========================================
+	getRoom = () => {
+		roomAPI.getRoom(this.props.roomID).then(response => {
+			// console.log(response);
+			this.setState({
+				room: response.data[0]
+			});
+			console.log("getRoom.state", this.state);
+		});
+	};
+//==================================================
+// getPosition =====================================
 	getPosition = event => {
 			event.preventDefault();
 			console.log('---- getPosition --->');
@@ -111,7 +105,7 @@ class AnnotationAframe extends React.Component {
 				event.target.addEventListener('raycaster-intersected', this.handleRay)
 			}
 		}
-// handleRay ///////////////////////////////////////
+// handleRay =======================================
 	handleRay = (event) => {
 			event.preventDefault();
 			console.log('---- handleRay --->');
@@ -123,16 +117,12 @@ class AnnotationAframe extends React.Component {
 			let { x,y,z } = intersectionPoint;
 			// console.log('ray.components',ray.components);
 			let posState = {
-				// newAnnotation: {x,y,z},
 				xAxis: x,
 				yAxis: y,
 				zAxis: z,
 				inPosition: true,
 				mode: 'positioned'
 			}
-			// this.setState({
-			// 	newAnnotation: { x,y,z }
-			// })
 			this.props.port(posState)
 			
 			// Remove event so it only fires once. (or else it would fire constantly)
@@ -143,8 +133,60 @@ class AnnotationAframe extends React.Component {
 				inPosition: true
 			})
 		};
-////////////////////////////////////////////////////
+
+// buildAnnotations =================================
+
+		buildAnnotations(annotations){
+			console.log('---- buildAnnotations --->');
+			console.log('annotations',annotations);
+			let annotationArray = annotations;
+
+			if (!annotationArray) {
+				console.log('!annotationArray');
+				annotationArray = this.props.annotations;
+			}
+
+			console.log('annotationArray',annotationArray);
+			let annotationComponents = annotationArray.map((ea, index) => {
+				return (
+					<Annotation data={ea} key={index} />
+				)
+			})
+
+			return annotationComponents;
+		}
+		// {this.state.annotations.map((ea, index) => (
+		// 	<Annotation data={ea} key={index} />
+		// ))}
+
+// render //////////////////////////////////////////
 	render() {
+		// function AllAnnotations(props){
+		const AllAnnotations = () => {
+			console.log('---- AllAnnotations --->');
+			// let annotations = this.props.annotations;
+			// console.log('annotations',annotations);
+			// let annotations = props.data;
+			// let allElements = annotations.map( (ea, index) => {
+			// 	return (
+			// 		<Annotation data={ea} key={index} />
+			// 	)
+			// })
+			// return allElements;
+			return (
+				<Entity>
+					{this.props.annotations.map( (ea, index) => {
+						
+						return (
+							<Annotation data={ea} key={index} />
+						)
+					})}
+				</Entity>
+			)
+		}
+		
+		
+
 		return (
 			// add embedded to embed
 			<Scene 
@@ -198,12 +240,16 @@ class AnnotationAframe extends React.Component {
 					)}
 				</Entity>
 				{/*==================================================*/}
-				{/*==================================================*/}
-				{this.state.annotations.map((ea, index) => (
+				{this.props.annotations.map((ea, index) => (
 					<Annotation data={ea} key={index} />
 				))}
 				{/*==================================================*/}
-				{/* <RotatingBox handleBoxState={this.handleBoxState}/> */}
+				{/* <AllAnnotations /> */}
+				{/* {this.state.newAnnotation &&
+					<Annotation data={this.state.newAnnotation} key={this.props.annotations.length+1} />
+				} */}
+				{/* {this.buildAnnotations(this.state.annotations)} */}
+				{/*==================================================*/}
 			</Scene>
 		);
 	}
