@@ -66,40 +66,20 @@ class AnnotationPage extends Component {
 			newAnnotation: {},
 
 			inCreationMode: false,
-			creationMode: "idle",
+			mode: "idle",
 			inPosition: true,
 			positionConfirmed: true,
 			annotationConfirmed: true,
 		};
 	}
-
-	// Whenever an anno is added/deleted, this sets the state,
-	// which triggers AnnotationAframe to update
-	// addedAnnotations, which will trigger the change in aframe
-	portAnnotationState = formState => {
-		console.log("---- INCOMING ANNOTATION STATE ---> " + formState);
-
-		this.setState(formState);
-		console.log('this.state',this.state);
-		
-		if(this.state.creationMode === 'annotation confirmed'){
-
-			
-			// formState is the object for a single annotation.
-			// Need to use special form of setState that accepts a function
-			// instead of an object in order to push to array
-			this.setState((prevState, formState) => {
-				annotations: {
-					prevState.annotations.push(formState);
-				}
-			}
-		)
-	}
-
-		// let { label, text, image, link, width, xAxis, yAxis, zAxis } = this.state;
-		console.log("---- LIFTED  STATE ---> " + this.state); // just viewing the entire state for now.
+// componentDidMount ===============================
+	componentDidMount = () => {
+		// this.handleAnnotations();
+		this.getProperty(); // not super essential. for extra info on page.
+		console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
 	};
 
+// getProperty =====================================
 	getProperty = () => {
 		propertyAPI.getProperty(this.props.propID).then(response => {
 			console.log(response);
@@ -109,64 +89,119 @@ class AnnotationPage extends Component {
 			console.log("this.state", this.state);
 		});
 	};
+// portAnnotationState =============================
+	// Whenever an anno is added/deleted, this sets the state,
+	// which triggers AnnotationAframe to update
+	// addedAnnotations, which will trigger the change in aframe
+	portAnnotationState = annoState => {
+		// annoState is the object for a single annotation.
+		console.log("---- portAnnotationState ---> " + annoState);
 
-	handleAnnotations = () => {
-		// if(this.props.annotations){
-		// this.setState({
-		// })
+		this.setState(annoState);
+
+		console.log(' mode ====' , this.state.mode )
+		console.log('state ====' , this.state )
+
+		// if(this.state.mode === 'submitted'){
+		// 	this.saveAnnotation()
 		// }
-	};
 
+	};
+// handleAnnotations ===============================
+	// handleAnnotations = () => {
+	// 	if(this.props.annotations){
+	// 		this.setState({ })
+	// 	}
+	// };
+
+
+// handleNewClick ==================================
 	handleNewClick = e => {
 		e.preventDefault();
 		console.log("---- toggle Creation Mode --->");
 		this.setState({
 			inCreationMode: true,
-			creationMode: 'positioning',
-			positionConfirmed: false,
+			mode: 'positioning',
 		});
-		// creationMode: "Add"
+		// positionConfirmed: false,
 	};
 
+// confirmPosition =================================
+	confirmPosition = (event) => {
+		event.preventDefault();
 
-	confirmPosition = () => {
-		this.setState({ 
-			newAnnotation: formState,
-			positionConfirmed: true,
-			creationMode: "position confirmed"
+		this.setState({
+			mode: "placed"
 		})
-	}
-	submitAnnotation = () => {
-		this.setState({ 
-			submitAnnotation: true,
-			creationMode: "annotation confirmed"
-		})
-
-		console.log('this.state',this.state);
-		alert('submit annotation attempt')
+		// 		newAnnotation: annoState,
+		// 		positionConfirmed: true,
 	}
 
-	// portAnnotationForm = (formState) => {
-	// 	this.setState({
-	// 		newAnnotation: formState,
-	// 	})
-	// 	console.log('this.state.newAnnotation',this.state.newAnnotation);
-	// }
 
-	componentDidMount = () => {
-		this.handleAnnotations();
-		this.getProperty(); // not super essential. for extra info on page.
-		console.log("componentDidMount ---> state", this.state.annotations);
-	};
 
+// portForm ========================================
+	portForm = formState => {
+		// console.log('---- portForm (Page) --->',formState);
+		// let { label, text } = formState;
+		// this.setState({
+		// 	newAnnotation: {
+		// 		label: label,
+		// 		text: text,
+		// 	}
+		// })
+
+		this.setState(formState)
+
+		// console.log('this.state.newAnnotation',this.state.newAnnotation);
+		// console.log('formState',formState);
+
+		// let newAnno = Object.assign(this.state.newAnnotation, formState);
+		// console.log('newAnno',newAnno);
+
+	}
+
+// submitAnnotation ================================
+	submitAnnotation = event => {
+		event.preventDefault();
+
+		console.log('---- (Page) submitAnnotation --->');
+		console.log('-------- label ====' , this.state.label )
+		console.log('--------  text ====' , this.state.text  )
+
+		this.setState({ 
+			mode: 'submitted',
+		})
+		console.log('this.state.mode',this.state.mode);
+
+		this.saveAnnotation()
+	}
+
+
+// saveAnnotation ==================================
+	saveAnnotation = () => {
+		// this.setState({ mode: "saved" })
+		console.log('(Page) ---- saveAnnotation --->');
+
+		// Grab relevant info from state
+		let { xAxis, yAxis, zAxis, label, text } = this.state;
+
+		// Put together annotation to add to annotation array in state
+		let newAnno =  { xAxis, yAxis, zAxis, label, text };
+		console.log('newAnno',newAnno);
+		// let newAnnoArray = this.state.annotations.push(newAnno);
+
+		this.setState({
+			annotations: this.state.annotations.push(newAnno)
+		})
+		// annotations: newAnnoArray
+
+		console.log('this.state.annotations',this.state.annotations);
+	}
+// render //////////////////////////////////////////
 	render() {
 		// let {street,city,state,zip,country,bedrooms,baths,built_year,price,square_feet,property_name} = this.state.property;
 		return (
 			<main>
-				{/* <header className="ws-compact">
-					<h5>Annotating:</h5>
-	
-				</header> */}
 				<div className="aframe-wrap fullscreen">
 					{/* <AnnotationAframe 
 						propID={this.props.propID} 
@@ -175,10 +210,11 @@ class AnnotationPage extends Component {
 					/> */}
 
 					<AnnotationAframe
-						addedAnnotations={this.state.annotations}
+						annotations={this.state.annotations}
 						port={this.portAnnotationState}
 						inCreationMode={this.state.inCreationMode}
 						positionConfirmed={this.state.positionConfirmed}
+						mode={this.state.mode}
 					/>
 
 				
@@ -191,7 +227,7 @@ class AnnotationPage extends Component {
 
 
 					{/* {(this.state.inPosition && !this.state.positionConfirmed) && */}
-					{(this.state.creationMode === 'positioned') &&
+					{(this.state.mode === 'positioned') &&
 						<Btn
 							id="confirm-position"
 							href="#!"
@@ -201,10 +237,19 @@ class AnnotationPage extends Component {
 					}
 
 
-					{this.state.creationMode === 'position confirmed' &&
-						<section className={'ws-row ws-foldout'}>
-							<AnnotationForm port={this.submitAnnotation}/>
-	
+					{ (this.state.mode === 'placed') &&
+						<section className='ws-row ws-foldout'>
+							<AnnotationForm 
+								port={this.portForm}
+							/>
+
+							<Btn
+								id="submit-annotation"
+								href="#!"
+								theme="primary"
+								onClick={this.submitAnnotation}
+								text="Submit"
+							/>
 						</section>
 					}
 	
@@ -214,9 +259,8 @@ class AnnotationPage extends Component {
 			</main>
 		);
 	}
-}
-
-export default AnnotationPage;
+////////////////////////////////////////////////////
+} export default AnnotationPage;
 
 AnnotationPage.defaultProps = {
 	propID: "59c5a00ba4d2290012cbdfaa",

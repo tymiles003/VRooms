@@ -50,7 +50,6 @@ render(){
 				near: 0, 
 				origin: '0 1 0', 
 				showLine: true,
-				useWorldCoordinate: true,
 			}}
 			position="0 -0.9 0"
 			rotation="90 0 0"

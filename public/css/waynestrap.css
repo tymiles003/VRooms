@@ -112,120 +112,6 @@
   color: initial;
 }
 
-.ws-btn.ws-primary {
-  background-color: #3498db;
-}
-
-.ws-btn.ws-secondary {
-  background-color: #1abc9c;
-}
-
-.ws-btn.ws-success {
-  background-color: #2ecc71;
-}
-
-.ws-btn.ws-danger {
-  background-color: #e74c3c;
-}
-
-.ws-btn.ws-info {
-  background-color: #9b59b6;
-}
-
-.ws-btn.ws-warning {
-  background-color: #f39c12;
-}
-
-.ws-btn.ws-disabled {
-  background-color: #95a5a6;
-}
-
-.ws-btn.ws-black {
-  background-color: #000000;
-}
-
-.ws-btn.ws-dark {
-  background-color: #34495e;
-}
-
-.ws-btn.ws-light {
-  background-color: #ecf0f1;
-  color: rgba(0, 0, 0, 0.87);
-}
-
-.ws-btn.ws-white {
-  background-color: #ffffff;
-  color: rgba(0, 0, 0, 0.87);
-}
-
-.ws-btn:hover, .ws-btn:active, .ws-btn:focus {
-  color: #fff;
-}
-
-.ws-btn.isOutlined {
-  border: 2px solid;
-  background-color: transparent;
-}
-
-.ws-btn.isOutlined.ws-primary {
-  color: #3498db;
-  border-color: #3498db;
-}
-
-.ws-btn.isOutlined.ws-secondary {
-  color: #1abc9c;
-  border-color: #1abc9c;
-}
-
-.ws-btn.isOutlined.ws-success {
-  color: #2ecc71;
-  border-color: #2ecc71;
-}
-
-.ws-btn.isOutlined.ws-danger {
-  color: #e74c3c;
-  border-color: #e74c3c;
-}
-
-.ws-btn.isOutlined.ws-info {
-  color: #9b59b6;
-  border-color: #9b59b6;
-}
-
-.ws-btn.isOutlined.ws-warning {
-  color: #f39c12;
-  border-color: #f39c12;
-}
-
-.ws-btn.isOutlined.ws-disabled {
-  color: #95a5a6;
-  border-color: #95a5a6;
-}
-
-.ws-btn.isOutlined.ws-black {
-  color: #000000;
-  border-color: #000000;
-}
-
-.ws-btn.isOutlined.ws-dark {
-  color: #34495e;
-  border-color: #34495e;
-}
-
-.ws-btn.isOutlined.ws-light {
-  color: #ecf0f1;
-  border-color: #ecf0f1;
-}
-
-.ws-btn.isOutlined.ws-white {
-  color: #ffffff;
-  border-color: #ffffff;
-}
-
-.ws-btn.isOutlined:hover, .ws-btn.isOutlined:active, .ws-btn.isOutlined:focus {
-  color: initial;
-}
-
 html {
   font-size: 16px;
 }
@@ -932,8 +818,15 @@ body::-webkit-scrollbar-thumb {
   transform: translateX(-50%);
 }
 
+.aframe-wrap.fullscreen #submit-annotation {
+  position: fixed;
+  top: 40vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .aframe-wrap.fullscreen .ws-form {
-  bottom: 55vh;
+  bottom: 60vh;
   left: 50vw;
   transform: translateX(-50%);
   width: 90vw;

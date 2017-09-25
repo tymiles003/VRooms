@@ -2,9 +2,10 @@
 	// @import "./vendor/_materialize-colors";
 	// @import "./vendor/_material-design-guide";
 	// @import "./vendor/_flat-colors";
-		@import "../vendor/_materialize-colors";
-		@import "../vendor/_material-design-guide";
-		@import "../vendor/_flat-colors";
+	@import "./vendor/_materialize-colors", "./vendor/_material-design-guide", "./vendor/_flat-colors";
+		// @import "../vendor/_materialize-colors";
+		// @import "../vendor/_material-design-guide";
+		// @import "../vendor/_flat-colors";
 //============================================
 
 // Define General Colors =====================
@@ -100,5 +101,5 @@ $color-bad: $red;
 
 }
 
-// @import 'modules/_color-scheme';
-@import '_color-scheme';
+@import 'modules/_color-scheme';
+// @import '_color-scheme';

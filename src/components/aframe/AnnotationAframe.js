@@ -31,28 +31,21 @@ class AnnotationAframe extends React.Component {
 				pano_url: ""
 			},
 			inCreationMode: false,
-			inPosition: false,
-			positionConfirmed: false,
-			currentMode: 'ready',
+			mode: 'idle',
 			newAnnotation: {},
 		};
-		// sky_source: this.props.photo_url
-		// this.handlePhotoAssets(this.props.photos)
 	}
-
-	componentWillReceiveProps = nextProps => {
-		console.log("---- componentWillReceiveProps --->");
-		// console.log('nextProps.creationMode',nextProps.creationMode);
+////////////////////////////////////////////////////
+	componentWillReceiveProps = nextProps => { // Not called on initial render
+		// console.log('nextProps.mode',nextProps.mode);
 		// console.log('this.props.inCreationMode',this.props.inCreationMode);
-		// Not called on initial render
-		let{inCreationMode,positionConfirmed} = nextProps;
-		this.setState({
-			inCreationMode, positionConfirmed
-		});
-		console.log("this.state.inCreationMode", this.state.inCreationMode);
-		console.log("this.state.positionConfirmed", this.state.positionConfirmed);
-	};
+		let { inCreationMode, mode, annotations } = nextProps;
+		
+		this.setState({ inCreationMode, mode, annotations });
 
+		console.log('Aframe mode ====',this.state.mode);
+	};
+////////////////////////////////////////////////////
 	getProperty = () => {
 		propertyAPI.getProperty(this.props.propID).then(response => {
 			// console.log(response);
@@ -62,7 +55,7 @@ class AnnotationAframe extends React.Component {
 			console.log("this.state", this.state);
 		});
 	};
-
+////////////////////////////////////////////////////
 	getRoom = () => {
 		roomAPI.getRoom(this.props.roomID).then(response => {
 			// console.log(response);
@@ -73,14 +66,7 @@ class AnnotationAframe extends React.Component {
 		});
 	};
 
-	// buildAnnotations = () => {
-	// 	// let { label, text, image, link, width, xAxis, yAxis, zAxis } = this.state;
-	// 	annotations.map( (ea,i) => {
-	// 		console.log('label', ea.label);
-	// 		return <Entity text={{value: 'yolo'+i}} />
-	// 	})
-	// }
-
+////////////////////////////////////////////////////
 	componentDidMount = () => {
 		console.log("---- componentDidMount --->");
 		// this.getProperty();
@@ -98,6 +84,9 @@ class AnnotationAframe extends React.Component {
 			});
 		}
 
+		this.setState({
+			annotations: this.props.annotations
+		})
 		// if (this.props.inCreationMode) {
 		// 	this.setState({
 		// 		inCreationMode: true,
@@ -108,23 +97,21 @@ class AnnotationAframe extends React.Component {
 	// handlePortalState = dest => { this.setState({ sky_source: dest }) }
 	// handleRoomStates = state => { this.setState(state) }
 
-	// portRaycaster = rayProps => {
-	// 	console.log("---- portRaycaster --->");
-	// 	console.log("rayProps", rayProps);
-	// };	
 
-
+////////////////////////////////////////////////////
+// getPosition /////////////////////////////////////
 	getPosition = event => {
 			event.preventDefault();
 			console.log('---- getPosition --->');
 			
-			if(!this.state.inPosition){
+			let mode = this.state.mode;
+
+			if(mode === 'positioning' || mode === 'positioned'){
 				// Bind the event looking for where raycaster intersects anno
 				event.target.addEventListener('raycaster-intersected', this.handleRay)
 			}
 		}
-
-
+// handleRay ///////////////////////////////////////
 	handleRay = (event) => {
 			event.preventDefault();
 			console.log('---- handleRay --->');
@@ -136,17 +123,18 @@ class AnnotationAframe extends React.Component {
 			let { x,y,z } = intersectionPoint;
 			// console.log('ray.components',ray.components);
 			let posState = {
-				newAnnotation: {x,y,z},
+				// newAnnotation: {x,y,z},
+				xAxis: x,
+				yAxis: y,
+				zAxis: z,
 				inPosition: true,
-				creationMode: 'positioned'
+				mode: 'positioned'
 			}
 			// this.setState({
 			// 	newAnnotation: { x,y,z }
 			// })
 			this.props.port(posState)
 			
-			console.log('this.state.newAnnotation',this.state.newAnnotation);
-
 			// Remove event so it only fires once. (or else it would fire constantly)
 			event.target.removeEventListener('raycaster-intersected', this.handleRay);
 
@@ -155,7 +143,7 @@ class AnnotationAframe extends React.Component {
 				inPosition: true
 			})
 		};
-
+////////////////////////////////////////////////////
 	render() {
 		return (
 			// add embedded to embed
@@ -211,7 +199,7 @@ class AnnotationAframe extends React.Component {
 				</Entity>
 				{/*==================================================*/}
 				{/*==================================================*/}
-				{this.props.addedAnnotations.map((ea, index) => (
+				{this.state.annotations.map((ea, index) => (
 					<Annotation data={ea} key={index} />
 				))}
 				{/*==================================================*/}

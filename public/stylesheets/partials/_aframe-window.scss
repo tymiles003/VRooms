@@ -57,8 +57,14 @@
 			left: 50%;
 			transform: translateX(-50%);
 		}
+		#submit-annotation {
+			position: fixed;
+			top: 40vh;
+			left: 50%;
+			transform: translateX(-50%);
+		}
 		.ws-form {
-			bottom: 55vh;
+			bottom: 60vh;
 			left: 50vw;
 			transform: translateX(-50%);
 			width: 90vw;
