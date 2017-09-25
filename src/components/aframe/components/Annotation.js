@@ -62,7 +62,7 @@ class Annotation extends React.Component {
 				className="annotation-toggle box"
 				geometry={{primitive: 'box', width: 0.3, height: 0.3, depth: 0.3}}
 				material={{ color: '#3498db'}}
-				animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
+				animation__rotate={{property: 'rotation', dur: 4000, loop: true, to: '360 360 360'}}
 				
 					events={{
 						mouseenter: this.handleMouseEnter,

@@ -238,7 +238,7 @@ class AnnotationAframe extends React.Component {
 								mouseenter: this.handleMouseEnter,
 								click: this.getPosition
 							}}
-							position={{ x: 0, y: 0, z: -4 }}
+							position={{ x: 0, y: 0, z: -5 }}
 						/>
 					)}
 				</Entity>
