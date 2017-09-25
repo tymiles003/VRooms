@@ -25,7 +25,7 @@ module.exports = {
         console.log(">>> propertyController.js - adding new property")
         console.log(JSON.stringify(req.body, null, 2));
         // Create new property
-        let newProperty = new Property(req.body.property);
+        let newProperty = new Property(req.body);
         newProperty.save((err, doc) => {
             // Add property to user
             User.findByIdAndUpdate(
@@ -55,11 +55,10 @@ module.exports = {
      * Updates an existing property
      */
     update: function(req, res) {
-        Property.update(
-            {
-                _id: req.params.property_id
-            },
-            req.body
+        Property.findByIdAndUpdate(
+            req.params.property_id,
+            req.body,
+            { new: true }
         )
             .then(function(doc) {
                 res.json(doc);
@@ -79,7 +78,7 @@ module.exports = {
             .then(function(property){
                 property.remove(); // Using document-remove in order to trigger middleware
                 console.log("Success: Property removed");
-                res.status(200).send();
+                res.json(property);
                 // return a non-undefined value to signal that we didn't forget to return
                 return null;
             })

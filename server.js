@@ -169,6 +169,8 @@ let db = "mongodb://localhost/vroomsDB";
 // const db = process.env.MONGODB_URI || "mongodb://localhost/vroomsDB";
 if (process.env.NODE_ENV === 'production') {
 	db = process.env.MONGODB_URI
+} else if (process.env.NODE_ENV === 'test') {
+	db = "mongodb://localhost/vrooms-test";
 }
 
 // Connect mongoose to our database
@@ -183,6 +185,9 @@ mongoose.connect(db, error => {
 });
 
 // Start the server
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log("Now listening on port %s!", PORT);
 });
+
+// Export the server object to be used in unit-testing
+module.exports = server;

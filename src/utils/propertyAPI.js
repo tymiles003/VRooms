@@ -29,13 +29,20 @@ const propertyAPI = {
      *  Adds a new property to the specified user 
      */
     addNewProperty: (userID, property, cb) => {
-        axios.post("/api/property/" + userID, { property }).then(response => {
+        axios.post("/api/property/" + userID, property).then(response => {
             if (cb) {
                 cb(response);
             } else {
                 return response;
             }
         });
+    },
+
+    /**
+     * Update an existing property
+     */
+    updateProperty: (propertyID, property) => {
+        return axios.patch("/api/property/" + propertyID, property);
     }
 };
 
