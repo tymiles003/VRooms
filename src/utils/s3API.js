@@ -55,7 +55,7 @@ function uploadFile(fileBlob, signedRequest, url, cb) {
             console.log("upload response: ", response);
             if (response.status === 200) {
                 console.log("File uploaded successfully to: ", url);
-                alert ("File uploaded successfully to: " + url);
+                // alert ("File uploaded successfully to: " + url);
                 if (cb) {
                     cb(url);
                 }
