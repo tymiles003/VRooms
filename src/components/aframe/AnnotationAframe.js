@@ -224,7 +224,10 @@ class AnnotationAframe extends React.Component {
 								height: 0.3,
 								depth: 0.3
 							}}
-							material={{ color: "white" }}
+							// material={{ color: "white" }}
+							// material={{ color: "#FFEE58" }}
+							// material={{ color: "#FF3D00", opacity: 0.5 }}
+							material={{ color: "#f1c40f", opacity: 0.8 }}
 							animation__rotate={{
 								property: "rotation",
 								dur: 5000,

@@ -24,7 +24,7 @@ class RotatingBox extends Component {
 		<Entity id="box"
 			geometry={{primitive: 'box', width: 0.3, height: 0.3, depth: 0.3}}
 			material={{ opacity: 0.6}}
-			animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
+			animation__rotate={{property: 'rotation', dur: 4000, loop: true, to: '360 360 360'}}
 			>
 		</Entity>		
 		)
