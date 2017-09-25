@@ -189,5 +189,47 @@ const server = app.listen(PORT, () => {
     console.log("Now listening on port %s!", PORT);
 });
 
+
+/**
+ * SOCKET CODE
+ */
+const io = require('socket.io')(server);
+let roomsArr = {};
+
+io.on('connection', (socket) => {  
+//   console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+
+
+socket.on('open', function (room) {
+
+	// console.log("io.engine.clientsCount", io.engine.clientsCount);
+
+    socket.join(room.room);
+    socket.room = room.room;
+
+    if (roomsArr[room.room] === undefined) {
+		console.log("in if loop");
+        roomsArr[room.room] = 1;
+    } else {
+		console.log("in else loop");
+		
+        roomsArr[room.room]++;
+    }
+	console.log("Count === ", roomsArr[room.room]);
+	
+});
+
+socket.on('close', function () {
+     roomsArr[socket.room]--;
+});
+
+
+});
+
 // Export the server object to be used in unit-testing
 module.exports = server;
