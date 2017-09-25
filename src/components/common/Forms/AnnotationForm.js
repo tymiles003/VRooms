@@ -50,7 +50,7 @@ class AnnotationForm extends Component {
 		// Lift state up to Page
 		// this.props.port(this.state)
 
-		// this.props.port(newState)
+		this.props.port(newState)
 
 	}
 

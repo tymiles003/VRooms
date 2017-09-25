@@ -47,15 +47,15 @@ class AnnotationAframe extends React.Component {
 		// console.log('Aframe mode ====',this.state.mode);
 		
 		// Grab coordinates from state and send to parent
-		if (nextProps.mode == 'gathering' && !nextProps.positionConfirmed) {
-			let {xAxis, yAxis, zAxis} = this.state;
-			this.props.port({
-				xAxis, 
-				yAxis, 
-				zAxis,
-				positionConfirmed: true,
-			});
-		}
+		// if (nextProps.mode == 'gathering' && !nextProps.positionConfirmed) {
+		// 	let {xAxis, yAxis, zAxis} = this.state;
+		// 	this.props.port({
+		// 		xAxis, 
+		// 		yAxis, 
+		// 		zAxis,
+		// 		positionConfirmed: true,
+		// 	});
+		// }
 	};
 
 // componentDidMount ===============================
@@ -110,10 +110,10 @@ class AnnotationAframe extends React.Component {
 			
 			// let mode = this.state.mode;
 
-			if(this.state.inCreationMode){
+			// if(this.state.inCreationMode){
 				// Bind the event looking for where raycaster intersects anno
 				event.target.addEventListener('raycaster-intersected', this.handleRay)
-			}
+			// }
 		}
 // handleRay =======================================
 	handleRay = (event) => {
@@ -131,7 +131,8 @@ class AnnotationAframe extends React.Component {
 				yAxis: y,
 				zAxis: z,
 			}
-			// this.props.port(posState)
+			console.log('posState ====',posState);
+			this.props.port(posState)
 			
 			// Remove event so it only fires once. (or else it would fire constantly)
 			event.target.removeEventListener('raycaster-intersected', this.handleRay);
@@ -230,9 +231,7 @@ class AnnotationAframe extends React.Component {
 								height: 0.3,
 								depth: 0.3
 							}}
-							// material={{ color: "white" }}
-							// material={{ color: "#FFEE58" }}
-							// material={{ color: "#FF3D00", opacity: 0.5 }}
+					
 							material={{ color: "#f1c40f", opacity: 0.8 }}
 							animation__rotate={{
 								property: "rotation",
@@ -242,7 +241,7 @@ class AnnotationAframe extends React.Component {
 							}}
 							events={{
 								mouseenter: this.handleMouseEnter,
-								click: this.getPosition
+								click: this.getPosition,
 							}}
 							position={{ x: 0, y: 0, z: -5 }}
 						/>

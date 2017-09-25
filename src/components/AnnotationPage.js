@@ -92,13 +92,27 @@ class AnnotationPage extends Component {
 			console.log("this.state", this.state);
 		});
 	};
+
+
+// handleNewClick ==================================
+	handleNewClick = e => {
+		e.preventDefault();
+		console.log("---- toggle Creation Mode --->");
+		this.setState({
+			inCreationMode: true,
+			mode: 'in progress',
+		});
+		// positionConfirmed: false,
+	};
+
+
 // portAframe =============================
 
-	portAframe = annoState => {
+	portAframe = aframeState => {
 		// annoState is the object for a single annotation.
-		console.log("---- portAframe ---> " + annoState);
+		console.log("---- portAframe ---> " + aframeState);
 
-		this.setState(annoState);
+		this.setState(aframeState);
 
 		// console.log(' mode ====' , this.state.mode )
 		// console.log('state ====' , this.state )
@@ -116,28 +130,17 @@ class AnnotationPage extends Component {
 	// };
 
 
-// handleNewClick ==================================
-	handleNewClick = e => {
-		e.preventDefault();
-		console.log("---- toggle Creation Mode --->");
-		this.setState({
-			inCreationMode: true,
-			mode: 'in progress',
-		});
-		// positionConfirmed: false,
-	};
-
 // confirmPosition =================================
-	confirmPosition = (event) => {
-		event.preventDefault();
+	// confirmPosition = (event) => {
+	// 	event.preventDefault();
 
-		this.setState({
-			mode: "placed",
-			positionConfirmed: true,
-		})
-		// 		newAnnotation: annoState,
-		// 		positionConfirmed: true,
-	}
+	// 	this.setState({
+	// 		mode: "placed",
+	// 		positionConfirmed: true,
+	// 	})
+	// 	// 		newAnnotation: annoState,
+	// 	// 		positionConfirmed: true,
+	// }
 
 
 
@@ -163,28 +166,29 @@ class AnnotationPage extends Component {
 	}
 
 // submitAnnotation ================================
-	submitAnnotation = (event) => {
-		event.preventDefault();
+	// submitAnnotation = (event) => {
+	// 	event.preventDefault();
 
-		console.log('---- (Page) submitAnnotation --->');
-		// console.log('label ====' , this.state.label )
-		// console.log('text ====' , this.state.text  )
+	// 	console.log('---- (Page) submitAnnotation --->');
+	// 	// console.log('label ====' , this.state.label )
+	// 	// console.log('text ====' , this.state.text  )
 
-		this.setState({ 
-			mode: 'gathering',
-		})
-		// submitted: true,
-		// console.log('this.state.mode',this.state.mode);
+	// 	// this.setState({ 
+	// 	// 	mode: 'gathering',
+	// 	// })
+	// 	// submitted: true,
+	// 	// console.log('this.state.mode',this.state.mode);
 
-		// this.saveAnnotation()
-	}
+	// 	// this.saveAnnotation()
+	// }
 
 
 // saveAnnotation ==================================
-	saveAnnotation = () => {
+	saveAnnotation = (e) => {
+		e.preventDefault();
 		// this.setState({ mode: "saved" })
-		console.log('(Page) ---- saveAnnotation --->');
-		console.log('(Page) state ====',this.state);
+		console.log('---- saveAnnotation --->');
+		console.log('state ====',this.state);
 
 		// Grab relevant info from state
 		let { xAxis, yAxis, zAxis, label, text } = this.state;
@@ -219,9 +223,9 @@ class AnnotationPage extends Component {
 
 					<AnnotationAframe
 						inCreationMode={this.state.inCreationMode}
+						port={this.portAframe}
 
 						annotations={this.state.annotations}
-						port={this.portAframe}
 						positionConfirmed={this.state.positionConfirmed}
 						mode={this.state.mode}
 						newAnnotation={this.state.newAnnotation}
@@ -248,7 +252,7 @@ class AnnotationPage extends Component {
 
 					{/* { (this.state.mode === 'placed' && !this.state.isSubmitted) && */}
 					{/* { (this.state.positionConfirmed && !this.state.isSubmitted) && */}
-					{this.state.inCreationMode && (
+					{this.state.inCreationMode ? (
 						<section className='ws-row ws-foldout'>
 							<AnnotationForm 
 								port={this.portForm}
@@ -259,11 +263,11 @@ class AnnotationPage extends Component {
 								id="submit-annotation"
 								href="#!"
 								theme="primary"
-								onClick={this.submitAnnotation}
+								onClick={this.saveAnnotation}
 								text="Submit"
 							/>
 						</section>
-					)}
+					) : null }
 	
 
 					
