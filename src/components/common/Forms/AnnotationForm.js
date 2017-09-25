@@ -17,7 +17,23 @@ class AnnotationForm extends Component {
 		};
 	}
 
-	
+	componentWillReceiveProps = (nextProps) => {
+		let { inCreationMode, mode, submitted } = nextProps;
+
+		this.setState({
+			inCreationMode,
+			mode,
+			submitted,
+		})
+
+		if ( nextProps.mode == 'gathering' && !nextProps.formConfirmed ) {
+			this.props.port({
+				label: this.state.label,
+				text: this.state.text,
+				formConfirmed: true,
+			});
+		}
+	}	
 
 	handleInputChange = event => {
 		event.preventDefault();
@@ -34,7 +50,7 @@ class AnnotationForm extends Component {
 		// Lift state up to Page
 		// this.props.port(this.state)
 
-		this.props.port(newState)
+		// this.props.port(newState)
 
 	}
 
@@ -48,7 +64,8 @@ class AnnotationForm extends Component {
 	// 	this.props.port({
 	// 		label: this.state.label,
 	// 		text: this.state.text,
-	// 		mode: 'submitted'
+	// 		mode: 'submitted',
+	// 		inCreationMode: false,
 	// 	});
 	// }
 

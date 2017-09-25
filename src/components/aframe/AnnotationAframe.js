@@ -41,11 +41,21 @@ class AnnotationAframe extends React.Component {
 		// console.log('componentWillReceiveProps');
 		// console.log('nextProps.mode',nextProps.mode);
 		// console.log('this.props.inCreationMode',this.props.inCreationMode);
-		let { inCreationMode, mode, newAnnotation } = nextProps;
+		// let { inCreationMode, mode } = nextProps;
 		
-		this.setState({ inCreationMode, mode, newAnnotation});
-
-		console.log('Aframe mode ====',this.state.mode);
+		// this.setState({ inCreationMode, mode, newAnnotation});
+		// console.log('Aframe mode ====',this.state.mode);
+		
+		// Grab coordinates from state and send to parent
+		if (nextProps.mode == 'gathering' && !nextProps.positionConfirmed) {
+			let {xAxis, yAxis, zAxis} = this.state;
+			this.props.port({
+				xAxis, 
+				yAxis, 
+				zAxis,
+				positionConfirmed: true,
+			});
+		}
 	};
 
 // componentDidMount ===============================
@@ -98,9 +108,9 @@ class AnnotationAframe extends React.Component {
 			event.preventDefault();
 			console.log('---- getPosition --->');
 			
-			let mode = this.state.mode;
+			// let mode = this.state.mode;
 
-			if(mode === 'positioning' || mode === 'positioned'){
+			if(this.state.inCreationMode){
 				// Bind the event looking for where raycaster intersects anno
 				event.target.addEventListener('raycaster-intersected', this.handleRay)
 			}
@@ -109,7 +119,7 @@ class AnnotationAframe extends React.Component {
 	handleRay = (event) => {
 			event.preventDefault();
 			console.log('---- handleRay --->');
-			console.log('event.detail',event.detail);
+			// console.log('event.detail',event.detail);
 			
 			// event.detail is the holy grail
 			// contains intersection world coordinates. (not relative)
@@ -120,18 +130,14 @@ class AnnotationAframe extends React.Component {
 				xAxis: x,
 				yAxis: y,
 				zAxis: z,
-				inPosition: true,
-				mode: 'positioned'
 			}
-			this.props.port(posState)
+			// this.props.port(posState)
 			
 			// Remove event so it only fires once. (or else it would fire constantly)
 			event.target.removeEventListener('raycaster-intersected', this.handleRay);
 
 			// Switch state so it will not fire again until new is clicked;
-			this.setState({
-				inPosition: true
-			})
+			this.setState(posState);
 		};
 
 // buildAnnotations =================================
@@ -214,7 +220,7 @@ class AnnotationAframe extends React.Component {
 				>
 					<Entity primitive="a-cursor" id="cursor" color="white" />
 
-					{this.state.inCreationMode && (
+					{this.props.inCreationMode && (
 						<Entity
 							id="new-annotation"
 							className="box annotation-toggle ray-intersect"

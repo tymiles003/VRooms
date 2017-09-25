@@ -67,10 +67,12 @@ class AnnotationPage extends Component {
 
 			inCreationMode: false,
 			mode: "idle",
-			inPosition: false,
 			positionConfirmed: false,
+			formConfirmed: false,
+			
+			inPosition: false,
 			annotationConfirmed: false,
-			isSubmitted: false,
+			submitted: false,
 		};
 	}
 // componentDidMount ===============================
@@ -90,18 +92,16 @@ class AnnotationPage extends Component {
 			console.log("this.state", this.state);
 		});
 	};
-// portAnnotationState =============================
-	// Whenever an anno is added/deleted, this sets the state,
-	// which triggers AnnotationAframe to update
-	// addedAnnotations, which will trigger the change in aframe
-	portAnnotationState = annoState => {
+// portAframe =============================
+
+	portAframe = annoState => {
 		// annoState is the object for a single annotation.
-		console.log("---- portAnnotationState ---> " + annoState);
+		console.log("---- portAframe ---> " + annoState);
 
 		this.setState(annoState);
 
-		console.log(' mode ====' , this.state.mode )
-		console.log('state ====' , this.state )
+		// console.log(' mode ====' , this.state.mode )
+		// console.log('state ====' , this.state )
 
 		// if(this.state.mode === 'submitted'){
 		// 	this.saveAnnotation()
@@ -122,7 +122,7 @@ class AnnotationPage extends Component {
 		console.log("---- toggle Creation Mode --->");
 		this.setState({
 			inCreationMode: true,
-			mode: 'positioning',
+			mode: 'in progress',
 		});
 		// positionConfirmed: false,
 	};
@@ -167,16 +167,16 @@ class AnnotationPage extends Component {
 		event.preventDefault();
 
 		console.log('---- (Page) submitAnnotation --->');
-		console.log('label ====' , this.state.label )
-		console.log('text ====' , this.state.text  )
+		// console.log('label ====' , this.state.label )
+		// console.log('text ====' , this.state.text  )
 
 		this.setState({ 
-			mode: 'submitted',
-			isSubmitted: true,
+			mode: 'gathering',
 		})
+		// submitted: true,
 		// console.log('this.state.mode',this.state.mode);
 
-		this.saveAnnotation()
+		// this.saveAnnotation()
 	}
 
 
@@ -214,13 +214,14 @@ class AnnotationPage extends Component {
 					{/* <AnnotationAframe 
 						propID={this.props.propID} 
 						roomID={this.props.roomID} 
-						port={this.portAnnotationState}
+						port={this.portAframe}
 					/> */}
 
 					<AnnotationAframe
-						annotations={this.state.annotations}
-						port={this.portAnnotationState}
 						inCreationMode={this.state.inCreationMode}
+
+						annotations={this.state.annotations}
+						port={this.portAframe}
 						positionConfirmed={this.state.positionConfirmed}
 						mode={this.state.mode}
 						newAnnotation={this.state.newAnnotation}
@@ -235,22 +236,23 @@ class AnnotationPage extends Component {
 					/>
 
 
-					{/* {(this.state.inPosition && !this.state.positionConfirmed) && */}
-					{(this.state.mode === 'positioned') &&
+					{/* {(this.state.mode === 'positioned') &&
 						<Btn
 							id="confirm-position"
 							href="#!"
 							onClick={this.confirmPosition}
 							text="Confirm Position"
 						/>	
-					}
+					} */}
 
 
 					{/* { (this.state.mode === 'placed' && !this.state.isSubmitted) && */}
-					{ (this.state.positionConfirmed && !this.state.isSubmitted) &&
+					{/* { (this.state.positionConfirmed && !this.state.isSubmitted) && */}
+					{this.state.inCreationMode && (
 						<section className='ws-row ws-foldout'>
 							<AnnotationForm 
 								port={this.portForm}
+								mode={this.state.mode}
 							/>
 
 							<Btn
@@ -261,7 +263,7 @@ class AnnotationPage extends Component {
 								text="Submit"
 							/>
 						</section>
-					}
+					)}
 	
 
 					
