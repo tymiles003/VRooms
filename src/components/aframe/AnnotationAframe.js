@@ -15,6 +15,8 @@ import Portal from "./components/Portal";
 import Annotation from "./components/Annotation";
 import PhotoAssets from "./components/PhotoAssets";
 import RoomElements from "./components/RoomElements";
+import BuildAnnotations from "./components/BuildAnnotations";
+
 import propertyAPI from "../../utils/propertyAPI";
 import roomAPI from "../../utils/roomAPI";
 
@@ -41,15 +43,57 @@ class AnnotationAframe extends React.Component {
 		// console.log('componentWillReceiveProps');
 		// console.log('nextProps.mode',nextProps.mode);
 		// console.log('this.props.inCreationMode',this.props.inCreationMode);
-		let { inCreationMode, mode, newAnnotation } = nextProps;
+		// let { inCreationMode, mode } = nextProps;
 		
-		this.setState({ inCreationMode, mode, newAnnotation});
+		// this.setState({ inCreationMode, mode, newAnnotation});
+		// console.log('Aframe mode ====',this.state.mode);
 
-		console.log('Aframe mode ====',this.state.mode);
+		// ENTERING CREATION MODE (currently false, next true)
+
+		// Get the initial position of the cube.
+		// Without doing this, user HAS to move at least once or else the 
+		// coordinates will be undefined. If they move to location before 
+		// clicking 'New', type info and submit, coordinates will never
+		// be read and return undefined. If they did this same thing on 
+		// subsequent creations, they coordinates would still equal the 
+		// last position read.
+		if ( !this.props.inCreationMode && nextProps.inCreationMode ) {
+			let el = document.getElementById('new-annotation');
+			console.log('el',el);
+			// this.getPosition();
+		}
+
+
+
+		let currentAnnos = this.props.annotations;
+		let nextAnnos = nextProps.annotations;
+		console.log('currentAnnos',currentAnnos);
+		console.log('nextAnnos',nextAnnos);
+
+		if (currentAnnos !== nextAnnos) {
+			this.setState({
+				annotations: nextAnnos
+			})
+		}
 	};
+// shouldComponentUpdate ===========================
+	// shouldComponentUpdate = (nextProps, nextState) => {
+
+	// }
+// componentDidUpdate ==============================
+
+	// componentDidUpdate = (prevProps, prevState) => {
+	// 	console.log('this.props.annotations.length',this.props.annotations.length);
+	// 	console.log('prevProps.annotations.length',prevProps.annotations.length);
+
+	// 	if ( this.props.annotations.length !== prevProps.annotations.length ) {
+	// 		this.setState()
+	// 	}
+
+	// }
 
 // componentDidMount ===============================
-	componentDidMount = () => {
+	componentDidMount = ( prevProps, prevState ) => {
 		console.log("---- componentDidMount --->");
 		// this.getProperty();
 
@@ -66,9 +110,13 @@ class AnnotationAframe extends React.Component {
 			});
 		}
 
-		// this.setState({
-		// 	annotations: this.props.annotations
-		// })
+		this.setState({
+			annotations: this.props.annotations
+		})
+
+		// if ( this.props.inCreationMode ) {
+		// 	this.getPosition(document.getElementById('new-annotation').click());
+		// }
 
 	};
 //==================================================
@@ -95,43 +143,47 @@ class AnnotationAframe extends React.Component {
 //==================================================
 // getPosition =====================================
 	getPosition = event => {
-			event.preventDefault();
-			console.log('---- getPosition --->');
+		console.log('---- getPosition --->');
 			
-			let mode = this.state.mode;
+			// if (event) {
+			// 	event.preventDefault();
+			// }
+			
+			// let tgt = document.getElementById('new-annotation');
 
-			if(mode === 'positioning' || mode === 'positioned'){
+			// let mode = this.state.mode;
+
+			// if(this.state.inCreationMode){
 				// Bind the event looking for where raycaster intersects anno
+				// event.target.addEventListener('raycaster-intersected', this.handleRay)
 				event.target.addEventListener('raycaster-intersected', this.handleRay)
-			}
+			// }
 		}
 // handleRay =======================================
 	handleRay = (event) => {
 			event.preventDefault();
 			console.log('---- handleRay --->');
-			console.log('event.detail',event.detail);
+			// console.log('event.detail',event.detail);
 			
 			// event.detail is the holy grail
 			// contains intersection world coordinates. (not relative)
 			const intersectionPoint = event.detail.intersection.point;
 			let { x,y,z } = intersectionPoint;
-			// console.log('ray.components',ray.components);
+
+			// Remove event so it only fires once. (or else it would fire constantly)
+			event.target.removeEventListener('raycaster-intersected', this.handleRay);
+
 			let posState = {
 				xAxis: x,
 				yAxis: y,
 				zAxis: z,
-				inPosition: true,
-				mode: 'positioned'
 			}
+			console.log('posState ====',posState);
 			this.props.port(posState)
 			
-			// Remove event so it only fires once. (or else it would fire constantly)
-			event.target.removeEventListener('raycaster-intersected', this.handleRay);
 
 			// Switch state so it will not fire again until new is clicked;
-			this.setState({
-				inPosition: true
-			})
+			this.setState(posState);
 		};
 
 // buildAnnotations =================================
@@ -214,7 +266,7 @@ class AnnotationAframe extends React.Component {
 				>
 					<Entity primitive="a-cursor" id="cursor" color="white" />
 
-					{this.state.inCreationMode && (
+					{this.props.inCreationMode && (
 						<Entity
 							id="new-annotation"
 							className="box annotation-toggle ray-intersect"
@@ -224,7 +276,8 @@ class AnnotationAframe extends React.Component {
 								height: 0.3,
 								depth: 0.3
 							}}
-							material={{ color: "white" }}
+					
+							material={{ color: "#f1c40f", opacity: 0.8 }}
 							animation__rotate={{
 								property: "rotation",
 								dur: 5000,
@@ -233,16 +286,18 @@ class AnnotationAframe extends React.Component {
 							}}
 							events={{
 								mouseenter: this.handleMouseEnter,
-								click: this.getPosition
+								click: this.getPosition,
 							}}
-							position={{ x: 0, y: 0, z: -4 }}
+							position={{ x: 0, y: 0, z: -5 }}
 						/>
 					)}
 				</Entity>
 				{/*==================================================*/}
-				{this.props.annotations.map((ea, index) => (
+				{/* {this.props.annotations.map((ea, index) => (
 					<Annotation data={ea} key={index} />
-				))}
+				))} */}
+				<BuildAnnotations annotations={this.state.annotations} />
+				{/* <BuildAnnotations annotations={this.props.annotations} /> */}
 				{/*==================================================*/}
 				{/* <AllAnnotations /> */}
 				{/* {this.state.newAnnotation &&
