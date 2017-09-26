@@ -1,4 +1,4 @@
-# VRooms - Virtual Reality for Real Estates
+# VRooms - Virtual Reality for Real Estate
 ([https://farmily.herokuapp.com](https://farmily.herokuapp.com))
 
 Welcome to the next generation of homebuying as we revolutionize the real estate industry. Discover an immersive and lifelike home tour experience using Virtual Reality (VR) technology. VRooms makes Virtual Reality for real estates engaging and accessible on both web and mobile platform. 
