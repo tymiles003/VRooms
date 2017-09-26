@@ -13,7 +13,7 @@ class FileDrop extends Component {
 			accepted: [],
 			rejected: [],
 		};
-	}
+	} 
 
 	handleInputChange = event => {
 		event.preventDefault();
@@ -26,11 +26,11 @@ class FileDrop extends Component {
 		});
 	};
 
-	onDrop = (acceptedFiles,rejectFiles, event) => {
-		console.log('event.target',event.target);
-
+	onDrop = (acceptedFiles, rejectFiles, event) => {
 		console.log(">>> onDrop");
+		console.log('event.target', event.target);
 		const file = acceptedFiles[0];
+		console.log("file: ", file);
 
 		const acceptedTypes = ['image/jpeg','image/png'];
 		const mimetype = file.type;
@@ -38,6 +38,9 @@ class FileDrop extends Component {
 		// Continue if file's type is accepted
 		if (acceptedTypes.indexOf(mimetype) >= 0){
 			const reader = new FileReader();
+			if (file) {
+				reader.readAsDataURL(file);
+			}
 			reader.onload = () => {
 				const raw = reader.result;
 				let bits = raw;
@@ -54,9 +57,6 @@ class FileDrop extends Component {
 			};
 			reader.onabort = () => console.log("file reading was aborted");
 			reader.onerror = () => console.log("file reading has failed");
-			if (file) {
-				reader.readAsDataURL(file);
-			}
 		}
 		else {
 			alert('invalid file type');
@@ -109,3 +109,4 @@ class FileDrop extends Component {
 }
 
 export default FileDrop;
+
