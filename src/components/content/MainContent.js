@@ -56,7 +56,7 @@ class MainContent extends Component {
 							data-down="64px"
 							data-hold="100"
 						>
-							Virtual Reality for Real Estates
+							Virtual Reality for Real Estate
 						</h1>
 						<span
 							className="description__sub_headline text--white emerge"
