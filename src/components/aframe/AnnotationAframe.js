@@ -120,26 +120,6 @@ class AnnotationAframe extends React.Component {
 
 	};
 //==================================================
-// getProperty =====================================
-	getProperty = () => {
-		propertyAPI.getProperty(this.props.propID).then(response => {
-			// console.log(response);
-			this.setState({
-				selectedProperty: response.data[0]
-			});
-			console.log("this.state", this.state);
-		});
-	};
-// getRoom =========================================
-	getRoom = () => {
-		roomAPI.getRoom(this.props.roomID).then(response => {
-			// console.log(response);
-			this.setState({
-				room: response.data[0]
-			});
-			console.log("getRoom.state", this.state);
-		});
-	};
 //==================================================
 // getPosition =====================================
 	getPosition = event => {

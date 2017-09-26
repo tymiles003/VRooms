@@ -1,5 +1,5 @@
-
-.filedrop-wrap {
+.col-wrap,
+.filedrop-wrap.pano-upload {
 	// Important that the dimensions of filedrop should reflect the aspect
 	// ratio of a 360 photo (i.e. the height should be half of the width.)
 	$filedrop-w: 90vw;
@@ -83,7 +83,7 @@
 			}
 		}
 	}
-	#filedrop-preview,
+	.filedrop-preview,
 	.img-canvas {
 		background-size: cover;
 		height: 100%;

@@ -69,19 +69,19 @@ class Annotation extends React.Component {
 		let { primitive,textScale,textPos,height,width, tScale, tPos } = this.props;
 		// let { to,position, label,textScale,textPos, primitive,height,width, color,opacity,side } = this.props;
 
+		// animation__rotate={{property: 'rotation', dur: 4000, loop: true, to: '360 360 360'}}
 			return (
 				<Entity 
 					className="annotation-toggle box"
 					geometry={{primitive: 'box', width: 0.3, height: 0.3, depth: 0.3}}
 					material={{ color: '#3498db'}}
-					animation__rotate={{property: 'rotation', dur: 4000, loop: true, to: '360 360 360'}}
 				
 					events={{
 						mouseenter: this.handleMouseEnter,
 						mouseleave: this.handleMouseLeave,
 						click: this.handleClick,
 					}}
-						position={{ x: xAxis, y: yAxis, z: zAxis }}
+					position={{ x: xAxis, y: yAxis, z: zAxis }}
 				>
 					<Entity
 						geometry={{ primitive, height, width }}

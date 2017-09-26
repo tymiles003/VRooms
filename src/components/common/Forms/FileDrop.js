@@ -26,7 +26,9 @@ class FileDrop extends Component {
 		});
 	};
 
-	onDrop = (acceptedFiles,rejectFiles) => {
+	onDrop = (acceptedFiles,rejectFiles, event) => {
+		console.log('event.target',event.target);
+
 		console.log(">>> onDrop");
 		const file = acceptedFiles[0];
 
@@ -63,8 +65,13 @@ class FileDrop extends Component {
 
 	render() {
 		return (
-			<div className="filedrop-wrap">
-				<Dropzone className="dropzone" onDrop={this.onDrop.bind(this)} >
+			<div className={'filedrop-wrap ' + this.props.id }>
+				<Dropzone 
+					className="dropzone" 
+					onDrop={this.onDrop}
+					id={this.props.id}
+				>
+				{ this.props.id === 'pano-upload' ? (
 					<div className="dropzone-content">
 						<div className="feature-icon">
 							<img className="img-icon" src="/assets/graphics/360-photo-o-black.svg" />
@@ -76,10 +83,24 @@ class FileDrop extends Component {
 							</p>
 						</div>
 					</div>
+				):(
+					<div className="dropzone-content">
+						<div className="feature-icon">
+							<i className="fa fa-picture-o" aria-hidden="true"></i>
+							{/* <img className="img-icon" src="/assets/graphics/360-photo-o-black.svg" /> */}
+						</div>
+						<div className="direction-wrap">
+							<h4 className="direction-headline"> Upload Thumbnail </h4>
+							<p className="direction-subheadline">
+								
+							</p>
+						</div>
+					</div>
+				)}
 				</Dropzone>
 				<figure
 					id="filedrop-preview"
-					className={"img-canvas " + this.state.fileStatus}
+					className={"filedrop-preview img-canvas " + this.state.fileStatus}
 					style={{ backgroundImage: `url("${this.state.bits}")` }}
 				/>
 			</div>
