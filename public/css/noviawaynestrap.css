@@ -254,3 +254,26 @@
     }
    
 }
+
+@media all and (max-width: 700px) {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
+    font-size: .9em;
+  }
+
+  
+}
+
+@media all and (max-width: 600px) {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
+    font-size: .8em;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
+    font-size: .6em;
+  }
+}

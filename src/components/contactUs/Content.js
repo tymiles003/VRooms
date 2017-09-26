@@ -97,6 +97,7 @@ class Content extends Component{
         return (
 <div className="pageWrapper">
         <Helmet>
+                <link rel="stylesheet" href="/css/pages/About.css"></link>
 				<link rel="stylesheet" href="/css/pages/contactUs.css" />
 		</Helmet> 
 
