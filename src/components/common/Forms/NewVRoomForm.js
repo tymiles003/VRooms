@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import API from "../../../utils/API";
 import FileDrop from "./FileDrop";
+import FileDropTN from "./FileDropTN";
 // import ZillowFetch from "./ZillowFetch";
 import Btn from "../Elements/Btn";
 import PreviewWindow from "../PreviewWindow";
@@ -269,6 +270,17 @@ class NewVRoomForm extends Component {
                 </div>
               </fieldset>
             </div>
+
+
+            <div className="form-row">
+              <fieldset>
+                <legend>Upload Thumbnail</legend>
+
+                <FileDropTN handleFileUpload={this.handleFileUpload} />
+                           
+              </fieldset>
+            </div>
+
             
             </div>  {/*  end of <leftSection /> */}
 
