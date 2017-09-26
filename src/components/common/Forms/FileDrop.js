@@ -26,11 +26,9 @@ class FileDrop extends Component {
 		});
 	};
 
-	onDrop = (acceptedFiles, rejectFiles, event) => {
+	onDrop = (acceptedFiles,rejectFiles) => {
 		console.log(">>> onDrop");
-		console.log('event.target', event.target);
 		const file = acceptedFiles[0];
-		console.log("file: ", file);
 
 		const acceptedTypes = ['image/jpeg','image/png'];
 		const mimetype = file.type;
@@ -38,9 +36,6 @@ class FileDrop extends Component {
 		// Continue if file's type is accepted
 		if (acceptedTypes.indexOf(mimetype) >= 0){
 			const reader = new FileReader();
-			if (file) {
-				reader.readAsDataURL(file);
-			}
 			reader.onload = () => {
 				const raw = reader.result;
 				let bits = raw;
@@ -57,6 +52,9 @@ class FileDrop extends Component {
 			};
 			reader.onabort = () => console.log("file reading was aborted");
 			reader.onerror = () => console.log("file reading has failed");
+			if (file) {
+				reader.readAsDataURL(file);
+			}
 		}
 		else {
 			alert('invalid file type');
@@ -65,13 +63,8 @@ class FileDrop extends Component {
 
 	render() {
 		return (
-			<div className={'filedrop-wrap ' + this.props.id }>
-				<Dropzone 
-					className="dropzone" 
-					onDrop={this.onDrop}
-					id={this.props.id}
-				>
-				{ this.props.id === 'pano-upload' ? (
+			<div className="filedrop-wrap">
+				<Dropzone className="dropzone" onDrop={this.onDrop.bind(this)} >
 					<div className="dropzone-content">
 						<div className="feature-icon">
 							<img className="img-icon" src="/assets/graphics/360-photo-o-black.svg" />
@@ -83,24 +76,10 @@ class FileDrop extends Component {
 							</p>
 						</div>
 					</div>
-				):(
-					<div className="dropzone-content">
-						<div className="feature-icon">
-							<i className="fa fa-picture-o" aria-hidden="true"></i>
-							{/* <img className="img-icon" src="/assets/graphics/360-photo-o-black.svg" /> */}
-						</div>
-						<div className="direction-wrap">
-							<h4 className="direction-headline"> Upload Thumbnail </h4>
-							<p className="direction-subheadline">
-								
-							</p>
-						</div>
-					</div>
-				)}
 				</Dropzone>
 				<figure
 					id="filedrop-preview"
-					className={"filedrop-preview img-canvas " + this.state.fileStatus}
+					className={"img-canvas " + this.state.fileStatus}
 					style={{ backgroundImage: `url("${this.state.bits}")` }}
 				/>
 			</div>
