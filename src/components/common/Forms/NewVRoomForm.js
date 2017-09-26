@@ -285,29 +285,36 @@ class NewVRoomForm extends Component {
             </div>  {/*  end of <leftSection /> */}
 
             <div className="rightsection">
+              <div className="thumbnail-row">
+                <fieldset>
+                    <legend>Upload 360 Image</legend>  
+                  <div className="form-row stack-vertical">
+         
+                    <FileDrop handleFileUpload={this.handleFileUpload} />
 
-            <div className="form-row stack-vertical">
-   
-              <FileDrop handleFileUpload={this.handleFileUpload} />
+                    <div className="btnwrapper flexleft">
 
-              <button
-                id="submit"
-                className="ws-btn"
-                type="submit"
-                onClick={this.handleFormSubmit}
-              >
-                Submit
-              </button>
+                      <button
+                        id="submit"
+                        className="ws-btn"
+                        type="submit"
+                        onClick={this.handleFormSubmit}
+                      >
+                        Submit
+                      </button>
 
-              <Btn
-                text="Annotate"
-                theme="disabled"
-                classes={["ws-mini", "bump-top"]}
-                isOutlined
-              />
-            </div>
-            
-            
+                      <Btn
+                        text="Annotate"
+                        theme="disabled"
+                        classes={["annotateBtn"]}
+                        isOutlined
+                      />
+
+                    </div>
+                  
+                  </div>
+                </fieldset>
+              </div>
             </div>  {/*  end of <rightSection /> */}
           </form>
         </section>

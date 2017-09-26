@@ -24,7 +24,7 @@
 .pg-form main,
 .pg-newVRoom main {
     width: 100vw;
-    height: 100vh;
+    /*height: 100vh;*/
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -41,7 +41,7 @@
 .filedrop-wrap {
     width: 90vw;
     height: 45vw;
-    width: 90%;
+    width: 100%;
     height: 400px;
     position: relative;
 }
@@ -109,6 +109,7 @@
     flex: 1;
     padding: .5rem;
     width: 50%;
+    margin: 1.5rem 0 1.5rem;
 }
 
 .filedrop-wrap #filedrop-preview, .filedrop-wrap .img-canvas {
@@ -126,8 +127,77 @@
     width: 350px;
     height: 220px;
     position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.thumbnail-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .thumbnail-icon {
     width:70%;
+}
+
+.ws-form .form-row.stack-vertical {
+    margin-top: 0.5rem;
+}
+
+.thumbnail-row {
+    height:100%;
+    margin-bottom: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+}
+
+.btnwrapper {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    
+}
+
+/* On the flex item to pin */
+.flexleft {
+   -webkit-align-self: flex-start;
+   align-self: flex-start;
+}
+
+.flexright {
+   margin-left: auto;
+}
+
+.annotateBtn {
+    margin-left: 20px;
+}
+
+.ws-form .input-wrap input {
+    height: 2em;
+
+}
+
+.filedrop-wrap #filedrop-preview,
+.filedrop-wrap .img-canvas {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  z-index: 101;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.filedrop-wrap #filedrop-preview.no-file,
+.filedrop-wrap .img-canvas.no-file {
+  z-index: 99;
 }
