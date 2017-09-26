@@ -37,6 +37,12 @@ class Showroom extends Component{
       });
   }
 
+  componentWillUnmount(){
+      socket.emit('close', {
+          room: this.props.selectedProperty.rooms[0].pano_url
+        });
+  }
+
   render(){
     console.log("Showroom.props: ", this.props);
     
