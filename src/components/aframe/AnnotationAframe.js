@@ -29,9 +29,8 @@ class AnnotationAframe extends React.Component {
 			selectedProperty: {
 				thumbnail_url: ""
 			},
-			room: {
-				pano_url: ""
-			},
+			pano_url: "",
+			
 			inCreationMode: false,
 			mode: "idle",
 			newAnnotation: {},
@@ -48,6 +47,17 @@ class AnnotationAframe extends React.Component {
 
 		// this.setState({ inCreationMode, mode, newAnnotation});
 		// console.log('Aframe mode ====',this.state.mode);
+
+		// console.log('this.props.pano_url',this.props.pano_url);
+		// console.log('nexProps.pano_url',nextProps.pano_url);
+		let currentURL = this.props.pano_url;
+		let nextURL = nextProps.pano_url;
+
+		if ( currentURL !== nextURL && currentURL === '' ) {
+			this.setState({
+				pano_url: nextURL
+			})
+		}
 
 		// ENTERING CREATION MODE (currently false, next true)
 
@@ -96,7 +106,7 @@ class AnnotationAframe extends React.Component {
 		}
 	};
 
-	// componentDidMount ===============================
+// componentDidMount ===============================
 	componentDidMount = (prevProps, prevState) => {
 		console.log("---- componentDidMount --->");
 		// this.getProperty();
@@ -104,15 +114,19 @@ class AnnotationAframe extends React.Component {
 		// Fetch the room if roomID is provided, but if it isn't
 		// Use this default one for now. Will need to handle error
 		// later on.
-		if (this.props.roomID) {
-			this.getRoom();
-		} else {
-			this.setState({
-				room: {
-					pano_url: "assets/img/gallery/test-world6.jpg"
-				}
-			});
-		}
+		// if (this.props.roomID) {
+		// 	this.getRoom();
+		// } else {
+			// pano_url: "assets/img/gallery/test-world6.jpg"
+			
+			// console.log('this.props.pano_url',this.props.room.pano_url);
+			// console.log('prevProps.pano_url',prevProps.pano_url);
+
+			// this.setState({
+			// 		pano_url: this.props.room.pano_url
+				
+			// });
+		// }
 
 		this.setState({
 			annotations: this.props.annotations
@@ -122,9 +136,9 @@ class AnnotationAframe extends React.Component {
 		// 	this.getPosition(document.getElementById('new-annotation').click());
 		// }
 	};
-	//==================================================
-	//==================================================
-	// getPosition =====================================
+//==================================================
+//==================================================
+// getPosition =====================================
 	getPosition = event => {
 		console.log("---- getPosition --->");
 
@@ -142,7 +156,7 @@ class AnnotationAframe extends React.Component {
 		event.target.addEventListener("raycaster-intersected", this.handleRay);
 		// }
 	};
-	// handleRay =======================================
+// handleRay =======================================
 	handleRay = event => {
 		event.preventDefault();
 		console.log("---- handleRay --->");
@@ -171,7 +185,7 @@ class AnnotationAframe extends React.Component {
 		this.setState(posState);
 	};
 
-	// buildAnnotations =================================
+// buildAnnotations =================================
 
 	buildAnnotations(annotations) {
 		console.log("---- buildAnnotations --->");
@@ -194,15 +208,15 @@ class AnnotationAframe extends React.Component {
 	// 	<Annotation data={ea} key={index} />
 	// ))}
 
-	// render //////////////////////////////////////////
+// render //////////////////////////////////////////
 	render() {
 		return (
 			// add embedded to embed
 			<Scene inspector>
 				{/*==================================================*/}
 				<a-assets timeout="5000">
-					{/* <img id="annotation-photo" src={this.state.room.pano_url} crossOrigin="anonymous"/> */}
-					<img id="annotation-photo" src={this.state.room.pano_url} />
+					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
+					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
 				</a-assets>
 				{/*==================================================*/}
 				<Entity
