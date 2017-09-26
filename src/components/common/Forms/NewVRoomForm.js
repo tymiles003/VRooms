@@ -138,7 +138,7 @@ class NewVRoomForm extends Component {
 
   render() {
     return (
-      <main className="pg-contains-aframe">
+      <div className="pg-contains-aframe">
         <ToastContainer
           toastMessageFactory={ToastMessageFactory}
           ref="container"
@@ -289,7 +289,7 @@ class NewVRoomForm extends Component {
             </button>
           </div>
         </form>
-      </main>
+      </div>
     );
   }
 }
