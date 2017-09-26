@@ -188,9 +188,9 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .ws-btn {
   font-size: 1.2rem;
-  text-transform: uppercase;
-  font-weight: 400;
-  padding: 1rem 2rem;
+  text-transform: none;
+  font-weight: 500;
+  padding: .7rem 1.8rem;
   color: white;
   background-color: #7f8c8d;
   border-radius: 5px;
@@ -266,7 +266,7 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .ws-form .form-row {
   padding: 0;
-  margin: 2rem 0 1rem;
+  margin: 1.5rem 0 1.5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -292,7 +292,7 @@ div, h1, h2, h3, h4, h5, h6, p {
 }
 
 .ws-form .form-row .col-wrap .form-col {
-  flex-basis: 45%;
+  flex-basis: 48%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -305,6 +305,10 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .ws-form .form-row .col-wrap .form-col .filedrop-wrap {
   height: 100%;
+}
+
+.ws-form .form-row .col-wrap .form-col .filedrop-wrap .dropzone {
+  padding: 3rem;
 }
 
 .ws-form .form-group {
