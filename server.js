@@ -221,11 +221,15 @@ socket.on('open', function (room) {
         roomsArr[room.room]++;
     }
 	console.log("Count === ", roomsArr[room.room]);
+
+	io.in(socket.room).emit('message', roomsArr[room.room]);
 	
 });
 
 socket.on('close', function () {
      roomsArr[socket.room]--;
+	io.in(socket.room).emit('message', roomsArr[socket.room]);
+	 
 });
 
 

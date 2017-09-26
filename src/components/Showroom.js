@@ -11,24 +11,30 @@ class Showroom extends Component{
     super(props);
     this.socket = io();
     this.state={
-
+        message:1
     };
   }
 
   componentDidMount() {
-    console.log('MOUNTED');
-
+    /**
+     * While browser tab getting closed, below event listener is called.
+     */
     window.addEventListener("beforeunload", (ev) => {  
       ev.preventDefault();
-      console.log("inside add event listener");
-      socket.emit('close', {
-      room: this.props.selectedProperty.rooms[0].pano_url
-    });
-    
-    // return ev.returnValue = 'Are you sure you want to close?';
-    });
 
+      socket.emit('close', {
+          room: this.props.selectedProperty.rooms[0].pano_url
+        });
+      });
       socket.emit('open', {room: this.props.selectedProperty.rooms[0].pano_url});
+
+      /** 
+       * Message reeived from server
+       */
+      socket.on('message', (data) => {
+          console.log("Message ==== ",data);
+          this.setState({message:data});
+      });
   }
 
   render(){
@@ -64,38 +70,19 @@ class Showroom extends Component{
         position={txtPosition}
         rotation="0 15 0"
       />
+      <a-text
+            font="kelsonsans"
+            value={this.state.message}
+            width="7"
+            position="6 5 -5"
+            rotation="0 0 0"
+            geometry="primitive:plane"
+          />
     </a-scene>
   );
   }
 
 }
 
-// const Showroom = props => {
-//   console.log("Showroom.props: ", props);
-
-//   const room_url = props.selectedProperty.rooms[0].pano_url + "?v=1230";
-//   const xAxis = props.selectedProperty.rooms[0].annotations[0].xAxis || -2;
-//   const yAxis = props.selectedProperty.rooms[0].annotations[0].yAxis || 4;
-//   const zAxis = props.selectedProperty.rooms[0].annotations[0].zAxis || -3;
-//   const txtPosition = xAxis + " " + yAxis + " " + zAxis;
-//   const width = props.selectedProperty.rooms[0].annotations[0].width || 8;
-//   const annotationtxt = props.selectedProperty.rooms[0].annotations[0].text || " ";
-  
-//   return (
-//     <a-scene embedded crossOrigin="anonymous">
-//       <a-assets>
-//         <img id="asset-scene-url" src={room_url} />
-//       </a-assets>
-//       <a-sky crossOrigin="anonymous" src="#asset-scene-url" />
-//       <a-text
-//         font="kelsonsans"
-//         value={annotationtxt}
-//         width={width}
-//         position={txtPosition}
-//         rotation="0 15 0"
-//       />
-//     </a-scene>
-//   );
-// };
 
 export default Showroom;
