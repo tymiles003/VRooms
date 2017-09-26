@@ -6,25 +6,42 @@ const roomSchema = new mongoose.Schema({
         required: true
     },
 
-    annotations: [{
-        text: String,
-        label: String,
-        image: String,
-        link: String,
-        width: Number,
-        xAxis: {
-            type: Number,
-            default: 0
-        },
-        yAxis: {
-            type: Number,
-            default: 1.5
-        },
-        zAxis: {
-            type: Number,
-            default: 5
+    annotations: [
+        {
+            text: {
+                type: String,
+                default: ""
+            },
+            label: {
+                type: String,
+                default: ""
+            },
+            image: {
+                type: String,
+                default: ""
+            },
+            link: {
+                type: String,
+                default: ""
+            },
+            width: {
+                type: Number,
+                default: 8
+            },
+            xAxis: {
+                type: Number,
+                default: 0
+            },
+            yAxis: {
+                type: Number,
+                default: 1.5
+            },
+            zAxis: {
+                type: Number,
+                default: 5
+            }
         }
-    }]
+    ]
 });
 
 module.exports = mongoose.model("Room", roomSchema);
