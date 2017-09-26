@@ -12,6 +12,7 @@ import NewVRoom from "../components/NewVRoom";
 import WaynestrapSandbox from "../components/WaynestrapSandbox";
 import EmbeddedAframe from "../components/EmbeddedAframe";
 import AnnotationPage from "../components/AnnotationPage";
+import UploadPage from "../components/UploadPage";
 import Contact from "../components/contactUs/Content";
 
 import Gallery from "../components/Gallery";
@@ -36,6 +37,7 @@ const routes = (
             <Route exact path="/embed" component={EmbeddedAframe} />
             <Route path="/contact" component={Contact} />
             <Route path="/annotate" component={AnnotationPage} />
+            <Route path="/upload" component={UploadPage} />
 
             <Route path="/gallery" component={Gallery} />            
             <Route path="/living1" component={Living1} />            
