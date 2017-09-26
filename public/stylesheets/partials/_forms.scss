@@ -17,10 +17,10 @@
 	flex-direction: column;
 	width: 100%;
 	// max-width: 700px;
-	padding: 3rem 1rem;
+	padding: 3rem 6vw;
 	.form-row {
 		padding: 0;
-		margin: 2rem 0;
+		margin: 1.5rem 0 1.5rem;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -30,6 +30,41 @@
 		&.stack-vertical {
 			display: flex;
 			flex-direction: column;	
+		}
+		
+		.col-wrap {
+			display: flex;
+			flex-direction: row;
+			width: 90vw;
+			max-width: 800px;
+			min-width: 300px;
+			position: relative;
+			justify-content: space-between;
+			align-items: center;
+			height: 100%;
+
+			.form-col {
+				// flex: 1;
+				flex-basis: 48%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: stretch;
+				& > * {
+					margin: .5rem 0;
+				}
+				.filedrop-wrap {
+					height: 100%;
+					// display: flex;
+					// flex-direction: column;
+					.dropzone {
+						padding: 3rem;
+					}
+				}
+				#thumbnail-upload {
+
+				}
+			}
 		}
 	}
 	.form-group {

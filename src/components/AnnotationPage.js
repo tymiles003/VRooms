@@ -35,13 +35,6 @@ class AnnotationPage extends Component {
 			},
 			annotations: [
 				{
-					label: "sink",
-					text: "Sinky McSinkface",
-					xAxis: -0.9,
-					yAxis: 0.8,
-					zAxis: 5.5
-				},
-				{
 					label: "stove",
 					text: "Stovey McStoveface",
 					xAxis: 3.9,
@@ -49,11 +42,18 @@ class AnnotationPage extends Component {
 					zAxis: 3.1
 				},
 				{
+					label: "sink",
+					text: "Sinky McSinkface",
+					xAxis: -1.75,
+					yAxis: 0.8,
+					zAxis: 4.45
+				},
+				{
 					label: "fridge",
 					text: "Fridgey McFridgeface",
-					xAxis: 7.35,
-					yAxis: 2,
-					zAxis: -1.8
+					xAxis: 4.65,
+					yAxis: 1.3,
+					zAxis: -1.13
 				},
 				{
 					label: "test",
@@ -81,7 +81,16 @@ class AnnotationPage extends Component {
 	// 	this.getProperty(); // not super essential. for extra info on page.
 	// 	console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
 	// };
-
+// getRoom =========================================
+	getRoom = () => {
+		roomAPI.getRoom(this.props.roomID).then(response => {
+			// console.log(response);
+			this.setState({
+				room: response.data[0]
+			});
+			console.log("getRoom.state", this.state);
+		});
+	};
 // getProperty =====================================
 	getProperty = () => {
 		propertyAPI.getProperty(this.props.propID).then(response => {

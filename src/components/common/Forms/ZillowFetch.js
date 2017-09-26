@@ -5,11 +5,11 @@ class ZillowFetch extends Component {
 	constructor(props){
 		super(props);
 		this.state={
-			zpid: '48749425',
+			zpid: '',
 			query_type: 'invalid',
 		}
+		// Working ZPID if needed for test -- 48749425
 	}
-
 	detectQueryType = e => {
 
 		e.preventDefault();
