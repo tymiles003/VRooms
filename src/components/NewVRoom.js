@@ -18,7 +18,7 @@ const NewVRoom = (props) => {
 					{/* CSS links for this page */}
 				</Helmet>
 			{/* Navbar =========================================================*/}
-				<Navbar logo_filename="VRooms_V11_Hori_Gray" theme="opaque-white-bg" />
+				<Navbar logo_filename="vrooms-logo-gray" theme="opaque-white-bg" />
 			<main>
 			{/* Page Title =====================================================*/}
 				<header className="mini-header">
