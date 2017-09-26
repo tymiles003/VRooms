@@ -11,13 +11,10 @@ const BuildAnnotations = props => {
 	return (
 		<Entity>
 			{annotationsToBuild.map((ea, index) => {
-				return <Annotation data={ea} key={ea.label}/>;
+				return <Annotation data={ea} key={index}/>;
 			})}
 		</Entity>
 	);
 };
 export default BuildAnnotations;
 
-// {this.props.annotations.map((ea, index) => (
-// 	<Annotation data={ea} key={index} />
-// ))}

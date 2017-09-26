@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AnnotationAframe from "./aframe/AnnotationAframe";
 import AnnotationForm from "./common/Forms/AnnotationForm";
 import propertyAPI from "../utils/propertyAPI";
+import roomAPI from "../utils/roomAPI";
 // import {Helmet} from 'react-helmet';
 import Btn from "./common/Elements/Btn";
 
@@ -34,43 +35,10 @@ class AnnotationPage extends Component {
 				square_feet: "",
 				property_name: ""
 			},
-			annotations: [
-				{
-					label: "stove",
-					text: "Stovey McStoveface",
-					xAxis: 3.9,
-					yAxis: 1.5,
-					zAxis: 3.1
-				},
-				{
-					label: "sink",
-					text: "Sinky McSinkface",
-					xAxis: -1.75,
-					yAxis: 0.8,
-					zAxis: 4.45
-				},
-				{
-					label: "fridge",
-					text: "Fridgey McFridgeface",
-					xAxis: 4.65,
-					yAxis: 1.3,
-					zAxis: -1.13
-				},
-				{
-					label: "test",
-					text: "Testy McTestFace",
-					xAxis: 2.426,
-					yAxis: 1.615,
-					zAxis: -3
-				},
-				{
-					label: "frames",
-					text: "Framey McFrameFace",
-					xAxis: 0.66,
-					yAxis: 1.76,
-					zAxis: -4.79
-				}
-			],
+
+			pano_url: '',
+			roomID: '',
+			annotations: [],
 			newAnnotation: {},
 
 			inCreationMode: false,
@@ -84,11 +52,28 @@ class AnnotationPage extends Component {
 		};
 	}
 // componentDidMount ===============================
-	// componentDidMount = () => {
-	// 	// this.handleAnnotations();
-	// 	this.getProperty(); // not super essential. for extra info on page.
-	// 	console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
-	// };
+	componentDidMount = () => {
+		// this.handleAnnotations();
+		// this.getProperty(); // not super essential. for extra info on page.
+		// console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
+
+		console.log('this.props.roomID',this.props.roomID);
+
+
+		roomAPI.getRoom(this.props.roomID).then(response => {
+			// console.log(response);
+			let { roomID, pano_url, annotations } = response.data[0];
+			console.log('response.data[0]',response.data[0]);
+
+			this.setState({ 
+				roomID,
+				pano_url,
+				annotations,
+			});
+		});
+
+		// this.getRoom();
+	};
 // getRoom =========================================
 	getRoom = () => {
 		roomAPI.getRoom(this.props.roomID).then(response => {
@@ -118,6 +103,17 @@ class AnnotationPage extends Component {
 		this.setState({
 			inCreationMode: true,
 			mode: 'in progress',
+		});
+		// positionConfirmed: false,
+	};
+
+// handleFinishClick ==================================
+	handleFinishClick = e => {
+		e.preventDefault();
+		console.log("---- finishClick --->");
+		this.setState({
+			inCreationMode: false,
+			mode: 'finished',
 		});
 		// positionConfirmed: false,
 	};
@@ -163,6 +159,7 @@ class AnnotationPage extends Component {
 
 // portForm ========================================
 	portForm = formState => {
+		this.setState(formState)
 		// console.log('---- portForm (Page) --->',formState);
 		// let { label, text } = formState;
 		// this.setState({
@@ -172,7 +169,6 @@ class AnnotationPage extends Component {
 		// 	}
 		// })
 
-		this.setState(formState)
 
 		// console.log('this.state.newAnnotation',this.state.newAnnotation);
 		// console.log('formState',formState);
@@ -225,9 +221,12 @@ class AnnotationPage extends Component {
 		})
 		// inCreationMode: false,
 		// annotations: newAnnoArray
+		
+		// Save to Database
+		roomAPI.addNewAnnotation( this.props.roomID, { xAxis, yAxis, zAxis, label, text } );
 
-		console.log('this.state.annotations',this.state.annotations);
 	}
+
 // render //////////////////////////////////////////
 	render() {
 		// let {street,city,state,zip,country,bedrooms,baths,built_year,price,square_feet,property_name} = this.state.property;
@@ -244,10 +243,11 @@ class AnnotationPage extends Component {
 						inCreationMode={this.state.inCreationMode}
 						port={this.portAframe}
 						annotations={this.state.annotations}
+						pano_url={this.state.pano_url}
+						roomID={this.props.roomID}
+
 
 						fetchCoordinates={this.state.fetchCoordinates}
-
-
 						positionConfirmed={this.state.positionConfirmed}
 						mode={this.state.mode}
 						newAnnotation={this.state.newAnnotation}
@@ -259,6 +259,13 @@ class AnnotationPage extends Component {
 						href="#!"
 						onClick={this.handleNewClick}
 						text="New"
+					/>
+				
+					<Btn
+						id="finish-btn"
+						href="#!"
+						onClick={this.handleFinishClick}
+						text="Finish"
 					/>
 
 
@@ -302,29 +309,46 @@ class AnnotationPage extends Component {
 } export default AnnotationPage;
 
 AnnotationPage.defaultProps = {
-	propID: "59c5a00ba4d2290012cbdfaa",
-	roomID: "59c5a24b7f69c2255b616d18",
-	annotations: [
-		{
-			label: "living room",
-			link: "living-room",
-			xAxis: -2,
-			yAxis: 2,
-			zAxis: -5
-		},
-		{
-			label: "bathroom",
-			link: "bathroom",
-			xAxis: 0,
-			yAxis: 2,
-			zAxis: -5
-		},
-		{
-			label: "fridge",
-			text: "Fridgey McFridgeface",
-			xAxis: 2,
-			yAxis: 2,
-			zAxis: -5
-		}
-	]
-};
+	roomID: '59c5a24b7f69c2255b616d18'
+}
+// AnnotationPage.defaultProps = {
+// 	propID: "59c5a00ba4d2290012cbdfaa",
+// 	roomID: "59c5a24b7f69c2255b616d18",
+// 	annotations: [
+// 		{
+// 			label: "stove",
+// 			text: "Stovey McStoveface",
+// 			xAxis: 3.9,
+// 			yAxis: 1.5,
+// 			zAxis: 3.1
+// 		},
+// 		{
+// 			label: "sink",
+// 			text: "Sinky McSinkface",
+// 			xAxis: -1.75,
+// 			yAxis: 0.8,
+// 			zAxis: 4.45
+// 		},
+// 		{
+// 			label: "fridge",
+// 			text: "Fridgey McFridgeface",
+// 			xAxis: 4.65,
+// 			yAxis: 1.3,
+// 			zAxis: -1.13
+// 		},
+// 		{
+// 			label: "test",
+// 			text: "Testy McTestFace",
+// 			xAxis: 2.426,
+// 			yAxis: 1.615,
+// 			zAxis: -3
+// 		},
+// 		{
+// 			label: "frames",
+// 			text: "Framey McFrameFace",
+// 			xAxis: 0.66,
+// 			yAxis: 1.76,
+// 			zAxis: -4.79
+// 		}
+// 	]
+// };

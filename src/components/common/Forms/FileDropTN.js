@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import API from "../../../utils/API";
 import Dropzone from "react-dropzone";
 
-class FileDrop extends Component {
+class FileDropTN extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -63,11 +63,11 @@ class FileDrop extends Component {
 
 	render() {
 		return (
-			<div className="filedrop-wrap">
-				<Dropzone className="dropzone" onDrop={this.onDrop.bind(this)} >
-					<div className="dropzone-content">
-						<div className="feature-icon">
-							<img className="img-icon" src="/assets/graphics/360-photo-o-black.svg" />
+			<div className="filedrop-wrap thumbnail-wrap">
+				<Dropzone className="dropzone thumbnail-dropzone" onDrop={this.onDrop.bind(this)} >
+					<div className="dropzone-content thumbnail-content">
+						<div className="feature-icon thumbnail-icon">
+							<img className="img-icon thumbnail-icon" src="/assets/graphics/360-photo-o-black.svg" />
 						</div>
 						<div className="direction-wrap">
 							<h4 className="direction-headline"> Drag & Drop </h4>
@@ -87,5 +87,5 @@ class FileDrop extends Component {
 	}
 }
 
-export default FileDrop;
+export default FileDropTN;
 
