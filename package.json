@@ -53,6 +53,7 @@
     "express": "^4.14.0",
     "express-session": "^1.12.1",
     "inline-style-prefixer": "^3.0.7",
+    "lodash": "^4.17.4",
     "mongoose": "^4.7.5",
     "nodemailer": "^4.1.0",
     "nodemailer-smtp-transport": "^2.7.4",
