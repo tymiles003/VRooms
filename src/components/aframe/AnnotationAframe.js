@@ -70,14 +70,14 @@ class AnnotationAframe extends React.Component {
 		// last position read.
 		if (!this.props.inCreationMode && nextProps.inCreationMode) {
 			let el = document.getElementById("new-annotation");
-			console.log("el", el);
+			// console.log("el", el);
 			// this.getPosition();
 		}
 
 		let currentAnnos = this.props.annotations;
 		let nextAnnos = nextProps.annotations;
-		console.log("currentAnnos", currentAnnos);
-		console.log("nextAnnos", nextAnnos);
+		// console.log("currentAnnos", currentAnnos);
+		// console.log("nextAnnos", nextAnnos);
 
 		if (currentAnnos !== nextAnnos) {
 			this.setState({
@@ -101,14 +101,14 @@ class AnnotationAframe extends React.Component {
 
 		if (this.props.inCreationMode && !prevProps.inCreationMode) {
 			let el = document.getElementById("new-annotation");
-			console.log("el", el);
+			// console.log("el", el);
 			// this.getPosition();
 		}
 	};
 
 // componentDidMount ===============================
 	componentDidMount = (prevProps, prevState) => {
-		console.log("---- componentDidMount --->");
+		console.log("---- componentDidMount (Aframe) --->");
 		// this.getProperty();
 
 		// Fetch the room if roomID is provided, but if it isn't
@@ -187,23 +187,23 @@ class AnnotationAframe extends React.Component {
 
 // buildAnnotations =================================
 
-	buildAnnotations(annotations) {
-		console.log("---- buildAnnotations --->");
-		console.log("annotations", annotations);
-		let annotationArray = annotations;
+	// buildAnnotations(annotations) {
+	// 	console.log("---- buildAnnotations --->");
+	// 	console.log("annotations", annotations);
+	// 	let annotationArray = annotations;
 
-		if (!annotationArray) {
-			console.log("!annotationArray");
-			annotationArray = this.props.annotations;
-		}
+	// 	if (!annotationArray) {
+	// 		console.log("!annotationArray");
+	// 		annotationArray = this.props.annotations;
+	// 	}
 
-		console.log("annotationArray", annotationArray);
-		let annotationComponents = annotationArray.map((ea, index) => {
-			return <Annotation data={ea} key={index} />;
-		});
+	// 	console.log("annotationArray", annotationArray);
+	// 	let annotationComponents = annotationArray.map((ea, index) => {
+	// 		return <Annotation data={ea} key={index} />;
+	// 	});
 
-		return annotationComponents;
-	}
+	// 	return annotationComponents;
+	// }
 	// {this.state.annotations.map((ea, index) => (
 	// 	<Annotation data={ea} key={index} />
 	// ))}

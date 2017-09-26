@@ -221,9 +221,12 @@ class AnnotationPage extends Component {
 		})
 		// inCreationMode: false,
 		// annotations: newAnnoArray
+		
+		// Save to Database
+		roomAPI.addNewAnnotation( this.props.roomID, { xAxis, yAxis, zAxis, label, text } );
 
-		console.log('this.state.annotations',this.state.annotations);
 	}
+
 // render //////////////////////////////////////////
 	render() {
 		// let {street,city,state,zip,country,bedrooms,baths,built_year,price,square_feet,property_name} = this.state.property;
