@@ -121,3 +121,13 @@
     top: 0;
     left: 0;
 }
+
+.thumbnail-wrap {
+    width: 350px;
+    height: 220px;
+    position: relative;
+}
+
+.thumbnail-icon {
+    width:70%;
+}
