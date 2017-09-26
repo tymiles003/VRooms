@@ -245,8 +245,12 @@
     }
 
     .pg-contains-aframe {
-        width: 90%;
+        padding: 0 20px;
+        background-color: #ecf0f1;
     }
 
+    .rightsection .img-icon{
+        width: 70%;
+    }
    
 }
