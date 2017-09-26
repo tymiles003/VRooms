@@ -260,6 +260,13 @@ class AnnotationPage extends Component {
 						onClick={this.handleNewClick}
 						text="New"
 					/>
+				
+					<Btn
+						id="finish-btn"
+						href="#!"
+						onClick={this.handleNewClick}
+						text="Finish"
+					/>
 
 
 					{/* {(this.state.mode === 'positioned') &&
