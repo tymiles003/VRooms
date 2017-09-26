@@ -10,7 +10,8 @@ const defaultAnnotationState = {
 	text: "Lorem Ipsum whatever blah.",
 	xAxis: 0,
 	yAxis: 1.5,
-	zAxis: -4
+	zAxis: -4,
+	fetchCoordinates: false,
 };
 
 // Pass roomID to this page via props
@@ -61,6 +62,13 @@ class AnnotationPage extends Component {
 					xAxis: 2.426,
 					yAxis: 1.615,
 					zAxis: -3
+				},
+				{
+					label: "frames",
+					text: "Framey McFrameFace",
+					xAxis: 0.66,
+					yAxis: 1.76,
+					zAxis: -4.79
 				}
 			],
 			newAnnotation: {},
@@ -237,6 +245,9 @@ class AnnotationPage extends Component {
 						port={this.portAframe}
 						annotations={this.state.annotations}
 
+						fetchCoordinates={this.state.fetchCoordinates}
+
+
 						positionConfirmed={this.state.positionConfirmed}
 						mode={this.state.mode}
 						newAnnotation={this.state.newAnnotation}
@@ -274,6 +285,7 @@ class AnnotationPage extends Component {
 								id="submit-annotation"
 								href="#!"
 								theme="primary"
+								onMouseEnter={this.fetchCoordinates}
 								onClick={this.saveAnnotation}
 								text="Submit"
 							/>
