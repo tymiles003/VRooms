@@ -48,8 +48,14 @@
 
 		#new-annotation-btn {
 			top: 1rem;
+			left: 1rem;
+			position: fixed;
+		}
+		#finish-btn {
+			top: 1rem;
 			right: 1rem;
 			position: fixed;
+			background-color: $red;
 		}
 		#confirm-position {
 			position: fixed;
