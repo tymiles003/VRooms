@@ -214,7 +214,7 @@ class AnnotationAframe extends React.Component {
 			// add embedded to embed
 			<Scene inspector>
 				{/*==================================================*/}
-				<a-assets timeout="5000">
+				<a-assets timeout="15000">
 					{/* <img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>  */}
 					<img id="annotation-photo" src={this.state.pano_url} />
 				</a-assets>
