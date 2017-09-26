@@ -39,20 +39,20 @@ module.exports = {
       //FOR PROD
       clientID: "563584833973204",
       clientSecret: "901013dc65456fc9529e8079f2cb8d2d",
-      callbackURL: "https://v-rooms.herokuapp.com/auth/facebook/callback"
+      callbackURL: "http://vrooms.us/auth/facebook/callback"
     },
     twitterAuth: {
       //FOR PROD
       consumerKey:"jKkqhq6jTHApaoLgkbUBnkRtQ",
       consumerSecret: "7yKNaRVVI4bhlpkNsBbB69dBwbHrf3KZEot5K2Phjhv1ikE99L",
-      callbackURL: "https://v-rooms.herokuapp.com/auth/twitter/callback",
+      callbackURL: "http://vrooms.us/auth/twitter/callback",
 
     },
     googleAuth: {
       //FOR PROD
       clientID: "243612288079-f5s6vep0ag5frfluh0l1bng60kkncsu8.apps.googleusercontent.com",
       clientSecret: "FVQWsYreVVDi1t_VAwV0_7_m",
-      callbackURL: "https://v-rooms.herokuapp.com/auth/google/callback"
+      callbackURL: "http://vrooms.us/auth/google/callback"
     }
   }
 
