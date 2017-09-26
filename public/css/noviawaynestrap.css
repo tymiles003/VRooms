@@ -8,7 +8,9 @@
     position: relative;
 }
 */
-.pg-form main header, .pg-newVRoom main header {
+
+.pg-form main header,
+.pg-newVRoom main header {
     width: 100%;
     padding: 2rem 0 1rem;
     font-size: 2.2rem;
@@ -20,6 +22,13 @@
 .pg-contains-aframe {
     width: 100%;
 }
+
+.pg-form, .pg-newVRoom {
+    background-color: #ecf0f1;
+    min-height: 100%; 
+    min-width: 100%;
+}
+
 
 .pg-form main,
 .pg-newVRoom main {
@@ -36,6 +45,8 @@
     flex-direction: row;
     width: 100%;
     padding: 0;
+    background-color: #ecf0f1;
+    
 }
 
 .filedrop-wrap {
@@ -90,6 +101,8 @@
 
 #vroom-form-wrapper {
     display: flex;
+    color: #c9d2da;
+    background-color: #ecf0f1;
     /* flex-direction: row;*/
     justify-content: start;
     align-items: center;
@@ -112,7 +125,8 @@
     margin: 1.5rem 0 1.5rem;
 }
 
-.filedrop-wrap #filedrop-preview, .filedrop-wrap .img-canvas {
+.filedrop-wrap #filedrop-preview,
+.filedrop-wrap .img-canvas {
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -129,17 +143,16 @@
     position: relative;
     display: flex;
     align-items: center;
-
 }
 
-.thumbnail-content{
+.thumbnail-content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .thumbnail-icon {
-    width:70%;
+    width: 70%;
 }
 
 .ws-form .form-row.stack-vertical {
@@ -147,7 +160,7 @@
 }
 
 .thumbnail-row {
-    height:100%;
+    height: 100%;
     margin-bottom: 0;
     padding: 0;
     display: flex;
@@ -163,17 +176,18 @@
     display: flex;
     flex-direction: row;
     align-content: space-around;
-    
 }
 
+
 /* On the flex item to pin */
+
 .flexleft {
-   -webkit-align-self: flex-start;
-   align-self: flex-start;
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
 }
 
 .flexright {
-   margin-left: auto;
+    margin-left: auto;
 }
 
 .annotateBtn {
@@ -182,22 +196,57 @@
 
 .ws-form .input-wrap input {
     height: 2em;
-
 }
 
 .filedrop-wrap #filedrop-preview,
 .filedrop-wrap .img-canvas {
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  z-index: 101;
-  position: absolute;
-  top: 0;
-  left: 0;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    z-index: 101;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .filedrop-wrap #filedrop-preview.no-file,
 .filedrop-wrap .img-canvas.no-file {
-  z-index: 99;
+    z-index: 99;
+}
+
+@media screen and (max-width: 500px) {
+
+    .pg-form,
+    .pg-newVRoom {
+        min-height: 100vh;
+        min-width: 100vw;
+    }
+
+    .leftsection {
+        width: 100%
+    }
+
+    .rightsection {
+        width: 100%;
+        margin: 0;
+    }
+
+    .ws-form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
+    #vroom-form-wrapper {
+        width: 100%;
+        padding:10px;
+    }
+
+    .pg-contains-aframe {
+        width: 90%;
+    }
+
+   
 }

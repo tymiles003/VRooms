@@ -139,6 +139,7 @@ class NewVRoomForm extends Component {
 
   render() {
     return (
+      
       <div className="pg-contains-aframe">
         <ToastContainer
           toastMessageFactory={ToastMessageFactory}
