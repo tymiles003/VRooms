@@ -82,15 +82,21 @@ class AnnotationAframe extends React.Component {
 	// }
 // componentDidUpdate ==============================
 
-	// componentDidUpdate = (prevProps, prevState) => {
-	// 	console.log('this.props.annotations.length',this.props.annotations.length);
-	// 	console.log('prevProps.annotations.length',prevProps.annotations.length);
+	componentDidUpdate = (prevProps, prevState) => {
+		// console.log('this.props.annotations.length',this.props.annotations.length);
+		// console.log('prevProps.annotations.length',prevProps.annotations.length);
 
-	// 	if ( this.props.annotations.length !== prevProps.annotations.length ) {
-	// 		this.setState()
-	// 	}
+		// if ( this.props.annotations.length !== prevProps.annotations.length ) {
+		// 	this.setState()
+		// }
 
-	// }
+		if ( this.props.inCreationMode && !prevProps.inCreationMode ) {
+			let el = document.getElementById('new-annotation');
+			console.log('el',el);
+			// this.getPosition();
+		}
+
+	}
 
 // componentDidMount ===============================
 	componentDidMount = ( prevProps, prevState ) => {
@@ -193,30 +199,7 @@ class AnnotationAframe extends React.Component {
 
 // render //////////////////////////////////////////
 	render() {
-		// function AllAnnotations(props){
-		const AllAnnotations = () => {
-			console.log('---- AllAnnotations --->');
-			// let annotations = this.props.annotations;
-			// console.log('annotations',annotations);
-			// let annotations = props.data;
-			// let allElements = annotations.map( (ea, index) => {
-			// 	return (
-			// 		<Annotation data={ea} key={index} />
-			// 	)
-			// })
-			// return allElements;
-			return (
-				<Entity>
-					{this.props.annotations.map( (ea, index) => {
-						
-						return (
-							<Annotation data={ea} key={index} />
-						)
-					})}
-				</Entity>
-			)
-		}
-		
+
 		
 
 		return (
@@ -277,13 +260,20 @@ class AnnotationAframe extends React.Component {
 					<Annotation data={ea} key={index} />
 				))} */}
 				<BuildAnnotations annotations={this.state.annotations} />
-				{/* <BuildAnnotations annotations={this.props.annotations} /> */}
 				{/*==================================================*/}
-				{/* <AllAnnotations /> */}
-				{/* {this.state.newAnnotation &&
-					<Annotation data={this.state.newAnnotation} key={this.props.annotations.length+1} />
-				} */}
-				{/* {this.buildAnnotations(this.state.annotations)} */}
+				<Entity 
+					primitive='a-light'
+					type='ambient'
+					color='#eee'
+					intensity="1"
+					position={{ x:0, y:3, z:0 }}
+				/>
+				<Entity 
+					primitive='a-light'
+					type='directional'
+					color='#fff'
+					position={{ x:-0.5, y:3, z:1 }}
+				/>
 				{/*==================================================*/}
 			</Scene>
 		);
