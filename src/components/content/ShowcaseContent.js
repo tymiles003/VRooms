@@ -90,7 +90,6 @@ class ShowcaseContent extends Component {
                             <Link to={{
                                 pathname: "/showroom",
                                 state: { 
-                                    room: properties.rooms[0],
                                     property: properties    
                                 }
                             }}>
