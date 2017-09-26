@@ -81,7 +81,16 @@ class AnnotationPage extends Component {
 	// 	this.getProperty(); // not super essential. for extra info on page.
 	// 	console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
 	// };
-
+// getRoom =========================================
+	getRoom = () => {
+		roomAPI.getRoom(this.props.roomID).then(response => {
+			// console.log(response);
+			this.setState({
+				room: response.data[0]
+			});
+			console.log("getRoom.state", this.state);
+		});
+	};
 // getProperty =====================================
 	getProperty = () => {
 		propertyAPI.getProperty(this.props.propID).then(response => {
