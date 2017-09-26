@@ -188,9 +188,9 @@ div, h1, h2, h3, h4, h5, h6, p {
 
 .ws-btn {
   font-size: 1.2rem;
-  text-transform: uppercase;
-  font-weight: 400;
-  padding: 1rem 2rem;
+  text-transform: none;
+  font-weight: 500;
+  padding: .7rem 1.8rem;
   color: white;
   background-color: #7f8c8d;
   border-radius: 5px;
@@ -261,12 +261,12 @@ div, h1, h2, h3, h4, h5, h6, p {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 3rem 1rem;
+  padding: 3rem 6vw;
 }
 
 .ws-form .form-row {
   padding: 0;
-  margin: 2rem 0;
+  margin: 1.5rem 0 1.5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -277,6 +277,38 @@ div, h1, h2, h3, h4, h5, h6, p {
 .ws-form .form-row.stack-vertical {
   display: flex;
   flex-direction: column;
+}
+
+.ws-form .form-row .col-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+  max-width: 800px;
+  min-width: 300px;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.ws-form .form-row .col-wrap .form-col {
+  flex-basis: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.ws-form .form-row .col-wrap .form-col > * {
+  margin: .5rem 0;
+}
+
+.ws-form .form-row .col-wrap .form-col .filedrop-wrap {
+  height: 100%;
+}
+
+.ws-form .form-row .col-wrap .form-col .filedrop-wrap .dropzone {
+  padding: 3rem;
 }
 
 .ws-form .form-group {
@@ -432,7 +464,8 @@ div, h1, h2, h3, h4, h5, h6, p {
   max-width: 600px;
 }
 
-.filedrop-wrap {
+.col-wrap,
+.filedrop-wrap.pano-upload {
   width: 90vw;
   height: 45vw;
   max-width: 800px;
@@ -442,7 +475,8 @@ div, h1, h2, h3, h4, h5, h6, p {
   position: relative;
 }
 
-.filedrop-wrap .dropzone {
+.col-wrap .dropzone,
+.filedrop-wrap.pano-upload .dropzone {
   background-color: #fff;
   color: rgba(0, 0, 0, 0.87);
   height: 100%;
@@ -462,7 +496,8 @@ div, h1, h2, h3, h4, h5, h6, p {
   border: 2px dashed #c9d2da;
 }
 
-.filedrop-wrap .dropzone .dropzone-content {
+.col-wrap .dropzone .dropzone-content,
+.filedrop-wrap.pano-upload .dropzone .dropzone-content {
   color: #3498db;
   font-size: 1.1em;
   font-weight: 400;
@@ -471,39 +506,46 @@ div, h1, h2, h3, h4, h5, h6, p {
 }
 
 @media all and (max-width: 700px) {
-  .filedrop-wrap .dropzone .dropzone-content {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
     font-size: .9em;
   }
 }
 
 @media all and (max-width: 600px) {
-  .filedrop-wrap .dropzone .dropzone-content {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
     font-size: .8em;
   }
 }
 
 @media all and (max-width: 500px) {
-  .filedrop-wrap .dropzone .dropzone-content {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
     font-size: .6em;
   }
 }
 
-.filedrop-wrap .dropzone .dropzone-content .feature-icon {
+.col-wrap .dropzone .dropzone-content .feature-icon,
+.filedrop-wrap.pano-upload .dropzone .dropzone-content .feature-icon {
   font-size: 5.5em;
   margin-bottom: 1rem;
   opacity: .15;
 }
 
-.filedrop-wrap .dropzone .dropzone-content .feature-icon img {
+.col-wrap .dropzone .dropzone-content .feature-icon img,
+.filedrop-wrap.pano-upload .dropzone .dropzone-content .feature-icon img {
   height: 1.2em;
   width: initial;
 }
 
-.filedrop-wrap .dropzone .dropzone-content .feature-icon i {
+.col-wrap .dropzone .dropzone-content .feature-icon i,
+.filedrop-wrap.pano-upload .dropzone .dropzone-content .feature-icon i {
   font-size: inherit;
 }
 
-.filedrop-wrap .dropzone .dropzone-content .direction-wrap {
+.col-wrap .dropzone .dropzone-content .direction-wrap,
+.filedrop-wrap.pano-upload .dropzone .dropzone-content .direction-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -511,12 +553,14 @@ div, h1, h2, h3, h4, h5, h6, p {
 }
 
 @media screen and (max-width: 500px) {
-  .filedrop-wrap .dropzone .dropzone-content .direction-wrap {
+  .col-wrap .dropzone .dropzone-content .direction-wrap,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content .direction-wrap {
     display: none;
   }
 }
 
-.filedrop-wrap .dropzone .dropzone-content .direction-wrap .direction-headline {
+.col-wrap .dropzone .dropzone-content .direction-wrap .direction-headline,
+.filedrop-wrap.pano-upload .dropzone .dropzone-content .direction-wrap .direction-headline {
   font-size: 2.2em;
   line-height: 1em;
   margin-bottom: 1rem;
@@ -524,15 +568,18 @@ div, h1, h2, h3, h4, h5, h6, p {
   font-weight: 100;
 }
 
-.filedrop-wrap .dropzone .dropzone-content .direction-wrap .direction-subheadline {
+.col-wrap .dropzone .dropzone-content .direction-wrap .direction-subheadline,
+.filedrop-wrap.pano-upload .dropzone .dropzone-content .direction-wrap .direction-subheadline {
   font-size: 1em;
   color: #c9d2da;
   line-height: 1em;
   margin-bottom: .5rem;
 }
 
-.filedrop-wrap #filedrop-preview,
-.filedrop-wrap .img-canvas {
+.col-wrap .filedrop-preview,
+.col-wrap .img-canvas,
+.filedrop-wrap.pano-upload .filedrop-preview,
+.filedrop-wrap.pano-upload .img-canvas {
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -543,8 +590,10 @@ div, h1, h2, h3, h4, h5, h6, p {
   left: 0;
 }
 
-.filedrop-wrap #filedrop-preview.no-file,
-.filedrop-wrap .img-canvas.no-file {
+.col-wrap .filedrop-preview.no-file,
+.col-wrap .img-canvas.no-file,
+.filedrop-wrap.pano-upload .filedrop-preview.no-file,
+.filedrop-wrap.pano-upload .img-canvas.no-file {
   z-index: 99;
 }
 
