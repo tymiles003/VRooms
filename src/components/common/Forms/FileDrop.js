@@ -13,7 +13,7 @@ class FileDrop extends Component {
 			accepted: [],
 			rejected: [],
 		};
-	}
+	} 
 
 	handleInputChange = event => {
 		event.preventDefault();
@@ -88,3 +88,4 @@ class FileDrop extends Component {
 }
 
 export default FileDrop;
+
