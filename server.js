@@ -140,7 +140,7 @@ app.post('/sign-s3', (req, res) => {
 	const fileType = req.body.fileType;
 	const type = req.body.type; // 360 or thumbnail
 
-	let path = type+"/"+fileName; // Set path to /userName/fileName once we get user info
+	let path = type+"/"+fileName;
 
 	const s3Params = {
 		Bucket: BUCKET_NAME,
