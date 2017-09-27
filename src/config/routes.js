@@ -38,11 +38,11 @@ const routes = (
             <Route exact path="/new-vroom" component={NewVRoom} />
             <Route exact path="/embed" component={EmbeddedAframe} />
             <Route path="/contact" component={Contact} />
-            <Route path="/annotate" component={AnnotationPage} />
             <Route path="/upload" component={UploadPage} />
 						
-						<Redirect from="/exit" to="/" />
-
+            <Route exact path="/annotate" component={AnnotationPage} />
+						<Route path="/annotate:_:roomID" component={AnnotationPage}/>
+			
             <Route path="/gallery" component={Gallery} />            
             <Route path="/living1" component={Living1} />            
             <Route path="/living2" component={Living2} />            

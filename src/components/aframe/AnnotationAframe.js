@@ -9,7 +9,7 @@ import "aframe-mouse-cursor-component";
 // import "aframe-inspector";
 // import 'aframe-gridhelper-component';
 
-import LoadingProgress from 'react-progressbar.js';
+// import LoadingProgress from 'react-progressbar.js';
 
 import Cloak from "./../common/Elements/Cloak";
 import CameraCursor from "./components/CameraCursor";

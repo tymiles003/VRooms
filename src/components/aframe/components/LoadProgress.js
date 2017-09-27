@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProgressBar from "react-progressbar.js";
+// import ProgressBar from "react-progressbar.js";
 
 class LoadProgress extends React.Component {
 	constructor(props) {
