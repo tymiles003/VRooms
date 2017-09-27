@@ -5,6 +5,7 @@ import Main from "../components/Main";
 import Showcase from "../components/Showcase";
 import ShowroomMain from "../components/ShowroomMain";
 import About from "../components/About";
+import How from "../components/How";
 import Agents from "../components/Agents";
 import LoginForm from "../components/authentication/LoginForm";
 import Signup from "../components/authentication/Signup";
@@ -31,6 +32,7 @@ const routes = (
             <Route path="/showcase" component={Showcase} />
             <Route path="/showroom" component={ShowroomMain} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/how" component={How} />
             <Route exact path="/agents" component={Agents} />
             <Route path="/signup" component={Signup} />
             <Route exact path="/new-vroom" component={NewVRoom} />
