@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
 import Main from "../components/Main";
 import Showcase from "../components/Showcase";
@@ -38,6 +38,8 @@ const routes = (
             <Route path="/contact" component={Contact} />
             <Route path="/annotate" component={AnnotationPage} />
             <Route path="/upload" component={UploadPage} />
+						
+						<Redirect from="/exit" to="/" />
 
             <Route path="/gallery" component={Gallery} />            
             <Route path="/living1" component={Living1} />            

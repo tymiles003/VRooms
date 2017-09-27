@@ -62,6 +62,10 @@ aframe-animation-component@^3.2.5:
   dependencies:
     animejs "^1.1.0"
 
+aframe-draw-component@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/aframe-draw-component/-/aframe-draw-component-1.5.0.tgz#3e1eb635370c224074203309ce61476fc5c26229"
+
 aframe-inspector@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aframe-inspector/-/aframe-inspector-0.7.0.tgz#bc3eb387acdf7e705df686af4e89bf8680e6c90a"
@@ -90,6 +94,10 @@ aframe-mouse-cursor-component@^0.5.2:
 aframe-react@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/aframe-react/-/aframe-react-4.3.0.tgz#43eba68be4a1e88830aac404e90ac033945fbf54"
+
+aframe-textwrap-component@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/aframe-textwrap-component/-/aframe-textwrap-component-1.0.1.tgz#760998978d36b46873414421c4e71a4422cdd8fc"
 
 aframe@^0.7.0:
   version "0.7.0"

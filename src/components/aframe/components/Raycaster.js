@@ -49,12 +49,13 @@ render(){
 				objects: '.ray-intersect', 
 				near: 0, 
 				origin: '0 1 0', 
-				showLine: true,
+				showLine: false,
 			}}
-			position="0 -0.9 0"
-			rotation="90 0 0"
+			position="0 0 0"
+			rotation="0 0 0"
 		/>
 	);
 }
 };
 export default Raycaster;
+// position="0 -0.9 0"

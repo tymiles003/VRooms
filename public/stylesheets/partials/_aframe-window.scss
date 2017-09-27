@@ -29,6 +29,7 @@
 		margin: 0;
 	}
 
+
 	&.fullscreen {
 		position: fixed;
 		height: 100vh;
@@ -38,24 +39,30 @@
 		margin: 0;
 		padding: 0;
 		
-		
-		* {
-			z-index: 950
-		}
 		a-scene {
-			z-index: 900;
+			z-index: 940;
+			height: 100vh;
 		}
 
+		.ws-btn, .ws-form {
+			z-index: 950
+		}
 		#new-annotation-btn {
-			top: 1rem;
-			left: 1rem;
 			position: fixed;
+			font-size: 1.5rem;
+			bottom: 1rem;
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: $green;
 		}
 		#finish-btn {
 			top: 1rem;
-			right: 1rem;
+			left: 1rem;
 			position: fixed;
 			background-color: $red;
+			font-size: 1rem;
+			padding: 0.5rem 1rem;
+			font-weight: 400;
 		}
 		#confirm-position {
 			position: fixed;

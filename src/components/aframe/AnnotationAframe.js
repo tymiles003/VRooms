@@ -11,6 +11,7 @@ import "aframe-mouse-cursor-component";
 
 import LoadingProgress from 'react-progressbar.js';
 
+import Cloak from "./../common/Elements/Cloak";
 import CameraCursor from "./components/CameraCursor";
 import Raycaster from "./components/Raycaster";
 import RotatingBox from "./components/RotatingBox";
@@ -37,7 +38,9 @@ class AnnotationAframe extends React.Component {
 			inCreationMode: false,
 			mode: "idle",
 			newAnnotation: {},
-			annotations: []
+			annotations: [],
+
+			loading: true,
 		};
 	}
 // handleLoadProgress ==============================
@@ -86,30 +89,27 @@ class AnnotationAframe extends React.Component {
 	//--------------------------------------------------
 
 	// Once we receive the pano_url from parent
+
+		// let currentURL = this.props.pano_url;
+		// let nextURL = nextProps.pano_url;
+	
 		if (nextProps.pano_url && (nextProps.pano_url !== this.props.pano_url)){
 			let url = nextProps.pano_url;
 			console.log('>>>> pano_url --->',url);
 			let img = document.getElementById('annotation-photo');
-			img.addEventListener('load', function(e){
-				e.preventDefault();
-				console.log('>>>> img loaded');
-			})
+			img.addEventListener('load', this.handleLoadState)
 		}
 	//--------------------------------------------------
 
 	};
-
-// componentDidUpdate ==============================
-
-	// componentDidUpdate = (prevProps, prevState) => {
-
-	// 	if (this.props.inCreationMode && !prevProps.inCreationMode) {
-	// 		let el = document.getElementById("new-annotation");
-	// 		// console.log("el", el);
-	// 		// this.getPosition();
-	// 	}
-	// };
-
+// handleLoad ======================================
+	handleLoadState = (e) => {
+		e.preventDefault();
+		console.log('>>>> img loaded');
+		this.setState({
+			loading: false
+		})
+	}
 // componentDidMount ===============================
 	componentDidMount = (prevProps, prevState) => {
 		console.log("---- componentDidMount (Aframe) --->");
@@ -139,8 +139,6 @@ class AnnotationAframe extends React.Component {
 			annotations: this.props.annotations
 		});
 	};
-//==================================================
-//==================================================
 // getPosition =====================================
 	getPosition = event => {
 		console.log("---- getPosition --->");
@@ -184,7 +182,7 @@ class AnnotationAframe extends React.Component {
 			console.log("position ====", posState);
 			this.props.port(posState);
 
-			// Switch state so it will not fire again until new is clicked;
+			// Switch state so it will not fire again until next trigger;
 			this.setState(posState);
 		};
 
@@ -193,11 +191,10 @@ class AnnotationAframe extends React.Component {
 // render //////////////////////////////////////////
 	render() {
 		return (
-			// add embedded to embed
-			<Scene inspector>
+			<Scene inspector className={this.state.loading ? 'loading' : 'loaded' }>
+				{this.state.loading && <Cloak/>}
 				{/*==================================================*/}
 				<a-assets>
-					
 					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
 					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
@@ -214,6 +211,7 @@ class AnnotationAframe extends React.Component {
 					primitive="a-camera"
 					look-controls="reverseMouseDrag: true"
 					mouse-cursor
+					wasd-controls="enabled: false"
 					id="camera"
 				>
 					<Entity primitive="a-cursor" id="cursor" color="white" />
@@ -224,15 +222,29 @@ class AnnotationAframe extends React.Component {
 							<Entity
 								id="new-annotation"
 								className="annotation-toggle box ray-intersect"
-								geometry={{ primitive: "box", width: 0.24, height: 0.24, depth: 0.24 }}
-								scale={{ x: 1, y: 1, z: 1 }}
-								material={{ color: "#f1c40f", opacity: 0.8 }}
-								animation__rotate={{ property: "rotation", dur: 4000, loop: true, to: "360 360 360" }}
+								geometry={{ 
+									primitive: "box", 
+									width: 0.24, 
+									height: 0.24, 
+									depth: 0.24
+									}}
+								scale={{ x:1 , y:1 , z:1 }}
+								material={{ 
+									color: "#f1c40f", 
+									opacity: 0.8 
+								}}
+								animation__rotate={{ 
+									property: "rotation", 
+									dur: 4000, 
+									loop: true, 
+									to: "360 360 360" 
+									}}
 								events={{
 									click: this.getPosition,
-									mousenter: this.getPosition,
+									mouseenter: this.getPosition,
 								}}
 							/>
+								{/* _ref={this.getPosition} */}
 							{/* LABEL ==================================== */}
 							{/* <Entity
 								className="annotation-label"
