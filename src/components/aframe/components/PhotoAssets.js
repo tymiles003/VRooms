@@ -1,24 +1,30 @@
-import React from 'react';
+import React, {Component} from "react";
+import LoadProgress from './LoadProgress';
 
-const PhotoAssets = (props) => {
-	return (
-		<a-assets>
-			{ props.photos.map( photo => {
-				let{pano_url,name,id} = photo;
-				
-				let imgID = 'img-' + name.replace(/[^a-zA-Z0-9-]/g,'-');
-				console.log('imgID',imgID);
+class PhotoAssets extends React.Component {
+	constructor(props){
+		super(props)
+		this.state = {}
+	}
 
-				return(
-					<img id={id} src={pano_url} crossOrigin="anonymous"/>
-				)
-			})}
-		</a-assets>
-	)
+	render() {
+		return (
+			<a-assets>
+				{props.photos.map(photo => {
+					let { pano_url, name, id } = photo;
+
+					let imgID = "img-" + name.replace(/[^a-zA-Z0-9-]/g, "-");
+					console.log("imgID", imgID);
+
+					return (
+						<img id={id} src={pano_url} crossOrigin="anonymous" />
+					);
+				})}
+			</a-assets>
+		);
+	}
 }
 export default PhotoAssets;
-
-
 
 // <a-assets>
 // {this.handlePhotoAssets}

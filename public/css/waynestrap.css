@@ -849,25 +849,32 @@ body::-webkit-scrollbar-thumb {
   padding: 0;
 }
 
-.aframe-wrap.fullscreen * {
+.aframe-wrap.fullscreen a-scene {
+  z-index: 940;
+  height: 100vh;
+}
+
+.aframe-wrap.fullscreen .ws-btn, .aframe-wrap.fullscreen .ws-form {
   z-index: 950;
 }
 
-.aframe-wrap.fullscreen a-scene {
-  z-index: 900;
-}
-
 .aframe-wrap.fullscreen #new-annotation-btn {
-  top: 1rem;
-  left: 1rem;
   position: fixed;
+  font-size: 1.5rem;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2ecc71;
 }
 
 .aframe-wrap.fullscreen #finish-btn {
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   position: fixed;
   background-color: #e74c3c;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
 }
 
 .aframe-wrap.fullscreen #confirm-position {
@@ -892,6 +899,41 @@ body::-webkit-scrollbar-thumb {
   max-width: 400px;
   padding: 0;
   position: fixed;
+}
+
+.ws-cloak {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.ws-cloak .cloak-content {
+  z-index: inherit;
+  text-align: center;
+}
+
+.ws-cloak .cloak-content .preloader {
+  z-index: inherit;
+  display: inline-block;
+  height: initial;
+  width: initial;
+}
+
+.ws-cloak .cloak-content .headline {
+  color: #999;
+}
+
+.aframe-wrap a-scene.loading {
+  z-index: 960;
+}
+
+.aframe-wrap a-scene.loaded {
+  z-index: 900;
 }
 
 html {

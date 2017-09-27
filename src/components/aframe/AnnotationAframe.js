@@ -6,11 +6,15 @@ import "aframe-look-at-component";
 import "aframe-animation-component";
 import "aframe-mouse-cursor-component";
 // import "aframe-click-drag-component";
+// import "aframe-inspector";
+// import 'aframe-gridhelper-component';
+
+import LoadingProgress from 'react-progressbar.js';
+
+import Cloak from "./../common/Elements/Cloak";
 import CameraCursor from "./components/CameraCursor";
 import Raycaster from "./components/Raycaster";
 import RotatingBox from "./components/RotatingBox";
-// import 'aframe-gridhelper-component';
-// import "aframe-inspector";
 import Portal from "./components/Portal";
 import Annotation from "./components/Annotation";
 import PhotoAssets from "./components/PhotoAssets";
@@ -34,34 +38,32 @@ class AnnotationAframe extends React.Component {
 			inCreationMode: false,
 			mode: "idle",
 			newAnnotation: {},
-			annotations: []
+			annotations: [],
+
+			loading: true,
 		};
 	}
-	// componentWillReceiveProps =======================
+// handleLoadProgress ==============================
+
+	// handleLoadProgress = () => {
+		
+	// }
+
+// componentWillReceiveProps =======================
 	componentWillReceiveProps = nextProps => {
-		// Not called on initial render
-		// console.log('componentWillReceiveProps');
-		// console.log('nextProps.mode',nextProps.mode);
-		// console.log('this.props.inCreationMode',this.props.inCreationMode);
-		// let { inCreationMode, mode } = nextProps;
 
-		// this.setState({ inCreationMode, mode, newAnnotation});
-		// console.log('Aframe mode ====',this.state.mode);
-
-		// console.log('this.props.pano_url',this.props.pano_url);
-		// console.log('nexProps.pano_url',nextProps.pano_url);
+	// Setting pano_url in this state
 		let currentURL = this.props.pano_url;
 		let nextURL = nextProps.pano_url;
-
+		
 		if ( currentURL !== nextURL && currentURL === '' ) {
 			this.setState({
 				pano_url: nextURL
 			})
 		}
+	//--------------------------------------------------
 
-		// ENTERING CREATION MODE (currently false, next true)
-
-		// Get the initial position of the cube.
+	// Get the initial position of the cube...
 		// Without doing this, user HAS to move at least once or else the
 		// coordinates will be undefined. If they move to location before
 		// clicking 'New', type info and submit, coordinates will never
@@ -73,44 +75,45 @@ class AnnotationAframe extends React.Component {
 			// console.log("el", el);
 			// this.getPosition();
 		}
-
+	//--------------------------------------------------
+		
+	// Update when we receive new annotations
 		let currentAnnos = this.props.annotations;
 		let nextAnnos = nextProps.annotations;
-		// console.log("currentAnnos", currentAnnos);
-		// console.log("nextAnnos", nextAnnos);
 
 		if (currentAnnos !== nextAnnos) {
 			this.setState({
 				annotations: nextAnnos
 			});
 		}
-	};
-	// shouldComponentUpdate ===========================
-	// shouldComponentUpdate = (nextProps, nextState) => {
+	//--------------------------------------------------
 
-	// }
-	// componentDidUpdate ==============================
+	// Once we receive the pano_url from parent
 
-	componentDidUpdate = (prevProps, prevState) => {
-		// console.log('this.props.annotations.length',this.props.annotations.length);
-		// console.log('prevProps.annotations.length',prevProps.annotations.length);
-
-		// if ( this.props.annotations.length !== prevProps.annotations.length ) {
-		// 	this.setState()
-		// }
-
-		if (this.props.inCreationMode && !prevProps.inCreationMode) {
-			let el = document.getElementById("new-annotation");
-			// console.log("el", el);
-			// this.getPosition();
+		// let currentURL = this.props.pano_url;
+		// let nextURL = nextProps.pano_url;
+	
+		if (nextProps.pano_url && (nextProps.pano_url !== this.props.pano_url)){
+			let url = nextProps.pano_url;
+			console.log('>>>> pano_url --->',url);
+			let img = document.getElementById('annotation-photo');
+			img.addEventListener('load', this.handleLoadState)
 		}
-	};
+	//--------------------------------------------------
 
+	};
+// handleLoad ======================================
+	handleLoadState = (e) => {
+		e.preventDefault();
+		console.log('>>>> img loaded');
+		this.setState({
+			loading: false
+		})
+	}
 // componentDidMount ===============================
 	componentDidMount = (prevProps, prevState) => {
 		console.log("---- componentDidMount (Aframe) --->");
 		// this.getProperty();
-
 		// Fetch the room if roomID is provided, but if it isn't
 		// Use this default one for now. Will need to handle error
 		// later on.
@@ -127,17 +130,15 @@ class AnnotationAframe extends React.Component {
 				
 			// });
 		// }
-
+	
+		
+		// if ( this.props.inCreationMode ) {
+			// 	this.getPosition(document.getElementById('new-annotation').click());
+			// }
 		this.setState({
 			annotations: this.props.annotations
 		});
-
-		// if ( this.props.inCreationMode ) {
-		// 	this.getPosition(document.getElementById('new-annotation').click());
-		// }
 	};
-//==================================================
-//==================================================
 // getPosition =====================================
 	getPosition = event => {
 		console.log("---- getPosition --->");
@@ -157,65 +158,45 @@ class AnnotationAframe extends React.Component {
 		// }
 	};
 // handleRay =======================================
-	handleRay = event => {
-		event.preventDefault();
-		console.log("---- handleRay --->");
-		// console.log('event.detail',event.detail);
+		handleRay = event => {
+			event.preventDefault();
+			// console.log("---- handleRay --->");
+			// console.log('event.detail',event.detail);
 
-		// event.detail is the holy grail
-		// contains intersection world coordinates. (not relative)
-		const intersectionPoint = event.detail.intersection.point;
-		let { x, y, z } = intersectionPoint;
+			// event.detail is the holy grail
+			// contains intersection world coordinates. (not relative)
+			const intersectionPoint = event.detail.intersection.point;
+			let { x, y, z } = intersectionPoint;
 
-		// Remove event so it only fires once. (or else it would fire constantly)
-		event.target.removeEventListener(
-			"raycaster-intersected",
-			this.handleRay
-		);
+			// Remove event so it only fires once. (or else it would fire constantly)
+			event.target.removeEventListener(
+				"raycaster-intersected",
+				this.handleRay
+			);
 
-		let posState = {
-			xAxis: x,
-			yAxis: y,
-			zAxis: z
+			let posState = {
+				xAxis: x,
+				yAxis: y,
+				zAxis: z
+			};
+			console.log("position ====", posState);
+			this.props.port(posState);
+
+			// Switch state so it will not fire again until next trigger;
+			this.setState(posState);
 		};
-		console.log("posState ====", posState);
-		this.props.port(posState);
 
-		// Switch state so it will not fire again until new is clicked;
-		this.setState(posState);
-	};
 
-// buildAnnotations =================================
-
-	// buildAnnotations(annotations) {
-	// 	console.log("---- buildAnnotations --->");
-	// 	console.log("annotations", annotations);
-	// 	let annotationArray = annotations;
-
-	// 	if (!annotationArray) {
-	// 		console.log("!annotationArray");
-	// 		annotationArray = this.props.annotations;
-	// 	}
-
-	// 	console.log("annotationArray", annotationArray);
-	// 	let annotationComponents = annotationArray.map((ea, index) => {
-	// 		return <Annotation data={ea} key={index} />;
-	// 	});
-
-	// 	return annotationComponents;
-	// }
-	// {this.state.annotations.map((ea, index) => (
-	// 	<Annotation data={ea} key={index} />
-	// ))}
 
 // render //////////////////////////////////////////
 	render() {
 		return (
-			// add embedded to embed
-			<Scene inspector>
+			<Scene inspector className={this.state.loading ? 'loading' : 'loaded' }>
+				{this.state.loading && <Cloak/>}
 				{/*==================================================*/}
-				<a-assets timeout="15000">
-					{/* <img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>  */}
+				<a-assets>
+					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
+					{/* <img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/> */}
 					<img id="annotation-photo" src={this.state.pano_url} />
 				</a-assets>
 				{/*==================================================*/}
@@ -230,6 +211,7 @@ class AnnotationAframe extends React.Component {
 					primitive="a-camera"
 					look-controls="reverseMouseDrag: true"
 					mouse-cursor
+					wasd-controls="enabled: false"
 					id="camera"
 				>
 					<Entity primitive="a-cursor" id="cursor" color="white" />
@@ -240,14 +222,29 @@ class AnnotationAframe extends React.Component {
 							<Entity
 								id="new-annotation"
 								className="annotation-toggle box ray-intersect"
-								geometry={{ primitive: "box", width: 0.24, height: 0.24, depth: 0.24 }}
-								scale={{ x: 1, y: 1, z: 1 }}
-								material={{ color: "#f1c40f", opacity: 0.8 }}
-								animation__rotate={{ property: "rotation", dur: 4000, loop: true, to: "360 360 360" }}
+								geometry={{ 
+									primitive: "box", 
+									width: 0.24, 
+									height: 0.24, 
+									depth: 0.24
+									}}
+								scale={{ x:1 , y:1 , z:1 }}
+								material={{ 
+									color: "#f1c40f", 
+									opacity: 0.8 
+								}}
+								animation__rotate={{ 
+									property: "rotation", 
+									dur: 4000, 
+									loop: true, 
+									to: "360 360 360" 
+									}}
 								events={{
 									click: this.getPosition,
+									mouseenter: this.getPosition,
 								}}
 							/>
+								{/* _ref={this.getPosition} */}
 							{/* LABEL ==================================== */}
 							{/* <Entity
 								className="annotation-label"
