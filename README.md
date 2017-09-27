@@ -1,12 +1,12 @@
 # VRooms - Virtual Reality for Real Estate
-([https://farmily.herokuapp.com](https://farmily.herokuapp.com))
+([http://www.vrooms.us](http://www.vrooms.us))
 
 Welcome to the next generation of homebuying as we revolutionize the real estate industry. Discover an immersive and lifelike home tour experience using Virtual Reality (VR) technology. VRooms makes Virtual Reality for real estates engaging and accessible on both web and mobile platform. 
 
 VRooms allows you to create your VR app by using 360 images or videos without coding or special equipment. Just upload your 360 images and you are ready to go!  Experience homes online like never before in front of your computer or using a compatible mobile device such as iPhone or Android phones paired with a VR headset.
 
 
-![VRooms](https://lorempixel.com/output/abstract-q-c-640-480-7.jpg)
+![VRooms](https://i.imgur.com/axi7zpe.jpg)
 
 ##  Technologies and Framework:
 * ReactJS
