@@ -67,7 +67,7 @@ class FileDropTN extends Component {
 				<Dropzone className="dropzone thumbnail-dropzone" onDrop={this.onDrop.bind(this)} >
 					<div className="dropzone-content thumbnail-content">
 						<div className="feature-icon thumbnail-icon">
-							<img className="img-icon thumbnail-icon" src="/assets/graphics/360-photo-o-black.svg" />
+							<img className="img-icon thumbnail-icon" src="/assets/graphics/thumbnail_600x400.svg" />
 						</div>
 						<div className="direction-wrap">
 							<h4 className="direction-headline"> Drag & Drop </h4>
