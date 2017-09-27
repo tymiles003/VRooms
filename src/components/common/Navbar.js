@@ -67,7 +67,8 @@ class Navbar extends Component {
 				</div>
 
 				<div className={"mobile-menu" + ' ' + mobileClassMenu.join( ' ')}>
-					<a href="/about" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">About</a>
+					<a href="/about" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="About">About</a>
+					<a href="/how" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="About">How</a>
 					<a href="/agents" className="mobile-menu__link text--white text--bold a-submenu" data-page-name="Agents">Agents</a>
 					<a href="/showcase" className="mobile-menu__link text--white text--bold ">Showcase</a>
 					{/* <a href="/showroom" className="mobile-menu__link text--white text--bold ">Showroom</a> */}
@@ -111,6 +112,7 @@ class Navbar extends Component {
 				
 				<nav className="navigation-menu emerge" data-duration="600" data-effect="slide" data-left="64px">
 					<Link to="/about" className="navigation-menu__link uppercase">About</Link>
+					<Link to="/how" className="navigation-menu__link uppercase">How</Link>
 					<Link to="/agents" className="navigation-menu__link uppercase">Agents</Link>
 					<Link to="/showcase" className="navigation-menu__link uppercase">Showcase</Link>
 					{/* <Link to="/showroom" className="navigation-menu__link uppercase">Showroom (temp)</Link> */}

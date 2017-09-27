@@ -9,6 +9,8 @@ const NewVRoom = (props) => {
 	//   render() {
 	return (
 		<div className="pg-form pg-newVRoom">
+		<div className="pageWrapper">
+			
 			{/* Helmet =========================================================*/}
 				<Helmet>
 					<title>Create New VRoom</title>
@@ -30,6 +32,7 @@ const NewVRoom = (props) => {
 			{/*=================================================================*/}
 			</main>
 			{/*=================================================================*/}
+		</div>	
 		</div>
 	);
 };

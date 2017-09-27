@@ -36,7 +36,7 @@ class FormContent extends Component{
         <div className="clear"></div>
 		<div className="content">
 			<div className="" style={{fontStyle: "italic", marginBottom: "20px", padding:"0 35px"}}>
-					Let's not be strangers for much longer.
+					
 			</div>
 		<div className="content-wrapper">
 		    <div className="attachment-wrapper">

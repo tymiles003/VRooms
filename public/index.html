@@ -14,7 +14,16 @@
 	<meta property="og:title" content="VRooms - Virtual Reality for Real Estate"/>
     <meta property="og:image" content="https://i.imgur.com/axi7zpe.jpg"/>
     <meta property="og:description" content="Welcome to the next generation of homebuying as we revolutionize the real estate industry. Discover an immersive and lifelike home tour experience using Virtual Reality (VR) technology. VRooms makes Virtual Reality for real estates engaging and accessible on both web and mobile platform."/>
-    <meta property="og:url" content="http://www.vrooms.us" />
+	<meta property="og:url" content="http://www.vrooms.us" />
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21405096-3"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments)};
+		gtag('js', new Date());
+		gtag('config', 'UA-21405096-3');
+	</script>
 
 	<!-- Here we include font-awesome CSS. These will be made available to all of the generated HTML/JS that React generates-->
 	<!-- <link rel="stylesheet" href="/css/font-awesome.min.css"> -->
@@ -31,6 +40,7 @@
 	
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/waynestrap.css">
+	<link rel="stylesheet" href="/css/noviawaynestrap.css">
 	
 	
 	<link href="/css/aframe.css" rel="stylesheet"/>
@@ -43,19 +53,32 @@
 	<!-- This is where React will deploy the contents it generates -->
 	<div id="app" style="height: 100%; width: 100%"></div>
 
-
-
-
 	<!-- All of our JS code will be transpiled into this bundle.js file -->
 	<script src="bundle.js"></script>
-
 	<script type="text/javascript" src="/js/jquery.min.js"></script>	
 	<!-- Customized JS -->
 	<script type="text/javascript" src="/js/videoeffect.js"></script>	
 
-
 	<!-- Go to www.addthis.com/dashboard to customize your tools --> 
 	<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59bf8ada1add6c50"></script>   -->
+	<!-- Start of StatCounter Code for Default Guide -->
+	<script type="text/javascript">
+		var sc_project = 11456234;
+		var sc_invisible = 1;
+		var sc_security = "1ce074aa";
+		var scJsHost = (("https:" == document.location.protocol) ?
+			"https://secure." : "http://www.");
+		document.write("<sc" + "ript type='text/javascript' src='" +
+			scJsHost +
+			"statcounter.com/counter/counter.js'></" + "script>");
+	</script>
+	<noscript>
+		<div class="statcounter"><a title="Web Analytics
+		Made Easy - StatCounter" href="http://statcounter.com/" target="_blank"><img class="statcounter"
+		src="//c.statcounter.com/11456234/0/1ce074aa/1/" alt="Web
+		Analytics Made Easy - StatCounter"></a></div>
+	</noscript>
+	<!-- End of StatCounter Code for Default Guide -->
 </body>
 
 </html>

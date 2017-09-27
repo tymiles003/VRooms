@@ -1,0 +1,279 @@
+/*.filedrop-wrap {
+    width: 90vw;
+    height: 45vw;
+    max-width: 800px;
+    max-height: 400px;
+    min-width: 300px;
+    min-height: 150px;
+    position: relative;
+}
+*/
+
+.pg-form main header,
+.pg-newVRoom main header {
+    width: 100%;
+    padding: 2rem 0 1rem;
+    font-size: 2.2rem;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.87);
+    text-align: center;
+}
+
+.pg-contains-aframe {
+    width: 100%;
+}
+
+.pg-form, .pg-newVRoom {
+    background-color: #ecf0f1;
+    min-height: 100%; 
+    min-width: 100%;
+}
+
+
+.pg-form main,
+.pg-newVRoom main {
+    width: 100vw;
+    /*height: 100vh;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.ws-form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0;
+    background-color: #ecf0f1;
+    
+}
+
+.filedrop-wrap {
+    width: 90vw;
+    height: 45vw;
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+.filedrop-wrap .dropzone {
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.87);
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    border: 2px dashed #c9d2da;
+    padding: 20px;
+}
+
+.filedrop-wrap .dropzone .dropzone-content .feature-icon {
+    font-size: 5.5em;
+    margin-bottom: 1rem;
+    opacity: .15;
+}
+
+.filedrop-wrap .dropzone .dropzone-content .direction-wrap .direction-headline {
+    font-size: 2.2em;
+    line-height: 1em;
+    margin-bottom: 1rem;
+    color: #3498db;
+    font-weight: 100;
+}
+
+.filedrop-wrap .dropzone .dropzone-content .direction-wrap .direction-subheadline {
+    font-size: 1em;
+    color: #c9d2da;
+    line-height: 1em;
+    margin-bottom: .5rem;
+}
+
+#vroom-form-wrapper {
+    display: flex;
+    color: #c9d2da;
+    background-color: #ecf0f1;
+    /* flex-direction: row;*/
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.leftsection {
+    order: 1;
+    flex: 1;
+    /*  flex-basis: auto;*/
+    padding: .5rem;
+    width: 50%;
+}
+
+.rightsection {
+    order: 1;
+    flex: 1;
+    padding: .5rem;
+    width: 50%;
+    margin: 1.5rem 0 1.5rem;
+}
+
+.filedrop-wrap #filedrop-preview,
+.filedrop-wrap .img-canvas {
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    z-index: 101;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.thumbnail-wrap {
+    width: 350px;
+    height: 220px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.thumbnail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thumbnail-icon {
+    width: 70%;
+}
+
+.ws-form .form-row.stack-vertical {
+    margin-top: 0.5rem;
+}
+
+.thumbnail-row {
+    height: 100%;
+    margin-bottom: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+}
+
+.btnwrapper {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+}
+
+
+/* On the flex item to pin */
+
+.flexleft {
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+}
+
+.flexright {
+    margin-left: auto;
+}
+
+.annotateBtn {
+    margin-left: 20px;
+}
+
+.ws-form .input-wrap input {
+    height: 2em;
+}
+
+.filedrop-wrap #filedrop-preview,
+.filedrop-wrap .img-canvas {
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    z-index: 101;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.filedrop-wrap #filedrop-preview.no-file,
+.filedrop-wrap .img-canvas.no-file {
+    z-index: 99;
+}
+
+@media screen and (max-width: 500px) {
+
+    .pg-form,
+    .pg-newVRoom {
+        min-height: 100vh;
+        min-width: 100vw;
+    }
+
+    .leftsection {
+        width: 100%
+    }
+
+    .rightsection {
+        width: 100%;
+        margin: 0;
+    }
+
+    .ws-form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
+    #vroom-form-wrapper {
+        width: 100%;
+        padding:10px;
+    }
+
+    .pg-contains-aframe {
+        padding: 0 20px;
+        background-color: #ecf0f1;
+    }
+
+    .rightsection .img-icon{
+        width: 70%;
+    }
+   
+}
+
+@media all and (max-width: 700px) {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
+    font-size: .9em;
+  }
+
+  
+}
+
+@media all and (max-width: 600px) {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
+    font-size: .8em;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .col-wrap .dropzone .dropzone-content,
+  .filedrop-wrap.pano-upload .dropzone .dropzone-content {
+    font-size: .6em;
+  }
+}
