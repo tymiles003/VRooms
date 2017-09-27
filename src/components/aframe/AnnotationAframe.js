@@ -196,8 +196,8 @@ class AnnotationAframe extends React.Component {
 				{/*==================================================*/}
 				<a-assets>
 					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
-					{/* <img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/> */}
-					<img id="annotation-photo" src={this.state.pano_url} />
+					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
+					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
 				</a-assets>
 				{/*==================================================*/}
 				<Entity
