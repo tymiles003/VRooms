@@ -36,6 +36,9 @@ class FileDrop extends Component {
         // Continue if file's type is accepted
         if (acceptedTypes.indexOf(mimetype) >= 0) {
             const reader = new FileReader();
+            if (file) {
+                reader.readAsDataURL(file);
+            }
             reader.onload = () => {
                 const raw = reader.result;
                 let bits = raw;
@@ -51,9 +54,6 @@ class FileDrop extends Component {
             };
             reader.onabort = () => console.log("file reading was aborted");
             reader.onerror = () => console.log("file reading has failed");
-            if (file) {
-                reader.readAsDataURL(file);
-            }
         } else {
             alert("invalid file type");
         }

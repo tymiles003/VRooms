@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import API from "../../../utils/API";
 import FileDrop from "./FileDrop";
-import FileDropTN from "./FileDropTN";
 // import ZillowFetch from "./ZillowFetch";
 import Btn from "../Elements/Btn";
 import PreviewWindow from "../PreviewWindow";
@@ -43,6 +42,8 @@ class NewVRoomForm extends Component {
             fetch_query: "",
 
             bits: "",
+            bitsTN: "",
+            fileNameTN: "",
             fileStatus: "no-file",
 
             extracted_input: ""
@@ -64,8 +65,17 @@ class NewVRoomForm extends Component {
         this.refs.container.clear();
     }
 
-    handleFileUpload = fileDropState => {
+    // Handler for 360 image
+    handle360Upload = fileDropState => {
         this.setState(fileDropState);
+    };
+
+    // Handler for thumbnail
+    handleThumbnailUpload = fileDropState => {
+        this.setState({
+            bitsTN: fileDropState.bits,
+            fileNameTN: fileDropState.fileName
+        });
     };
 
     handleInputChange = event => {
@@ -103,40 +113,61 @@ class NewVRoomForm extends Component {
                 fileName: this.state.fileName,
                 data: this.state.bits
             },
+            "360", // Set type
             url => {
-                // If upload successful then create new Property and Room
-                if (url) {
-                    let property = {
-                        thumbnail_url: url,
-                        street: this.state.street,
-                        city: this.state.city,
-                        state: this.state.state,
-                        zip: this.state.zip,
-                        country: this.state.country,
-                        bedrooms: this.state.beds,
-                        baths: this.state.baths,
-                        built_year: this.state.year,
-                        price: this.state.price,
-                        square_feet: this.state.sqft
-                    };
-                    let room = {
-                        pano_url: url
-                    };
-                    let userID = cookie.load("userId");
-                    console.log("cookie userId: ", userID);
-                    console.log("property: ", property);
-                    // Add new property to signed-in user, then add new room
-                    // to the property that was just added
-                    propertyAPI.addNewProperty(
-                        userID,
-                        property,
-                        addedProperty => {
-                            console.log("addedProperty: ", addedProperty.data);
-                            roomAPI.addNewRoom(addedProperty.data._id, room);
-                            this.addAlert("File uploaded successfully");
+                // If upload successful then upload thumbnail
+                s3API.getSignedRequest(
+                    {
+                        fileName: this.state.fileNameTN,
+                        data: this.state.bitsTN
+                    },
+                    "thumbnail",
+                    urlTN => {
+                        // If upload successful then create new Property and Room
+                        if (url && urlTN) {
+                            let property = {
+                                thumbnail_url: urlTN,
+                                street: this.state.street,
+                                city: this.state.city,
+                                state: this.state.state,
+                                zip: this.state.zip,
+                                country: this.state.country,
+                                bedrooms: this.state.beds,
+                                baths: this.state.baths,
+                                built_year: this.state.year,
+                                price: this.state.price,
+                                square_feet: this.state.sqft
+                            };
+                            let room = {
+                                pano_url: url
+                            };
+                            let userID = cookie.load("userId");
+                            console.log("cookie userId: ", userID);
+                            console.log("property: ", property);
+                            // Add new property to signed-in user, then add new room
+                            // to the property that was just added
+                            propertyAPI.addNewProperty(
+                                userID,
+                                property,
+                                addedProperty => {
+                                    console.log(
+                                        "addedProperty: ",
+                                        addedProperty.data
+                                    );
+                                    roomAPI.addNewRoom(
+                                        addedProperty.data._id,
+                                        room
+                                    );
+                                    this.addAlert("File uploaded successfully");
+                                }
+                            );
+                        } else {
+                            console.log("Upload error!");
+                            console.log("360 URL: ", url);
+                            console.log("Thumbnail URL: ", urlTN);
                         }
-                    );
-                }
+                    }
+                );
             }
         );
     };
@@ -298,7 +329,9 @@ class NewVRoomForm extends Component {
 
                                     <FileDrop
                                         type="thumbnail"
-                                        handleFileUpload={this.handleFileUpload}
+                                        handleFileUpload={
+                                            this.handleThumbnailUpload
+                                        }
                                     />
                                 </fieldset>
                             </div>
@@ -312,7 +345,7 @@ class NewVRoomForm extends Component {
                                         <FileDrop
                                             type="360"
                                             handleFileUpload={
-                                                this.handleFileUpload
+                                                this.handle360Upload
                                             }
                                         />
 
