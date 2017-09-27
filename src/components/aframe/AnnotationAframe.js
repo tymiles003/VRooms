@@ -6,11 +6,14 @@ import "aframe-look-at-component";
 import "aframe-animation-component";
 import "aframe-mouse-cursor-component";
 // import "aframe-click-drag-component";
+// import "aframe-inspector";
+// import 'aframe-gridhelper-component';
+
+import LoadingProgress from 'react-progressbar.js';
+
 import CameraCursor from "./components/CameraCursor";
 import Raycaster from "./components/Raycaster";
 import RotatingBox from "./components/RotatingBox";
-// import 'aframe-gridhelper-component';
-// import "aframe-inspector";
 import Portal from "./components/Portal";
 import Annotation from "./components/Annotation";
 import PhotoAssets from "./components/PhotoAssets";
@@ -37,7 +40,13 @@ class AnnotationAframe extends React.Component {
 			annotations: []
 		};
 	}
-	// componentWillReceiveProps =======================
+// handleLoadProgress ==============================
+
+	// handleLoadProgress = () => {
+		
+	// }
+
+// componentWillReceiveProps =======================
 	componentWillReceiveProps = nextProps => {
 		// Not called on initial render
 		// console.log('componentWillReceiveProps');
@@ -110,7 +119,6 @@ class AnnotationAframe extends React.Component {
 	componentDidMount = (prevProps, prevState) => {
 		console.log("---- componentDidMount (Aframe) --->");
 		// this.getProperty();
-
 		// Fetch the room if roomID is provided, but if it isn't
 		// Use this default one for now. Will need to handle error
 		// later on.
@@ -127,6 +135,23 @@ class AnnotationAframe extends React.Component {
 				
 			// });
 		// }
+
+		let photo = document.getElementById('annotation-photo');
+
+		photo.addEventListener('progress', function(event){
+			event.preventDefault();
+			console.log('e',event);
+			let { loaded, total } = event.detail.xhr;
+
+			let prog = (loaded/total)*100;
+			console.log('prog',prog);
+		})
+
+		// photo.addEventListener('load', function(e){
+		// 	e.preventDefault();
+		// 	console.log('photo loaded');
+		// })
+
 
 		this.setState({
 			annotations: this.props.annotations
@@ -214,7 +239,9 @@ class AnnotationAframe extends React.Component {
 			// add embedded to embed
 			<Scene inspector>
 				{/*==================================================*/}
-				<a-assets timeout="5000">
+				<a-assets timeout="15000">
+					
+					{/* <a-asset-item id="annotation-photo" src={this.state.pano_url}/> */}
 					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
 				</a-assets>

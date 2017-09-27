@@ -73,7 +73,6 @@ class Annotation extends React.Component {
 
 
 	render() {
-		console.log("Annotation render() --->");
 		let { label, text, image, link, xAxis, yAxis, zAxis } = this.props.data;
 		let { primitive, textScale, textPos, height, width, tScale, tPos } = this.props;
 		// let { to,position, label,textScale,textPos, primitive,height,width, color,opacity,side } = this.props;
