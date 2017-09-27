@@ -22,10 +22,15 @@ class AboutContent extends Component {
 	render() {
 
 		return (
-            <div className="how">
-              <img className="float-center howto-img" src="/assets/img/marketing/vroomsguide.jpg" alt="How to VRooms" />    
+            <div className="how-wrapper">
+              <div id="how-landscape"></div>
+              <div id="how-portrait">                
+              </div>
             </div>
 		)
 	}
 }
 export default AboutContent;
+
+ // <img className="float-center howto-img" src="/assets/img/marketing/vroomsguide.jpg" alt="How to VRooms" />  
+ // <img src="/assets/img/marketing/vroomsguideportrait.jpg" style="visibility: hidden;" />  

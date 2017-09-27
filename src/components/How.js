@@ -30,7 +30,7 @@ const How = (props) => {
 			
           </Helmet>
 
-              <div className="pageWrapper">  
+              <div className="pageWrapper-how">  
 
                 <Navbar logo_filename="vrooms-logo-white" theme="opaque-black-bg"/>
                 <Loader />
