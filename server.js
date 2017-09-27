@@ -20,7 +20,7 @@ const loginRoutes = require("./routes/loginRoutes");
 const cheerio = require("cheerio");
 const request = require('request');
 const axios = require('axios');
-let parseString = require('xml2js').parseString; 
+let parseString = require('xml2js').parseString;
 
 let cors = require('cors');
 
@@ -49,24 +49,30 @@ const app = express();
 // https://enable-cors.org/server_expressjs.html
 // ...there also CORS modules to do this.
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next();
+	res.header('Access-Control-Allow-Origin', '*')
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+	next();
 });
 
 // Set Body Parser
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.json({
+	type: "application/vnd.api+json"
+}));
 
 app.use(cookieParser());
 app.use(session({
-    secret: "shhsecret",
-    resave: true,
-    saveUninitialized: false,
-	cookie: { httpOnly: false }
+	secret: "shhsecret",
+	resave: true,
+	saveUninitialized: false,
+	cookie: {
+		httpOnly: false
+	}
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -76,8 +82,8 @@ require("./controllers/config/passport")(passport);
 
 // Route to serve gzipped bundle.js file.
 // IMPORTANT: This NEEDS to be higher-priority than the static route
-if(process.env.NODE_ENV === 'production') {
-	app.get("*/bundle.js", function (req, res, next) {
+if (process.env.NODE_ENV === 'production') {
+	app.get("*/bundle.js", function(req, res, next) {
 		req.url = req.url + ".gz";
 		res.set("Content-Encoding", "gzip");
 		res.set("Content-Type", "text/javascript");
@@ -91,38 +97,37 @@ app.use("/api", apiRoutes);
 app.use("/", loginRoutes);
 
 // API-related routes (maybe relocated in future)
-app.post('/fetch-listing', (req,res) => {
+app.post('/fetch-listing', (req, res) => {
 	console.log('>>> POST /fetch-listing (server.js)');
 	// const zpid = 48749425;
 	let zpid = req.body;
-	console.log('zpid',zpid);
-	let qURL =`http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=${zillow_key}&zpid=${zpid}`;
+	console.log('zpid', zpid);
+	let qURL = `http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=${zillow_key}&zpid=${zpid}`;
 	// console.log('qURL',qURL);
 
 	axios.get(qURL)
-	.then( (results) => {
-		let raw = results.data;
-		// console.log('raw',raw);
-		// console.log('typeof raw',typeof raw);
-		parseString(raw, (err,result) => {
-			// console.log('result',result);
-			let resultObj = result['UpdatedPropertyDetails:updatedPropertyDetails'];
-			let message = resultObj.message[0].text[0].trim();
-			// console.log('resultObj',resultObj);
-			console.log('message',message);
+		.then((results) => {
+			let raw = results.data;
+			// console.log('raw',raw);
+			// console.log('typeof raw',typeof raw);
+			parseString(raw, (err, result) => {
+				// console.log('result',result);
+				let resultObj = result['UpdatedPropertyDetails:updatedPropertyDetails'];
+				let message = resultObj.message[0].text[0].trim();
+				// console.log('resultObj',resultObj);
+				console.log('message', message);
 
-			if (message == 'Request successfully processed'){
-				let isolatedResponse = resultObj.response[0];
-				console.log('isolateResponse',isolatedResponse);
-				res.json(isolatedResponse)
-			}
-			else {
-				res.send(message)
-			}
-		})
+				if (message == 'Request successfully processed') {
+					let isolatedResponse = resultObj.response[0];
+					console.log('isolateResponse', isolatedResponse);
+					res.json(isolatedResponse)
+				} else {
+					res.send(message)
+				}
+			})
 		// console.log('data',data);
 		// res.json(data);
-	})
+		})
 });
 
 // Route to serve S3 signed request to client 
@@ -133,14 +138,15 @@ app.post('/sign-s3', (req, res) => {
 	console.log("req.body: ", req.body);
 	const fileName = req.body.fileName;
 	const fileType = req.body.fileType;
+	const type = req.body.type; // 360 or thumbnail
 
-	let path = fileName; // Set path to /userName/fileName once we get user info
+	let path = type+"/"+fileName;
 
 	const s3Params = {
 		Bucket: BUCKET_NAME,
 		Key: path,
 		Expires: 60,
-		ContentType: "image/"+fileType,
+		ContentType: "image/" + fileType,
 		ACL: "public-read"
 	};
 
@@ -151,7 +157,7 @@ app.post('/sign-s3', (req, res) => {
 		} else {
 			const returnData = {
 				signedRequest: data,
-				url: `https://${BUCKET_NAME}.s3.amazonaws.com/${fileName}`
+				url: `https://${BUCKET_NAME}.s3.amazonaws.com/${path}`
 			};
 			console.log("returnData: ", returnData);
 			res.json(returnData);
@@ -161,7 +167,7 @@ app.post('/sign-s3', (req, res) => {
 
 // Default React route
 app.get("*", (req, res, next) => {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
+	res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 // Change the MongoDB URI depending on environment.
@@ -175,18 +181,18 @@ if (process.env.NODE_ENV === 'production') {
 
 // Connect mongoose to our database
 mongoose.connect(db, error => {
-    // Log any errors connecting with mongoose
-    if (error) {
-        console.error(error);
-    } else {
-        // Or log a success message
-        console.log("mongoose connection is successful");
-    }
+	// Log any errors connecting with mongoose
+	if (error) {
+		console.error(error);
+	} else {
+		// Or log a success message
+		console.log("mongoose connection is successful");
+	}
 });
 
 // Start the server
 const server = app.listen(PORT, () => {
-    console.log("Now listening on port %s!", PORT);
+	console.log("Now listening on port %s!", PORT);
 });
 
 
@@ -196,43 +202,35 @@ const server = app.listen(PORT, () => {
 const io = require('socket.io')(server);
 let roomsArr = {};
 
-io.on('connection', (socket) => {  
-//   console.log('a user connected');
+io.on('connection', (socket) => {
+	//   console.log('a user connected');
+	socket.on('disconnect', () => {
+		console.log('user disconnected');
+	});
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
+	socket.on('open', function(room) {
 
+		// console.log("io.engine.clientsCount", io.engine.clientsCount);
+		socket.join(room.room);
+		socket.room = room.room;
 
+		if (roomsArr[room.room] === undefined) {
+			console.log("in if loop");
+			roomsArr[room.room] = 1;
+		} else {
+			console.log("in else loop");
 
-socket.on('open', function (room) {
+			roomsArr[room.room]++;
+		}
+		console.log("Count === ", roomsArr[room.room]);
 
-	// console.log("io.engine.clientsCount", io.engine.clientsCount);
+		io.in(socket.room).emit('message', roomsArr[room.room]);
+	});
 
-    socket.join(room.room);
-    socket.room = room.room;
-
-    if (roomsArr[room.room] === undefined) {
-		console.log("in if loop");
-        roomsArr[room.room] = 1;
-    } else {
-		console.log("in else loop");
-		
-        roomsArr[room.room]++;
-    }
-	console.log("Count === ", roomsArr[room.room]);
-
-	io.in(socket.room).emit('message', roomsArr[room.room]);
-	
-});
-
-socket.on('close', function () {
-     roomsArr[socket.room]--;
-	io.in(socket.room).emit('message', roomsArr[socket.room]);
-	 
-});
-
-
+	socket.on('close', function() {
+		roomsArr[socket.room]--;
+		io.in(socket.room).emit('message', roomsArr[socket.room]);
+	});
 });
 
 // Export the server object to be used in unit-testing
