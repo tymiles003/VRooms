@@ -48,29 +48,19 @@ class AnnotationAframe extends React.Component {
 
 // componentWillReceiveProps =======================
 	componentWillReceiveProps = nextProps => {
-		// Not called on initial render
-		// console.log('componentWillReceiveProps');
-		// console.log('nextProps.mode',nextProps.mode);
-		// console.log('this.props.inCreationMode',this.props.inCreationMode);
-		// let { inCreationMode, mode } = nextProps;
 
-		// this.setState({ inCreationMode, mode, newAnnotation});
-		// console.log('Aframe mode ====',this.state.mode);
-
-		// console.log('this.props.pano_url',this.props.pano_url);
-		// console.log('nexProps.pano_url',nextProps.pano_url);
+	// Setting pano_url in this state
 		let currentURL = this.props.pano_url;
 		let nextURL = nextProps.pano_url;
-
+		
 		if ( currentURL !== nextURL && currentURL === '' ) {
 			this.setState({
 				pano_url: nextURL
 			})
 		}
+	//--------------------------------------------------
 
-		// ENTERING CREATION MODE (currently false, next true)
-
-		// Get the initial position of the cube.
+	// Get the initial position of the cube...
 		// Without doing this, user HAS to move at least once or else the
 		// coordinates will be undefined. If they move to location before
 		// clicking 'New', type info and submit, coordinates will never
@@ -82,38 +72,43 @@ class AnnotationAframe extends React.Component {
 			// console.log("el", el);
 			// this.getPosition();
 		}
-
+	//--------------------------------------------------
+		
+	// Update when we receive new annotations
 		let currentAnnos = this.props.annotations;
 		let nextAnnos = nextProps.annotations;
-		// console.log("currentAnnos", currentAnnos);
-		// console.log("nextAnnos", nextAnnos);
 
 		if (currentAnnos !== nextAnnos) {
 			this.setState({
 				annotations: nextAnnos
 			});
 		}
-	};
-	// shouldComponentUpdate ===========================
-	// shouldComponentUpdate = (nextProps, nextState) => {
+	//--------------------------------------------------
 
-	// }
-	// componentDidUpdate ==============================
-
-	componentDidUpdate = (prevProps, prevState) => {
-		// console.log('this.props.annotations.length',this.props.annotations.length);
-		// console.log('prevProps.annotations.length',prevProps.annotations.length);
-
-		// if ( this.props.annotations.length !== prevProps.annotations.length ) {
-		// 	this.setState()
-		// }
-
-		if (this.props.inCreationMode && !prevProps.inCreationMode) {
-			let el = document.getElementById("new-annotation");
-			// console.log("el", el);
-			// this.getPosition();
+	// Once we receive the pano_url from parent
+		if (nextProps.pano_url && (nextProps.pano_url !== this.props.pano_url)){
+			let url = nextProps.pano_url;
+			console.log('>>>> pano_url --->',url);
+			let img = document.getElementById('annotation-photo');
+			img.addEventListener('load', function(e){
+				e.preventDefault();
+				console.log('>>>> img loaded');
+			})
 		}
+	//--------------------------------------------------
+
 	};
+
+// componentDidUpdate ==============================
+
+	// componentDidUpdate = (prevProps, prevState) => {
+
+	// 	if (this.props.inCreationMode && !prevProps.inCreationMode) {
+	// 		let el = document.getElementById("new-annotation");
+	// 		// console.log("el", el);
+	// 		// this.getPosition();
+	// 	}
+	// };
 
 // componentDidMount ===============================
 	componentDidMount = (prevProps, prevState) => {
@@ -135,31 +130,14 @@ class AnnotationAframe extends React.Component {
 				
 			// });
 		// }
-
-		let photo = document.getElementById('annotation-photo');
-
-		photo.addEventListener('progress', function(event){
-			event.preventDefault();
-			console.log('e',event);
-			let { loaded, total } = event.detail.xhr;
-
-			let prog = (loaded/total)*100;
-			console.log('prog',prog);
-		})
-
-		// photo.addEventListener('load', function(e){
-		// 	e.preventDefault();
-		// 	console.log('photo loaded');
-		// })
-
-
+	
+		
+		// if ( this.props.inCreationMode ) {
+			// 	this.getPosition(document.getElementById('new-annotation').click());
+			// }
 		this.setState({
 			annotations: this.props.annotations
 		});
-
-		// if ( this.props.inCreationMode ) {
-		// 	this.getPosition(document.getElementById('new-annotation').click());
-		// }
 	};
 //==================================================
 //==================================================
@@ -182,56 +160,35 @@ class AnnotationAframe extends React.Component {
 		// }
 	};
 // handleRay =======================================
-	handleRay = event => {
-		event.preventDefault();
-		console.log("---- handleRay --->");
-		// console.log('event.detail',event.detail);
+		handleRay = event => {
+			event.preventDefault();
+			// console.log("---- handleRay --->");
+			// console.log('event.detail',event.detail);
 
-		// event.detail is the holy grail
-		// contains intersection world coordinates. (not relative)
-		const intersectionPoint = event.detail.intersection.point;
-		let { x, y, z } = intersectionPoint;
+			// event.detail is the holy grail
+			// contains intersection world coordinates. (not relative)
+			const intersectionPoint = event.detail.intersection.point;
+			let { x, y, z } = intersectionPoint;
 
-		// Remove event so it only fires once. (or else it would fire constantly)
-		event.target.removeEventListener(
-			"raycaster-intersected",
-			this.handleRay
-		);
+			// Remove event so it only fires once. (or else it would fire constantly)
+			event.target.removeEventListener(
+				"raycaster-intersected",
+				this.handleRay
+			);
 
-		let posState = {
-			xAxis: x,
-			yAxis: y,
-			zAxis: z
+			let posState = {
+				xAxis: x,
+				yAxis: y,
+				zAxis: z
+			};
+			console.log("position ====", posState);
+			this.props.port(posState);
+
+			// Switch state so it will not fire again until new is clicked;
+			this.setState(posState);
 		};
-		console.log("posState ====", posState);
-		this.props.port(posState);
 
-		// Switch state so it will not fire again until new is clicked;
-		this.setState(posState);
-	};
 
-// buildAnnotations =================================
-
-	// buildAnnotations(annotations) {
-	// 	console.log("---- buildAnnotations --->");
-	// 	console.log("annotations", annotations);
-	// 	let annotationArray = annotations;
-
-	// 	if (!annotationArray) {
-	// 		console.log("!annotationArray");
-	// 		annotationArray = this.props.annotations;
-	// 	}
-
-	// 	console.log("annotationArray", annotationArray);
-	// 	let annotationComponents = annotationArray.map((ea, index) => {
-	// 		return <Annotation data={ea} key={index} />;
-	// 	});
-
-	// 	return annotationComponents;
-	// }
-	// {this.state.annotations.map((ea, index) => (
-	// 	<Annotation data={ea} key={index} />
-	// ))}
 
 // render //////////////////////////////////////////
 	render() {
@@ -239,9 +196,9 @@ class AnnotationAframe extends React.Component {
 			// add embedded to embed
 			<Scene inspector>
 				{/*==================================================*/}
-				<a-assets timeout="15000">
+				<a-assets>
 					
-					{/* <a-asset-item id="annotation-photo" src={this.state.pano_url}/> */}
+					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
 					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
 				</a-assets>
@@ -273,6 +230,7 @@ class AnnotationAframe extends React.Component {
 								animation__rotate={{ property: "rotation", dur: 4000, loop: true, to: "360 360 360" }}
 								events={{
 									click: this.getPosition,
+									mousenter: this.getPosition,
 								}}
 							/>
 							{/* LABEL ==================================== */}
