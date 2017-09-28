@@ -46,7 +46,12 @@ class NewVRoomForm extends Component {
             fileNameTN: "",
             fileStatus: "no-file",
 
-            extracted_input: ""
+						extracted_input: "",
+						
+						roomID: '',
+						submitBtnTheme: '',
+						annotateBtnTheme: 'disabled',
+						annotateBtnIsOutlined: true,
         };
     }
 
@@ -157,7 +162,20 @@ class NewVRoomForm extends Component {
                                     roomAPI.addNewRoom(
                                         addedProperty.data._id,
                                         room
-                                    );
+                                    ).then( response => {
+																			console.log('addNewRoom response --->',response.data);
+																			let roomID = response.data._id;
+
+																			if (roomID) {
+																				console.log(' New roomID created --->',roomID);
+																				this.setState({ 
+																					roomID: roomID,
+																					annotateBtnTheme: 'success',
+																					annotateBtnIsOutlined: false,
+																					submitBtnTheme: 'isDisabled',
+																				})
+																			}
+																		})
                                     this.addAlert("File uploaded successfully");
                                 }
                             );
@@ -352,7 +370,7 @@ class NewVRoomForm extends Component {
                                         <div className="btnwrapper flexleft">
                                             <button
                                                 id="submit"
-                                                className="ws-btn"
+                                                className={"ws-btn "+this.state.submitBtnClass}
                                                 type="submit"
                                                 onClick={this.handleFormSubmit}
                                             >
@@ -360,10 +378,11 @@ class NewVRoomForm extends Component {
                                             </button>
 
                                             <Btn
-                                                text="Annotate"
-                                                theme="disabled"
-                                                classes={["annotateBtn"]}
-                                                isOutlined
+																							href={'/annotate_'+this.state.roomID}
+																							text="Annotate"
+																							theme={this.state.annotateBtnTheme}
+																							classes={["annotateBtn"]}
+																							isOutlined={this.state.annotateBtnIsOutlined}
                                             />
                                         </div>
                                     </div>
