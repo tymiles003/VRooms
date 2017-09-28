@@ -47,35 +47,7 @@ class ShowroomMain extends React.Component {
 	// componentDidMount ===============================
 	componentDidMount = () => {
 		// this.getProperty(); // not super essential. for extra info on page.
-		let rID;
-		let propsID = this.props.roomID;
-		let urlID = this.props.match.params.roomID;
-
-		if (urlID) {
-			rID = urlID;
-		} else {
-			rID = propsID;
-		}
-
-        if(rID){
-            console.log("rID", rID);
-
-            // this.setState({roomID})
-
-            roomAPI.getRoom(rID).then(response => {
-                console.log(response);
-                let { roomID, pano_url, annotations } = response.data[0];
-                console.log("roomAPI room response >>>>", response.data[0]);
-                console.log("pano_url >>>>", pano_url);
-                console.log("annotations >>>>", annotations);
-
-                this.setState({
-                    roomID,
-                    pano_url,
-                    annotations
-                });
-            });
-        }
+		
 
 		 /**
      * While browser tab getting closed, below event listener is called.
@@ -114,6 +86,40 @@ class ShowroomMain extends React.Component {
 			});
 		});
 	};
+
+componentWillMount(){
+
+    let rID;
+		let propsID = this.props.roomID;
+		let urlID = this.props.match.params.roomID;
+
+		if (urlID) {
+			rID = urlID;
+		} else {
+			rID = propsID;
+		}
+
+        if(rID){
+            console.log("rID", rID);
+
+            // this.setState({roomID})
+
+            roomAPI.getRoom(rID).then(response => {
+                console.log(response);
+                let { roomID, pano_url, annotations } = response.data[0];
+                console.log("roomAPI room response >>>>", response.data[0]);
+                console.log("pano_url >>>>", pano_url);
+                console.log("annotations >>>>", annotations);
+
+                this.setState({
+                    roomID,
+                    pano_url,
+                    annotations
+                });
+            });
+        }
+
+}    
 // componentWillUnmount ============================
 componentWillUnmount(){
 	socket.emit('close', {
