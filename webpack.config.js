@@ -6,7 +6,7 @@ module.exports = {
 
     // The plain compiled Javascript will be output into this file
     output: {
-        filename: "public/bundle.js"
+				filename: "public/bundle.js",
     },
 
     resolve: {

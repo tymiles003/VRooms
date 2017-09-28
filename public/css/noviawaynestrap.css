@@ -282,3 +282,14 @@
     font-size: .6em;
   }
 }
+
+.aframe-wrap {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
