@@ -56,23 +56,26 @@ class ShowroomMain extends React.Component {
 		} else {
 			rID = propsID;
 		}
-		console.log("rID", rID);
 
-		// this.setState({roomID})
+        if(rID){
+            console.log("rID", rID);
 
-		roomAPI.getRoom(rID).then(response => {
-			console.log(response);
-			let { roomID, pano_url, annotations } = response.data[0];
-			console.log("roomAPI room response >>>>", response.data[0]);
-			console.log("pano_url >>>>", pano_url);
-			console.log("annotations >>>>", annotations);
+            // this.setState({roomID})
 
-			this.setState({
-				roomID,
-				pano_url,
-				annotations
-			});
-		});
+            roomAPI.getRoom(rID).then(response => {
+                console.log(response);
+                let { roomID, pano_url, annotations } = response.data[0];
+                console.log("roomAPI room response >>>>", response.data[0]);
+                console.log("pano_url >>>>", pano_url);
+                console.log("annotations >>>>", annotations);
+
+                this.setState({
+                    roomID,
+                    pano_url,
+                    annotations
+                });
+            });
+        }
 
 		 /**
      * While browser tab getting closed, below event listener is called.
@@ -84,11 +87,11 @@ class ShowroomMain extends React.Component {
      * Close a connection, if any browser tab is closed or page is refreshed.
      */
       socket.emit('close', {
-          room: rID
+          room: this.props.location.state.property.rooms[0]._id
         });
 	});
 		
-      socket.emit('open', {room: rID});
+      socket.emit('open', {room: this.props.location.state.property.rooms[0]._id});
 
       /** 
        * Message reeived from server
@@ -114,7 +117,7 @@ class ShowroomMain extends React.Component {
 // componentWillUnmount ============================
 componentWillUnmount(){
 	socket.emit('close', {
-			room: rID
+			room: this.props.location.state.property.rooms[0]._id
 		});
 }
 //==================================================
