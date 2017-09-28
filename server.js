@@ -209,17 +209,12 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('open', function(room) {
-
-		// console.log("io.engine.clientsCount", io.engine.clientsCount);
 		socket.join(room.room);
 		socket.room = room.room;
 
 		if (roomsArr[room.room] === undefined) {
-			console.log("in if loop");
 			roomsArr[room.room] = 1;
 		} else {
-			console.log("in else loop");
-
 			roomsArr[room.room]++;
 		}
 		console.log("Count === ", roomsArr[room.room]);
