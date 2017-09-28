@@ -120,9 +120,10 @@ componentWillUnmount(){
 //==================================================
 	render() {
 		return (
-			<main>
-			<Cloak/>
+			
+			
 				<div className="aframe-wrap">
+          <Cloak/>
 					<AnnotationAframe
 						inCreationMode={false}
 						port={this.portAframe}
@@ -133,7 +134,7 @@ componentWillUnmount(){
 					/>
 					<span className="fixed-info">People Viewing Property Right Now: {this.state.message}</span>
 				</div>
-			</main>
+			
 		);
 	}
 }
