@@ -131,7 +131,7 @@ componentWillUnmount(){
 						selectedProperty={(this.props.location.state.property) ? (this.props.location.state.property) : ""} 
 						message={this.state.message}
 					/>
-					<span className="fixed-info">Number of People Viewing this Property: {this.state.message}</span>
+					<span className="fixed-info">People Viewing Property Right Now: {this.state.message}</span>
 				</div>
 			</main>
 		);
