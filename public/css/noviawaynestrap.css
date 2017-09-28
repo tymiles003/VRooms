@@ -295,3 +295,7 @@
     margin: 0;
 }
 
+.aframe-wrap .ws-btn, .aframe-wrap .ws-form {
+    z-index: 1111;
+    position: absolute;
+}
