@@ -64,10 +64,10 @@ class AnnotationPage extends Component {
 		// console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
 		let rID;
 		let propsID = this.props.roomID;
-		let urlID = this.props.match.params.roomID;
+		let underscoreID = this.props.match.params.roomID;
 
-		if (urlID) {
-			rID = urlID;
+		if (underscoreID) {
+			rID = underscoreID;
 		}
 		else {
 			rID = propsID;

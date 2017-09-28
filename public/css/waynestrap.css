@@ -901,6 +901,13 @@ body::-webkit-scrollbar-thumb {
   height: 100vh;
 }
 
+.fixed-info {
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+  left: 0;
+}
+
 .ws-cloak {
   position: fixed;
   height: 100vh;
