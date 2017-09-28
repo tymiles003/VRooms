@@ -5,8 +5,11 @@ import ReactDOM from "react-dom";
 import { Entity, Scene } from "aframe-react";
 import { Helmet } from "react-helmet";
 import Showroom from "./Showroom";
-
+import io from 'socket.io-client';
 import propertyAPI from "../utils/propertyAPI";
+
+const socket = io();
+
 
 // Showcasing gallery list of real estate
 class ShowroomMain extends React.Component {
@@ -16,9 +19,47 @@ class ShowroomMain extends React.Component {
         //init states
         this.state = {
             selectedProperty: [],
-            room_url: ""
+            room_url: "",
+            message:1
         };
     }
+
+    componentDidMount() {
+    /**
+     * While browser tab getting closed, below event listener is called.
+     */
+    window.addEventListener("beforeunload", (ev) => {  
+      ev.preventDefault();
+
+      /**
+       * Close a connection, if any browser tab is closed or page is refreshed.
+       */
+      socket.emit('close', {
+          room: this.props.location.state.property.rooms[0].pano_url
+        });
+      });
+
+      document.addEventListener("pagehide", (ev) => {  
+      ev.preventDefault();
+
+      /**
+       * Close a connection, if any browser tab is closed or page is refreshed.
+       */
+      socket.emit('close', {
+          room: this.props.location.state.property.rooms[0].pano_url
+        });
+      });
+
+      socket.emit('open', {room: this.props.location.state.property.rooms[0].pano_url});
+
+      /** 
+       * Message reeived from server
+       */
+      socket.on('message', (data) => {
+          console.log("Message ==== ",data);
+          this.setState({message:data});
+      });
+  }
 
     componentWillMount() {
         // To pass/retrieve id from showcase gallery
@@ -27,9 +68,9 @@ class ShowroomMain extends React.Component {
         // Set property using location object passed from <Link>
         console.log("this.props.location: ", this.props.location);
         console.log("this.props.location.state.property: ", this.props.location.state.property);
-        this.setState({
-            selectedProperty: this.props.location.state.property
-        });
+        // this.setState({
+        //     selectedProperty: this.props.location.state.property
+        // });
     }
 
     getSelectedProperty = propID => {
@@ -41,11 +82,24 @@ class ShowroomMain extends React.Component {
         });
     };
 
-    componentDidMount = () => {
-    };
+
+    componentWillUnmount(){
+      socket.emit('close', {
+          room: this.props.location.state.property.rooms[0].pano_url
+        });
+  }
+    
 
     render() {
-        return <Showroom selectedProperty={(this.props.location.state.property) ? (this.props.location.state.property) : ""} />;
+        return (
+            <span>
+                <span style={{position:"absolute", bottom:0,zIndex:1000, left:0}}>Number of People Viewing this Property: {this.state.message}</span>
+                <Showroom 
+                selectedProperty={(this.props.location.state.property) ? (this.props.location.state.property) : ""} 
+                message={this.state.message}
+                />
+            </span>       
+        );
     }
 }
 
