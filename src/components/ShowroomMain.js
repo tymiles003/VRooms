@@ -6,6 +6,7 @@ import React, { Component } from "react";
 // import { Helmet } from "react-helmet";
 // import Showroom from "./Showroom";
 import AnnotationAframe from "./aframe/AnnotationAframe";
+import Cloak from './common/Elements/Cloak';
 
 import propertyAPI from "../utils/propertyAPI";
 import roomAPI from "../utils/roomAPI";
@@ -120,6 +121,7 @@ componentWillUnmount(){
 	render() {
 		return (
 			<main>
+			<Cloak/>
 				<div className="aframe-wrap">
 					<AnnotationAframe
 						inCreationMode={false}
