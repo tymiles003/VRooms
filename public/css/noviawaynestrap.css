@@ -252,6 +252,10 @@
     .rightsection .img-icon{
         width: 70%;
     }
+
+    .thumbnail-icon {
+        width: 100px;
+    }
    
 }
 
