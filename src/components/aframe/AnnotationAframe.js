@@ -97,7 +97,10 @@ class AnnotationAframe extends React.Component {
 			let url = nextProps.pano_url;
 			console.log('>>>> pano_url --->',url);
 			let img = document.getElementById('annotation-photo');
+			let assets = document.querySelector('a-assets');
 			img.addEventListener('load', this.handleLoadState)
+			assets.addEventListener('loaded', console.log('>>>> ASSETS LOADED >>>>'))
+			console.log('a-assets fileLoader', document.querySelector('a-assets').fileLoader);
 		}
 	//--------------------------------------------------
 
@@ -169,8 +172,9 @@ class AnnotationAframe extends React.Component {
 // render //////////////////////////////////////////
 	render() {
 		return (
-			<Scene inspector className={this.state.loading ? 'loading' : 'loaded' }>
-				{this.state.loading && <Cloak/>}
+			<Scene inspector embedded className={this.state.loading ? 'loading' : 'loaded' }>
+				{/* {this.state.loading && <Cloak/>} */}
+				{/* <Cloak/> */}
 				{/*==================================================*/}
 				<a-assets>
 					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}

@@ -5,6 +5,7 @@ import propertyAPI from "../utils/propertyAPI";
 import roomAPI from "../utils/roomAPI";
 // import {Helmet} from 'react-helmet';
 import Btn from "./common/Elements/Btn";
+import Cloak from "./common/Elements/Cloak";
 import Helmet from 'react-helmet';
 
 const defaultAnnotationState = {
@@ -175,8 +176,8 @@ class AnnotationPage extends Component {
 		// let {street,city,state,zip,country,bedrooms,baths,built_year,price,square_feet,property_name} = this.state.property;
 		return (
 			<main>
-
-				<div className="aframe-wrap fullscreen">
+				<Cloak/>
+				<div className="aframe-wrap">
 
 					<AnnotationAframe
 						inCreationMode={this.state.inCreationMode}

@@ -826,14 +826,64 @@ body::-webkit-scrollbar-thumb {
   height: initial;
   width: initial;
   padding: 0;
-  margin: 2rem;
-  border-radius: 1rem;
+  margin: 0;
+  border-radius: 0;
+  position: relative;
 }
 
 .aframe-wrap a-scene {
-  height: 90vh;
+  height: 100vh;
   width: 100%;
   margin: 0;
+}
+
+.aframe-wrap .ws-btn, .aframe-wrap .ws-form {
+  z-index: 950;
+  position: absolute;
+}
+
+.aframe-wrap #new-annotation-btn {
+  font-size: 1.5rem;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2ecc71;
+}
+
+.aframe-wrap #finish-btn {
+  top: 1rem;
+  left: 1rem;
+  background-color: #e74c3c;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
+}
+
+.aframe-wrap #confirm-position {
+  top: 60vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.aframe-wrap #submit-annotation {
+  top: 60vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.aframe-wrap .ws-form {
+  bottom: 60vh;
+  left: 50vw;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 400px;
+  padding: 0;
+}
+
+.aframe-wrap.embedded-not-filled {
+  margin: 2rem;
+  border-radius: 1rem;
+  height: 90vh;
 }
 
 .aframe-wrap.fullscreen {
@@ -851,58 +901,11 @@ body::-webkit-scrollbar-thumb {
   height: 100vh;
 }
 
-.aframe-wrap.fullscreen .ws-btn, .aframe-wrap.fullscreen .ws-form {
-  z-index: 950;
-}
-
-.aframe-wrap.fullscreen #new-annotation-btn {
-  position: fixed;
-  font-size: 1.5rem;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #2ecc71;
-}
-
-.aframe-wrap.fullscreen #finish-btn {
-  top: 1rem;
-  left: 1rem;
-  position: fixed;
-  background-color: #e74c3c;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  font-weight: 400;
-}
-
-.aframe-wrap.fullscreen #confirm-position {
-  position: fixed;
-  top: 60vh;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.aframe-wrap.fullscreen #submit-annotation {
-  position: fixed;
-  top: 60vh;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.aframe-wrap.fullscreen .ws-form {
-  bottom: 60vh;
-  left: 50vw;
-  transform: translateX(-50%);
-  width: 90vw;
-  max-width: 400px;
-  padding: 0;
-  position: fixed;
-}
-
 .ws-cloak {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  z-index: 1000;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -926,11 +929,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .aframe-wrap a-scene.loading {
-  z-index: 960;
+  z-index: 900;
 }
 
 .aframe-wrap a-scene.loaded {
-  z-index: 900;
+  z-index: 940;
 }
 
 html {
