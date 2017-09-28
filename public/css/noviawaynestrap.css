@@ -282,3 +282,20 @@
     font-size: .6em;
   }
 }
+
+.aframe-wrap {
+    position: absolute;
+    height: 100%;
+    width: 100vw;
+}
+
+.aframe-wrap a-scene {
+    height: 100%;
+    width: 100vw;
+    margin: 0;
+}
+
+.aframe-wrap .ws-btn, .aframe-wrap .ws-form {
+    z-index: 1111;
+    position: absolute;
+}

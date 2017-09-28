@@ -123,9 +123,10 @@ componentWillUnmount(){
 //==================================================
 	render() {
 		return (
-			<main>
-			<Cloak/>
+			
+			
 				<div className="aframe-wrap">
+          <Cloak/>
 					<AnnotationAframe
 						inCreationMode={false}
 						port={this.portAframe}
@@ -134,9 +135,9 @@ componentWillUnmount(){
 						selectedProperty={(this.props.location.state.property) ? (this.props.location.state.property) : ""} 
 						message={this.state.message}
 					/>
-					<span className="fixed-info">People Viewing Property Right Now: {this.state.message}</span>
+					<span className="fixed-info"># {this.state.message} viewer(s) online</span>
 				</div>
-			</main>
+			
 		);
 	}
 }
