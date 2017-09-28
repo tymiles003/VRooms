@@ -175,7 +175,7 @@ class AnnotationAframe extends React.Component {
 			<a-scene 
 				inspector 
 				embedded 
-				className={this.state.loading ? 'loading' : 'loaded' }
+				class={this.state.loading ? 'loading' : 'loaded' }
 			
 			>
 				{/* {this.state.loading && <Cloak/>} */}
