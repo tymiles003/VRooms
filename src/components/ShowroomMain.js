@@ -84,11 +84,11 @@ class ShowroomMain extends React.Component {
      * Close a connection, if any browser tab is closed or page is refreshed.
      */
       socket.emit('close', {
-          room: this.props.location.state.property.rooms[0].pano_url
+          room: rID
         });
-		  });
+	});
 		
-      socket.emit('open', {room: this.props.location.state.property.rooms[0].pano_url});
+      socket.emit('open', {room: rID});
 
       /** 
        * Message reeived from server
@@ -114,7 +114,7 @@ class ShowroomMain extends React.Component {
 // componentWillUnmount ============================
 componentWillUnmount(){
 	socket.emit('close', {
-			room: this.props.location.state.property.rooms[0].pano_url
+			room: rID
 		});
 }
 //==================================================
