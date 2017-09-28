@@ -911,7 +911,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   bottom: 0;
   z-index: 1000;
-  left: 0;
+  /* left: 0; */
   padding: .2rem .7rem;
   background-color: #ecf0f1;
   color: rgba(0, 0, 0, 0.87);
