@@ -209,17 +209,18 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('open', function(room) {
-		socket.join(room.room);
-		socket.room = room.room;
+		console.log("room inside socket ==", room);
+		socket.join(room);
+		socket.room = room;
 
-		if (roomsArr[room.room] === undefined) {
-			roomsArr[room.room] = 1;
+		if (roomsArr[room] === undefined) {
+			roomsArr[room] = 1;
 		} else {
-			roomsArr[room.room]++;
+			roomsArr[room]++;
 		}
-		console.log("Count === ", roomsArr[room.room]);
+		console.log("Count === ", roomsArr[room]);
 
-		io.in(socket.room).emit('message', roomsArr[room.room]);
+		io.in(socket.room).emit('message', roomsArr[room]);
 	});
 
 	socket.on('close', function() {
