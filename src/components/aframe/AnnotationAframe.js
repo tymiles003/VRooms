@@ -172,7 +172,7 @@ class AnnotationAframe extends React.Component {
 // render //////////////////////////////////////////
 	render() {
 		return (
-			<Scene 
+			<a-scene 
 				inspector 
 				embedded 
 				className={this.state.loading ? 'loading' : 'loaded' }
@@ -284,7 +284,7 @@ class AnnotationAframe extends React.Component {
 					position={{ x: -0.5, y: 3, z: 1 }}
 				/>
 				{/*==================================================*/}
-			</Scene>
+			</a-scene>
 		);
 	}
 }
