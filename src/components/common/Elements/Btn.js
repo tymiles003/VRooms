@@ -145,15 +145,15 @@ class Btn extends Component {
 	render() {
 		// const { classes, icon } = this.props;
 		return (
-			<a 
+			<Link 
 				id={this.props.id}
-				href={this.props.href || '#!'}
+				to={this.props.href || this.props.to || '#!'}
 				className={this.state.className} 
 				onClick={this.props.onClick}
 			>
 				{this.buildIcon()}
 				{this.props.text}
-			</a>
+			</Link>
 		);
 	}
 }

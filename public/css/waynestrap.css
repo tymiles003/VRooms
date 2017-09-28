@@ -329,9 +329,6 @@ div, h1, h2, h3, h4, h5, h6, p {
   color: rgba(0, 0, 0, 0.54);
   outline: 1px solid rgba(0, 0, 0, 0.12);
   outline-offset: 0;
-   justify-content: center;
-  flex-direction: column;
-  text-align: center;
 }
 
 .ws-form .input-wrap i {
