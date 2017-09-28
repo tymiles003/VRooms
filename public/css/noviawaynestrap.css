@@ -308,3 +308,7 @@
     max-width: 350px;
     width: initial;
 }
+
+.a-enter-vr-button {
+    left: 0;
+}    
