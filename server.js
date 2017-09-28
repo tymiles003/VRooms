@@ -93,8 +93,8 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.static(__dirname + "/public"));
 
-app.use("/api", apiRoutes);
 app.use("/", loginRoutes);
+app.use("/api", apiRoutes);
 
 // API-related routes (maybe relocated in future)
 app.post('/fetch-listing', (req, res) => {

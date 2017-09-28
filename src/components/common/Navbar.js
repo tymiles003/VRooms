@@ -14,7 +14,9 @@ class Navbar extends Component {
 		super(props);
 		this.state = {
 			signInClicked: false,
-			addClass: false
+			addClass: false,
+			sessionId: '',
+			email: '',
 		}
 	}
 	
@@ -23,9 +25,11 @@ class Navbar extends Component {
 		this.setState({addClass: !this.state.addClass});
 	}
 
-	componentWillMount() {
-		console.log("USer == ",cookie.loadAll());
-    	this.state =  { sessionId: cookie.load('connect.sid'), email: cookie.load("email") };
+	componentWillMount = () => {
+		console.log('---- componentWillMount --->');
+		// console.log("USer == ",cookie.loadAll());
+    // this.state =  { sessionId: cookie.load('connect.sid'), email: cookie.load("email") };
+	
   }
 	handleAuth = (event) =>{
 		event.preventDefault();
@@ -47,14 +51,30 @@ class Navbar extends Component {
 		
 	}
 
-	render() {
+	componentDidMount = (prevProps, prevState) => {
+		console.log('---- componentDidMount --->');
+		console.log("USer == ",cookie.loadAll());
 
+		// get info from cookies
+		let sessionId = cookie.load('connect.sid');
+		let email = cookie.load("email");
+
+		// set to state, which triggers immediate re-render 
+		// with everything how it should be
+		this.setState({ sessionId, email });
+	}
+
+
+	render() {
+		console.log('this.state',this.state);
 		let mobileClassBtn = ["js-open-menu-btn"];
 		let mobileClassMenu = ["js-mobile-menu"];
+
 		if(this.state.addClass) {
 			mobileClassBtn.push('active');
 			mobileClassMenu.push('active');
 		}
+		
 
 		return (
 			<div className={"navigation navigation--main--gradient "+ this.props.theme}>

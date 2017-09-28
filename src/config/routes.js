@@ -13,6 +13,7 @@ import NewVRoom from "../components/NewVRoom";
 import WaynestrapSandbox from "../components/WaynestrapSandbox";
 import EmbeddedAframe from "../components/EmbeddedAframe";
 import AnnotationPage from "../components/AnnotationPage";
+// import ShowroomMain from "../components/ShowroomMain";
 import UploadPage from "../components/UploadPage";
 import Contact from "../components/contactUs/Content";
 
@@ -25,14 +26,9 @@ import Travel1 from "../components/gallery/Travel1";
 import Travel2 from "../components/gallery/Travel2";
 import Subway from "../components/gallery/Subway";
 
-
-
-const AframeRoute = ({ component: AnnotationPage, ...rest}) => (
-	<Route {...rest} render={props => (
-		<AnnotationPage {...props} />
-	)}/>
-)
-
+const AframeRoute = ({ component: AnnotationPage, ...rest }) => (
+    <Route {...rest} render={props => <AnnotationPage {...props} />} />
+);
 
 const routes = (
     <BrowserRouter>
@@ -48,27 +44,24 @@ const routes = (
             <Route exact path="/embed" component={EmbeddedAframe} />
             <Route path="/contact" component={Contact} />
             <Route path="/upload" component={UploadPage} />
-			
-            <Route path="/gallery" component={Gallery} />            
-            <Route path="/living1" component={Living1} />            
-            <Route path="/living2" component={Living2} />            
-            <Route path="/kitchen" component={Kitchen} />            
-            <Route path="/office" component={Office} />            
-            <Route path="/travel1" component={Travel1} /> 
-            <Route path="/travel2" component={Travel2} />            
-            <Route path="/subway" component={Subway} /> 
-						
+
+            <Route path="/gallery" component={Gallery} />
+            <Route path="/living1" component={Living1} />
+            <Route path="/living2" component={Living2} />
+            <Route path="/kitchen" component={Kitchen} />
+            <Route path="/office" component={Office} />
+            <Route path="/travel1" component={Travel1} />
+            <Route path="/travel2" component={Travel2} />
+            <Route path="/subway" component={Subway} />
+
             <Route exact path="/annotate" component={AnnotationPage} />
-						<Route path="/annotate_:roomID" component={AnnotationPage}/>
-						
-						<Route path="/view" render={(props) => (
+            <Route path="/annotate_:roomID" component={AnnotationPage} />
+            <Route path="/show/:roomID" component={ShowroomMain} />
+
+            {/* <Route path="/view" render={(props) => (
 								<AnnotationPage {...props} mode="view" />
 							)}
-						/>
-
-						
-					
-            
+						/> */}
         </Switch>
     </BrowserRouter>
 );
