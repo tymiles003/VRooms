@@ -5,14 +5,13 @@ import React, { Component } from "react";
 // import { Entity, Scene } from "aframe-react";
 // import { Helmet } from "react-helmet";
 // import Showroom from "./Showroom";
-import io from 'socket.io-client';
+import AnnotationAframe from "./aframe/AnnotationAframe";
+
 import propertyAPI from "../utils/propertyAPI";
 import roomAPI from "../utils/roomAPI";
 
-import AnnotationAframe from "./aframe/AnnotationAframe";
-
+import io from 'socket.io-client';
 const socket = io();
-
 
 // Showcasing gallery list of real estate
 class ShowroomMain extends React.Component {
@@ -43,6 +42,7 @@ class ShowroomMain extends React.Component {
 	// 		selectedProperty: this.props.location.state.property
 	// 	});
 	// }
+
 	// componentDidMount ===============================
 	componentDidMount = () => {
 		// this.getProperty(); // not super essential. for extra info on page.
@@ -77,27 +77,16 @@ class ShowroomMain extends React.Component {
      * While browser tab getting closed, below event listener is called.
      */
     window.addEventListener("unload", (ev) => {  
-      ev.preventDefault();
-
-      /**
-       * Close a connection, if any browser tab is closed or page is refreshed.
-       */
+			ev.preventDefault();
+			
+    /**
+     * Close a connection, if any browser tab is closed or page is refreshed.
+     */
       socket.emit('close', {
           room: this.props.location.state.property.rooms[0].pano_url
         });
-      });
-
-    //   document.addEventListener("pagehide", (ev) => {  
-    //   ev.preventDefault();
-
-    //   /**
-    //    * Close a connection, if any browser tab is closed or page is refreshed.
-    //    */
-    //   socket.emit('close', {
-    //       room: this.props.location.state.property.rooms[0].pano_url
-    //     });
-    //   });
-
+		  });
+		
       socket.emit('open', {room: this.props.location.state.property.rooms[0].pano_url});
 
       /** 
@@ -145,6 +134,9 @@ componentWillUnmount(){
 			</main>
 		);
 	}
+}
+
+export default ShowroomMain;
 	
   //   constructor(props) {
   //       super(props);
@@ -234,7 +226,4 @@ componentWillUnmount(){
     //         </span>       
     //     );
     // }
-}
-
-export default ShowroomMain;
 // return <Showroom selectedProperty={(this.props.location.state.property) ? (this.props.location.state.property) : ""} />;
