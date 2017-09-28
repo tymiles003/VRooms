@@ -22,7 +22,7 @@ const Showroom = (props) => {
     const txtPosition = xAxis + " " + yAxis + " " + zAxis;
     
     return (
-    <a-scene crossOrigin="anonymous">
+    <a-scene embedded crossOrigin="anonymous">
     
       <a-assets>
         <img id="asset-scene-url" src={room_url} />
