@@ -13,6 +13,7 @@ import NewVRoom from "../components/NewVRoom";
 import WaynestrapSandbox from "../components/WaynestrapSandbox";
 import EmbeddedAframe from "../components/EmbeddedAframe";
 import AnnotationPage from "../components/AnnotationPage";
+// import ShowroomMain from "../components/ShowroomMain";
 import UploadPage from "../components/UploadPage";
 import Contact from "../components/contactUs/Content";
 
@@ -60,11 +61,12 @@ const routes = (
 						
             <Route exact path="/annotate" component={AnnotationPage} />
 						<Route path="/annotate_:roomID" component={AnnotationPage}/>
+						<Route path="/show_:roomID" component={ShowroomMain}/>
 						
-						<Route path="/view" render={(props) => (
+						{/* <Route path="/view" render={(props) => (
 								<AnnotationPage {...props} mode="view" />
 							)}
-						/>
+						/> */}
 
 						
 					
