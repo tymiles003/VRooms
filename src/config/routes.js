@@ -25,6 +25,15 @@ import Travel1 from "../components/gallery/Travel1";
 import Travel2 from "../components/gallery/Travel2";
 import Subway from "../components/gallery/Subway";
 
+
+
+const AframeRoute = ({ component: AnnotationPage, ...rest}) => (
+	<Route {...rest} render={props => (
+		<AnnotationPage {...props} />
+	)}/>
+)
+
+
 const routes = (
     <BrowserRouter>
         <Switch>
@@ -39,9 +48,6 @@ const routes = (
             <Route exact path="/embed" component={EmbeddedAframe} />
             <Route path="/contact" component={Contact} />
             <Route path="/upload" component={UploadPage} />
-						
-            <Route exact path="/annotate" component={AnnotationPage} />
-						<Route path="/annotate:_:roomID" component={AnnotationPage}/>
 			
             <Route path="/gallery" component={Gallery} />            
             <Route path="/living1" component={Living1} />            
@@ -51,6 +57,17 @@ const routes = (
             <Route path="/travel1" component={Travel1} /> 
             <Route path="/travel2" component={Travel2} />            
             <Route path="/subway" component={Subway} /> 
+						
+            <Route exact path="/annotate" component={AnnotationPage} />
+						<Route path="/annotate_:roomID" component={AnnotationPage}/>
+						
+						<Route path="/view" render={(props) => (
+								<AnnotationPage {...props} mode="view" />
+							)}
+						/>
+
+						
+					
             
         </Switch>
     </BrowserRouter>

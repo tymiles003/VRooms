@@ -40,7 +40,8 @@
     align-items: center;
 }
 
-.ws-form {
+.pg-form .ws-form,
+.pg-newVRoom .ws-form {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -155,7 +156,7 @@
     width: 70%;
 }
 
-.ws-form .form-row.stack-vertical {
+.pg-form .ws-form .form-row.stack-vertical {
     margin-top: 0.5rem;
 }
 
@@ -194,7 +195,7 @@
     margin-left: 20px;
 }
 
-.ws-form .input-wrap input {
+.pg-form .ws-form .input-wrap input {
     height: 2em;
 }
 
@@ -232,7 +233,7 @@
         margin: 0;
     }
 
-    .ws-form {
+    .pg-form .ws-form {
         display: flex;
         flex-direction: column;
         width: 100%;

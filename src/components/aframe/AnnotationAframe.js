@@ -114,22 +114,8 @@ class AnnotationAframe extends React.Component {
 	componentDidMount = (prevProps, prevState) => {
 		console.log("---- componentDidMount (Aframe) --->");
 		// this.getProperty();
-		// Fetch the room if roomID is provided, but if it isn't
-		// Use this default one for now. Will need to handle error
-		// later on.
-		// if (this.props.roomID) {
-		// 	this.getRoom();
-		// } else {
-			// pano_url: "assets/img/gallery/test-world6.jpg"
-			
-			// console.log('this.props.pano_url',this.props.room.pano_url);
-			// console.log('prevProps.pano_url',prevProps.pano_url);
-
-			// this.setState({
-			// 		pano_url: this.props.room.pano_url
-				
-			// });
-		// }
+		// Fetch the room if roomID is provided, but if it isn't. Use this default one 
+		// for now. Will need to handle error later on.
 	
 		
 		// if ( this.props.inCreationMode ) {
@@ -142,15 +128,7 @@ class AnnotationAframe extends React.Component {
 // getPosition =====================================
 	getPosition = event => {
 		console.log("---- getPosition --->");
-
-		// if (event) {
-		// 	event.preventDefault();
-		// }
-
-		// let tgt = document.getElementById('new-annotation');
-
-		// let mode = this.state.mode;
-
+		
 		// if(this.state.inCreationMode){
 		// Bind the event looking for where raycaster intersects anno
 		// event.target.addEventListener('raycaster-intersected', this.handleRay)
