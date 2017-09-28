@@ -14,7 +14,13 @@ import RotatingBox from "./RotatingBox";
 		easing: "easeInOutCubic",
 	};
 
-
+	const wrapper = {
+		scale: {
+			x: 1.5,
+			y: 1.5,
+			z: 1.5,
+		}
+	}
 	const box = {
 		geometry: {
 			primitive: "box",
@@ -124,7 +130,10 @@ class Annotation extends React.Component {
 		// let { to,position, label,textScale,textPos, primitive,height,width, color,opacity,side } = this.props;
 		
 		return (
-			<Entity position={{ x: xAxis, y: yAxis, z: zAxis }} >
+			<Entity 
+				position={{ x: xAxis, y: yAxis, z: zAxis }} 
+				scale={wrapper.scale}
+			>
 				{/* BOX ====================================== */}
 					<Entity
 						className="annotation-toggle box"
