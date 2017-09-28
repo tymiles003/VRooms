@@ -28,7 +28,7 @@ class ShowroomMain extends React.Component {
     /**
      * While browser tab getting closed, below event listener is called.
      */
-    window.addEventListener("beforeunload", (ev) => {  
+    window.addEventListener("unload", (ev) => {  
       ev.preventDefault();
 
       /**
@@ -39,16 +39,16 @@ class ShowroomMain extends React.Component {
         });
       });
 
-      document.addEventListener("pagehide", (ev) => {  
-      ev.preventDefault();
+    //   document.addEventListener("pagehide", (ev) => {  
+    //   ev.preventDefault();
 
-      /**
-       * Close a connection, if any browser tab is closed or page is refreshed.
-       */
-      socket.emit('close', {
-          room: this.props.location.state.property.rooms[0].pano_url
-        });
-      });
+    //   /**
+    //    * Close a connection, if any browser tab is closed or page is refreshed.
+    //    */
+    //   socket.emit('close', {
+    //       room: this.props.location.state.property.rooms[0].pano_url
+    //     });
+    //   });
 
       socket.emit('open', {room: this.props.location.state.property.rooms[0].pano_url});
 
