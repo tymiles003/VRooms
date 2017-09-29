@@ -276,6 +276,14 @@
   }
 }
 
+@media all and (max-width: 855px) {
+   /* catering for mobile landscape mode */
+   .fixed-info {
+       opacity: 0.5;
+   }
+
+  }
+
 @media all and (max-width: 500px) {
   .col-wrap .dropzone .dropzone-content,
   .filedrop-wrap.pano-upload .dropzone .dropzone-content {
