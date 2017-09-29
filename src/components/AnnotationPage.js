@@ -137,26 +137,66 @@ class AnnotationPage extends Component {
 
 // portForm ========================================
 	portForm = formState => {
-		this.setState(formState)
+		this.setState(formState);
+
+		if (formState.isLink) {
+			console.log('>>>> isLink');
+		}
 	}
 
 
 
-// saveAnnotation ==================================
-	saveAnnotation = (e) => {
+// submitAnnotation ==================================
+	submitAnnotation = (e) => {
 		e.preventDefault();
 		// this.setState({ mode: "saved" })
-		console.log('---- saveAnnotation --->', this.state);
+		console.log('---- submitAnnotation --->');
 
 		// Grab relevant info from state
-		let { xAxis, yAxis, zAxis, label, text } = this.state;
+		let { xAxis, yAxis, zAxis, label, text, isLink } = this.state;
 
 		// Put together annotation to add to annotation array in state
-		let newAnno =  [{ label, text, xAxis, yAxis, zAxis }];
+		let newAnno =  { label, xAxis, yAxis, zAxis };
 		// console.log('newAnno',newAnno);
 
+		// Check if text is roomID ----------------------------
+		// If the text is not a valid roomID, set text in newAnno.
+		// If it is a valid roomID, set text as link in newAnno
+		let textInput = text.trim();
+		if ( textInput.length === 24 ) {
+		// If the text input is exactly 24 characters long,
+			roomAPI.getRoom(textInput).then(response => {
+				// console.log(response);
+				// let { roomID, pano_url, annotations } = response.data[0];
+				if ( response.data.name === 'CastError') {
+					// console.log('Not a valid link');
+					newAnno.text = text;
+					this.saveAnnotation(newAnno)
+				}
+				else if ( response.data[0] ) {
+					console.log('Link detected');
+					// this.setState({isLink: true})
+					// newState.isLink = true;
+					newAnno.link = text;
+					this.saveAnnotation(newAnno);
+				}
+				
+			})
+			
+		}
+		else {
+			newAnno.text = text;
+			this.saveAnnotation(newAnno);
+		}
+
+
+
+	}
+// saveAnnotation ==================================
+	saveAnnotation = (newAnno) => {
+		
 		// let newAnnoArray = this.state.annotations.push(newAnno);
-		let newAnnoArray = this.state.annotations.concat(newAnno);
+		let newAnnoArray = this.state.annotations.concat( [ newAnno ] );
 		// newAnnotation: newAnno,
 		this.setState({
 			annotations: newAnnoArray,
@@ -167,10 +207,9 @@ class AnnotationPage extends Component {
 		
 		// Save to Database
 		let roomID = this.props.match.params.roomID || this.props.roomID;		
-		roomAPI.addNewAnnotation( roomID, { xAxis, yAxis, zAxis, label, text } );
+		roomAPI.addNewAnnotation( roomID, newAnno );
 
 	}
-
 // render //////////////////////////////////////////
 	render() {
 		// let {street,city,state,zip,country,bedrooms,baths,built_year,price,square_feet,property_name} = this.state.property;
@@ -184,7 +223,7 @@ class AnnotationPage extends Component {
 						port={this.portAframe}
 						annotations={this.state.annotations}
 						pano_url={this.state.pano_url}
-
+						roomID={this.state.roomID}
 
 						fetchCoordinates={this.state.fetchCoordinates}
 						positionConfirmed={this.state.positionConfirmed}
@@ -220,7 +259,7 @@ class AnnotationPage extends Component {
 								href="#!"
 								theme="primary"
 								onMouseEnter={this.fetchCoordinates}
-								onClick={this.saveAnnotation}
+								onClick={this.submitAnnotation}
 								text="Submit"
 							/>
 						</section>

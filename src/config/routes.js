@@ -55,7 +55,9 @@ const routes = (
             <Route path="/subway" component={Subway} />
 
             <Route exact path="/annotate" component={AnnotationPage} />
+            <Route path="/annotate/:roomID" component={AnnotationPage} />
             <Route path="/annotate_:roomID" component={AnnotationPage} />
+						
             <Route path="/show/:roomID" component={ShowroomMain} />
 
             {/* <Route path="/view" render={(props) => (

@@ -70,11 +70,11 @@ class AnnotationAframe extends React.Component {
 		// be read and return undefined. If they did this same thing on
 		// subsequent creations, they coordinates would still equal the
 		// last position read.
-		if (!this.props.inCreationMode && nextProps.inCreationMode) {
-			let el = document.getElementById("new-annotation");
+		// if (!this.props.inCreationMode && nextProps.inCreationMode) {
+			// let el = document.getElementById("new-annotation");
 			// console.log("el", el);
 			// this.getPosition();
-		}
+		// }
 	//--------------------------------------------------
 		
 	// Update when we receive new annotations
@@ -96,11 +96,14 @@ class AnnotationAframe extends React.Component {
 		if (nextProps.pano_url && (nextProps.pano_url !== this.props.pano_url)){
 			let url = nextProps.pano_url;
 			console.log('>>>> pano_url --->',url);
+
 			let img = document.getElementById('annotation-photo');
-			let assets = document.querySelector('a-assets');
 			img.addEventListener('load', this.handleLoadState)
-			assets.addEventListener('loaded', console.log('>>>> ASSETS LOADED >>>>'))
-			console.log('a-assets fileLoader', document.querySelector('a-assets').fileLoader);
+			
+			// let assets = document.querySelector('a-assets');
+			// assets.addEventListener('loaded', console.log('>>>> ASSETS LOADED >>>>'))
+
+			// console.log('a-assets fileLoader', document.querySelector('a-assets').fileLoader);
 		}
 	//--------------------------------------------------
 
