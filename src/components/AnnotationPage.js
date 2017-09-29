@@ -139,9 +139,9 @@ class AnnotationPage extends Component {
 	portForm = formState => {
 		this.setState(formState);
 
-		if (formState.isLink) {
-			console.log('>>>> isLink');
-		}
+		// if (formState.isLink) {
+		// 	console.log('>>>> isLink');
+		// }
 	}
 
 

@@ -118,7 +118,7 @@ class ShowroomMain extends React.Component {
                     message={this.state.message}
                 />
                 <span className="fixed-info">
-                    # of {this.state.message} viewer(s) currently
+                    {this.state.message} viewer(s) currently
                 </span>
             </div>
         );

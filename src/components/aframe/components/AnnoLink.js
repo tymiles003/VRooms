@@ -89,8 +89,8 @@ class AnnoLink extends React.Component {
 // handleClick =====================================
 	handleClick = event => {
 		event.preventDefault();
-		let el = event.target;
-		let parent = el.parentElement;
+		// let el = event.target;
+		// let parent = el.parentElement;
 		// let boxEl = parent.querySelector('.annotation-toggle');
 		// let labelEl = parent.querySelector('.annotation-label');
 		// let textEl = parent.querySelector('.annotation-text');
@@ -101,7 +101,17 @@ class AnnoLink extends React.Component {
 		// textEl.setAttribute( 'visible', true );
 		// cursorEl.setAttribute('visible', false);
 
-		history.push('/my-new-location')
+
+		let destination = event.target.getAttribute('destination');
+		console.log('destination',destination);
+
+		let history = this.props.history;
+		console.log('history.pathname',history.pathname);
+		console.log('history.search',history.search);
+		console.log('history.hash',history.hash);
+		console.log('history.state',history.state);
+
+		// this.props.history.push('/show/'+destination)
 		
 	};
 
@@ -137,7 +147,6 @@ class AnnoLink extends React.Component {
 				position={{ x: xAxis, y: yAxis, z: zAxis }} 
 				scale={wrapper.scale}
 			>
-				<Link to={{ pathname: "/show/" + link }} >
 					{/* BOX ====================================== */}
 						<Entity
 							className="annotation-toggle box"
@@ -146,6 +155,7 @@ class AnnoLink extends React.Component {
 							scale={box.scale}
 							material={box.material}
 							animation__rotate={box.animation__rotate}
+							destination={link}
 							events={{ 
 								click: this.handleClick, 
 								}}
@@ -177,17 +187,16 @@ class AnnoLink extends React.Component {
 								mouseleave: this.handleMouseLeave
 							}}
 						/> */}
-					</Link>
 			</Entity>
 		);
 	}
 }
 
-AnnoLink.propTypes = {
-  history: React.PropTypes.shape({
-    push: React.PropTypes.func.isRequired,
-  }).isRequired,
-};
+// AnnoLink.propTypes = {
+//   history: React.PropTypes.shape({
+//     push: React.PropTypes.func.isRequired,
+//   }).isRequired,
+// };
 
 AnnoLink.defaultProps = {
 	color: "#3498db",

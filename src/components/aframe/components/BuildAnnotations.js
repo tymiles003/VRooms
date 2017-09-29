@@ -14,8 +14,8 @@ const BuildAnnotations = props => {
 			{annotationsToBuild.map((ea, index) => {
 				{/* console.log('ea',ea); */}
 				{/* console.log('ea.link',ea.link); */}
-				if ( ea.link !== '' ) {
-					console.log('ea.link',ea.link);
+				{/* if ( ea.link !== '' ) { */}
+				if ( ea.link ) {
 					return <AnnoLink data={ea} key={index} />
 				}
 				else {
