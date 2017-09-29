@@ -213,7 +213,7 @@ io.on('connection', (socket) => {
 		socket.join(room.room);
 		socket.room = room.room;
 
-		if (roomsArr[room.room] === undefined) {
+		if (roomsArr[room.room] === undefined || roomsArr[room.room] <= 0) {
 			roomsArr[room.room] = 1;
 		} else {
 			roomsArr[room.room]++;
@@ -224,6 +224,7 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('close', function() {
+		console.log("Inside close event == ",roomsArr[socket.room]);
 		roomsArr[socket.room]--;
 		io.in(socket.room).emit('message', roomsArr[socket.room]);
 	});
