@@ -58,12 +58,12 @@ class ShowroomMain extends React.Component {
             this.setState({ message: data });
         });
 
-        if (this .state.roomID) {
-            console.log("rID", this .state.roomID);
+        if (this.state.roomID) {
+            console.log("rID", this.state.roomID);
 
             // this.setState({roomID})
 
-            roomAPI.getRoom(this .state.roomID).then(response => {
+            roomAPI.getRoom(this.state.roomID).then(response => {
                 console.log(response);
                 let { roomID, pano_url, annotations } = response.data[0];
                 console.log("roomAPI room response >>>>", response.data[0]);
