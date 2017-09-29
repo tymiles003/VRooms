@@ -59,19 +59,6 @@ const WaynestrapSandbox = props => {
 						<Btn text="custom classes" classes={["dog", "cat"]} />
 					</div>
 				</section>
-				<section>
-					<h4>Custom Classes</h4>
-					<div className="section-content">
-						<Btn 
-						href={{
-							pathname: "/vroom",
-							search: "?room",
-							state: { mode: 'view' }
-						}} 
-						text="view" mode="view" />
-						<Btn href="/vroom" text="annotate" mode="annotate" />
-					</div>
-				</section>
 			</article>
 		</div>
 	);

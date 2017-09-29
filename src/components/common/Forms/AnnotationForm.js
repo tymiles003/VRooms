@@ -6,6 +6,7 @@ import cookie from "react-cookies";
 import axios from "axios";
 
 import propertyAPI from "../../../utils/propertyAPI"; 
+import roomAPI from "../../../utils/roomAPI"; 
 // const s3API = require ("../../../utils/s3API");
 
 class AnnotationForm extends Component {
@@ -51,16 +52,23 @@ class AnnotationForm extends Component {
 		// const name = event.target.name;
 		let { name, value } = event.target;
 		// console.log(name, value);
+		// let isLink = false;
+
 		let newState = {
-			[name]: value
+			[name]: value,
 		}
 		
-		this.setState(newState);
+	
 
-		// Lift state up to Page
-		// this.props.port(this.state)
+		this.setState( newState )
+		this.props.port( newState )
 
-		this.props.port(newState)
+
+		// Update this state -----------------
+		// this.setState(newState);
+		
+		// Lift state up to Page -------------
+		// this.props.port(newState)
 
 	}
 

@@ -16,9 +16,9 @@ import RotatingBox from "./RotatingBox";
 
 	const wrapper = {
 		scale: {
-			x: 1.5,
-			y: 1.5,
-			z: 1.5,
+			x: 1.2,
+			y: 1.2,
+			z: 1.2,
 		}
 	}
 	const box = {
@@ -31,7 +31,7 @@ import RotatingBox from "./RotatingBox";
 		rotation: { x: 0, y: 0, z: 0 },
 		scale: { x: 1, y: 1, z: 1 },
 		material: { 
-			color: "#3498db", 
+			color: "#f39c12", 
 			opacity: 0.8 
 		},
 		animation__rotate: { 

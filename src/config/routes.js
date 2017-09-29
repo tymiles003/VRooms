@@ -26,12 +26,13 @@ import Travel1 from "../components/gallery/Travel1";
 import Travel2 from "../components/gallery/Travel2";
 import Subway from "../components/gallery/Subway";
 
-const AframeRoute = ({ component: AnnotationPage, ...rest }) => (
-    <Route {...rest} render={props => <AnnotationPage {...props} />} />
-);
+// import createHistory from 'history/createBrowserHistory';
+// const history = createHistory();
+
 
 const routes = (
-    <BrowserRouter>
+		<BrowserRouter forceRefresh={true}>
+			{/* <Router history={history}> */}
         <Switch>
             <Route exact path="/" component={Main} />
             <Route path="/showcase" component={Showcase} />
@@ -54,15 +55,17 @@ const routes = (
             <Route path="/travel2" component={Travel2} />
             <Route path="/subway" component={Subway} />
 
-            <Route exact path="/annotate" component={AnnotationPage} />
+            {/* <Route exact path="/annotate" component={AnnotationPage} /> */}
+            <Route path="/annotate/:roomID" component={AnnotationPage} />
             <Route path="/annotate_:roomID" component={AnnotationPage} />
+						
             <Route path="/show/:roomID" component={ShowroomMain} />
+            <Route path="/show_:roomID" component={ShowroomMain} />
 
-            {/* <Route path="/view" render={(props) => (
-								<AnnotationPage {...props} mode="view" />
-							)}
-						/> */}
+						<Redirect from="/portal-demo" to="/show/59c8544560f9e6001233404c"/>
+
         </Switch>
+		{/* </Router> */}
     </BrowserRouter>
 );
 

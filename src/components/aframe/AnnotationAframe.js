@@ -70,11 +70,11 @@ class AnnotationAframe extends React.Component {
 		// be read and return undefined. If they did this same thing on
 		// subsequent creations, they coordinates would still equal the
 		// last position read.
-		if (!this.props.inCreationMode && nextProps.inCreationMode) {
-			let el = document.getElementById("new-annotation");
+		// if (!this.props.inCreationMode && nextProps.inCreationMode) {
+			// let el = document.getElementById("new-annotation");
 			// console.log("el", el);
 			// this.getPosition();
-		}
+		// }
 	//--------------------------------------------------
 		
 	// Update when we receive new annotations
@@ -96,11 +96,14 @@ class AnnotationAframe extends React.Component {
 		if (nextProps.pano_url && (nextProps.pano_url !== this.props.pano_url)){
 			let url = nextProps.pano_url;
 			console.log('>>>> pano_url --->',url);
+
 			let img = document.getElementById('annotation-photo');
-			let assets = document.querySelector('a-assets');
 			img.addEventListener('load', this.handleLoadState)
-			assets.addEventListener('loaded', console.log('>>>> ASSETS LOADED >>>>'))
-			console.log('a-assets fileLoader', document.querySelector('a-assets').fileLoader);
+			
+			// let assets = document.querySelector('a-assets');
+			// assets.addEventListener('loaded', console.log('>>>> ASSETS LOADED >>>>'))
+
+			// console.log('a-assets fileLoader', document.querySelector('a-assets').fileLoader);
 		}
 	//--------------------------------------------------
 
@@ -130,7 +133,7 @@ class AnnotationAframe extends React.Component {
 	};
 // getPosition =====================================
 	getPosition = event => {
-		console.log("---- getPosition --->");
+		// console.log("---- getPosition --->");
 		
 		// if(this.state.inCreationMode){
 		// Bind the event looking for where raycaster intersects anno
@@ -172,12 +175,8 @@ class AnnotationAframe extends React.Component {
 // render //////////////////////////////////////////
 	render() {
 		return (
-			<a-scene 
-				inspector 
-				embedded 
-				class={this.state.loading ? 'loading' : 'loaded' }
-			
-			>
+			<Scene inspector embedded >
+				{/* className={this.state.loading ? 'loading' : 'loaded' } */}
 				{/* {this.state.loading && <Cloak/>} */}
 				{/* <Cloak/> */}
 				{/*==================================================*/}
@@ -284,7 +283,7 @@ class AnnotationAframe extends React.Component {
 					position={{ x: -0.5, y: 3, z: 1 }}
 				/>
 				{/*==================================================*/}
-			</a-scene>
+			</Scene>
 		);
 	}
 }
