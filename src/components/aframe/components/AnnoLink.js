@@ -17,9 +17,9 @@ import { Link, withRouter } from "react-router-dom";
 
 	const wrapper = {
 		scale: {
-			x: 1.2,
-			y: 1.2,
-			z: 1.2,
+			x: 1.1,
+			y: 1.1,
+			z: 1.1,
 		}
 	}
 	const box = {
@@ -42,41 +42,42 @@ import { Link, withRouter } from "react-router-dom";
 			to: '360 360 360'
 		},
 	}
+
 	const label = {
 		geometry: {
 			primitive: 'plane',
 			height: 0.08,
-			width: 0.24,
+			width: 0.3,
 		},
 		text: {
 				align: 'center',
 				color: 'white',
-				width: 0.8,
+				width: 1,
 		},
 		position: { x: 0, y: 0.3, z: 0 },
 		scale: { x:3 , y:3, z:3 },
 		material: { color: "#242424", opacity: 0.7 },
 	}
-	const text = {
-		geometry: {
-			primitive: 'plane',
-			height: 0.25,
-			width: 0.5,
-		},
-		text: {
-			align: 'center',
-			color: '#333333',
-			width: 0.5,
-			wrapCount: 24
-		},
-		position: { x: 0, y: -0.24, z: 0 },
-		scale: { x: 3, y: 3, z: 3 },
-		material: { 
-			color: "#ffffff", 
-			opacity: 1,
-			side: 'double'
-		}
-	};
+	// const text = {
+	// 	geometry: {
+	// 		primitive: 'plane',
+	// 		height: 0.25,
+	// 		width: 0.5,
+	// 	},
+	// 	text: {
+	// 		align: 'center',
+	// 		color: '#333333',
+	// 		width: 0.5,
+	// 		wrapCount: 24
+	// 	},
+	// 	position: { x: 0, y: -0.24, z: 0 },
+	// 	scale: { x: 3, y: 3, z: 3 },
+	// 	material: { 
+	// 		color: "#ffffff", 
+	// 		opacity: 1,
+	// 		side: 'double'
+	// 	}
+	// };
 
 ////////////////////////////////////////////////////
 class AnnoLink extends React.Component {

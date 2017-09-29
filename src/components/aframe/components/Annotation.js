@@ -45,7 +45,7 @@ import RotatingBox from "./RotatingBox";
 		geometry: {
 			primitive: 'plane',
 			height: 0.08,
-			width: 0.3,
+			width: 0.24,
 		},
 		text: {
 				align: 'center',
