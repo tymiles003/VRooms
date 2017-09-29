@@ -242,7 +242,7 @@ class AnnotationPage extends Component {
 				
 					<Btn
 						id="finish-btn"
-						href="/"
+						href="/showcase"
 						onClick={this.handleFinishClick}
 						text="Done"
 					/>

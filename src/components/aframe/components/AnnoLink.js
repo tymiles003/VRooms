@@ -17,9 +17,9 @@ import { Link, withRouter } from "react-router-dom";
 
 	const wrapper = {
 		scale: {
-			x: 1.5,
-			y: 1.5,
-			z: 1.5,
+			x: 1.2,
+			y: 1.2,
+			z: 1.2,
 		}
 	}
 	const box = {
@@ -32,7 +32,7 @@ import { Link, withRouter } from "react-router-dom";
 		rotation: { x: 0, y: 0, z: 0 },
 		scale: { x: 1, y: 1, z: 1 },
 		material: { 
-			color: "#e74c3c", 
+			color: "#3498db", 
 			opacity: 0.8 
 		},
 		animation__rotate: { 
@@ -51,7 +51,7 @@ import { Link, withRouter } from "react-router-dom";
 		text: {
 				align: 'center',
 				color: 'white',
-				width: 1,
+				width: 0.8,
 		},
 		position: { x: 0, y: 0.3, z: 0 },
 		scale: { x:3 , y:3, z:3 },
