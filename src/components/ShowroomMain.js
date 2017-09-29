@@ -32,6 +32,7 @@ class ShowroomMain extends React.Component {
 
     // componentDidMount ===============================
     componentDidMount = () => {
+			console.log('---- componentDidMount (ShowroomMain) --->');
         // this.getProperty(); // not super essential. for extra info on page.
 
         /**
@@ -64,6 +65,7 @@ class ShowroomMain extends React.Component {
     };
 
     componentWillMount() {
+			console.log('---- componentWillMount (ShowroomMain) --->');
         let rID;
         let propsID = this.props.roomID;
         let urlID = this.props.match.params.roomID;

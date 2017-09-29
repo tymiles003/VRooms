@@ -130,7 +130,7 @@ class AnnotationAframe extends React.Component {
 	};
 // getPosition =====================================
 	getPosition = event => {
-		console.log("---- getPosition --->");
+		// console.log("---- getPosition --->");
 		
 		// if(this.state.inCreationMode){
 		// Bind the event looking for where raycaster intersects anno
@@ -172,12 +172,8 @@ class AnnotationAframe extends React.Component {
 // render //////////////////////////////////////////
 	render() {
 		return (
-			<a-scene 
-				inspector 
-				embedded 
-				class={this.state.loading ? 'loading' : 'loaded' }
-			
-			>
+			<Scene inspector embedded >
+				{/* className={this.state.loading ? 'loading' : 'loaded' } */}
 				{/* {this.state.loading && <Cloak/>} */}
 				{/* <Cloak/> */}
 				{/*==================================================*/}
@@ -284,7 +280,7 @@ class AnnotationAframe extends React.Component {
 					position={{ x: -0.5, y: 3, z: 1 }}
 				/>
 				{/*==================================================*/}
-			</a-scene>
+			</Scene>
 		);
 	}
 }
