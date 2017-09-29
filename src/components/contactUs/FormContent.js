@@ -35,9 +35,6 @@ class FormContent extends Component{
         <div className="question"><span>{this.props.quest}<span className="asterisk"> *</span></span></div>
         <div className="clear"></div>
 		<div className="content">
-			<div className="" style={{fontStyle: "italic", marginBottom: "20px", padding:"0 35px"}}>
-					
-			</div>
 		<div className="content-wrapper">
 		    <div className="attachment-wrapper">
 			    <div className="attachment">
@@ -85,8 +82,3 @@ class FormContent extends Component{
 }
 
 export default FormContent;
-
-
-// <div>
-// 			<h5 style={{color:"red", fontWeight:"bold"}}>{this.state.errorMessage}</h5> 
-// 		</div>
