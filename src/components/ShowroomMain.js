@@ -49,7 +49,7 @@ class ShowroomMain extends React.Component {
 		// this.getProperty(); // not super essential. for extra info on page.
 		let rID;
 		let propsID = this.props.roomID;
-		let urlID = this.props.match.params.roomID;
+        let urlID = this.props.match.params.roomID;
 
 		if (urlID) {
 			rID = urlID;
@@ -87,11 +87,11 @@ class ShowroomMain extends React.Component {
      * Close a connection, if any browser tab is closed or page is refreshed.
      */
       socket.emit('close', {
-          room: this.props.location.state.property.rooms[0]._id
+          room: this.state.roomID
         });
 	});
 		
-      socket.emit('open', {room: this.props.location.state.property.rooms[0]._id});
+      socket.emit('open', {room: this.state.roomID});
 
       /** 
        * Message reeived from server
@@ -117,27 +117,23 @@ class ShowroomMain extends React.Component {
 // componentWillUnmount ============================
 componentWillUnmount(){
 	socket.emit('close', {
-			room: this.props.location.state.property.rooms[0]._id
+			room: this.state.roomID
 		});
 }
 //==================================================
 	render() {
 		return (
-			
-			
-				<div className="aframe-wrap">
-          <Cloak/>
-					<AnnotationAframe
-						inCreationMode={false}
-						port={this.portAframe}
-						annotations={this.state.annotations}
-						pano_url={this.state.pano_url}
-						selectedProperty={(this.props.location.state.property) ? (this.props.location.state.property) : ""} 
-						message={this.state.message}
-					/>
-					<span className="fixed-info"># {this.state.message} viewer(s) online</span>
-				</div>
-			
+			<div className="aframe-wrap">
+                <Cloak/>
+				<AnnotationAframe
+                    inCreationMode={false}
+                    port={this.portAframe}
+                    annotations={this.state.annotations}
+                    pano_url={this.state.pano_url}
+                    message={this.state.message}
+                />
+				<span className="fixed-info"># {this.state.message} viewer(s) online</span>
+			</div>
 		);
 	}
 }

@@ -106,9 +106,6 @@ class ShowcaseContent extends Component {
                                 <div className="content-block">
                                     <Link to={{
                                             pathname: "/show/" + properties.rooms[0]._id,
-                                            state: {
-                                                property: properties
-                                            }
                                         }}
                                     >
                                         <img
