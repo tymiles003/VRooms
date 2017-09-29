@@ -1,9 +1,11 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
 import Annotation from "./Annotation";
 import AnnoLink from "./AnnoLink";
+import ConstAnnoLink from "./ConstAnnoLink";
 import { Entity } from "aframe-react";
 
-const BuildAnnotations = props => {
+const BuildAnnotations = ( props ) => {
 	// const annos = props.annotations;
 	// console.log('annos',annos);
 	let annotationsToBuild = props.annotations;
@@ -16,7 +18,10 @@ const BuildAnnotations = props => {
 				{/* console.log('ea.link',ea.link); */}
 				{/* if ( ea.link !== '' ) { */}
 				if ( ea.link ) {
-					return <AnnoLink data={ea} key={index} />
+					{/* return <ConstAnnoLink data={ ea } key={ index } /> */}
+					return <AnnoLink location={props.location} history={props.history} data={ ea } key={ index } />
+					{/* let LinkRouter = withRouter(AnnoLink); */}
+					{/* return <LinkRouter  data={ea}  key={index} />; */}
 				}
 				else {
 					return <Annotation data={ea} key={index}/>;
@@ -25,5 +30,5 @@ const BuildAnnotations = props => {
 		</Entity>
 	);
 };
-export default BuildAnnotations;
+export default withRouter(BuildAnnotations);
 

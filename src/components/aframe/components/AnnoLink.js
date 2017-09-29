@@ -102,38 +102,41 @@ class AnnoLink extends React.Component {
 		// cursorEl.setAttribute('visible', false);
 
 
-		let destination = event.target.getAttribute('destination');
-		console.log('destination',destination);
-
-		let history = this.props.history;
-		console.log('history.pathname',history.pathname);
-		console.log('history.search',history.search);
-		console.log('history.hash',history.hash);
-		console.log('history.state',history.state);
-
-		// this.props.history.push('/show/'+destination)
+		console.log('this.props',this.props);
 		
+		// Create next link and navigate to it. While staying in the same mode.
+		// e.g. if you're in annotation mode, you will stay in annotation mode
+
+			let destination = event.target.getAttribute('destination');
+			console.log('destination',destination);
+
+			// access current directory location
+			let path = this.props.location.pathname;
+
+			// first directory after domain name and before roomID
+			// let mode = path.split('/')[1]; 
+			// console.log('mode',mode);
+			let modePath = '/annotate';
+			
+			if ( path.indexOf('/show') === 0 ){
+				modePath = '/show'
+			}
+
+
+			let nextURL = modePath +'/' + destination;
+			console.log('nextURL',nextURL);
+
+			// props.history.push(nextURL);
+
+			// let nextURL = '/'+ mode +'/' + destination;
+			// console.log('nextURL',nextURL);
+
+			this.props.history.push(nextURL);
+			// this.props.history.push('/show/'+destination);
+			// this.props.history.go;
+
+			
 	};
-
-// handleMouseLeave ================================
-	handleMouseLeave = event => {
-		event.preventDefault();
-		let parent = event.target.parentElement;
-		this.resetAttributes(parent)
-	};
-
-// resetAttributes =================================
-	resetAttributes = (parent) => {
-		let boxEl = parent.querySelector('.annotation-toggle');
-		let labelEl = parent.querySelector('.annotation-label');
-		let textEl = parent.querySelector('.annotation-text');
-		let cursorEl = document.getElementById('cursor');
-
-		labelEl.setAttribute( 'material', label.material );
-		boxEl.setAttribute( 'visible', true );
-		textEl.setAttribute( 'visible', false );
-		cursorEl.setAttribute('visible', true)
-	}
 
 ////////////////////////////////////////////////////
 	render() {
@@ -169,9 +172,6 @@ class AnnoLink extends React.Component {
 							scale={label.scale}
 							material={label.material}
 							look-at="#camera"
-							events={{ 
-								click: this.handleClick, 
-								}}
 						/>
 					{/* TEXT ===================================== */}
 						{/* <Entity
@@ -211,4 +211,5 @@ AnnoLink.defaultProps = {
 	tPos: { x: 0, y: 0, z: 0 }
 };
 
-export default withRouter(AnnoLink);
+export default AnnoLink;
+// export default withRouter(AnnoLink);
