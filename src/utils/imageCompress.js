@@ -6,7 +6,7 @@ const MAX_360_WIDTH_OR_HEIGHT = 4096;
 
 module.exports = {
     /**
-     * Compresses and resizes thumbnail image to  450x350px
+     * Compresses and resizes thumbnail image
      */
     compressThumbnail: (file, cb) => {
         imageCompression(file, MAX_TN_SIZE_MB, MAX_TN_WIDTH_OR_HEIGHT)
@@ -16,7 +16,7 @@ module.exports = {
     },
 
     /**
-     * Compresses and resizes 360 panorama to 4096x2048px
+     * Compresses and resizes 360 panorama
      */
     compress360: (file, cb) => {
         imageCompression(file, MAX_360_SIZE_MB, MAX_360_WIDTH_OR_HEIGHT)
