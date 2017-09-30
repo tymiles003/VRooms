@@ -103,14 +103,14 @@ class Gallery extends Component {
                 className="column column-block tour--block"
               >
                 <div className="content-block">
-                  <a href={examples.link}>
+                  <Link to={{pathname: examples.link}}>
                     <img
                       className="tour--image"
                       src={examples.thumbnail_url}
                       alt="Thumbnail"
                     />
                     <h4 className="tour--title">{examples.type}</h4>
-                  </a>{" "}
+                  </Link>{" "}
                   <h6 className="tour--city">{examples.title}</h6>
                 </div>
               </div>

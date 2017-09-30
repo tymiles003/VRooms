@@ -74,20 +74,21 @@ class AboutContent extends Component {
                         <div className="row small-up-1 medium-up-4">
                         <div className="column column-block">
                             <img className="float-center customer-img" src="/assets/img/team/novia.png" alt="Novia Lim" />
-                            <h6>“We are really excited to make virtual reality accessible from novices to tech savvy. VRooms breaks down the restrictions of a      traditional home buying process and revolutionize the real estate industry. Join us now to increase your sales efficiency and maximise your customer engagement!”</h6>
+                            <h6>“We are really excited to make virtual reality accessible to everyone, from novices to the tech-savvy. VRooms breaks down the restrictions of the      traditional home-buying process and revolutionizes the real estate industry. Join us now to increase your sales efficiency and maximise your customer engagement!”</h6>
                             <p className="foundername"><strong>Novia Lim-Sampson</strong></p>
                             <p>Founder & CEO</p>
-                            
                           </div>
                           <div className="column column-block">
                             <img className="float-center customer-img" src="/assets/img/team/wayne.png" alt="Wayne Cheng" />
-                            <h6>“According to Silicon Valley (on HBO), VR is like all the rage these days, so that’s why I’m doing this”</h6>
+                            <h6>“According to Silicon Valley (on HBO), VR is like all the rage these days, so that’s why I’m doing this.”</h6>
                             <p className="foundername"><strong>Wayne Cheng</strong></p>
                             <p>Founding Partner & C3PO</p>
                           </div>
                           <div className="column column-block">
                             <img className="float-center customer-img" src="/assets/img/team/joseph.png" alt="Joseph Huynh" />
-                            <h6>“Lucas ipsum dolor sit amet chewbacca organa fisto yoda cade mandalore thrawn bothan organa dantooine. Maul calamari skywalker antilles windu ahsoka gonk. Organa organa watto moff calamari kashyyyk mon hutt grievous. Organa padmé twi'lek twi'lek moff darth qui-gon. Palpatine jawa endor mace mon moff.”</h6>
+                            <h6>“VR is an emerging technology that has widespread applications in numerous industries, giving the user a
+                            degree of immersion that has never been experienced before. As a technology enthusiast, I'm excited at the 
+                            current possibilities it offers and look forward to seeing the advances in the coming years as the technology matures.”</h6>
                             <p className="foundername"><strong>Joseph Huynh</strong></p>
                             <p>Founding Partner & CTO</p>
                           </div>
@@ -95,7 +96,7 @@ class AboutContent extends Component {
                             <img className="float-center customer-img" src="/assets/img/team/priyanka.png" alt="Priyanka Arora" />
                             <h6>“Virtual reality is a computer-generated environment that lets you experience a different dimension.
                                 What VR opens up is an entirely new way to share an experience by letting you share a sense of place and presence, which we can not experience from conventional 2d photo.”</h6>
-                            <p className="foundername"><strong>Priyaka Arora</strong></p>
+                            <p className="foundername"><strong>Priyanka Arora</strong></p>
                             <p>Founding Partner & COO</p>
                           </div>
                         </div>
