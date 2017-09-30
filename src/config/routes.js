@@ -24,6 +24,7 @@ import Kitchen from "../components/gallery/Kitchen";
 import Office from "../components/gallery/Office";
 import Travel1 from "../components/gallery/Travel1";
 import Travel2 from "../components/gallery/Travel2";
+import Travel3 from "../components/gallery/Travel3";
 import Subway from "../components/gallery/Subway";
 
 // import createHistory from 'history/createBrowserHistory';
@@ -53,6 +54,7 @@ const routes = (
             <Route path="/office" component={Office} />
             <Route path="/travel1" component={Travel1} />
             <Route path="/travel2" component={Travel2} />
+            <Route path="/flowerdome" component={Travel3} />
             <Route path="/subway" component={Subway} />
 
             {/* <Route exact path="/annotate" component={AnnotationPage} /> */}
