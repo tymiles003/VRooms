@@ -66,6 +66,14 @@ class Gallery extends Component {
         _id: "59c0885668a4a81b82c94430",
         thumbnail_url:
           "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/directions-subway-tn.jpg",
+        type: "Travel",
+        title: "Singapore Gardens By the Bay",
+        link: "/flowerdome"
+      },
+      {
+        _id: "59c0885668a4a81b82c94430",
+        thumbnail_url:
+          "https://s3-ap-southeast-1.amazonaws.com/sea-gallery/vrooms/directions-subway-tn.jpg",
         type: "Directions",
         title: "NYC Subway",
         link: "/subway"
