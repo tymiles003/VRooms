@@ -61,6 +61,6 @@ VRooms allows you to create your VR app by using 360 images or videos without co
 * Implemented User Authentication using Passport JS and Cookies
 * Development for pages: Sign Up and responsive Contact Us
 * Front/back end development and integration for 'User Authentication'
-* Front/back end development and integration email functionality for 'Contact Us'  
+* Front/back end development and integrated email functionality for 'Contact Us'  
 * Integrated 'Socket Programming' to determine the online viewers of a particular property. 
 * Testing and Bug fixes
