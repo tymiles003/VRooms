@@ -1389,6 +1389,10 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
+browser-image-compression@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/browser-image-compression/-/browser-image-compression-0.0.3.tgz#df6ac3c7ba21205f40bd63049f6641c99f599ce8"
+
 browser-resolve@^1.11.2:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/browser-resolve/-/browser-resolve-1.11.2.tgz#8ff09b0a2c421718a1051c260b32e48f442938ce"
@@ -6157,15 +6161,6 @@ react-dom@^15.3.0:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-react-dom@^15.6.1:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.2.tgz#41cfadf693b757faf2708443a1d1fd5a02bef730"
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.0"
-    prop-types "^15.5.10"
-
 react-dom@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
@@ -6321,8 +6316,8 @@ react-slick@^0.15.4:
     slick-carousel "^1.6.0"
 
 react-toastr@^2.9.3:
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/react-toastr/-/react-toastr-2.9.3.tgz#52950afaf12f3b30a514d02c1930b1b1cf04ddbc"
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/react-toastr/-/react-toastr-2.9.4.tgz#13bec052b470a68a754e70f5d29c67ec44365ead"
   dependencies:
     classnames "^2.2.5"
     create-react-class "^15.6.0"
@@ -6330,7 +6325,6 @@ react-toastr@^2.9.3:
     immutability-helper "^2.3.1"
     lodash "^4.17.4"
     prop-types "^15.5.10"
-    react-dom "^15.6.1"
 
 react-transition-group@^1.2.0:
   version "1.2.0"
