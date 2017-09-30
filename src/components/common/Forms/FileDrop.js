@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import API from "../../../utils/API";
 import Dropzone from "react-dropzone";
+const imageCompress = require("../../../utils/imageCompress");
 
 class FileDrop extends Component {
     constructor(props) {
@@ -26,9 +27,18 @@ class FileDrop extends Component {
         });
     };
 
-    onDrop = (acceptedFiles, rejectFiles) => {
+    onDropTN = (acceptedFiles, rejectFiles) => {
+        this.onDrop(acceptedFiles, rejectFiles, "thumbnail");
+    };
+
+    onDrop360 = (acceptedFiles, rejectFiles) => {
+        this.onDrop(acceptedFiles, rejectFiles, "360");
+    };
+
+    onDrop = (acceptedFiles, rejectFiles, imgType) => {
         console.log(">>> onDrop");
         const file = acceptedFiles[0];
+        console.log("acceptedFile: ", acceptedFiles[0]);
 
         const acceptedTypes = ["image/jpeg", "image/png"];
         const mimetype = file.type;
@@ -36,9 +46,7 @@ class FileDrop extends Component {
         // Continue if file's type is accepted
         if (acceptedTypes.indexOf(mimetype) >= 0) {
             const reader = new FileReader();
-            if (file) {
-                reader.readAsDataURL(file);
-            }
+
             reader.onload = () => {
                 const raw = reader.result;
                 let bits = raw;
@@ -54,6 +62,21 @@ class FileDrop extends Component {
             };
             reader.onabort = () => console.log("file reading was aborted");
             reader.onerror = () => console.log("file reading has failed");
+
+            if (file) {
+                // Compress file before loading
+                if (imgType === "360") {
+                    imageCompress.compress360(file, compressedFile => {
+                        console.log("compressed file: ", compressedFile);
+                        reader.readAsDataURL(compressedFile);
+                    });
+                } else {
+                    imageCompress.compressThumbnail(file, compressedFile => {
+                        console.log("compressed file: ", compressedFile);
+                        reader.readAsDataURL(compressedFile);
+                    });
+                }
+            }
         } else {
             alert("invalid file type");
         }
@@ -62,7 +85,7 @@ class FileDrop extends Component {
     render360 = () => {
         return (
             <div className="filedrop-wrap">
-                <Dropzone className="dropzone" onDrop={this.onDrop.bind(this)}>
+                <Dropzone className="dropzone" onDrop={this.onDrop360}>
                     <div className="dropzone-content">
                         <div className="feature-icon">
                             <img
@@ -95,7 +118,7 @@ class FileDrop extends Component {
             <div className="filedrop-wrap thumbnail-wrap">
                 <Dropzone
                     className="dropzone thumbnail-dropzone"
-                    onDrop={this.onDrop.bind(this)}
+                    onDrop={this.onDropTN}
                 >
                     <div className="dropzone-content thumbnail-content">
                         <div className="feature-icon thumbnail-icon">

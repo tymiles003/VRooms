@@ -45,6 +45,7 @@
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
+    "browser-image-compression": "^0.0.3",
     "cheerio": "^1.0.0-rc.2",
     "compression-webpack-plugin": "^1.0.0",
     "connect-flash": "^0.1.1",

@@ -85,7 +85,7 @@ class ShowroomMain extends React.Component {
     };
 
     componentWillMount() {
-			console.log('---- componentWillMount (ShowroomMain) --->');
+		console.log('---- componentWillMount (ShowroomMain) --->');
         let rID;
         let propsID = this.props.roomID;
         let urlID = this.props.match.params.roomID;
