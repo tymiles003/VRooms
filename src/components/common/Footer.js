@@ -29,7 +29,7 @@ class Footer extends Component {
               <h5>Get in Touch</h5>
               <ul>
                 <li><a id="ga-footer-contact" href="/contact">Contact</a></li>
-                <li><a id="ga-footer-github" href="https://github.com/novialim/VRooms">Github</a></li>
+                <li><a id="ga-footer-github" href="https://github.com/novialim/VRoomsPR">Github</a></li>
                 <ul className='footer-social'>
                   <li><a className="footer-facebook" target="_blank" href="#">Facebook</a></li>
                   <li><a className="footer-twitter" target="_blank" href="#">Twitter</a></li>
