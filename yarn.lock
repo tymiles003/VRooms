@@ -3892,6 +3892,10 @@ interpret@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.3.tgz#cbc35c62eeee73f19ab7b10a801511401afc0f90"
 
+intervalometer@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/intervalometer/-/intervalometer-1.0.4.tgz#e807229ae8ac2cbf9156cc010eeb207b6e65ad23"
+
 invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
@@ -3913,6 +3917,13 @@ ipaddr.js@1.4.0:
 ipaddr.js@1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.5.2.tgz#d4b505bde9946987ccf0fc58d9010ff9607e3fa0"
+
+iphone-inline-video@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/iphone-inline-video/-/iphone-inline-video-2.2.2.tgz#b5cd8d53d0c60fbcb1248cfdbbe44d36ff610fb2"
+  dependencies:
+    intervalometer "^1.0.4"
+    poor-mans-symbol "^1.0.1"
 
 is-absolute-url@^2.0.0:
   version "2.1.0"
@@ -5637,6 +5648,10 @@ pkginfo@0.3.x:
 pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
+
+poor-mans-symbol@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/poor-mans-symbol/-/poor-mans-symbol-1.0.1.tgz#0c1b65ff1d49c07402b2235e562077d120671d0c"
 
 postcss-calc@^5.2.0:
   version "5.3.1"
