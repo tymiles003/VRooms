@@ -10308,3 +10308,12 @@ only screen and (min-resolution:144dpi) {
     padding-left:2px;
 
 }
+
+#playButton {
+    z-index: 99999;
+    color: #FFF;
+    position: absolute;
+    bottom: 2px;
+    padding-left:2px;
+
+}
