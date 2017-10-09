@@ -27,6 +27,9 @@ import Travel2 from "../components/gallery/Travel2";
 import Travel3 from "../components/gallery/Travel3";
 import Subway from "../components/gallery/Subway";
 
+import AmazonFreshDemo from "../components/AmazonFreshDemo";
+import ShowroomVideoMain from "../components/ShowroomVideoMain";
+
 // import createHistory from 'history/createBrowserHistory';
 // const history = createHistory();
 
@@ -57,6 +60,9 @@ const routes = (
             <Route path="/flowerdome" component={Travel3} />
             <Route path="/subway" component={Subway} />
 
+            <Route path="/fresh" component={AmazonFreshDemo} />
+            <Route path="/showvideo" component={ShowroomVideoMain} />
+            
             {/* <Route exact path="/annotate" component={AnnotationPage} /> */}
             <Route path="/annotate/:roomID" component={AnnotationPage} />
             <Route path="/annotate_:roomID" component={AnnotationPage} />

@@ -57,6 +57,7 @@
     "express-session": "^1.12.1",
     "history": "^4.7.2",
     "inline-style-prefixer": "^3.0.7",
+    "iphone-inline-video": "^2.2.2",
     "lodash": "^4.17.4",
     "mongoose": "^4.7.5",
     "nodemailer": "^4.1.0",
