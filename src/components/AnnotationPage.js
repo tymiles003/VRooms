@@ -7,7 +7,6 @@ import roomAPI from "../utils/roomAPI";
 import Btn from "./common/Elements/Btn";
 import Cloak from "./common/Elements/Cloak";
 import Helmet from 'react-helmet';
-import Switch from 'react-toggle-switch';
 
 const defaultAnnotationState = {
 	label: "Label",

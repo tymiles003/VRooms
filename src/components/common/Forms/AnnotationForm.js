@@ -6,10 +6,22 @@ import cookie from "react-cookies";
 import axios from "axios";
 // import Switch from 'react-toggle-switch';
 import Toggle from 'react-toggle';
+import Dropdown from 'rc-dropdown';
+import Menu, { Item as MenuItem, Divider } from 'rc-menu';
+import 'rc-dropdown/assets/index.css';
 
 import propertyAPI from "../../../utils/propertyAPI"; 
 import roomAPI from "../../../utils/roomAPI"; 
 // const s3API = require ("../../../utils/s3API");
+
+// const menu = (
+// 	<Menu onSelect={onSelect}>
+// 		<MenuItem disabled>disabled</MenuItem>
+// 		<MenuItem key="1">one</MenuItem>
+// 		<Divider />
+// 		<MenuItem key="2">two</MenuItem>
+// 	</Menu>
+// );
 
 class AnnotationForm extends Component {
 	constructor(props){
@@ -98,27 +110,58 @@ class AnnotationForm extends Component {
 		// this.props.port(newState)
 
 	}
+// handleSelect ====================================
+	handleSelect = (event) => {
+		console.log('---- handleSelect --->');
+		const ei = event.item;
+		console.log('ei',ei);
+
+		let { id, children } = ei.props;
+		console.log('id',id);
+		console.log('children',children);
+		// const et = event.target;
+		// let id = et.getAttribute('id');
+		// let text = et.innerHTML;
+		// console.log('id',id);
+		// console.log('text',text);
+
+		this.setState({
+			destinationName: children,
+			destinationID: id,
+		})
+	}
+// handleVisibleChange
+	handleVisibleChange = (visible) => {
+		console.log(visible);
+	}
+// Dropdown Menu ===================================
+	dropdownMenu(){
+		return (
+			<Menu onSelect={this.handleSelect}>
+				<MenuItem key="1" id="bathroomID">Bathroom</MenuItem>
+				<MenuItem key="2" id="balconyID">Balcony</MenuItem>
+			</Menu>
+		);
+	}
 // render //////////////////////////////////////////
 	render(){
+
 		return(
 
 			<form id="new-annotation-form" className="form ws-form">
-				<div 
-					className={"toggle-wrap toggled-" + this.state.toggled}
-				>
-					{/* <Switch onClick={this.toggleSwitch} on={this.state.toggled}/> */}
-					<label htmlFor='toggle-anno-type'>Text</label>
-					<Toggle
-						id='toggle-anno-type'
-						checked={this.state.toggled}
-						onChange={this.handleToggle} 
-						icons={false}
-					/>
-					<label htmlFor='toggle-anno-type'>Portal</label>
-				</div>
-
+				{/* Toggle ============== */}
+					<div className={"toggle-wrap toggled-" + this.state.toggled} >
+						<label htmlFor='toggle-anno-type'>Text</label>
+						<Toggle
+							id='toggle-anno-type'
+							checked={this.state.toggled}
+							onChange={this.handleToggle} 
+							icons={false}
+						/>
+						<label htmlFor='toggle-anno-type'>Portal</label>
+					</div>
+				{/* Label Input ========= */}
 								<div className="input-wrap input-label">
-									<label htmlFor="label" className="input-label-sib"></label>
 									<input
 										id="label"
 										className="input ws-input"
@@ -130,32 +173,8 @@ class AnnotationForm extends Component {
 									/>
 									
 								</div>
-							
-							{this.state.toggled && (
-
-								<div className="input-wrap input-portal">
-										{/* <input
-											id="portal"
-											className="input ws-input"
-											type="button"
-											name="portal"
-											placeholder="Portal"
-											value={this.state.portal}
-											onChange={this.handleInputChange}
-										/> */}
-										<a
-											href="#"
-											id="portal-dropdown-trigger"
-											className="input ws-input input-btn"
-											text="Portal"
-											onClick={this.handleDropdown}
-										> 
-										Select Destination 
-										</a>
-									</div>
-
-							)}
-							{!this.state.toggled && (
+				{/* Text ================ */}
+					{!this.state.toggled && (
 								<div className={"input-wrap input-text "}>
 										<input
 											id="text"
@@ -168,7 +187,31 @@ class AnnotationForm extends Component {
 										/>
 									</div>
 							)}
+				{/* Portal ============== */}
+					{this.state.toggled && (
 
+						<Dropdown
+							trigger={['click']}
+							overlay={this.dropdownMenu()}
+							animation="slide-up"
+							onVisibleChange={this.handleVisibleChange}
+						>
+						<div className="input-wrap input-portal">
+							<a
+								href="#"
+								id="portal-dropdown-trigger"
+								className="input ws-input input-btn"
+								text="Portal"
+								onClick={this.handleDropdown}
+							> 
+							{this.state.destinationName ? this.state.destinationName : 'Select Destination'} 
+							</a>
+							</div>
+						</Dropdown>
+
+					)}
+
+				{/*==================================================*/}
 						{/* <Btn
 							id="submit-annotation"
 							href="#!"
@@ -182,3 +225,16 @@ class AnnotationForm extends Component {
 }
 
 export default AnnotationForm;
+
+// <div className="input-wrap input-portal">
+// 
+// 	<a
+// 		href="#"
+// 		id="portal-dropdown-trigger"
+// 		className="input ws-input input-btn"
+// 		text="Portal"
+// 		onClick={this.handleDropdown}
+// 	> 
+// 	Select Destination 
+// 	</a>
+// </div>
