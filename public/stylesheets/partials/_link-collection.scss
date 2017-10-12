@@ -19,6 +19,12 @@
 			&:hover {
 				color: $primary;
 			}
+
+			&.selected {
+				background-color: $bg-dark;
+				background-color: $blue;
+				color: $light-primary;
+			}
 		}
 	}
 }

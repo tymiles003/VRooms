@@ -131,66 +131,71 @@ class NewVRoomForm extends Component {
                     },
                     "thumbnail",
                     urlTN => {
-                        // If upload successful then create new Property and Room
+                        // If upload successful then...
                         if (url && urlTN) {
-                            let property = {
-                                thumbnail_url: urlTN,
-                                street: this.state.street,
-                                city: this.state.city,
-                                state: this.state.state,
-                                zip: this.state.zip,
-                                country: this.state.country,
-                                bedrooms: this.state.beds,
-                                baths: this.state.baths,
-                                built_year: this.state.year,
-                                price: this.state.price,
-                                square_feet: this.state.sqft
-                            };
-                            let room = {
-                                pano_url: url
-                            };
-                            let userID = cookie.load("userId");
-                            console.log("cookie userId: ", userID);
-                            console.log("property: ", property);
-                            // Add new property to signed-in user, then add new room
-                            // to the property that was just added
-                            propertyAPI.addNewProperty(
-                                userID,
-                                property,
-                                addedProperty => {
-                                    console.log(
-                                        "addedProperty: ",
-                                        addedProperty.data
-                                    );
-                                    roomAPI
-                                        .addNewRoom(
-                                            addedProperty.data._id,
-                                            room
-                                        )
-                                        .then(response => {
-                                            console.log(
-                                                "addNewRoom response --->",
-                                                response.data
-                                            );
-                                            let roomID = response.data._id;
+													// If there is an existing property selected, create room in that property
+													if (this.state.existingProperty){
+														console.log('---- adding new room to existing property --->');
+														////////////////////////////////////////////////////
+														//  ADD ROOM TO EXISTING PROPERTY HERE  ////////////
+														////////////////////////////////////////////////////
+														roomAPI.addNewRoom(propertyID, roomObj).then(response => {
 
-                                            if (roomID) {
-                                                console.log(
-                                                    " New roomID created --->",
-                                                    roomID
-                                                );
-                                                this.setState({
-                                                    roomID: roomID,
-                                                    annotateBtnTheme: "success",
-                                                    annotateBtnIsOutlined: false,
-                                                    submitBtnTheme: "isDisabled"
-                                                });
-                                            }
-                                        });
-                                    this.addAlert("File uploaded successfully");
-                                }
-                            );
-                        } else {
+														})
+													}
+													// Otherwise, create new property and room
+													else {
+															let property = {
+																	thumbnail_url: urlTN,
+																	street: this.state.street,
+																	city: this.state.city,
+																	state: this.state.state,
+																	zip: this.state.zip,
+																	country: this.state.country,
+																	bedrooms: this.state.beds,
+																	baths: this.state.baths,
+																	built_year: this.state.year,
+																	price: this.state.price,
+																	square_feet: this.state.sqft
+															};
+															let room = {
+																	pano_url: url
+															};
+															let userID = cookie.load("userId");
+															console.log("cookie userId: ", userID);
+															console.log("property: ", property);
+															
+															
+															// Add new property to signed-in user, then add new room
+															// to the property that was just added
+															propertyAPI.addNewProperty(
+																	userID,
+																	property,
+																	addedProperty => {
+																			console.log( "addedProperty: ", addedProperty.data );
+																			roomAPI
+																					.addNewRoom( addedProperty.data._id, room )
+																					.then(response => {
+																							console.log( "addNewRoom response --->", response.data );
+																							let roomID = response.data._id;
+
+																							if (roomID) {
+																									console.log( " New roomID created --->", roomID );
+																									this.setState({
+																											roomID: roomID,
+																											annotateBtnTheme: "success",
+																											annotateBtnIsOutlined: false,
+																											submitBtnTheme: "isDisabled"
+																									});
+																							}
+																					});
+																			this.addAlert("File uploaded successfully");
+																	}
+															);
+													} // end of create property
+												} 
+												// If Upload Unsuccessful...
+												else {
                             console.log("Upload error!");
                             console.log("360 URL: ", url);
                             console.log("Thumbnail URL: ", urlTN);
@@ -207,7 +212,7 @@ class NewVRoomForm extends Component {
 			let userID = cookie.load('userId');
 			console.log('userID',userID);
 			
-			// Get property list from API
+			// Get user's property list from API
 			// propertyAPI.getAllUserProperties(cookie.load('userId')).then(response => {
 			// 	console.log('getAllUserProperties ===>', response);
 			// })
@@ -239,6 +244,14 @@ class NewVRoomForm extends Component {
 			console.log('el',el);
 			el.classList.add('chosen');
 		}
+// handlePropertySelection =====================================
+		handlePropertySelection = (data) => {
+			console.log('==== selected property ID ===>',data);
+			this.setState({
+				propertyID: data.id
+			})
+		}
+
 // render //////////////////////////////////////////////////
     render() {
         return (
@@ -443,9 +456,12 @@ class NewVRoomForm extends Component {
 																	<li><a href="#">Property 2</a></li>
 																	<li><a href="#">Property 3</a></li>
 																</ul> */}
-																	<ol className="ws-link-collection">
-																		<BuildPropertyList data={this.state.propertyList} />
-																	</ol>
+																	{/* <ol className="ws-link-collection"> */}
+																		<BuildPropertyList 
+																			data={this.state.propertyList} 
+																			port={this.handlePropertySelection}
+																		/>
+																	{/* </ol> */}
 																</div>
 												
 															</div>
