@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 import { Entity } from "aframe-react";
 import "aframe-look-at-component";
 import "aframe-mouse-cursor-component";
 import "aframe-animation-component";
 // import RotatingBox from "./RotatingBox";
-import { Link, withRouter } from "react-router-dom";
+import Spotlight from "./Spotlight";
 
 ////////////////////////////////////////////////////
 	// animation__rotate={{property: 'rotation', dur: 4000, loop: true, to: '360 360 360'}}
@@ -37,7 +38,7 @@ import { Link, withRouter } from "react-router-dom";
 		},
 		animation__rotate: { 
 			property: 'rotation', 
-			dur: 4000, 
+			dur: 6000, 
 			loop: true, 
 			to: '360 360 360'
 		},
@@ -92,9 +93,9 @@ class AnnoLink extends React.Component {
 		event.preventDefault();
 		// let el = event.target;
 		// let parent = el.parentElement;
-		// let boxEl = parent.querySelector('.annotation-toggle');
-		// let labelEl = parent.querySelector('.annotation-label');
-		// let textEl = parent.querySelector('.annotation-text');
+		// let boxEl = parent.querySelector('.portal-toggle');
+		// let labelEl = parent.querySelector('.portal-label');
+		// let textEl = parent.querySelector('.portal-text');
 		// let cursorEl = document.getElementById('cursor');
 
 		// labelEl.setAttribute( 'material',{'color': '#242424', opacity: 1} );
@@ -147,13 +148,18 @@ class AnnoLink extends React.Component {
 		// let { to,position, label,textScale,textPos, primitive,height,width, color,opacity,side } = this.props;
 		
 		return (
-			<Entity 
+			<Entity
+				className="portal-wrap"
+				id={'portal-wrap-'+this.props.idx}
 				position={{ x: xAxis, y: yAxis, z: zAxis }} 
 				scale={wrapper.scale}
 			>
-					{/* BOX ====================================== */}
+					{/* SPOTLIGHT =================================*/}
+						<Spotlight target={ "#portal-box-"+this.props.idx } />
+					{/* BOX =======================================*/}
 						<Entity
-							className="annotation-toggle box"
+							className="portal-toggle box portal-box"
+							id={'portal-box-'+this.props.idx}
 							geometry={box.geometry}
 							rotation={box.rotation}
 							scale={box.scale}
@@ -166,7 +172,8 @@ class AnnoLink extends React.Component {
 						/>
 					{/* LABEL ==================================== */}
 						<Entity
-							className="annotation-label"
+							className="portal-label portal-label"
+							id={'portal-label-'+this.props.idx}
 							geometry={label.geometry}
 							text={Object.assign({},label.text, {value: data.label})}
 							position={label.position}
@@ -176,7 +183,7 @@ class AnnoLink extends React.Component {
 						/>
 					{/* TEXT ===================================== */}
 						{/* <Entity
-							className="annotation-text"
+							className="portal-text"
 							geometry={text.geometry}
 							text={Object.assign({},text.text, {value: data.text})}
 							position={text.position}

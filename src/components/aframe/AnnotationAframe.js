@@ -284,9 +284,13 @@ class AnnotationAframe extends React.Component {
 					primitive="a-light"
 					type="directional"
 					color="#fff"
+					intensity="0.5"
 					position={{ x: -0.5, y: 3, z: 1 }}
 				/>
+			{/* GROUND ==========================================*/}
+
 			{/*==================================================*/}
+
 			</Scene>
 		);
 	}
