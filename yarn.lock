@@ -6340,6 +6340,16 @@ react-toastr@^2.9.3:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
+react-toggle-switch@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-toggle-switch/-/react-toggle-switch-3.0.3.tgz#5c10a949aebdd9100bb0dea6390f4576143dd277"
+
+react-toggle@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/react-toggle/-/react-toggle-4.0.2.tgz#77f487860efb87fafd197672a2db8c885be1440f"
+  dependencies:
+    classnames "^2.2.5"
+
 react-transition-group@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.2.0.tgz#b51fc921b0c3835a7ef7c571c79fc82c73e9204f"

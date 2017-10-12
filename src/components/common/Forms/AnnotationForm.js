@@ -4,6 +4,8 @@ import API from "../../../utils/API";
 import Btn from '../Elements/Btn';
 import cookie from "react-cookies";
 import axios from "axios";
+// import Switch from 'react-toggle-switch';
+import Toggle from 'react-toggle';
 
 import propertyAPI from "../../../utils/propertyAPI"; 
 import roomAPI from "../../../utils/roomAPI"; 
@@ -15,9 +17,10 @@ class AnnotationForm extends Component {
 		this.state = {
 			label: '',
 			text: '',
+			toggled: false,
 		};
 	}
-
+// componentWillReceiveProps =======================
 	componentWillReceiveProps = (nextProps) => {
 		// let { inCreationMode, mode, submitted } = nextProps;
 
@@ -45,7 +48,31 @@ class AnnotationForm extends Component {
 		// 	});
 		// }
 	}	
+// handleToggle ====================================
+	handleToggle = (event) => {
+		event.preventDefault();
+		let prevState = this.state.toggled;
+		let newState = true;
+		if (prevState) {
+			newState = false;
+		}
+		console.log('prevState',prevState);
+		console.log('newState',newState);
 
+		this.setState({
+			toggled: newState
+		});
+
+		this.props.port({
+			toggled: newState
+		})
+	};
+// handleDropdown ====================================
+	handleDropdown = (event) => {
+		event.preventDefault();
+		
+	};
+// handleInputChange ===============================
 	handleInputChange = event => {
 		event.preventDefault();
 		// const value = event.target.value;
@@ -71,30 +98,25 @@ class AnnotationForm extends Component {
 		// this.props.port(newState)
 
 	}
-
-	// submitAnnotation = event => {
-	// 	event.preventDefault();
-
-	// 	this.setState({ mode: 'submitted' })
-	// 	// console.log('this.state',this.state);
-
-	// 	// Send state up to AnnotationPage
-	// 	this.props.port({
-	// 		label: this.state.label,
-	// 		text: this.state.text,
-	// 		mode: 'submitted',
-	// 		inCreationMode: false,
-	// 	});
-	// }
-
-
-
+// render //////////////////////////////////////////
 	render(){
 		return(
 
 			<form id="new-annotation-form" className="form ws-form">
+				<div 
+					className={"toggle-wrap toggled-" + this.state.toggled}
+				>
+					{/* <Switch onClick={this.toggleSwitch} on={this.state.toggled}/> */}
+					<label htmlFor='toggle-anno-type'>Text</label>
+					<Toggle
+						id='toggle-anno-type'
+						checked={this.state.toggled}
+						onChange={this.handleToggle} 
+						icons={false}
+					/>
+					<label htmlFor='toggle-anno-type'>Portal</label>
+				</div>
 
-							{/* <div className="form-field-row"> */}
 								<div className="input-wrap input-label">
 									<label htmlFor="label" className="input-label-sib"></label>
 									<input
@@ -108,22 +130,44 @@ class AnnotationForm extends Component {
 									/>
 									
 								</div>
-							{/* </div> */}
-							{/* <div className="form-field-row"> */}
-								<div className="input-wrap input-text">
-									<label htmlFor="text" className="input-label-sib"></label>
-									<input
-										id="text"
-										className="input ws-input"
-										type="text"
-										name="text"
-										placeholder="Text"
-										value={this.state.text}
-										onChange={this.handleInputChange}
-									/>
-								</div>
-							{/* </div> */}
+							
+							{this.state.toggled && (
 
+								<div className="input-wrap input-portal">
+										{/* <input
+											id="portal"
+											className="input ws-input"
+											type="button"
+											name="portal"
+											placeholder="Portal"
+											value={this.state.portal}
+											onChange={this.handleInputChange}
+										/> */}
+										<a
+											href="#"
+											id="portal-dropdown-trigger"
+											className="input ws-input input-btn"
+											text="Portal"
+											onClick={this.handleDropdown}
+										> 
+										Select Destination 
+										</a>
+									</div>
+
+							)}
+							{!this.state.toggled && (
+								<div className={"input-wrap input-text "}>
+										<input
+											id="text"
+											className="input ws-input"
+											type="text"
+											name="text"
+											placeholder="Text"
+											value={this.state.text}
+											onChange={this.handleInputChange}
+										/>
+									</div>
+							)}
 
 						{/* <Btn
 							id="submit-annotation"
@@ -138,48 +182,3 @@ class AnnotationForm extends Component {
 }
 
 export default AnnotationForm;
-
-					// {/* <section className="form-row"> */}
-					// {/* <fieldset> */}
-					// 		{/* <legend>Add Annotation</legend> */}
-							// {/* <div className="form-field-row">
-							// 	<div className="input-wrap input-x prefixed">
-							// 		<label htmlFor="xAxis" className="input-label-sib prefix-label"> X: </label>
-							// 		<input
-							// 			id="xAxis"
-							// 			className="input ws-input"
-							// 			type="text"
-							// 			name="xAxis"
-							// 			placeholder="X"
-							// 			value={this.state.xAxis}
-							// 			onChange={this.handleInputChange}
-							// 		/>
-							// 	</div>
-							// 	<div className="input-wrap input-y prefixed">
-							// 	<label htmlFor="yAxis" className="input-label-sib prefix-label"> Y: </label>
-							// 		<input
-							// 			id="yAxis"
-							// 			className="input ws-input"
-							// 			type="text"
-							// 			name="yAxis"
-							// 			placeholder="Y"
-							// 			value={this.state.yAxis}
-							// 			onChange={this.handleInputChange}
-							// 		/>
-							// 	</div>
-							// 	<div className="input-wrap input-z prefixed">
-							// 	<label htmlFor="zAxis" className="input-label-sib prefix-label"> Z: </label>
-							// 		<input
-							// 			id="zAxis"
-							// 			className="input ws-input"
-							// 			type="text"
-							// 			name="zAxis"
-							// 			placeholder="Z"
-							// 			value={this.state.zAxis}
-							// 			onChange={this.handleInputChange}
-							// 		/>
-							// 	</div>
-							// </div> */}
-						// 							{/* </fieldset> */}
-						// {/* </section> */}
-						// {/* <section className="form-row"> */}

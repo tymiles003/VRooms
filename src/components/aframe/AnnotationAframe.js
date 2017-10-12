@@ -39,9 +39,11 @@ class AnnotationAframe extends React.Component {
 			mode: "idle",
 			newAnnotation: {},
 			annotations: [],
+			creatingPortal: false,
 			
 			loading: true,
 			isMobile: false,
+
 		};
 	}
 
@@ -100,6 +102,13 @@ class AnnotationAframe extends React.Component {
 			// assets.addEventListener('loaded', console.log('>>>> ASSETS LOADED >>>>'))
 
 			// console.log('a-assets fileLoader', document.querySelector('a-assets').fileLoader);
+		}
+	//--------------------------------------------------
+	// Toggle changes when creating portal vs. text
+		if (nextProps.creatingPortal !== this.props.creatingPortal){
+			this.setState({
+				creatingPortal: nextProps.creatingPortal
+			})
 		}
 	//--------------------------------------------------
 
@@ -236,15 +245,19 @@ class AnnotationAframe extends React.Component {
 								className="annotation-toggle box ray-intersect"
 								geometry={{ 
 									primitive: "box", 
-									width: 0.24, 
+									width:  0.24, 
 									height: 0.24, 
-									depth: 0.24
+									depth:  0.24
 									}}
 								scale={{ x:1 , y:1 , z:1 }}
 								material={{ 
-									color: "#f1c40f", 
+									color: "#f39c12", 
 									opacity: 0.8 
 								}}
+								material={this.state.creatingPortal
+									? { color: "#3498db", opacity: 0.8 }
+									: { color: "#f39c12", opacity: 0.8 }
+								}
 								animation__rotate={{ 
 									property: "rotation", 
 									dur: 4000, 

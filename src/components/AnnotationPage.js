@@ -7,6 +7,7 @@ import roomAPI from "../utils/roomAPI";
 import Btn from "./common/Elements/Btn";
 import Cloak from "./common/Elements/Cloak";
 import Helmet from 'react-helmet';
+import Switch from 'react-toggle-switch';
 
 const defaultAnnotationState = {
 	label: "Label",
@@ -51,6 +52,7 @@ class AnnotationPage extends Component {
 			inPosition: false,
 			annotationConfirmed: false,
 			submitted: false,
+			toggled: false,
 		};
 
 		// console.log('this.props >>>>',this.props);
@@ -116,37 +118,13 @@ class AnnotationPage extends Component {
 		// positionConfirmed: false,
 	};
 
-// handleFinishClick ==================================
-	// handleFinishClick = e => {
-	// 	e.preventDefault();
-	// 	console.log("---- finishClick --->");
-	// 	this.setState({
-	// 		inCreationMode: false,
-	// 		mode: 'finished',
-	// 	});
-	// 	// positionConfirmed: false,
-	// };
-
-// portAframe =============================
-
-	portAframe = aframeState => {
-		this.setState(aframeState);
-	};
 
 
-
-// portForm ========================================
-	portForm = formState => {
-		this.setState(formState);
-
-		// if (formState.isLink) {
-		// 	console.log('>>>> isLink');
-		// }
-	}
-
-
-
-// submitAnnotation ==================================
+// ports ===========================================
+	portForm = formState => this.setState(formState);
+	portAframe = aframeState => this.setState(aframeState);
+	
+// submitAnnotation ================================
 	submitAnnotation = (e) => {
 		e.preventDefault();
 		// this.setState({ mode: "saved" })
@@ -210,6 +188,7 @@ class AnnotationPage extends Component {
 		roomAPI.addNewAnnotation( roomID, newAnno );
 
 	}
+
 // render //////////////////////////////////////////
 	render() {
 		// let {street,city,state,zip,country,bedrooms,baths,built_year,price,square_feet,property_name} = this.state.property;
@@ -217,7 +196,7 @@ class AnnotationPage extends Component {
 			<main>
 				<Cloak/>
 				<div className="aframe-wrap">
-
+				{/* Aframe ===========*/}
 					<AnnotationAframe
 						inCreationMode={this.state.inCreationMode}
 						inEditMode={true}
@@ -230,10 +209,12 @@ class AnnotationPage extends Component {
 						positionConfirmed={this.state.positionConfirmed}
 						mode={this.state.mode}
 						newAnnotation={this.state.newAnnotation}
+
+						creatingPortal={this.state.toggled}
 					/>
 						{/* roomID={this.state.roomID} */}
 
-				
+				{/* Buttons ==========*/}
 					<Btn
 						id="new-annotation-btn"
 						href="#!"
@@ -244,12 +225,13 @@ class AnnotationPage extends Component {
 					<Btn
 						id="finish-btn"
 						href={'/show/'+this.state.rID}
-						onClick={this.handleFinishClick}
 						text="Done"
 					/>
 
+				{/* Form =============*/}
 					{ (this.state.inCreationMode) &&
 						<section className='ws-row ws-foldout'>
+
 							<AnnotationForm 
 								port={this.portForm}
 								mode={this.state.mode}
