@@ -220,6 +220,7 @@ class AnnotationPage extends Component {
 
 					<AnnotationAframe
 						inCreationMode={this.state.inCreationMode}
+						inEditMode={true}
 						port={this.portAframe}
 						annotations={this.state.annotations}
 						pano_url={this.state.pano_url}

@@ -33,6 +33,7 @@
     "aframe-look-at-component": "^0.6.0",
     "aframe-mouse-cursor-component": "^0.5.2",
     "aframe-react": "^4.3.0",
+    "aframe-rounded": "^1.0.3",
     "aframe-textwrap-component": "^1.0.1",
     "aws-sdk": "^2.114.0",
     "axios": "^0.15.3",

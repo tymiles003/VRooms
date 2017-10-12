@@ -43,11 +43,6 @@ class AnnotationAframe extends React.Component {
 			loading: true,
 		};
 	}
-// handleLoadProgress ==============================
-
-	// handleLoadProgress = () => {
-		
-	// }
 
 // componentWillReceiveProps =======================
 	componentWillReceiveProps = nextProps => {
@@ -116,54 +111,60 @@ class AnnotationAframe extends React.Component {
 			loading: false
 		})
 	}
+
+
+// componentWillMount ==============================
+	componentWillMount = () => {
+		// console.log("---- componentWillMount (Aframe) --->");
+		// console.log('this.props.inEditMode',this.props.inEditMode);
+	}
+
 // componentDidMount ===============================
 	componentDidMount = (prevProps, prevState) => {
 		console.log("---- componentDidMount (Aframe) --->");
 		// this.getProperty();
 		// Fetch the room if roomID is provided, but if it isn't. Use this default one 
 		// for now. Will need to handle error later on.
-	
 		
 		// if ( this.props.inCreationMode ) {
-			// 	this.getPosition(document.getElementById('new-annotation').click());
-			// }
+		// 	this.getPosition(document.getElementById('new-annotation').click());
+		// }
+
 		this.setState({
 			annotations: this.props.annotations
 		});
 	};
+
 // getPosition =====================================
 	getPosition = event => {
-		// console.log("---- getPosition --->");
-		
-		// if(this.state.inCreationMode){
-		// Bind the event looking for where raycaster intersects anno
-		// event.target.addEventListener('raycaster-intersected', this.handleRay)
+		event.preventDefault();
+
+		// Bind the event looking for where raycaster intersects anno,
+		// Pass to handleRay to get the position
 		event.target.addEventListener("raycaster-intersected", this.handleRay);
-		// }
 	};
 // handleRay =======================================
 		handleRay = event => {
 			event.preventDefault();
-			// console.log("---- handleRay --->");
-			// console.log('event.detail',event.detail);
-
 			// event.detail is the holy grail
 			// contains intersection world coordinates. (not relative)
+			
+			// console.log('event.detail',event.detail);
 			const intersectionPoint = event.detail.intersection.point;
 			let { x, y, z } = intersectionPoint;
 
 			// Remove event so it only fires once. (or else it would fire constantly)
-			event.target.removeEventListener(
-				"raycaster-intersected",
-				this.handleRay
-			);
+			event.target.removeEventListener( "raycaster-intersected", this.handleRay );
 
 			let posState = {
 				xAxis: x,
 				yAxis: y,
 				zAxis: z
 			};
-			console.log("position ====", posState);
+
+			console.log("Position ===>", posState);
+
+			// Send position state to parent component
 			this.props.port(posState);
 
 			// Switch state so it will not fire again until next trigger;
@@ -185,14 +186,16 @@ class AnnotationAframe extends React.Component {
 					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
 				</a-assets>
-				{/*==================================================*/}
+				{/* SKY ==================================================*/}
 				<Entity
 					primitive="a-sky"
 					id="sky"
 					className="ray-intersect"
 					src="#annotation-photo"
 				/>
+			{/* RAYCASTER =========================================*/}
 				<Raycaster />
+			{/* CAMERA ============================================*/}
 				<Entity
 					primitive="a-camera"
 					look-controls="reverseMouseDrag: true"
@@ -200,11 +203,20 @@ class AnnotationAframe extends React.Component {
 					wasd-controls="enabled: false"
 					id="camera"
 				>
-					<Entity primitive="a-cursor" id="cursor" color="white" />
+			{/* CURSOR ============================================*/}
+				<Entity 
+					primitive="a-cursor" 
+					id="cursor" 
+					color="white"
+					fuseTimeout="400"
+				/>
+					{/* fuse={true} */}
 
+				{/* If in Creation Mode, show the Raycaster target */}
 					{this.props.inCreationMode && (
+						// NEW ANNO / RAY INTERSECTION TARGET ============
 						<Entity position={{ x: 0, y: 0, z: -5 }} >
-							{/* BOX ====================================== */}
+						{/* BOX =======================================*/}
 							<Entity
 								id="new-annotation"
 								className="annotation-toggle box ray-intersect"
@@ -259,16 +271,14 @@ class AnnotationAframe extends React.Component {
 								}}
 							/> */}
 						</Entity>
-
-						
 					)}
 				</Entity>
-				{/*==================================================*/}
-				{/* {this.props.annotations.map((ea, index) => (
-					<Annotation data={ea} key={index} />
-				))} */}
-				<BuildAnnotations annotations={this.state.annotations} />
-				{/*==================================================*/}
+			{/* ANNOTATION BUILDER ==============================*/}
+				<BuildAnnotations 
+					annotations={this.state.annotations} 
+					inEditMode={this.props.inEditMode}
+					/>
+			{/* LIGHTS ==========================================*/}
 				<Entity
 					primitive="a-light"
 					type="ambient"
@@ -280,9 +290,13 @@ class AnnotationAframe extends React.Component {
 					primitive="a-light"
 					type="directional"
 					color="#fff"
+					intensity="1"
 					position={{ x: -0.5, y: 3, z: 1 }}
 				/>
-				{/*==================================================*/}
+			{/* GROUND ==========================================*/}
+
+			{/*==================================================*/}
+
 			</Scene>
 		);
 	}

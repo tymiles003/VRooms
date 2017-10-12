@@ -3,7 +3,9 @@ import { Entity } from "aframe-react";
 import "aframe-look-at-component";
 import "aframe-mouse-cursor-component";
 import "aframe-animation-component";
+import "aframe-rounded";
 import RotatingBox from "./RotatingBox";
+import Spotlight from "./Spotlight";
 
 const ReactToastr = require("react-toastr");
 const { ToastContainer } = ReactToastr; // This is a React Element.
@@ -12,75 +14,120 @@ let ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation
 
 ////////////////////////////////////////////////////
 	// animation__rotate={{property: 'rotation', dur: 4000, loop: true, to: '360 360 360'}}
-	const rotationAnimationData = {
-		property: "rotation",
-		dur: 5000,
-		to: { x: 360, y: 360, z: 360},
-		easing: "easeInOutCubic",
+	const rotationAnimationData = { 
+		property: 'rotation', 
+		dur: 6000, 
+		loop: true, 
+		to: '360 360 360'
 	};
-
+	// animation__scale="property: scale; dir: alternate; dur: 200;
+	// easing: easeInSine; loop: true; to: 1.2 1 1.2"
+	const wrapScale = 1;
 	const wrapper = {
-		scale: {
-			x: 1.2,
-			y: 1.2,
-			z: 1.2,
-		}
+		scale: { x: wrapScale, y: wrapScale, z: wrapScale, }
 	}
 	const box = {
 		geometry: {
-			primitive: "box",
-			width: 0.24,
-			height: 0.24,
-			depth: 0.24
-		},
-		rotation: { x: 0, y: 0, z: 0 },
-		scale: { x: 1, y: 1, z: 1 },
+				primitive: "box",
+				width: 0.2,
+				height: 0.2,
+				depth: 0.2
+			},
+		rotation: { 
+				x: 0, 
+				y: 0, 
+				z: 0 
+			},
+		scale: { 
+				x: 1, 
+				y: 1, 
+				z: 1 
+			},
 		material: { 
-			color: "#f39c12", 
-			opacity: 0.8 
-		},
+				color: "#f39c12", 
+				opacity: 0.8 
+			},
 		animation__rotate: { 
-			property: 'rotation', 
-			dur: 4000, 
-			loop: true, 
-			to: '360 360 360'
-		},
+				property: 'rotation', 
+				dur: 6000, 
+				loop: true, 
+				to: '360 360 360'
+			},
 	}
 	const label = {
 		geometry: {
-			primitive: 'plane',
-			height: 0.08,
-			width: 0.24,
-		},
+				primitive: 'plane',
+				height: 0.08,
+				width: 0.24,
+			},
 		text: {
 				align: 'center',
 				color: 'white',
 				width: 1,
-		},
-		position: { x: 0, y: 0.3, z: 0 },
-		scale: { x:3 , y:3, z:3 },
-		material: { color: "#242424", opacity: 0.7 },
+			},
+		position: { 
+				x: 0, 
+				y: 0.3, 
+				z: 0 
+			},
+		scale: { 
+				x: 3, 
+				y: 3, 
+				z: 3 
+			},
+		material: { 
+				color: "#242424", 
+				opacity: 0.7 
+			},
 	}
 	const text = {
 		geometry: {
-			primitive: 'plane',
-			height: 0.25,
-			width: 0.5,
-		},
+				primitive: 'plane',
+				height: 0.25,
+				width: 0.5,
+			},
 		text: {
-			align: 'center',
-			color: '#333333',
-			width: 0.5,
-			wrapCount: 24
-		},
-		position: { x: 0, y: -0.24, z: 0 },
-		scale: { x: 3, y: 3, z: 3 },
+				align: 'center',
+				color: '#333333',
+				width: 0.5,
+				wrapCount: 24
+			},
+		position: { 
+				x: 0, 
+				y: -0.24, 
+				z: 0 
+			},
+		scale: { 
+				x: 3, 
+				y: 3, 
+				z: 3 
+			},
 		material: { 
-			color: "#ffffff", 
-			opacity: 1,
-			side: 'double'
-		}
+				color: "#ffffff", 
+				opacity: 1,
+				side: 'double'
+			}
 	};
+
+////////////////////////////////////////////////////
+	const upScale = 1.5;
+	const scaleUp = {
+		property: 'scale',
+		dur: 300,
+		delay: 0,
+		loop: false,
+		to: { x: upScale, y: upScale, z: upScale }
+	};
+
+	const downScale = 1;
+	const scaleDown = {
+		property: 'scale',
+		dur: 1000,
+		delay: 0,
+		loop: false,
+		to: { x: downScale, y: downScale, z: downScale }
+	};
+
 
 ////////////////////////////////////////////////////
 class Annotation extends React.Component {
@@ -112,9 +159,9 @@ class Annotation extends React.Component {
 		event.preventDefault();
 		let el = event.target;
 		let parent = el.parentElement;
-		let boxEl = parent.querySelector('.annotation-toggle');
-		let labelEl = parent.querySelector('.annotation-label');
-		let textEl = parent.querySelector('.annotation-text');
+		let boxEl = parent.querySelector('.anno-toggle');
+		let labelEl = parent.querySelector('.anno-label');
+		let textEl = parent.querySelector('.anno-text');
 		let cursorEl = document.getElementById('cursor');
 
 		labelEl.setAttribute( 'material',{'color': '#242424', opacity: 1} );
@@ -124,11 +171,46 @@ class Annotation extends React.Component {
 		
 	};
 
+// handleMouseEnter ================================
+	handleMouseEnter = event => {
+		event.preventDefault();
+		console.log('--- ENTER -->');
+		let parent = event.target.parentElement;
+		let labelEl = parent.querySelector('.anno-label');
+		let boxEl = parent.querySelector('.anno-toggle');
+		
+		// boxEl.setAttribute( 'material',{
+		// 	color: 'white', 
+		// 	opacity: 0.9,
+		// });
+
+		// Box Scale
+		boxEl.removeAttribute( 'animation__scale' );
+		boxEl.setAttribute( 'animation__scale', scaleUp );
+
+		let animation__scale = boxEl.getAttribute("animation__scale");
+		console.log('animation__scale.to ===>', animation__scale.to);
+
+	};
+
 // handleMouseLeave ================================
 	handleMouseLeave = event => {
 		event.preventDefault();
+		console.log('--- LEAVE -->');
+
 		let parent = event.target.parentElement;
+		let boxEl = parent.querySelector('.anno-toggle');
+		
+		
+		boxEl.removeAttribute( 'animation__scale' );
+		boxEl.setAttribute( 'animation__scale', scaleDown );
+
+		// let animation__scale = boxEl.getAttribute("animation__scale");
+		console.log('animation__scale.to ===>', boxEl.getAttribute("animation__scale").to);
+
+		// reset non-animated attributes
 		this.resetAttributes(parent)
+
 	};
 
 
@@ -149,15 +231,28 @@ class Annotation extends React.Component {
 
 // resetAttributes =================================
 	resetAttributes = (parent) => {
-		let boxEl = parent.querySelector('.annotation-toggle');
-		let labelEl = parent.querySelector('.annotation-label');
-		let textEl = parent.querySelector('.annotation-text');
+		// console.log('---- resetAttributes --->');
+		let boxEl = parent.querySelector('.anno-toggle');
+		let labelEl = parent.querySelector('.anno-label');
+		let textEl = parent.querySelector('.anno-text');
 		let cursorEl = document.getElementById('cursor');
 
 		labelEl.setAttribute( 'material', label.material );
 		boxEl.setAttribute( 'visible', true );
 		textEl.setAttribute( 'visible', false );
-		cursorEl.setAttribute('visible', true)
+		cursorEl.setAttribute('visible', true);
+
+
+		// Box Rotation ----
+		// boxEl.removeAttribute( 'animation__rotate' );
+		// boxEl.setAttribute( 'animation__rotate', rotationAnimationData );
+
+		// Box Material (color) ----
+		boxEl.setAttribute( 'material', box.material );
+
+		// Box Scale ----
+		// boxEl.removeAttribute( 'animation__scale' );
+		// boxEl.setAttribute( 'scale', box.scale )
 	}
 
 ////////////////////////////////////////////////////
@@ -167,21 +262,42 @@ class Annotation extends React.Component {
 		let { primitive, textScale, textPos, height, width, tScale, tPos } = this.props;
 		// let { to,position, label,textScale,textPos, primitive,height,width, color,opacity,side } = this.props;
 		
+		let tailoredWidth = ( data.label.length * 0.02 ) + 0.07;
+		let label = {
+			geometry: {
+					primitive: 'plane',
+					height: 0.08,
+					width: tailoredWidth,
+				},
+			text: {
+					align: 'center',
+					color: 'white',
+					width: 1,
+				},
+			position: { x: 0, y: 0.3, z: 0 },
+			scale: { x: 3, y: 3, z: 3 },
+			material: { color: "#242424", opacity: 0.7 },
+		}
+
+
 		return (
 			<Entity 
 				position={{ x: xAxis, y: yAxis, z: zAxis }} 
 				scale={wrapper.scale}
 			>
 
-			<ToastContainer
+  			<ToastContainer
                     toastMessageFactory={ToastMessageFactory}
                     ref="container"
                     className="toast-top-right"
                 />
 
+				{/* LIGHT ==================================================*/}
+					<Spotlight target={ "#anno-box-" + this.props.idx } />
 				{/* BOX ====================================== */}
 					<Entity
-						className="annotation-toggle box"
+						className="anno-toggle box"
+						id={"anno-box-"+this.props.idx}
 						geometry={box.geometry}
 						rotation={box.rotation}
 						scale={box.scale}
@@ -189,12 +305,15 @@ class Annotation extends React.Component {
 						animation__rotate={box.animation__rotate}
 						events={{ 
 							click: this.handleClick, 
-							mouseenter: this.handleHover, 
+							mouseenter: this.handleMouseEnter, 
+							mouseleave: this.handleMouseLeave, 
 							}}
 					/>
+					
 				{/* LABEL ==================================== */}
 					<Entity
-						className="annotation-label"
+						className="anno-label"
+						id={'anno-label-'+this.props.idx}
 						geometry={label.geometry}
 						text={Object.assign({},label.text, {value: data.label})}
 						position={label.position}
@@ -205,9 +324,11 @@ class Annotation extends React.Component {
 							click: this.handleClick, 
 							}}
 					/>
+				
 				{/* TEXT ===================================== */}
 					<Entity
-						className="annotation-text"
+						className="anno-text"
+						id={'anno-text-'+this.props.idx}
 						geometry={text.geometry}
 						text={Object.assign({},text.text, {value: data.text})}
 						position={text.position}
@@ -219,10 +340,11 @@ class Annotation extends React.Component {
 							mouseleave: this.handleMouseLeave
 						}}
 					/>
+
 					{/* <Entity
 						geometry={{ primitive, height, width }}
 						material={{ color: "#9b59b6" }}
-						className="annotation-text"
+						className="anno-text"
 						look-at="#camera"
 						scale={{ x: 0, y: 0, z: 0 }}
 					>

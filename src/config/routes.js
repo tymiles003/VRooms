@@ -27,6 +27,7 @@ import Travel2 from "../components/gallery/Travel2";
 import Travel3 from "../components/gallery/Travel3";
 import Subway from "../components/gallery/Subway";
 
+
 import AmazonFreshDemo from "../components/AmazonFreshDemo";
 import ShowroomVideoMain from "../components/ShowroomVideoMain";
 
@@ -35,8 +36,12 @@ import ShowroomVideoMain from "../components/ShowroomVideoMain";
 
 
 const routes = (
+
+	// forceRefresh is being used to travel to new page when portal is clicked.
+	// - not ideal way to do this, but without forceRefresh, the url will
+	//   change but won't go anywhere unless you select it and press enter.
 		<BrowserRouter forceRefresh={true}>
-			{/* <Router history={history}> */}
+		
         <Switch>
             <Route exact path="/" component={Main} />
             <Route path="/showcase" component={Showcase} />
@@ -64,16 +69,20 @@ const routes = (
             <Route path="/showvideo" component={ShowroomVideoMain} />
             
             {/* <Route exact path="/annotate" component={AnnotationPage} /> */}
+
             <Route path="/annotate/:roomID" component={AnnotationPage} />
             <Route path="/annotate_:roomID" component={AnnotationPage} />
+            <Route path="/edit/:roomID" component={AnnotationPage} />
+            <Route path="/edit_:roomID" component={AnnotationPage} />
+
 						
             <Route path="/show/:roomID" component={ShowroomMain} />
             <Route path="/show_:roomID" component={ShowroomMain} />
 
 						<Redirect from="/portal-demo" to="/show/59c8544560f9e6001233404c"/>
+						<Redirect from="/demo" to="/show/59c8544560f9e6001233404c"/>
 
         </Switch>
-		{/* </Router> */}
     </BrowserRouter>
 );
 
