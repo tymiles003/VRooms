@@ -252,9 +252,22 @@ div, h1, h2, h3, h4, h5, h6, p {
   background-color: #242424;
 }
 
-.ws-root section {
-  width: 100%;
-  padding: 6rem 3rem;
+.ws-root .ws-section .sec-title, .ws-root section .sec-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.ws-root .ws-section .sec-title .accentuate, .ws-root section .sec-title .accentuate {
+  font-size: 1.3em;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+
+.ws-root .ws-section .sec-title .alt-action, .ws-root section .sec-title .alt-action {
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .ws-form {
@@ -277,6 +290,13 @@ div, h1, h2, h3, h4, h5, h6, p {
 .ws-form .form-row.stack-vertical {
   display: flex;
   flex-direction: column;
+}
+
+.ws-form .form-row .form-row-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .ws-form .form-row .col-wrap {
@@ -459,9 +479,52 @@ div, h1, h2, h3, h4, h5, h6, p {
   color: rgba(0, 0, 0, 0.87);
 }
 
-.pg-newVRoom form fieldset, .pg-newVRoom form .form-group {
+.pg-newVRoom form fieldset, .pg-newVRoom form .form-group, .pg-newVRoom form .align-with-form {
   width: 100%;
   max-width: 600px;
+}
+
+.ws-panel {
+  display: none;
+  visibility: hidden;
+}
+
+.ws-panel.chosen {
+  display: initial;
+  visibility: visible;
+}
+
+.ws-panel-controller {
+  border: solid 1px #3498db;
+  font-size: 1.2rem;
+  border-radius: .5em;
+  height: 2.6em;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  font-weight: 400;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.ws-panel-controller .ws-panel-control {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: #3498db;
+  border-left: 1px solid #3498db;
+}
+
+.ws-panel-controller .ws-panel-control:first-child {
+  border-left: none;
+}
+
+.ws-panel-controller .ws-panel-control.chosen {
+  color: #fff;
+  background-color: #3498db;
 }
 
 .col-wrap,
@@ -911,9 +974,9 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   bottom: 0;
   z-index: 1000;
-  /* left: 0; */
+  left: 0;
   padding: .2rem .7rem;
-  background-color: #ecf0f1;
+  background-color: #f8f8f8;
   color: rgba(0, 0, 0, 0.87);
   font-weight: 500;
   text-align: center;
@@ -954,6 +1017,33 @@ body::-webkit-scrollbar-thumb {
 
 .aframe-wrap a-scene.loaded {
   z-index: 940;
+}
+
+.ws-link-collection {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-size: 1.3rem;
+  background-color: #fff;
+}
+
+.ws-link-collection li {
+  outline: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.ws-link-collection li a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 0 1em;
+  line-height: 3em;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 400;
+}
+
+.ws-link-collection li a:hover {
+  color: rgba(0, 0, 0, 0.87);
 }
 
 html {

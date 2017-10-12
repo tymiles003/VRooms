@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import API from "../../../utils/API";
 import FileDrop from "./FileDrop";
+import BuildPropertyList from "./BuildPropertyList";
 // import ZillowFetch from "./ZillowFetch";
 import Btn from "../Elements/Btn";
 import PreviewWindow from "../PreviewWindow";
@@ -51,7 +52,9 @@ class NewVRoomForm extends Component {
             roomID: "",
             submitBtnTheme: "",
             annotateBtnTheme: "disabled",
-            annotateBtnIsOutlined: true
+						annotateBtnIsOutlined: true,
+						
+						propertyList: [],
         };
     }
 
@@ -196,8 +199,47 @@ class NewVRoomForm extends Component {
                 );
             }
         );
-    };
+		};
 
+// componentDidMount =======================================
+		componentDidMount = (prevProps, prevState) => {
+			// Get userID from cookies
+			let userID = cookie.load('userId');
+			console.log('userID',userID);
+			
+			// Get property list from API
+			// propertyAPI.getAllUserProperties(cookie.load('userId')).then(response => {
+			// 	console.log('getAllUserProperties ===>', response);
+			// })
+
+			// Get list of all properties ( temporary )
+			propertyAPI.getAllProperties().then(response => {
+				console.log('response',response);
+				let propertyList = response.data;
+				// Set propertyList state, which will trigger BuildPropertyList
+				this.setState({ propertyList })
+			})
+
+		}
+// handlePanelChange =======================================
+		handlePanelChange = (event) => {
+			event.preventDefault();
+			const el = event.target;
+			let nextPanelID = el.getAttribute('panel');
+
+			// Remove chosen class from previous panel elements;
+			let prevPanel = document.querySelector('.chosen.ws-panel');
+			let prevControl = document.querySelector('.chosen.ws-panel-control');
+			prevPanel.classList.remove('chosen');
+			prevControl.classList.remove('chosen');
+
+			// Add chosen class to new panel elements
+			let nextPanel = document.getElementById(nextPanelID);
+			nextPanel.classList.add('chosen');
+			console.log('el',el);
+			el.classList.add('chosen');
+		}
+// render //////////////////////////////////////////////////
     render() {
         return (
             <div className="pg-contains-aframe">
@@ -208,160 +250,207 @@ class NewVRoomForm extends Component {
                 />
 
                 {/* <PreviewWindow /> */}
-                <section id="vroom-form-wrapper">
+                <section id="vroom-form-wrapper ws-section">
                     <form id="new-vroom-form" className="form ws-form">
                         <div className="leftsection">
-                            <div className="form-row">
-                                <fieldset>
-                                    <legend>Address</legend>
-                                    <div className="form-field-row">
-                                        <div className="input-wrap input-full-width input-street ws-input-wrap">
-                                            <input
-                                                id="street"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="street"
-                                                placeholder="Street"
-                                                value={this.state.street}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-field-row">
-                                        <div className="input-wrap input-city validated">
-                                            <input
-                                                id="city"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="city"
-                                                placeholder="City"
-                                                value={this.state.city}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                        <div className="input-wrap input-state error">
-                                            <input
-                                                id="state"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="state"
-                                                placeholder="State"
-                                                value={this.state.state}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                        <div className="input-wrap input-zip">
-                                            <input
-                                                id="zip"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="zip"
-                                                placeholder="Zip"
-                                                value={this.state.zip}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-                            <div className="form-row">
-                                <fieldset>
-                                    <legend>Property Info</legend>
+														<div className="form-row sec-header">
+															<div className="ws-panel-controller align-with-form">
+																{/* <div className="ws-panel-control"> */}
+																	<a 
+																		href="#"
+																		panel="add-property"
+																		className="ws-panel-control chosen" 
+																		onClick={this.handlePanelChange}
+																	> 
+																		Add New Property
+																	</a>
+																{/* </div> */}
+																{/* <div className="ws-panel-control"> */}
+																	<a 
+																		href="#"
+																		panel="choose-property" 
+																		className="ws-panel-control" 
+																		onClick={this.handlePanelChange}
+																	> 
+																		Choose Existing
+																	</a>
+																	{/* <Btn
+																			href='#choose-property'
+																			text="Choose Existing"
+																			theme='primary'
+																			classes={["panel-switch alt-action"]}
+																			onClick={this.handlePanelChange}
+																	/> */}
+																	{/* </div> */}
+															</div>
+														</div>
+														<div id="add-property" className="ws-panel chosen">
+															<div className="form-row">
+																	<fieldset>
+																			<legend>Address</legend>
+																			<div className="form-field-row">
+																					<div className="input-wrap input-full-width input-street ws-input-wrap">
+																							<input
+																									id="street"
+																									className="input ws-input"
+																									type="text"
+																									name="street"
+																									placeholder="Street"
+																									value={this.state.street}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																			</div>
+																			<div className="form-field-row">
+																					<div className="input-wrap input-city validated">
+																							<input
+																									id="city"
+																									className="input ws-input"
+																									type="text"
+																									name="city"
+																									placeholder="City"
+																									value={this.state.city}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																					<div className="input-wrap input-state error">
+																							<input
+																									id="state"
+																									className="input ws-input"
+																									type="text"
+																									name="state"
+																									placeholder="State"
+																									value={this.state.state}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																					<div className="input-wrap input-zip">
+																							<input
+																									id="zip"
+																									className="input ws-input"
+																									type="text"
+																									name="zip"
+																									placeholder="Zip"
+																									value={this.state.zip}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																			</div>
+																	</fieldset>
+															</div>
+															<div className="form-row">
+																	<fieldset>
+																			<legend>Property Info</legend>
 
-                                    <div className="form-field-row">
-                                        <div className="input-wrap input-beds">
-                                            <input
-                                                id="beds"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="beds"
-                                                placeholder="Beds"
-                                                value={this.state.beds}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                        <div className="input-wrap input-baths">
-                                            <input
-                                                id="baths"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="baths"
-                                                placeholder="Baths"
-                                                value={this.state.baths}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                        <div className="input-wrap input-year">
-                                            <input
-                                                id="year"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="year"
-                                                placeholder="Year"
-                                                value={this.state.year}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-field-row">
-                                        <div className="input-wrap input-price icon-prefix">
-                                            <i className="fa fa-usd" />
-                                            <input
-                                                id="price"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="price"
-                                                placeholder="Price"
-                                                value={this.state.price}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                        <div className="input-wrap input-sqft">
-                                            <input
-                                                id="sqft"
-                                                className="input ws-input"
-                                                type="text"
-                                                name="sqft"
-                                                placeholder="Square Feet"
-                                                value={this.state.sqft}
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
+																			<div className="form-field-row">
+																					<div className="input-wrap input-beds">
+																							<input
+																									id="beds"
+																									className="input ws-input"
+																									type="text"
+																									name="beds"
+																									placeholder="Beds"
+																									value={this.state.beds}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																					<div className="input-wrap input-baths">
+																							<input
+																									id="baths"
+																									className="input ws-input"
+																									type="text"
+																									name="baths"
+																									placeholder="Baths"
+																									value={this.state.baths}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																					<div className="input-wrap input-year">
+																							<input
+																									id="year"
+																									className="input ws-input"
+																									type="text"
+																									name="year"
+																									placeholder="Year"
+																									value={this.state.year}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																			</div>
+																			<div className="form-field-row">
+																					<div className="input-wrap input-price icon-prefix">
+																							<i className="fa fa-usd" />
+																							<input
+																									id="price"
+																									className="input ws-input"
+																									type="text"
+																									name="price"
+																									placeholder="Price"
+																									value={this.state.price}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																					<div className="input-wrap input-sqft">
+																							<input
+																									id="sqft"
+																									className="input ws-input"
+																									type="text"
+																									name="sqft"
+																									placeholder="Square Feet"
+																									value={this.state.sqft}
+																									onChange={
+																											this.handleInputChange
+																									}
+																							/>
+																					</div>
+																			</div>
+																	</fieldset>
+															</div>
+															<div className="form-row">
+																	<fieldset>
+																			<legend>Upload Thumbnail</legend>
 
-                            <div className="form-row">
-                                <fieldset>
-                                    <legend>Upload Thumbnail</legend>
-
-                                    <FileDrop
-                                        type="thumbnail"
-                                        handleFileUpload={
-                                            this.handleThumbnailUpload
-                                        }
-                                    />
-                                </fieldset>
-                            </div>
-                        </div>{" "}
+																			<FileDrop
+																					type="thumbnail"
+																					handleFileUpload={
+																							this.handleThumbnailUpload
+																					}
+																			/>
+																	</fieldset>
+															</div>
+														</div>
+														<div id="choose-property" className="ws-panel">
+															<div className="form-row">
+																<div className="form-row-body align-with-form">
+																{/* <ul className="link-collection">
+																	<li><a href="#">Property 1</a></li>
+																	<li><a href="#">Property 2</a></li>
+																	<li><a href="#">Property 3</a></li>
+																</ul> */}
+																	<ol className="ws-link-collection">
+																		<BuildPropertyList data={this.state.propertyList} />
+																	</ol>
+																</div>
+												
+															</div>
+														</div>
+                        </div>
                         {/*  end of <leftSection /> */}
                         <div className="rightsection">
                             <div className="thumbnail-row">
@@ -389,10 +478,7 @@ class NewVRoomForm extends Component {
                                             </button>
 
                                             <Btn
-                                                href={
-                                                    "/annotate_" +
-                                                    this.state.roomID
-                                                }
+                                                href={ "/edit/" + this.state.roomID }
                                                 text="Annotate"
                                                 theme={
                                                     this.state.annotateBtnTheme
@@ -407,7 +493,7 @@ class NewVRoomForm extends Component {
                                     </div>
                                 </fieldset>
                             </div>
-                        </div>{" "}
+                        </div>
                         {/*  end of <rightSection /> */}
                     </form>
                 </section>
