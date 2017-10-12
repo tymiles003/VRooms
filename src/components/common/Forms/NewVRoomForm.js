@@ -208,22 +208,34 @@ class NewVRoomForm extends Component {
 
 // componentDidMount =======================================
 		componentDidMount = (prevProps, prevState) => {
-			// Get userID from cookies
+			// Get userID from cookies ----------
 			let userID = cookie.load('userId');
-			console.log('userID',userID);
+			// console.log('userID',userID);
 			
-			// Get user's property list from API
-			// propertyAPI.getAllUserProperties(cookie.load('userId')).then(response => {
-			// 	console.log('getAllUserProperties ===>', response);
-			// })
+			// Get user's property list from API -------------
+				if (userID) {
+					console.log('userID ====',userID);
+					
+					propertyAPI.getAllUserProperties(userID, (response) => {
+						console.log('response',response);
+					})
+					
+					// propertyAPI.getAllUserProperties(userID).then(response => {
+						// console.log('getAllUserProperties ===>', response.data.properties);
+						// let propertyList = response.data;
+						// console.log('propertyList',propertyList);
+						// // Set propertyList state, which will trigger BuildPropertyList
+						// this.setState({ propertyList })
+					// })
+				}
 
-			// Get list of all properties ( temporary )
-			propertyAPI.getAllProperties().then(response => {
-				console.log('response',response);
-				let propertyList = response.data;
-				// Set propertyList state, which will trigger BuildPropertyList
-				this.setState({ propertyList })
-			})
+			// Get list of all properties ( temporary ) ----------
+				propertyAPI.getAllProperties().then(response => {
+					console.log('allProperties ===>',response.data);
+					let propertyList = response.data;
+					// Set propertyList state, which will trigger BuildPropertyList
+					this.setState({ propertyList })
+				})
 
 		}
 // handlePanelChange =======================================
@@ -243,6 +255,11 @@ class NewVRoomForm extends Component {
 			nextPanel.classList.add('chosen');
 			console.log('el',el);
 			el.classList.add('chosen');
+
+			// Set a flag in state to be used as indicator for other things
+			this.setState({
+				propertyStatus: ''
+			})
 		}
 // handlePropertySelection =====================================
 		handlePropertySelection = (data) => {
