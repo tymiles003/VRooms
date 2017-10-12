@@ -17,13 +17,9 @@ import Spotlight from "./Spotlight";
 	};
 	// animation__scale="property: scale; dir: alternate; dur: 200;
 	// easing: easeInSine; loop: true; to: 1.2 1 1.2"
-
+	const wrapScale = 1;
 	const wrapper = {
-		scale: {
-			x: 1.2,
-			y: 1.2,
-			z: 1.2,
-		}
+		scale: { x: wrapScale, y: wrapScale, z: wrapScale, }
 	}
 	const box = {
 		geometry: {

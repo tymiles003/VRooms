@@ -16,34 +16,50 @@ import Spotlight from "./Spotlight";
 		easing: "easeInOutCubic",
 	};
 
+	const wrapScale = 1;
 	const wrapper = {
-		scale: {
-			x: 1.1,
-			y: 1.1,
-			z: 1.1,
-		}
+		scale: { x: wrapScale, y: wrapScale, z: wrapScale, }
 	}
+	// const box = {
+	// 	geometry: {
+	// 		primitive: "box",
+	// 		width: 0.2,
+	// 		height: 0.2,
+	// 		depth: 0.2
+	// 	},
+	// 	rotation: { x: 0, y: 0, z: 0 },
+	// 	scale: { x: 1, y: 1, z: 1 },
+	// 	material: { 
+	// 		color: "#3498db", 
+	// 		opacity: 0.8 
+	// 	},
+	// 	animation__rotate: { 
+	// 		property: 'rotation', 
+	// 		dur: 6000, 
+	// 		loop: true, 
+	// 		to: '360 360 360'
+	// 	},
+	// }
 	const box = {
 		geometry: {
-			primitive: "box",
-			width: 0.2,
-			height: 0.2,
-			depth: 0.2
-		},
+				primitive: "box",
+				width: 0.2,
+				height: 0.2,
+				depth: 0.2
+			},
 		rotation: { x: 0, y: 0, z: 0 },
 		scale: { x: 1, y: 1, z: 1 },
 		material: { 
-			color: "#3498db", 
-			opacity: 0.8 
-		},
+				color: "#3498db", 
+				opacity: 0.8 
+			},
 		animation__rotate: { 
-			property: 'rotation', 
-			dur: 6000, 
-			loop: true, 
-			to: '360 360 360'
-		},
+				property: 'rotation', 
+				dur: 6000, 
+				loop: true, 
+				to: '360 360 360'
+			},
 	}
-
 	const labelTemplate = {
 		geometry: {
 			primitive: 'plane',
@@ -93,7 +109,7 @@ import Spotlight from "./Spotlight";
 	const downScale = 1;
 	const scaleDown = {
 		property: 'scale',
-		dur: 1000,
+		dur: 300,
 		delay: 0,
 		loop: false,
 		to: { x: downScale, y: downScale, z: downScale }
@@ -110,13 +126,10 @@ class AnnoLink extends React.Component {
 // handleMouseEnter ================================
 	handleMouseEnter = event => {
 		event.preventDefault();
-		console.log('event.target',event.target);
 		let parent = event.target.parentElement;
 		let labelEl = parent.querySelector('.portal-label');
 		let boxEl = parent.querySelector('.portal-toggle');
 		
-		console.log('parent',parent);
-		console.log('boxEl',boxEl);
 
 		// Box Scale ----------
 		boxEl.removeAttribute( 'animation__scale' ); // remove current attribute (important!!!)
@@ -148,6 +161,7 @@ class AnnoLink extends React.Component {
 // handleClick =====================================
 	handleClick = event => {
 		event.preventDefault();
+		console.log('>>>> PORTAL CLICK >>>>');
 		// let el = event.target;
 		// let parent = el.parentElement;
 		// let boxEl = parent.querySelector('.portal-toggle');
@@ -220,7 +234,7 @@ class AnnoLink extends React.Component {
 			scale: { x:3 , y:3, z:3 },
 			material: { color: "#242424", opacity: 0.7 },
 		}
-		
+
 		return (
 			<Entity
 				className="portal-wrap"
