@@ -224,6 +224,12 @@ class Annotation extends React.Component {
 
 
 // handleHover =====================================
+// | Note from Wayne: this might be problematic with this component since 
+// | Annotation is an aframe entity and therefore doesn't have normal events.
+// | All events in aframe are synthetic and are usually declared differently
+// | I've been using mouseenter and mouseleave instead of hover, but if it works,
+// | it works. Just be careful mixing Aframe with normal react. The way it 
+// | handles everything is just whack. Let me know if you have any problems with it.
 	handleHover = event => {
 		event.preventDefault();
 		

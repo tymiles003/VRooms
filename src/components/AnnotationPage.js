@@ -53,7 +53,7 @@ class AnnotationPage extends Component {
 			submitted: false,
 		};
 
-		console.log('this.props >>>>',this.props);
+		// console.log('this.props >>>>',this.props);
 		console.log('this.props.match.params.roomID >>>>',this.props.match.params.roomID);
 	}
 
@@ -65,7 +65,7 @@ class AnnotationPage extends Component {
 		let rID;
 		let propsID = this.props.roomID;
 		let underscoreID = this.props.match.params.roomID;
-
+		
 		if (underscoreID) {
 			rID = underscoreID;
 		}
@@ -74,7 +74,7 @@ class AnnotationPage extends Component {
 		}
 		console.log('rID',rID);
 
-		// this.setState({roomID})
+		this.setState({rID})
 
 		roomAPI.getRoom(rID).then(response => {
 			console.log(response);
@@ -243,7 +243,7 @@ class AnnotationPage extends Component {
 				
 					<Btn
 						id="finish-btn"
-						href="/showcase"
+						href={'/show/'+this.state.rID}
 						onClick={this.handleFinishClick}
 						text="Done"
 					/>
