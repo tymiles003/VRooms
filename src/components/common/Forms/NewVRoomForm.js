@@ -55,6 +55,12 @@ class NewVRoomForm extends Component {
 						annotateBtnIsOutlined: true,
 						
 						propertyList: [],
+						isNewProperty: true,
+
+
+						test1: 'one',
+						test2: 'two',
+						test3: 'three',
         };
     }
 
@@ -217,7 +223,7 @@ class NewVRoomForm extends Component {
 					console.log('userID ====',userID);
 					
 					propertyAPI.getAllUserProperties(userID, (response) => {
-						console.log('response',response);
+						console.log('getAllUserProperties >>>>',response);
 					})
 					
 					// propertyAPI.getAllUserProperties(userID).then(response => {
@@ -236,6 +242,9 @@ class NewVRoomForm extends Component {
 					// Set propertyList state, which will trigger BuildPropertyList
 					this.setState({ propertyList })
 				})
+			
+			// let newObj= Object.assign( { test1, test2, test3 } = this.state );
+			// console.log('newObj',newObj);
 
 		}
 // handlePanelChange =======================================
@@ -243,6 +252,7 @@ class NewVRoomForm extends Component {
 			event.preventDefault();
 			const el = event.target;
 			let nextPanelID = el.getAttribute('panel');
+			// console.log('nextPanelID',nextPanelID);
 
 			// Remove chosen class from previous panel elements;
 			let prevPanel = document.querySelector('.chosen.ws-panel');
@@ -253,13 +263,14 @@ class NewVRoomForm extends Component {
 			// Add chosen class to new panel elements
 			let nextPanel = document.getElementById(nextPanelID);
 			nextPanel.classList.add('chosen');
-			console.log('el',el);
 			el.classList.add('chosen');
+			
+			// Set a flag in state to be used as indicator for other things ----------
+			// let isNewProperty = (nextPanelID === 'add-property') ? true : false ;
+			let isNewProperty = (nextPanelID === 'add-property');
+			console.log('isNewProperty',isNewProperty);
 
-			// Set a flag in state to be used as indicator for other things
-			this.setState({
-				propertyStatus: ''
-			})
+			this.setState({ isNewProperty })
 		}
 // handlePropertySelection =====================================
 		handlePropertySelection = (data) => {
