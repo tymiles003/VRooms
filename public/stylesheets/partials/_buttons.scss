@@ -1,4 +1,5 @@
-.ws-btn {
+.ws-btn,
+a.ws-btn {
 	font-size: 1.2rem;
 	// text-transform: uppercase;
 	text-transform: none;
@@ -22,5 +23,9 @@
 	}
 	&#submit {
 		background-color: $blue;
+	}
+
+	&:hover {
+		text-decoration: none;
 	}
 }
