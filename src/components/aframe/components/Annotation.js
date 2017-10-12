@@ -7,6 +7,11 @@ import "aframe-rounded";
 import RotatingBox from "./RotatingBox";
 import Spotlight from "./Spotlight";
 
+const ReactToastr = require("react-toastr");
+const { ToastContainer } = ReactToastr; // This is a React Element.
+
+let ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
+
 ////////////////////////////////////////////////////
 	// animation__rotate={{property: 'rotation', dur: 4000, loop: true, to: '360 360 360'}}
 	const rotationAnimationData = { 
@@ -129,9 +134,26 @@ class Annotation extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			label: ""
+			label: "",
+			count: 0
 		};
 	}
+
+	addAlert = this.addAlert.bind(this);
+    clearAlert = this.clearAlert.bind(this);
+
+    addAlert(message) {
+        this.refs.container.success(message, `Success`, {
+            timeOut: 3000,
+            extendedTimeOut: 2000,
+            closeButton: true
+        });
+    }
+
+    clearAlert() {
+        this.refs.container.clear();
+    }
+
 // handleClick =====================================
 	handleClick = event => {
 		event.preventDefault();
@@ -191,6 +213,22 @@ class Annotation extends React.Component {
 
 	};
 
+
+// handleHover =====================================
+	handleHover = event => {
+		event.preventDefault();
+		
+		if (this.props.data.text=="Blue milk"){
+			this.setState({
+				count: this.state.count+1
+			})
+		}
+
+		if (this.state.count>10){
+			this.addAlert("Would you like some blue ice cream and yogurt too?");			
+		}
+	};
+
 // resetAttributes =================================
 	resetAttributes = (parent) => {
 		// console.log('---- resetAttributes --->');
@@ -247,6 +285,13 @@ class Annotation extends React.Component {
 				position={{ x: xAxis, y: yAxis, z: zAxis }} 
 				scale={wrapper.scale}
 			>
+
+  			<ToastContainer
+                    toastMessageFactory={ToastMessageFactory}
+                    ref="container"
+                    className="toast-top-right"
+                />
+
 				{/* LIGHT ==================================================*/}
 					<Spotlight target={ "#anno-box-" + this.props.idx } />
 				{/* BOX ====================================== */}

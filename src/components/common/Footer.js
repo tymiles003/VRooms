@@ -21,7 +21,9 @@ class Footer extends Component {
                 <li><a id="ga-footer-about" href="/agents">Agents</a></li>
                 <li><a id="ga-footer-agent" href="/showcase">Showcase</a></li>
                 <li><a id="ga-footer-signup" href="/signup">Get Started</a></li>
-                <li><a id="ga-footer-signup" href="/gallery">Bonus</a></li>
+                <li><a id="ga-footer-signup" href="/gallery">Gallery</a></li>
+                <li><a id="ga-footer-signup" href="/showvideo">Video</a></li>
+                <li><a id="ga-footer-signup" href="/fresh">Fresh</a></li>
               </ul>
             </div>
   
