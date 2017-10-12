@@ -9,8 +9,9 @@ const Spotlight = props => {
 				light={{
 					type: 'spot',
 					color: '#fff',
-					angle: 5,
-					distance: 10,
+					angle: 12,
+					distance: 4,
+					decay: 0,
 					target: props.target,
 				}}
 				position={{ 

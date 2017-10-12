@@ -4,10 +4,16 @@ import API from "../../../utils/API";
 import Btn from '../Elements/Btn';
 import cookie from "react-cookies";
 import axios from "axios";
+// import Switch from 'react-toggle-switch';
+import Toggle from 'react-toggle';
+import Dropdown from 'rc-dropdown';
+import Menu, { Item as MenuItem, Divider } from 'rc-menu';
+import 'rc-dropdown/assets/index.css';
 
 import propertyAPI from "../../../utils/propertyAPI"; 
 import roomAPI from "../../../utils/roomAPI"; 
 // const s3API = require ("../../../utils/s3API");
+
 
 class AnnotationForm extends Component {
 	constructor(props){
@@ -15,17 +21,12 @@ class AnnotationForm extends Component {
 		this.state = {
 			label: '',
 			text: '',
+			toggled: false,
+			roomArray: [],
 		};
 	}
-
+// componentWillReceiveProps =======================
 	componentWillReceiveProps = (nextProps) => {
-		// let { inCreationMode, mode, submitted } = nextProps;
-
-		// this.setState({
-		// 	inCreationMode,
-		// 	mode,
-		// 	submitted,
-		// })
 
 		// When exiting creation mode, clear inputs and update
 		// inCreationMode in form state.
@@ -37,15 +38,37 @@ class AnnotationForm extends Component {
 			})
 		}
 
-		// if ( nextProps.mode == 'gathering' && !nextProps.formConfirmed ) {
-		// 	this.props.port({
-		// 		label: this.state.label,
-		// 		text: this.state.text,
-		// 		formConfirmed: true,
-		// 	});
-		// }
+		if ( nextProps.roomArray.length > 0 ) {
+			this.setState({
+				roomArray: nextProps.roomArray
+			})
+		}
 	}	
+// handleToggle ====================================
+	handleToggle = (event) => {
+		event.preventDefault();
+		let prevState = this.state.toggled;
+		let newState = true;
+		if (prevState) {
+			newState = false;
+		}
+		console.log('prevState',prevState);
+		console.log('newState',newState);
 
+		this.setState({
+			toggled: newState
+		});
+
+		this.props.port({
+			toggled: newState
+		})
+	};
+// handleDropdown ====================================
+	handleDropdown = (event) => {
+		event.preventDefault();
+		
+	};
+// handleInputChange ===============================
 	handleInputChange = event => {
 		event.preventDefault();
 		// const value = event.target.value;
@@ -71,32 +94,74 @@ class AnnotationForm extends Component {
 		// this.props.port(newState)
 
 	}
+// handleSelect ====================================
+	handleSelect = (event) => {
+		console.log('---- handleSelect --->');
+		const ei = event.item;
+		console.log('ei',ei);
 
-	// submitAnnotation = event => {
-	// 	event.preventDefault();
+		let { id, children } = ei.props;
+		console.log('id',id);
+		console.log('children',children);
+		// const et = event.target;
+		// let id = et.getAttribute('id');
+		// let text = et.innerHTML;
+		// console.log('id',id);
+		// console.log('text',text);
 
-	// 	this.setState({ mode: 'submitted' })
-	// 	// console.log('this.state',this.state);
+		this.setState({
+			destinationName: children,
+			destinationID: id,
+		})
+	}
+// handleVisibleChange
+	handleVisibleChange = (visible) => {
+		console.log(visible);
+	}
+// componentDidMount ===============================
+	
+// Dropdown Menu ===================================
+	dropdownMenu(roomArr){
+		console.log('roomArr',roomArr);
+		let dataArr = roomArr.slice(0,5);
 
-	// 	// Send state up to AnnotationPage
-	// 	this.props.port({
-	// 		label: this.state.label,
-	// 		text: this.state.text,
-	// 		mode: 'submitted',
-	// 		inCreationMode: false,
-	// 	});
-	// }
+		return (
+			<Menu onSelect={this.handleSelect}>
+				{dataArr.map( (room,index) => {
+					let split = room.pano_url.split('/');
+					let file = split[split.length - 1];
+					let filename = file.substring(0,file.length-4);
+					// console.log('file',file);
+		
+					// Temporary text since there aren't any room names right now
+					let itemText = filename;
 
-
-
+					return (
+						<MenuItem key={index} id={room._id}> {itemText} </MenuItem>
+					)
+				})}
+			</Menu>
+		);
+	}
+// render //////////////////////////////////////////
 	render(){
+
 		return(
 
 			<form id="new-annotation-form" className="form ws-form">
-
-							{/* <div className="form-field-row"> */}
+				{/* Toggle ============== */}
+					<div className={"toggle-wrap toggled-" + this.state.toggled} >
+						<label htmlFor='toggle-anno-type'>Text</label>
+						<Toggle
+							id='toggle-anno-type'
+							checked={this.state.toggled}
+							onChange={this.handleToggle} 
+							icons={false}
+						/>
+						<label htmlFor='toggle-anno-type'>Portal</label>
+					</div>
+				{/* Label Input ========= */}
 								<div className="input-wrap input-label">
-									<label htmlFor="label" className="input-label-sib"></label>
 									<input
 										id="label"
 										className="input ws-input"
@@ -108,23 +173,45 @@ class AnnotationForm extends Component {
 									/>
 									
 								</div>
-							{/* </div> */}
-							{/* <div className="form-field-row"> */}
-								<div className="input-wrap input-text">
-									<label htmlFor="text" className="input-label-sib"></label>
-									<input
-										id="text"
-										className="input ws-input"
-										type="text"
-										name="text"
-										placeholder="Text"
-										value={this.state.text}
-										onChange={this.handleInputChange}
-									/>
-								</div>
-							{/* </div> */}
+				{/* Text ================ */}
+					{!this.state.toggled && (
+								<div className={"input-wrap input-text "}>
+										<input
+											id="text"
+											className="input ws-input"
+											type="text"
+											name="text"
+											placeholder="Text"
+											value={this.state.text}
+											onChange={this.handleInputChange}
+										/>
+									</div>
+							)}
+				{/* Portal ============== */}
+					{this.state.toggled && (
 
+						<Dropdown
+							trigger={['click']}
+							overlay={this.dropdownMenu(this.state.roomArray)}
+							animation="slide-up"
+							onVisibleChange={this.handleVisibleChange}
+						>
+						<div className="input-wrap input-portal">
+							<a
+								href="#"
+								id="portal-dropdown-trigger"
+								className="input ws-input input-btn"
+								text="Portal"
+								onClick={this.handleDropdown}
+							> 
+							{this.state.destinationName ? this.state.destinationName : 'Select Destination'} 
+							</a>
+							</div>
+						</Dropdown>
 
+					)}
+
+				{/*==================================================*/}
 						{/* <Btn
 							id="submit-annotation"
 							href="#!"
@@ -139,47 +226,15 @@ class AnnotationForm extends Component {
 
 export default AnnotationForm;
 
-					// {/* <section className="form-row"> */}
-					// {/* <fieldset> */}
-					// 		{/* <legend>Add Annotation</legend> */}
-							// {/* <div className="form-field-row">
-							// 	<div className="input-wrap input-x prefixed">
-							// 		<label htmlFor="xAxis" className="input-label-sib prefix-label"> X: </label>
-							// 		<input
-							// 			id="xAxis"
-							// 			className="input ws-input"
-							// 			type="text"
-							// 			name="xAxis"
-							// 			placeholder="X"
-							// 			value={this.state.xAxis}
-							// 			onChange={this.handleInputChange}
-							// 		/>
-							// 	</div>
-							// 	<div className="input-wrap input-y prefixed">
-							// 	<label htmlFor="yAxis" className="input-label-sib prefix-label"> Y: </label>
-							// 		<input
-							// 			id="yAxis"
-							// 			className="input ws-input"
-							// 			type="text"
-							// 			name="yAxis"
-							// 			placeholder="Y"
-							// 			value={this.state.yAxis}
-							// 			onChange={this.handleInputChange}
-							// 		/>
-							// 	</div>
-							// 	<div className="input-wrap input-z prefixed">
-							// 	<label htmlFor="zAxis" className="input-label-sib prefix-label"> Z: </label>
-							// 		<input
-							// 			id="zAxis"
-							// 			className="input ws-input"
-							// 			type="text"
-							// 			name="zAxis"
-							// 			placeholder="Z"
-							// 			value={this.state.zAxis}
-							// 			onChange={this.handleInputChange}
-							// 		/>
-							// 	</div>
-							// </div> */}
-						// 							{/* </fieldset> */}
-						// {/* </section> */}
-						// {/* <section className="form-row"> */}
+// <div className="input-wrap input-portal">
+// 
+// 	<a
+// 		href="#"
+// 		id="portal-dropdown-trigger"
+// 		className="input ws-input input-btn"
+// 		text="Portal"
+// 		onClick={this.handleDropdown}
+// 	> 
+// 	Select Destination 
+// 	</a>
+// </div>
