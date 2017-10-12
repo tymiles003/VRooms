@@ -174,7 +174,6 @@ class Annotation extends React.Component {
 // handleMouseEnter ================================
 	handleMouseEnter = event => {
 		event.preventDefault();
-		console.log('--- ENTER -->');
 		let parent = event.target.parentElement;
 		let labelEl = parent.querySelector('.anno-label');
 		let boxEl = parent.querySelector('.anno-toggle');
@@ -188,28 +187,38 @@ class Annotation extends React.Component {
 		boxEl.removeAttribute( 'animation__scale' );
 		boxEl.setAttribute( 'animation__scale', scaleUp );
 
-		let animation__scale = boxEl.getAttribute("animation__scale");
-		console.log('animation__scale.to ===>', animation__scale.to);
+		// let animation__scale = boxEl.getAttribute("animation__scale");
+		// console.log('animation__scale.to ===>', animation__scale.to);
 
 	};
 
 // handleMouseLeave ================================
 	handleMouseLeave = event => {
 		event.preventDefault();
-		console.log('--- LEAVE -->');
 
+		let parent = event.target.parentElement;
+
+		// reset non-animated attributes
+		this.resetAttributes(parent)
+
+	};
+
+// handleBoxMouseLeave ================================
+	handleBoxMouseLeave = event => {
+		event.preventDefault();
+		const et = event.target;
 		let parent = event.target.parentElement;
 		let boxEl = parent.querySelector('.anno-toggle');
 		
 		
-		boxEl.removeAttribute( 'animation__scale' );
-		boxEl.setAttribute( 'animation__scale', scaleDown );
+		et.removeAttribute( 'animation__scale' );
+		et.setAttribute( 'animation__scale', scaleDown );
 
 		// let animation__scale = boxEl.getAttribute("animation__scale");
-		console.log('animation__scale.to ===>', boxEl.getAttribute("animation__scale").to);
+		// console.log('animation__scale.to ===>', et.getAttribute("animation__scale").to);
 
 		// reset non-animated attributes
-		this.resetAttributes(parent)
+		// this.resetAttributes(parent)
 
 	};
 
@@ -287,10 +296,10 @@ class Annotation extends React.Component {
 			>
 
   			<ToastContainer
-                    toastMessageFactory={ToastMessageFactory}
-                    ref="container"
-                    className="toast-top-right"
-                />
+					toastMessageFactory={ToastMessageFactory}
+					ref="container"
+					className="toast-top-right"
+				/>
 
 				{/* LIGHT ==================================================*/}
 					<Spotlight target={ "#anno-box-" + this.props.idx } />
@@ -306,7 +315,7 @@ class Annotation extends React.Component {
 						events={{ 
 							click: this.handleClick, 
 							mouseenter: this.handleMouseEnter, 
-							mouseleave: this.handleMouseLeave, 
+							mouseleave: this.handleBoxMouseLeave, 
 							}}
 					/>
 					

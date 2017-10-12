@@ -39,8 +39,9 @@ class AnnotationAframe extends React.Component {
 			mode: "idle",
 			newAnnotation: {},
 			annotations: [],
-
+			
 			loading: true,
+			isMobile: false,
 		};
 	}
 
@@ -90,7 +91,7 @@ class AnnotationAframe extends React.Component {
 	
 		if (nextProps.pano_url && (nextProps.pano_url !== this.props.pano_url)){
 			let url = nextProps.pano_url;
-			console.log('>>>> pano_url --->',url);
+			console.log('pano_url ===>',url);
 
 			let img = document.getElementById('annotation-photo');
 			img.addEventListener('load', this.handleLoadState)
@@ -121,7 +122,7 @@ class AnnotationAframe extends React.Component {
 
 // componentDidMount ===============================
 	componentDidMount = (prevProps, prevState) => {
-		console.log("---- componentDidMount (Aframe) --->");
+		// console.log("---- componentDidMount (Aframe) --->");
 		// this.getProperty();
 		// Fetch the room if roomID is provided, but if it isn't. Use this default one 
 		// for now. Will need to handle error later on.
@@ -133,7 +134,20 @@ class AnnotationAframe extends React.Component {
 		this.setState({
 			annotations: this.props.annotations
 		});
+
+
+		// this.detectEnvironment();
 	};
+// detectEnvironment ===============================
+	detectEnvironment = () => {
+		console.log('detectEnvironment --->');
+		let { isMobile, isIOS, isIframed, isGearVR } = AFRAME.utils.device;
+
+		if (isMobile()) {
+			console.log('isMobile',isMobile());
+			this.setState({ isMobile: true })
+		}
+	}
 
 // getPosition =====================================
 	getPosition = event => {
@@ -180,13 +194,13 @@ class AnnotationAframe extends React.Component {
 				{/* className={this.state.loading ? 'loading' : 'loaded' } */}
 				{/* {this.state.loading && <Cloak/>} */}
 				{/* <Cloak/> */}
-				{/*==================================================*/}
+			{/*====================================================*/}
 				<a-assets>
 					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
 					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
 				</a-assets>
-				{/* SKY ==================================================*/}
+			{/* SKY ===============================================*/}
 				<Entity
 					primitive="a-sky"
 					id="sky"
@@ -198,8 +212,8 @@ class AnnotationAframe extends React.Component {
 			{/* CAMERA ============================================*/}
 				<Entity
 					primitive="a-camera"
-					look-controls="reverseMouseDrag: true"
 					mouse-cursor
+					look-controls="reverseMouseDrag: true"
 					wasd-controls="enabled: false"
 					id="camera"
 				>
