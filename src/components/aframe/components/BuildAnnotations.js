@@ -21,7 +21,7 @@ const BuildAnnotations = props => {
 						history={props.history}
 						data={ea}
 						key={index}
-						inEditMode={this.props.inEditMode}
+						inEditMode={props.inEditMode}
 						/>
 					);
 				} 
@@ -30,7 +30,7 @@ const BuildAnnotations = props => {
 					<Annotation 
 						data={ea} 
 						key={index}
-						inEditMode={this.props.inEditMode}
+						inEditMode={props.inEditMode}
 						/>
 					)
 				}

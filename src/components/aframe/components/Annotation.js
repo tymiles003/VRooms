@@ -24,9 +24,9 @@ import RotatingBox from "./RotatingBox";
 	const box = {
 		geometry: {
 			primitive: "box",
-			width: 0.24,
-			height: 0.24,
-			depth: 0.24
+			width: 0.2,
+			height: 0.2,
+			depth: 0.2
 		},
 		rotation: { x: 0, y: 0, z: 0 },
 		scale: { x: 1, y: 1, z: 1 },
