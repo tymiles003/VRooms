@@ -22,6 +22,7 @@ class AnnotationForm extends Component {
 			label: '',
 			text: '',
 			toggled: false,
+			roomArray: [],
 		};
 	}
 // componentWillReceiveProps =======================
@@ -37,13 +38,11 @@ class AnnotationForm extends Component {
 			})
 		}
 
-		// if ( nextProps.mode == 'gathering' && !nextProps.formConfirmed ) {
-		// 	this.props.port({
-		// 		label: this.state.label,
-		// 		text: this.state.text,
-		// 		formConfirmed: true,
-		// 	});
-		// }
+		if ( nextProps.roomArray.length > 0 ) {
+			this.setState({
+				roomArray: nextProps.roomArray
+			})
+		}
 	}	
 // handleToggle ====================================
 	handleToggle = (event) => {
@@ -122,11 +121,25 @@ class AnnotationForm extends Component {
 // componentDidMount ===============================
 	
 // Dropdown Menu ===================================
-	dropdownMenu(){
+	dropdownMenu(roomArr){
+		console.log('roomArr',roomArr);
+		let dataArr = roomArr.slice(0,5);
+
 		return (
 			<Menu onSelect={this.handleSelect}>
-				<MenuItem key="1" id="bathroomID">Bathroom</MenuItem>
-				<MenuItem key="2" id="balconyID">Balcony</MenuItem>
+				{dataArr.map( (room,index) => {
+					let split = room.pano_url.split('/');
+					let file = split[split.length - 1];
+					let filename = file.substring(0,file.length-4);
+					// console.log('file',file);
+		
+					// Temporary text since there aren't any room names right now
+					let itemText = filename;
+
+					return (
+						<MenuItem key={index} id={room._id}> {itemText} </MenuItem>
+					)
+				})}
 			</Menu>
 		);
 	}
@@ -179,7 +192,7 @@ class AnnotationForm extends Component {
 
 						<Dropdown
 							trigger={['click']}
-							overlay={this.dropdownMenu()}
+							overlay={this.dropdownMenu(this.state.roomArray)}
 							animation="slide-up"
 							onVisibleChange={this.handleVisibleChange}
 						>

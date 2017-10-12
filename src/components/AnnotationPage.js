@@ -41,6 +41,7 @@ class AnnotationPage extends Component {
 			pano_url: '',
 			roomID: '',
 			annotations: [],
+			roomArray: [],
 			newAnnotation: {},
 
 			inCreationMode: false,
@@ -93,7 +94,15 @@ class AnnotationPage extends Component {
 		});
 
 		// Get other rooms in this property
-		
+		// roomAPI.getAllRoomsInProperty()
+
+		// (Temporary) Get All Rooms
+		roomAPI.getAllRooms().then(response => {
+			console.log('getAllRooms ===>',response.data);
+			this.setState({ 
+				roomArray: response.data
+			})
+		})
 
 		// this.getRoom();
 	};
@@ -238,6 +247,7 @@ class AnnotationPage extends Component {
 							<AnnotationForm 
 								port={this.portForm}
 								mode={this.state.mode}
+								roomArray={this.state.roomArray}
 							/>
 
 							<Btn

@@ -1246,11 +1246,41 @@ body::-webkit-scrollbar-thumb {
   border-color: rgba(0, 0, 0, 0.24);
 }
 
+.rc-dropdown {
+  padding: 0 10px;
+}
+
+.rc-dropdown .rc-dropdown-menu {
+  margin: 0;
+  margin-top: -4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: none;
+  border-radius: 0;
+}
+
 .rc-dropdown .rc-dropdown-menu .rc-dropdown-menu-item {
   font-size: 1.2rem;
   height: 3em;
   line-height: 3em;
   padding: 0 1em;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: #2980b9;
+  color: white;
+  cursor: pointer;
+}
+
+.rc-dropdown .rc-dropdown-menu .rc-dropdown-menu-item:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+.rc-dropdown .rc-dropdown-menu .rc-dropdown-menu-item:first-child {
+  border-top: none;
+}
+
+#portal-dropdown-trigger,
+.dropdown-trigger {
+  box-shadow: 0px 4px 10px -5px rgba(0, 0, 0, 0.5);
 }
 
 html {
