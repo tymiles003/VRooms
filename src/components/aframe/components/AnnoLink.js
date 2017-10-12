@@ -162,17 +162,6 @@ class AnnoLink extends React.Component {
 	handleClick = event => {
 		event.preventDefault();
 		console.log('>>>> PORTAL CLICK >>>>');
-		// let el = event.target;
-		// let parent = el.parentElement;
-		// let boxEl = parent.querySelector('.portal-toggle');
-		// let labelEl = parent.querySelector('.portal-label');
-		// let textEl = parent.querySelector('.portal-text');
-		// let cursorEl = document.getElementById('cursor');
-
-		// labelEl.setAttribute( 'material',{'color': '#242424', opacity: 1} );
-		// boxEl.setAttribute( 'visible', false );
-		// textEl.setAttribute( 'visible', true );
-		// cursorEl.setAttribute('visible', false);
 
 
 		console.log('this.props',this.props);
