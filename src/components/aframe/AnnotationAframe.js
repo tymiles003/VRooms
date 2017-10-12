@@ -204,7 +204,13 @@ class AnnotationAframe extends React.Component {
 					id="camera"
 				>
 			{/* CURSOR ============================================*/}
-				<Entity primitive="a-cursor" id="cursor" color="white" />
+				<Entity 
+					primitive="a-cursor" 
+					id="cursor" 
+					color="white"
+					fuseTimeout="400"
+				/>
+					{/* fuse={true} */}
 
 				{/* If in Creation Mode, show the Raycaster target */}
 					{this.props.inCreationMode && (
