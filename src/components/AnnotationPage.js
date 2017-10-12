@@ -77,6 +77,7 @@ class AnnotationPage extends Component {
 
 		this.setState({rID})
 
+		// Get Room data from roomAPI
 		roomAPI.getRoom(rID).then(response => {
 			console.log(response);
 			let { roomID, pano_url, annotations } = response.data[0];
@@ -90,6 +91,9 @@ class AnnotationPage extends Component {
 				annotations,
 			});
 		});
+
+		// Get other rooms in this property
+		
 
 		// this.getRoom();
 	};

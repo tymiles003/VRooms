@@ -1246,6 +1246,13 @@ body::-webkit-scrollbar-thumb {
   border-color: rgba(0, 0, 0, 0.24);
 }
 
+.rc-dropdown .rc-dropdown-menu .rc-dropdown-menu-item {
+  font-size: 1.2rem;
+  height: 3em;
+  line-height: 3em;
+  padding: 0 1em;
+}
+
 html {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "sans-serif";
 }

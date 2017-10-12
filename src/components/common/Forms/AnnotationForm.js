@@ -14,14 +14,6 @@ import propertyAPI from "../../../utils/propertyAPI";
 import roomAPI from "../../../utils/roomAPI"; 
 // const s3API = require ("../../../utils/s3API");
 
-// const menu = (
-// 	<Menu onSelect={onSelect}>
-// 		<MenuItem disabled>disabled</MenuItem>
-// 		<MenuItem key="1">one</MenuItem>
-// 		<Divider />
-// 		<MenuItem key="2">two</MenuItem>
-// 	</Menu>
-// );
 
 class AnnotationForm extends Component {
 	constructor(props){
@@ -34,13 +26,6 @@ class AnnotationForm extends Component {
 	}
 // componentWillReceiveProps =======================
 	componentWillReceiveProps = (nextProps) => {
-		// let { inCreationMode, mode, submitted } = nextProps;
-
-		// this.setState({
-		// 	inCreationMode,
-		// 	mode,
-		// 	submitted,
-		// })
 
 		// When exiting creation mode, clear inputs and update
 		// inCreationMode in form state.
@@ -134,6 +119,8 @@ class AnnotationForm extends Component {
 	handleVisibleChange = (visible) => {
 		console.log(visible);
 	}
+// componentDidMount ===============================
+	
 // Dropdown Menu ===================================
 	dropdownMenu(){
 		return (
