@@ -32,6 +32,14 @@
 			flex-direction: column;	
 		}
 		
+		.form-row-body {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			
+		}
+
 		.col-wrap {
 			display: flex;
 			flex-direction: row;
@@ -231,7 +239,7 @@
 }
 .pg-newVRoom {
 	form {
-		fieldset, .form-group {
+		fieldset, .form-group, .align-with-form {
 			width: 100%;
 			max-width: 600px;
 		}

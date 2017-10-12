@@ -53,7 +53,7 @@ class Navbar extends Component {
 
 	componentDidMount = (prevProps, prevState) => {
 		console.log('---- componentDidMount --->');
-		console.log("USer == ",cookie.loadAll());
+		console.log("User == ",cookie.loadAll());
 
 		// get info from cookies
 		let sessionId = cookie.load('connect.sid');

@@ -1,6 +1,23 @@
 .ws-root {
-	section {
-		width: 100%;
-		padding: 6rem 3rem;
+
+	.ws-section, section {
+		.sec-header {
+			
+		}
+		.sec-title {
+			font-size: 1.2rem;
+			font-weight: 400;
+			color: $secondary;
+			.accentuate {
+				font-size: 1.3em;
+				color: $primary;
+				font-weight: 900;
+				letter-spacing: -0.3px;
+			}
+			.alt-action {
+				font-size: 1em;
+				font-weight: 400;
+			}
+		}
 	}
 }
