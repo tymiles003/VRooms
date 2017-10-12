@@ -134,7 +134,7 @@ class NewVRoomForm extends Component {
                         // If upload successful then...
                         if (url && urlTN) {
 													// If there is an existing property selected, create room in that property
-													if (this.state.existingProperty){
+													if (this.state.propertyID){
 														console.log('---- adding new room to existing property --->');
 														////////////////////////////////////////////////////
 														//  ADD ROOM TO EXISTING PROPERTY HERE  ////////////
