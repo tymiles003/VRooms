@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 import { Entity } from "aframe-react";
 import "aframe-look-at-component";
 import "aframe-mouse-cursor-component";
 import "aframe-animation-component";
 // import RotatingBox from "./RotatingBox";
-import { Link, withRouter } from "react-router-dom";
+import Spotlight from "./Spotlight";
 
 ////////////////////////////////////////////////////
 	// animation__rotate={{property: 'rotation', dur: 4000, loop: true, to: '360 360 360'}}
@@ -25,9 +26,9 @@ import { Link, withRouter } from "react-router-dom";
 	const box = {
 		geometry: {
 			primitive: "box",
-			width: 0.24,
-			height: 0.24,
-			depth: 0.24
+			width: 0.2,
+			height: 0.2,
+			depth: 0.2
 		},
 		rotation: { x: 0, y: 0, z: 0 },
 		scale: { x: 1, y: 1, z: 1 },
@@ -37,13 +38,13 @@ import { Link, withRouter } from "react-router-dom";
 		},
 		animation__rotate: { 
 			property: 'rotation', 
-			dur: 4000, 
+			dur: 6000, 
 			loop: true, 
 			to: '360 360 360'
 		},
 	}
 
-	const label = {
+	const labelTemplate = {
 		geometry: {
 			primitive: 'plane',
 			height: 0.08,
@@ -80,6 +81,25 @@ import { Link, withRouter } from "react-router-dom";
 	// };
 
 ////////////////////////////////////////////////////
+	const upScale = 1.5;
+	const scaleUp = {
+		property: 'scale',
+		dur: 300,
+		delay: 0,
+		loop: false,
+		to: { x: upScale, y: upScale, z: upScale }
+	};
+
+	const downScale = 1;
+	const scaleDown = {
+		property: 'scale',
+		dur: 1000,
+		delay: 0,
+		loop: false,
+		to: { x: downScale, y: downScale, z: downScale }
+	};
+
+////////////////////////////////////////////////////
 class AnnoLink extends React.Component {
 	constructor(props) {
 		super(props);
@@ -87,14 +107,52 @@ class AnnoLink extends React.Component {
 			label: ""
 		};
 	}
+// handleMouseEnter ================================
+	handleMouseEnter = event => {
+		event.preventDefault();
+		console.log('event.target',event.target);
+		let parent = event.target.parentElement;
+		let labelEl = parent.querySelector('.portal-label');
+		let boxEl = parent.querySelector('.portal-toggle');
+		
+		console.log('parent',parent);
+		console.log('boxEl',boxEl);
+
+		// Box Scale ----------
+		boxEl.removeAttribute( 'animation__scale' ); // remove current attribute (important!!!)
+		boxEl.setAttribute( 'animation__scale', scaleUp );
+		// console.log('animation__scale.to ===>', boxEl.getAttribute("animation__scale").to);
+
+
+		// Box Material ----------
+		// boxEl.setAttribute( 'material',{
+		// 	color: 'white', 
+		// 	opacity: 0.9,
+		// });
+	};
+
+// handleMouseLeave ================================
+	handleMouseLeave = event => {
+		event.preventDefault();
+
+		let parent = event.target.parentElement;
+		let boxEl = parent.querySelector('.portal-toggle');
+		
+		
+		boxEl.removeAttribute( 'animation__scale' ); // remove current attribute (important!!!)
+		boxEl.setAttribute( 'animation__scale', scaleDown );
+		// console.log('animation__scale.to ===>', boxEl.getAttribute("animation__scale").to);
+
+	};
+
 // handleClick =====================================
 	handleClick = event => {
 		event.preventDefault();
 		// let el = event.target;
 		// let parent = el.parentElement;
-		// let boxEl = parent.querySelector('.annotation-toggle');
-		// let labelEl = parent.querySelector('.annotation-label');
-		// let textEl = parent.querySelector('.annotation-text');
+		// let boxEl = parent.querySelector('.portal-toggle');
+		// let labelEl = parent.querySelector('.portal-label');
+		// let textEl = parent.querySelector('.portal-text');
 		// let cursorEl = document.getElementById('cursor');
 
 		// labelEl.setAttribute( 'material',{'color': '#242424', opacity: 1} );
@@ -145,15 +203,37 @@ class AnnoLink extends React.Component {
 		let { xAxis, yAxis, zAxis, link } = this.props.data;
 		let { primitive, textScale, textPos, height, width, tScale, tPos } = this.props;
 		// let { to,position, label,textScale,textPos, primitive,height,width, color,opacity,side } = this.props;
+		// let labelLen = data.label.length;
+		let tailoredWidth = ( data.label.length * 0.02 ) + 0.07;
+		let label = {
+			geometry: {
+				primitive: 'plane',
+				height: 0.08,
+				width: tailoredWidth,
+			},
+			text: {
+					align: 'center',
+					color: 'white',
+					width: 1,
+			},
+			position: { x: 0, y: 0.3, z: 0 },
+			scale: { x:3 , y:3, z:3 },
+			material: { color: "#242424", opacity: 0.7 },
+		}
 		
 		return (
-			<Entity 
+			<Entity
+				className="portal-wrap"
+				id={'portal-wrap-'+this.props.idx}
 				position={{ x: xAxis, y: yAxis, z: zAxis }} 
 				scale={wrapper.scale}
 			>
-					{/* BOX ====================================== */}
+					{/* SPOTLIGHT =================================*/}
+						<Spotlight target={ "#portal-box-"+this.props.idx } />
+					{/* BOX =======================================*/}
 						<Entity
-							className="annotation-toggle box"
+							className="portal-toggle box portal-box"
+							id={'portal-box-'+this.props.idx}
 							geometry={box.geometry}
 							rotation={box.rotation}
 							scale={box.scale}
@@ -162,11 +242,14 @@ class AnnoLink extends React.Component {
 							destination={link}
 							events={{ 
 								click: this.handleClick, 
+								mouseenter: this.handleMouseEnter, 
+								mouseleave: this.handleMouseLeave,
 								}}
 						/>
 					{/* LABEL ==================================== */}
 						<Entity
-							className="annotation-label"
+							className="portal-label portal-label"
+							id={'portal-label-'+this.props.idx}
 							geometry={label.geometry}
 							text={Object.assign({},label.text, {value: data.label})}
 							position={label.position}
@@ -176,7 +259,7 @@ class AnnoLink extends React.Component {
 						/>
 					{/* TEXT ===================================== */}
 						{/* <Entity
-							className="annotation-text"
+							className="portal-text"
 							geometry={text.geometry}
 							text={Object.assign({},text.text, {value: data.text})}
 							position={text.position}
