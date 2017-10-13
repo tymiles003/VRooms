@@ -10,6 +10,10 @@ const roomSchema = new mongoose.Schema({
         required: true
     },
 
+    parent_propertyID: {
+        type: mongoose.Schema.Types.ObjectId
+    },
+
     annotations: [
         {
             text: {

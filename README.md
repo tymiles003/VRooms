@@ -54,7 +54,7 @@ VRooms allows you to create your VR app by using 360 images or videos without co
 * Front/back end integration of 'NEW' page 
 * Amazon S3 integration (configuration, authentication, uploading image to S3 bucket)
 * Automatic image compression when client selects an image to upload
-* Optimization of production build config to reduce file size by 95%
+* Optimization of production build config to reduce compiled file size by 95%
 
 - - -
 
