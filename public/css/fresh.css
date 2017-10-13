@@ -10300,20 +10300,7 @@ only screen and (min-resolution:144dpi) {
     display: block;
 }
 
-#stopButton {
-    z-index: 99999;
-    color: #FFF;
-    position: absolute;
-    bottom: 2px;
-    padding-left:2px;
-
+.fresh360-header {
+    margin-right: 30px;
 }
 
-#playButton {
-    z-index: 99999;
-    color: #FFF;
-    position: absolute;
-    bottom: 2px;
-    padding-left:2px;
-
-}
