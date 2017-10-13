@@ -165,7 +165,7 @@ class AnnotationPage extends Component {
 		console.log('---- submitAnnotation --->');
 
 		// Grab relevant info from state
-		let { xAxis, yAxis, zAxis, label, text, isLink } = this.state;
+		let { xAxis, yAxis, zAxis, label, text, isLink, toggled, destinationID } = this.state;
 
 		// Put together annotation to add to annotation array in state
 		let newAnno =  { label, xAxis, yAxis, zAxis };
@@ -174,29 +174,37 @@ class AnnotationPage extends Component {
 		// Check if text is roomID ----------------------------
 		// If the text is not a valid roomID, set text in newAnno.
 		// If it is a valid roomID, set text as link in newAnno
-		let textInput = text.trim();
-		if ( textInput.length === 24 ) {
-		// If the text input is exactly 24 characters long,
-			roomAPI.getRoom(textInput).then(response => {
-				// console.log(response);
-				// let { roomID, pano_url, annotations } = response.data[0];
-				if ( response.data.name === 'CastError') {
-					// console.log('Not a valid link');
-					newAnno.text = text;
-					this.saveAnnotation(newAnno)
-				}
-				else if ( response.data[0] ) {
-					console.log('Link detected');
-					// this.setState({isLink: true})
-					// newState.isLink = true;
-					newAnno.link = text;
-					this.saveAnnotation(newAnno);
-				}
+		if (text) {
+			let textInput = text.trim();
+			if ( textInput.length === 24 ) {
+			// If the text input is exactly 24 characters long,
+				roomAPI.getRoom(textInput).then(response => {
+					// console.log(response);
+					// let { roomID, pano_url, annotations } = response.data[0];
+					if ( response.data.name === 'CastError') {
+						// console.log('Not a valid link');
+						newAnno.text = text;
+						this.saveAnnotation(newAnno)
+					}
+					else if ( response.data[0] ) {
+						console.log('Link detected');
+						// this.setState({isLink: true})
+						// newState.isLink = true;
+						newAnno.link = text;
+						this.saveAnnotation(newAnno);
+					}
+					
+				})
 				
-			})
-			
+			}
 		}
-		else {
+
+		// Save annotation or portal depending on the toggle in AnnotationForm
+		if (toggled) { // if toggled is true, portal
+			newAnno.link = destinationID;
+			this.saveAnnotation(newAnno)
+		}
+		else { // if toggled is false, text
 			newAnno.text = text;
 			this.saveAnnotation(newAnno);
 		}

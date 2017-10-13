@@ -109,10 +109,14 @@ class AnnotationForm extends Component {
 		// console.log('id',id);
 		// console.log('text',text);
 
-		this.setState({
+		let stateObj = {
 			destinationName: children,
 			destinationID: id,
-		})
+		}
+		this.setState(stateObj)
+
+		this.props.port(stateObj)
+
 	}
 // handleVisibleChange
 	handleVisibleChange = (visible) => {
@@ -132,7 +136,7 @@ class AnnotationForm extends Component {
 					// let file = split[split.length - 1];
 					// let filename = file.substring(0,file.length-4);
 					// console.log('file',file);
-					
+
 					// Temporary text since there aren't any room names right now
 					// let itemText = filename;
 
