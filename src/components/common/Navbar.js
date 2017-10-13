@@ -101,6 +101,7 @@ class Navbar extends Component {
 						(
 							<div className="mobile-new-div" data-duration="600" data-effect="slide">
 								<a href="/new-vroom" className="text--white text--bold mobile-new">New</a>
+								<a href="/editshowcase" className="text--white text--bold mobile-new">Edit</a>
 
 								<div className="mobile-menu-btn-wrapper">
 									<a 
@@ -143,6 +144,7 @@ class Navbar extends Component {
 						
 						(<div className="navigation-menu emerge">
 							<Link to="/new-vroom" className="navigation-menu__link uppercase">New</Link>
+							<Link to="/editshowcase" className="navigation-menu__link uppercase">Edit</Link>
 							<Link 
 								to="/logout" 
 								data-auth="no" 
