@@ -195,7 +195,7 @@ class Annotation extends React.Component {
 
 		if (this.props.data.text=="Blue milk"){
 			
-			console.log("Star Wars Baby!"+ this.state.count);
+			console.log("Star Wars Baby! "+ this.state.count);
 
 			this.setState({
 				count: this.state.count+1
