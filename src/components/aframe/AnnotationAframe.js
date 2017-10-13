@@ -206,7 +206,7 @@ class AnnotationAframe extends React.Component {
 			{/*====================================================*/}
 				<a-assets>
 					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
-					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
+					<img id="annotation-photo" src={this.state.pano_url + "?v=1230"} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
 				</a-assets>
 			{/* SKY ===============================================*/}

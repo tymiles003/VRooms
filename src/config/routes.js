@@ -31,6 +31,8 @@ import Subway from "../components/gallery/Subway";
 import AmazonFreshDemo from "../components/AmazonFreshDemo";
 import ShowroomVideoMain from "../components/ShowroomVideoMain";
 
+import EditShowcase from "../components/EditShowcase";
+
 // import createHistory from 'history/createBrowserHistory';
 // const history = createHistory();
 
@@ -67,6 +69,8 @@ const routes = (
 
             <Route path="/fresh" component={AmazonFreshDemo} />
             <Route path="/showvideo" component={ShowroomVideoMain} />
+
+            <Route path="/editshowcase" component={EditShowcase} />
             
             {/* <Route exact path="/annotate" component={AnnotationPage} /> */}
 
