@@ -56,7 +56,9 @@ class NewVRoomForm extends Component {
 			annotateBtnIsOutlined: true,
 
 			propertyList: [],
-			isNewProperty: true
+			isNewProperty: true,
+			
+			clearing: false,
 		};
 	}
 
@@ -89,7 +91,7 @@ class NewVRoomForm extends Component {
 		event.preventDefault();
 		const value = event.target.value;
 		const name = event.target.name;
-		console.log(name, value);
+		// console.log(name, value);
 
 		// if (name === 'fetch_query') {
 		// 	this.detectQueryType(value.trim())
@@ -200,6 +202,9 @@ class NewVRoomForm extends Component {
 
 									// Rebuild propertyList when new property successfully added
 									this.getPropertyList(this.state.userID);
+
+									// Clear form
+									this.clearForm();
 								}
 							);
 						} else {
@@ -333,6 +338,40 @@ class NewVRoomForm extends Component {
 
 		}
 	};
+// clearForm ===============================================
+	clearForm = () => {
+		this.setState({
+			clearing: true,
+
+			room_name: "",
+
+			street: "",
+			city: "",
+			state: "",
+			zip: "",
+
+			beds: "",
+			baths: "",
+			year: "",
+			sqft: "",
+			price: "",
+
+			query_type: "",
+			zpid: "",
+			zillow_url: "",
+			fetch_query: "",
+
+			bits: "",
+			bitsTN: "",
+			fileNameTN: "",
+			fileStatus: "no-file",
+			
+			roomID: "",
+		});
+		this.setState({
+			clearing: false
+		})
+	}
 // handlePanelChange =======================================
 	handlePanelChange = event => {
 		event.preventDefault();
@@ -559,6 +598,7 @@ class NewVRoomForm extends Component {
 											handleFileUpload={
 												this.handleThumbnailUpload
 											}
+											clearing={this.state.clearing}
 										/>
 									</fieldset>
 								</div>
@@ -612,6 +652,7 @@ class NewVRoomForm extends Component {
 											handleFileUpload={
 												this.handle360Upload
 											}
+											clearing={this.state.clearing}
 										/>
 
 										<div className="btnwrapper flexleft">
