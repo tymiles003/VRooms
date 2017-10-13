@@ -1736,6 +1736,22 @@ a-scene {
     margin-right: 0.3em;
 }
 
-.fresh360-header {
-    margin-right: 30px;
+
+#stopButton {
+    z-index: 99999;
+    color: #FFF;
+    position: absolute;
+    bottom: 2px;
+    padding-left:2px;
+
+}
+
+#playButton {
+    z-index: 99999;
+    color: #FFF;
+    position: absolute;
+    bottom: 2px;
+    padding-left:2px;
+    margin: 10px;
+
 }
