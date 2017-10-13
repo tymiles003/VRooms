@@ -74,35 +74,45 @@ class AnnotationPage extends Component {
 		else {
 			rID = propsID;
 		}
-		console.log('rID',rID);
-
+		// console.log('rID',rID);
+		
 		this.setState({rID})
 
 		// Get Room data from roomAPI
 		roomAPI.getRoom(rID).then(response => {
-			console.log(response);
-			let { roomID, pano_url, annotations } = response.data[0];
+			let roomData = response.data[0];
+			let { roomID, pano_url, annotations, parent_propertyID } = response.data[0];
 			console.log('roomAPI room response >>>>',response.data[0]);
-			console.log('pano_url >>>>',pano_url);
-			console.log('annotations >>>>',annotations);
+			// console.log('pano_url >>>>',pano_url);
+			// console.log('annotations >>>>',annotations);
 
 			this.setState({ 
 				roomID,
 				pano_url,
 				annotations,
 			});
+
+			// Use propertyID from roomData to make API call to find all other rooms in property
+
+			roomAPI.getAllRoomsInProperty(parent_propertyID, (response) => {
+				console.log('getAllRoomsInProperty ===>',response);
+				this.setState({
+					roomArray: response
+				})
+			})
+
 		});
 
 		// Get other rooms in this property
 		// roomAPI.getAllRoomsInProperty()
 
 		// (Temporary) Get All Rooms
-		roomAPI.getAllRooms().then(response => {
-			console.log('getAllRooms ===>',response.data);
-			this.setState({ 
-				roomArray: response.data
-			})
-		})
+		// roomAPI.getAllRooms().then(response => {
+		// 	console.log('getAllRooms ===>',response.data);
+		// 	this.setState({ 
+		// 		roomArray: response.data
+		// 	})
+		// })
 
 		// this.getRoom();
 	};
@@ -116,6 +126,18 @@ class AnnotationPage extends Component {
 			});
 			console.log("this.state", this.state);
 		});
+	};
+
+// getAllRoomsInProperty =====================================
+	getAllRoomsInProperty = (propertyID) => {
+		
+		// roomAPI.getAllRoomsInProperty(this.props.propID).then(response => {
+		// 	console.log(response);
+		// 	this.setState({
+		// 		property: response.data[0]
+		// 	});
+		// 	console.log("this.state", this.state);
+		// });
 	};
 
 
@@ -143,7 +165,7 @@ class AnnotationPage extends Component {
 		console.log('---- submitAnnotation --->');
 
 		// Grab relevant info from state
-		let { xAxis, yAxis, zAxis, label, text, isLink } = this.state;
+		let { xAxis, yAxis, zAxis, label, text, isLink, toggled, destinationID } = this.state;
 
 		// Put together annotation to add to annotation array in state
 		let newAnno =  { label, xAxis, yAxis, zAxis };
@@ -152,29 +174,37 @@ class AnnotationPage extends Component {
 		// Check if text is roomID ----------------------------
 		// If the text is not a valid roomID, set text in newAnno.
 		// If it is a valid roomID, set text as link in newAnno
-		let textInput = text.trim();
-		if ( textInput.length === 24 ) {
-		// If the text input is exactly 24 characters long,
-			roomAPI.getRoom(textInput).then(response => {
-				// console.log(response);
-				// let { roomID, pano_url, annotations } = response.data[0];
-				if ( response.data.name === 'CastError') {
-					// console.log('Not a valid link');
-					newAnno.text = text;
-					this.saveAnnotation(newAnno)
-				}
-				else if ( response.data[0] ) {
-					console.log('Link detected');
-					// this.setState({isLink: true})
-					// newState.isLink = true;
-					newAnno.link = text;
-					this.saveAnnotation(newAnno);
-				}
+		if (text) {
+			let textInput = text.trim();
+			if ( textInput.length === 24 ) {
+			// If the text input is exactly 24 characters long,
+				roomAPI.getRoom(textInput).then(response => {
+					// console.log(response);
+					// let { roomID, pano_url, annotations } = response.data[0];
+					if ( response.data.name === 'CastError') {
+						// console.log('Not a valid link');
+						newAnno.text = text;
+						this.saveAnnotation(newAnno)
+					}
+					else if ( response.data[0] ) {
+						console.log('Link detected');
+						// this.setState({isLink: true})
+						// newState.isLink = true;
+						newAnno.link = text;
+						this.saveAnnotation(newAnno);
+					}
+					
+				})
 				
-			})
-			
+			}
 		}
-		else {
+
+		// Save annotation or portal depending on the toggle in AnnotationForm
+		if (toggled) { // if toggled is true, portal
+			newAnno.link = destinationID;
+			this.saveAnnotation(newAnno)
+		}
+		else { // if toggled is false, text
 			newAnno.text = text;
 			this.saveAnnotation(newAnno);
 		}
