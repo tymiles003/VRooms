@@ -39,8 +39,11 @@ class AnnotationAframe extends React.Component {
 			mode: "idle",
 			newAnnotation: {},
 			annotations: [],
-
+			creatingPortal: false,
+			
 			loading: true,
+			isMobile: false,
+
 		};
 	}
 
@@ -90,7 +93,7 @@ class AnnotationAframe extends React.Component {
 	
 		if (nextProps.pano_url && (nextProps.pano_url !== this.props.pano_url)){
 			let url = nextProps.pano_url;
-			console.log('>>>> pano_url --->',url);
+			console.log('pano_url ===>',url);
 
 			let img = document.getElementById('annotation-photo');
 			img.addEventListener('load', this.handleLoadState)
@@ -99,6 +102,13 @@ class AnnotationAframe extends React.Component {
 			// assets.addEventListener('loaded', console.log('>>>> ASSETS LOADED >>>>'))
 
 			// console.log('a-assets fileLoader', document.querySelector('a-assets').fileLoader);
+		}
+	//--------------------------------------------------
+	// Toggle changes when creating portal vs. text
+		if (nextProps.creatingPortal !== this.props.creatingPortal){
+			this.setState({
+				creatingPortal: nextProps.creatingPortal
+			})
 		}
 	//--------------------------------------------------
 
@@ -121,7 +131,7 @@ class AnnotationAframe extends React.Component {
 
 // componentDidMount ===============================
 	componentDidMount = (prevProps, prevState) => {
-		console.log("---- componentDidMount (Aframe) --->");
+		// console.log("---- componentDidMount (Aframe) --->");
 		// this.getProperty();
 		// Fetch the room if roomID is provided, but if it isn't. Use this default one 
 		// for now. Will need to handle error later on.
@@ -133,7 +143,20 @@ class AnnotationAframe extends React.Component {
 		this.setState({
 			annotations: this.props.annotations
 		});
+
+
+		// this.detectEnvironment();
 	};
+// detectEnvironment ===============================
+	detectEnvironment = () => {
+		console.log('detectEnvironment --->');
+		let { isMobile, isIOS, isIframed, isGearVR } = AFRAME.utils.device;
+
+		if (isMobile()) {
+			console.log('isMobile',isMobile());
+			this.setState({ isMobile: true })
+		}
+	}
 
 // getPosition =====================================
 	getPosition = event => {
@@ -180,13 +203,13 @@ class AnnotationAframe extends React.Component {
 				{/* className={this.state.loading ? 'loading' : 'loaded' } */}
 				{/* {this.state.loading && <Cloak/>} */}
 				{/* <Cloak/> */}
-				{/*==================================================*/}
+			{/*====================================================*/}
 				<a-assets>
 					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
 					<img id="annotation-photo" src={this.state.pano_url} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
 				</a-assets>
-				{/* SKY ==================================================*/}
+			{/* SKY ===============================================*/}
 				<Entity
 					primitive="a-sky"
 					id="sky"
@@ -198,8 +221,8 @@ class AnnotationAframe extends React.Component {
 			{/* CAMERA ============================================*/}
 				<Entity
 					primitive="a-camera"
-					look-controls="reverseMouseDrag: true"
 					mouse-cursor
+					look-controls="reverseMouseDrag: true"
 					wasd-controls="enabled: false"
 					id="camera"
 				>
@@ -222,15 +245,19 @@ class AnnotationAframe extends React.Component {
 								className="annotation-toggle box ray-intersect"
 								geometry={{ 
 									primitive: "box", 
-									width: 0.24, 
+									width:  0.24, 
 									height: 0.24, 
-									depth: 0.24
+									depth:  0.24
 									}}
 								scale={{ x:1 , y:1 , z:1 }}
 								material={{ 
-									color: "#f1c40f", 
+									color: "#f39c12", 
 									opacity: 0.8 
 								}}
+								material={this.state.creatingPortal
+									? { color: "#3498db", opacity: 0.8 }
+									: { color: "#f39c12", opacity: 0.8 }
+								}
 								animation__rotate={{ 
 									property: "rotation", 
 									dur: 4000, 

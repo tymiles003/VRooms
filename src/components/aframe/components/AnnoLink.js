@@ -157,7 +157,6 @@ class AnnoLink extends React.Component {
 		// console.log('animation__scale.to ===>', boxEl.getAttribute("animation__scale").to);
 
 	};
-
 // handleClick =====================================
 	handleClick = event => {
 		event.preventDefault();

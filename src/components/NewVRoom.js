@@ -8,7 +8,7 @@ import NewVRoomForm from './common/Forms/NewVRoomForm';
 const NewVRoom = (props) => {
 	//   render() {
 	return (
-		<div className="pg-form pg-newVRoom">
+		<div className="pg-form pg-newVRoom ws-root">
 		<div className="pageWrapper">
 			
 			{/* Helmet =========================================================*/}

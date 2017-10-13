@@ -1,0 +1,47 @@
+.ws-panel {
+	display: none;
+	visibility: hidden;
+
+	&.chosen {
+		display: initial;
+		visibility: visible;
+	}
+
+	
+}
+
+.ws-panel-controller {
+	$control-theme: $blue;
+
+	border: solid 1px $control-theme;
+	font-size: 1.2rem;
+	border-radius: .5em;
+	height: 2.6em;
+	display: flex;
+	flex-direction: row;
+	justify-content: stretch;
+	align-items: stretch;
+	font-weight: 400;
+	background-color: #fff;
+	overflow: hidden;
+
+	.ws-panel-control {
+		// outline: 1px solid red;
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1em;
+		color: $control-theme;
+		border-left: 1px solid $control-theme;
+
+		&:first-child {
+			border-left: none;
+		}
+
+		&.chosen {
+			color: $white;
+			background-color: $control-theme;
+		}
+	}
+} 

@@ -22,6 +22,8 @@ const AmazonFreshDemo = (props) => {
 			
             {/* CSS links for this page */}
             <link rel="stylesheet" href="/css/pages/About.css"></link>
+						<link rel="stylesheet" href="/css/fresh.css" />
+						<link rel="stylesheet" href="/css/freshbox.css" />
 			
           </Helmet>
 
