@@ -298,9 +298,9 @@ class AFDemoContent extends Component {
                                                         >
                                                             <Entity primitive="a-cursor" id="cursor" color="white" />
 
-                                                            {this.props.inCreationMode && (
+                                                            {/* {this.props.inCreationMode && (
                                                                 <Entity position={{ x: 0, y: 0, z: -5 }} >
-                                                                    {/* BOX ====================================== */}
+                                                                    
                                                                     <Entity
                                                                         id="new-annotation"
                                                                         className="annotation-toggle box ray-intersect"
@@ -330,7 +330,7 @@ class AFDemoContent extends Component {
                                                                 </Entity>
 
                                                                 
-                                                            )}
+                                                            )} */}
                                                             
                                                         </Entity>
 
@@ -338,7 +338,23 @@ class AFDemoContent extends Component {
                                                         
                                                             <Entity>
                                                                 <BuildAnnotations annotations={this.state.annotations} />
-                                                            </Entity>    
+                                                            </Entity>   
+
+                                                            {/* LIGHTS ==========================================*/}
+                                                            <Entity
+                                                                primitive="a-light"
+                                                                type="ambient"
+                                                                color="#eee"
+                                                                intensity="1"
+                                                                position={{ x: 0, y: 3, z: 0 }}
+                                                            />
+                                                            <Entity
+                                                                primitive="a-light"
+                                                                type="directional"
+                                                                color="#fff"
+                                                                intensity="1"
+                                                                position={{ x: -0.5, y: 3, z: 1 }}
+                                                            /> 
                                                             
                                                         </a-scene>
                                                         </section>
