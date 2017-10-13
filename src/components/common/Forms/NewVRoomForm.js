@@ -220,53 +220,74 @@ class NewVRoomForm extends Component {
 		this.state.isNewProperty ? this.addNewPropertyAndRoom():this.addNewRoomToExistingProperty();
     };
 
-    // componentDidMount =======================================
-    componentDidMount = (prevProps, prevState) => {
-        // Get userID from cookies
-        let userID = cookie.load("userId");
-        console.log("userID", userID);
+	// componentDidMount =======================================
+	componentDidMount = (prevProps, prevState) => {
+		// Get userID from cookies ----------
+		let userID = cookie.load('userId');
+		// console.log('userID',userID);
 
-        // Get user's property list from API
-        // propertyAPI.getAllUserProperties(cookie.load('userId')).then(response => {
-        // 	console.log('getAllUserProperties ===>', response);
-        // })
+		// Get user's property list from API -------------
+		if (userID) {
+			console.log('userID ====', userID);
 
-        // Get list of all properties ( temporary )
-        propertyAPI.getAllProperties().then(response => {
-            console.log("response", response);
-            let propertyList = response.data;
-            // Set propertyList state, which will trigger BuildPropertyList
-            this.setState({ propertyList });
-        });
-	};
-	
-    // handlePanelChange =======================================
-    handlePanelChange = event => {
-        event.preventDefault();
-        const el = event.target;
-        let nextPanelID = el.getAttribute("panel");
+			propertyAPI.getAllUserProperties(userID, (response) => {
+				console.log('response', response);
+			})
 
-        // Remove chosen class from previous panel elements;
-        let prevPanel = document.querySelector(".chosen.ws-panel");
-        let prevControl = document.querySelector(".chosen.ws-panel-control");
-        prevPanel.classList.remove("chosen");
-        prevControl.classList.remove("chosen");
+			// propertyAPI.getAllUserProperties(userID).then(response => {
+			// console.log('getAllUserProperties ===>', response.data.properties);
+			// let propertyList = response.data;
+			// console.log('propertyList',propertyList);
+			// // Set propertyList state, which will trigger BuildPropertyList
+			// this.setState({ propertyList })
+			// })
+		}
 
-        // Add chosen class to new panel elements
-        let nextPanel = document.getElementById(nextPanelID);
-        nextPanel.classList.add("chosen");
-        console.log("el", el);
-        el.classList.add("chosen");
-    };
-    // handlePropertySelection =====================================
-    handlePropertySelection = data => {
-        console.log("==== selected property ID ===>", data);
-        this.setState({
-            propertyID: data.id
-        });
-    };
+		// Get list of all properties ( temporary ) ----------
+		propertyAPI.getAllProperties().then(response => {
+			console.log('allProperties ===>', response.data);
+			let propertyList = response.data;
+			// Set propertyList state, which will trigger BuildPropertyList
+			this.setState({
+				propertyList
+			})
+		})
 
-    // render //////////////////////////////////////////////////
+	}
+
+	// handlePanelChange =======================================
+	handlePanelChange = (event) => {
+		event.preventDefault();
+		const el = event.target;
+		let nextPanelID = el.getAttribute('panel');
+
+		// Remove chosen class from previous panel elements;
+		let prevPanel = document.querySelector('.chosen.ws-panel');
+		let prevControl = document.querySelector('.chosen.ws-panel-control');
+		prevPanel.classList.remove('chosen');
+		prevControl.classList.remove('chosen');
+
+		// Add chosen class to new panel elements
+		let nextPanel = document.getElementById(nextPanelID);
+		nextPanel.classList.add('chosen');
+		console.log('el', el);
+		el.classList.add('chosen');
+
+		// Set a flag in state to be used as indicator for other things
+		this.setState({
+			propertyStatus: ''
+		})
+	}
+
+	// handlePropertySelection =====================================
+	handlePropertySelection = (data) => {
+		console.log('==== selected property ID ===>', data);
+		this.setState({
+			propertyID: data.id
+		})
+	}
+
+	// render //////////////////////////////////////////////////
     render() {
         return (
             <div className="pg-contains-aframe">
