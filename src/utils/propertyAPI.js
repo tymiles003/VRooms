@@ -19,15 +19,10 @@ const propertyAPI = {
     /**
      * Get all properties of specific user
      */
-    getAllUserProperties: (userID,cb) => {
-			// return axios.get("/api/user/"+userID);
-        // axios.get("/api/user/" + userID).then(result => {
-        //     return result.properties;
-				// });
+    getAllUserProperties: (userID, cb) => {
         axios.get("/api/user/" + userID).then(result => {
-            cb( result.data.properties )
-				});
-				
+            cb(result.data.properties);
+        });
     },
 
     /**
