@@ -126,7 +126,8 @@ class NewVRoomForm extends Component {
 						baths,
 						built_year: year,
 						price,
-						square_feet: sqft
+						square_feet: sqft,
+						thumbnail_url: urlTN,
 					}
 					let userID = cookie.load("userId");
 					console.log("cookie userId: ", userID);
@@ -138,7 +139,8 @@ class NewVRoomForm extends Component {
 						console.log("addedProperty: ", addedProperty.data);
 						let room = {
 							parent_propertyID: addedProperty.data._id,
-							pano_url: url
+							pano_url: url,
+							name: this.state.room_name,
 						};
 						roomAPI.addNewRoom(addedProperty.data._id, room)
 							.then(response => {
@@ -181,7 +183,8 @@ class NewVRoomForm extends Component {
 				console.log("---- adding new room to existing property --->");
 				let room = {
 					parent_propertyID: this.state.propertyID,
-					pano_url: url
+					pano_url: url,
+					name: this.state.room_name,
 				};
 
 				roomAPI.addNewRoom(this.state.propertyID, room)
