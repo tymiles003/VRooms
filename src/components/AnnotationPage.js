@@ -96,6 +96,9 @@ class AnnotationPage extends Component {
 
 			roomAPI.getAllRoomsInProperty(parent_propertyID, (response) => {
 				console.log('getAllRoomsInProperty ===>',response);
+				this.setState({
+					roomArray: response
+				})
 			})
 
 		});

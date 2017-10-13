@@ -52,7 +52,7 @@ class AnnotationForm extends Component {
 		if (prevState) {
 			newState = false;
 		}
-		console.log('prevState',prevState);
+		// console.log('prevState',prevState);
 		console.log('newState',newState);
 
 		this.setState({
@@ -96,13 +96,13 @@ class AnnotationForm extends Component {
 	}
 // handleSelect ====================================
 	handleSelect = (event) => {
-		console.log('---- handleSelect --->');
+		// console.log('---- handleSelect --->');
 		const ei = event.item;
-		console.log('ei',ei);
+		// console.log('ei',ei);
 
 		let { id, children } = ei.props;
-		console.log('id',id);
-		console.log('children',children);
+		// console.log('id',id);
+		// console.log('children',children);
 		// const et = event.target;
 		// let id = et.getAttribute('id');
 		// let text = et.innerHTML;
@@ -116,28 +116,28 @@ class AnnotationForm extends Component {
 	}
 // handleVisibleChange
 	handleVisibleChange = (visible) => {
-		console.log(visible);
+		// console.log(visible);
 	}
 // componentDidMount ===============================
 	
 // Dropdown Menu ===================================
 	dropdownMenu(roomArr){
-		console.log('roomArr',roomArr);
-		let dataArr = roomArr.slice(0,5);
+		// console.log('roomArr',roomArr);
+		// let dataArr = roomArr.slice(0,5);
 
 		return (
 			<Menu onSelect={this.handleSelect}>
-				{dataArr.map( (room,index) => {
-					let split = room.pano_url.split('/');
-					let file = split[split.length - 1];
-					let filename = file.substring(0,file.length-4);
+				{roomArr.map( (room,index) => {
+					// let split = room.pano_url.split('/');
+					// let file = split[split.length - 1];
+					// let filename = file.substring(0,file.length-4);
 					// console.log('file',file);
-		
+					
 					// Temporary text since there aren't any room names right now
-					let itemText = filename;
+					// let itemText = filename;
 
 					return (
-						<MenuItem key={index} id={room._id}> {itemText} </MenuItem>
+						<MenuItem key={index} id={room._id}> {room.name} </MenuItem>
 					)
 				})}
 			</Menu>
