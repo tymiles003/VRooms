@@ -9,7 +9,7 @@ const BuildAnnotations = props => {
 	// const annos = props.annotations;
 	// console.log('annos',annos);
 	let annotationsToBuild = props.annotations;
-	console.log("annotationsToBuild>>>>>>> ", annotationsToBuild);
+	// console.log("annotationsToBuild>>>>>>> ", annotationsToBuild);
 
 	return (
 		<Entity>
