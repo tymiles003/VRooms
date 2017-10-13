@@ -12,9 +12,20 @@ class FileDrop extends Component {
             file: "",
             bits: "",
             accepted: [],
-            rejected: []
+						rejected: [],
+						
         };
     }
+
+	componentWillReceiveProps = ( nextProps ) => {
+		if (nextProps.clearing && !this.props.clearing) {
+			this.setState({
+				fileStatus: "no-file",
+				file: "",
+				bits: "",
+			})
+		}
+	}
 
     handleInputChange = event => {
         event.preventDefault();
