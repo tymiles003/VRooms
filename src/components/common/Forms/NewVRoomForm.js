@@ -25,6 +25,7 @@ class NewVRoomForm extends Component {
         super(props);
         this.state = {
             agent: "James Bond",
+						room_name: '',
 
             street: "",
             city: "",
@@ -56,10 +57,6 @@ class NewVRoomForm extends Component {
             
             propertyList: [],
             isNewProperty: true,
-
-            test1: 'one',
-            test2: 'two',
-            test3: 'three',
         };
     }
 
@@ -225,7 +222,7 @@ class NewVRoomForm extends Component {
 		this.state.isNewProperty ? this.addNewPropertyAndRoom():this.addNewRoomToExistingProperty();
     };
 
-	// componentDidMount =======================================
+// componentDidMount =======================================
     componentDidMount = (prevProps, prevState) => {
         // Get userID from cookies ----------
         let userID = cookie.load('userId');
@@ -256,11 +253,9 @@ class NewVRoomForm extends Component {
             this.setState({ propertyList })
         })
         
-        // let newObj= Object.assign( { test1, test2, test3 } = this.state );
-        // console.log('newObj',newObj);
     }
     
-    // handlePanelChange =======================================
+// handlePanelChange =======================================
     handlePanelChange = (event) => {
         event.preventDefault();
         const el = event.target;
@@ -286,7 +281,7 @@ class NewVRoomForm extends Component {
         this.setState({ isNewProperty })
     }
 
-    // handlePropertySelection =====================================
+// handlePropertySelection =====================================
     handlePropertySelection = (data) => {
         console.log('==== selected property ID ===>',data);
         this.setState({
@@ -294,7 +289,7 @@ class NewVRoomForm extends Component {
         })
     }
 
-	// render //////////////////////////////////////////////////
+// render //////////////////////////////////////////////////
     render() {
         return (
             <div className="pg-contains-aframe">
@@ -510,6 +505,26 @@ class NewVRoomForm extends Component {
                         </div>
                         {/*  end of <leftSection /> */}
                         <div className="rightsection">
+													<div className="form-row">
+															<fieldset>
+																	<legend>Room Name</legend>
+																	<div className="form-field-row">
+																			<div className="input-wrap input-full-width input-street ws-input-wrap">
+																					<input
+																							id="room_name"
+																							className="input ws-input"
+																							type="text"
+																							name="room_name"
+																							placeholder="e.g. Kitchen, Living Room"
+																							value={this.state.room_name}
+																							onChange={
+																									this.handleInputChange
+																							}
+																					/>
+																			</div>
+																	</div>
+															</fieldset>
+														</div>
                             <div className="thumbnail-row">
                                 <fieldset>
                                     <legend>Upload 360 Image</legend>
@@ -520,7 +535,7 @@ class NewVRoomForm extends Component {
                                                 this.handle360Upload
                                             }
                                         />
-
+																				
                                         <div className="btnwrapper flexleft">
                                             <button
                                                 id="submit"
@@ -552,6 +567,7 @@ class NewVRoomForm extends Component {
                                     </div>
                                 </fieldset>
                             </div>
+													
                         </div>
                         {/*  end of <rightSection /> */}
                     </form>
