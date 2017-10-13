@@ -122,6 +122,15 @@ class ShowroomMain extends React.Component {
                 <span className="fixed-info">
                     {this.state.message} viewer(s) currently
                 </span>
+
+								<a 
+									id="exit-btn" 
+									className='ws-btn' 
+									href='/'
+								>
+									<i className="fa fa-angle-left"/>
+									Home
+								</a>
             </div>
         );
     }
