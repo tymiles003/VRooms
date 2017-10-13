@@ -52,9 +52,21 @@ class NewVRoomForm extends Component {
             roomID: "",
             submitBtnTheme: "",
             annotateBtnTheme: "disabled",
+<<<<<<< HEAD
             annotateBtnIsOutlined: true,
 
             propertyList: []
+=======
+						annotateBtnIsOutlined: true,
+						
+						propertyList: [],
+						isNewProperty: true,
+
+
+						test1: 'one',
+						test2: 'two',
+						test3: 'three',
+>>>>>>> b4def044ed5d0e6c299f273d88a335658de0cbcd
         };
     }
 
@@ -215,6 +227,7 @@ class NewVRoomForm extends Component {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
 
+<<<<<<< HEAD
 		console.log("this.state", this.state);
 		// Add new property and room if flag is set, otherwise add room to existing property
 		this.state.isNewProperty ? this.addNewPropertyAndRoom():this.addNewRoomToExistingProperty();
@@ -290,6 +303,171 @@ class NewVRoomForm extends Component {
     }
 
 	// render //////////////////////////////////////////////////
+=======
+        let { agent, street, city, state, zip } = this.state;
+        console.log("this.state", this.state);
+
+        // Get signed request from express server and use it to upload to S3
+        s3API.getSignedRequest(
+            {
+                fileName: this.state.fileName,
+                data: this.state.bits
+            },
+            "360", // Set type
+            url => {
+                // If upload successful then upload thumbnail
+                s3API.getSignedRequest(
+                    {
+                        fileName: this.state.fileNameTN,
+                        data: this.state.bitsTN
+                    },
+                    "thumbnail",
+                    urlTN => {
+                        // If upload successful then...
+                        if (url && urlTN) {
+													// If there is an existing property selected, create room in that property
+													if (this.state.propertyID){
+														console.log('---- adding new room to existing property --->');
+														////////////////////////////////////////////////////
+														//  ADD ROOM TO EXISTING PROPERTY HERE  ////////////
+														////////////////////////////////////////////////////
+														roomAPI.addNewRoom(propertyID, roomObj).then(response => {
+
+														})
+													}
+													// Otherwise, create new property and room
+													else {
+															let property = {
+																	thumbnail_url: urlTN,
+																	street: this.state.street,
+																	city: this.state.city,
+																	state: this.state.state,
+																	zip: this.state.zip,
+																	country: this.state.country,
+																	bedrooms: this.state.beds,
+																	baths: this.state.baths,
+																	built_year: this.state.year,
+																	price: this.state.price,
+																	square_feet: this.state.sqft
+															};
+															let room = {
+																	pano_url: url
+															};
+															let userID = cookie.load("userId");
+															console.log("cookie userId: ", userID);
+															console.log("property: ", property);
+															
+															
+															// Add new property to signed-in user, then add new room
+															// to the property that was just added
+															propertyAPI.addNewProperty(
+																	userID,
+																	property,
+																	addedProperty => {
+																			console.log( "addedProperty: ", addedProperty.data );
+																			roomAPI
+																					.addNewRoom( addedProperty.data._id, room )
+																					.then(response => {
+																							console.log( "addNewRoom response --->", response.data );
+																							let roomID = response.data._id;
+
+																							if (roomID) {
+																									console.log( " New roomID created --->", roomID );
+																									this.setState({
+																											roomID: roomID,
+																											annotateBtnTheme: "success",
+																											annotateBtnIsOutlined: false,
+																											submitBtnTheme: "isDisabled"
+																									});
+																							}
+																					});
+																			this.addAlert("File uploaded successfully");
+																	}
+															);
+													} // end of create property
+												} 
+												// If Upload Unsuccessful...
+												else {
+                            console.log("Upload error!");
+                            console.log("360 URL: ", url);
+                            console.log("Thumbnail URL: ", urlTN);
+                        }
+                    }
+                );
+            }
+        );
+		};
+
+// componentDidMount =======================================
+		componentDidMount = (prevProps, prevState) => {
+			// Get userID from cookies ----------
+			let userID = cookie.load('userId');
+			// console.log('userID',userID);
+			
+			// Get user's property list from API -------------
+				if (userID) {
+					console.log('userID ====',userID);
+					
+					propertyAPI.getAllUserProperties(userID, (response) => {
+						console.log('getAllUserProperties >>>>',response);
+					})
+					
+					// propertyAPI.getAllUserProperties(userID).then(response => {
+						// console.log('getAllUserProperties ===>', response.data.properties);
+						// let propertyList = response.data;
+						// console.log('propertyList',propertyList);
+						// // Set propertyList state, which will trigger BuildPropertyList
+						// this.setState({ propertyList })
+					// })
+				}
+
+			// Get list of all properties ( temporary ) ----------
+				propertyAPI.getAllProperties().then(response => {
+					console.log('allProperties ===>',response.data);
+					let propertyList = response.data;
+					// Set propertyList state, which will trigger BuildPropertyList
+					this.setState({ propertyList })
+				})
+			
+			// let newObj= Object.assign( { test1, test2, test3 } = this.state );
+			// console.log('newObj',newObj);
+
+		}
+// handlePanelChange =======================================
+		handlePanelChange = (event) => {
+			event.preventDefault();
+			const el = event.target;
+			let nextPanelID = el.getAttribute('panel');
+			// console.log('nextPanelID',nextPanelID);
+
+			// Remove chosen class from previous panel elements;
+			let prevPanel = document.querySelector('.chosen.ws-panel');
+			let prevControl = document.querySelector('.chosen.ws-panel-control');
+			prevPanel.classList.remove('chosen');
+			prevControl.classList.remove('chosen');
+
+			// Add chosen class to new panel elements
+			let nextPanel = document.getElementById(nextPanelID);
+			nextPanel.classList.add('chosen');
+			el.classList.add('chosen');
+			
+			// Set a flag in state to be used as indicator for other things ----------
+			// let isNewProperty = (nextPanelID === 'add-property') ? true : false ;
+			let isNewProperty = (nextPanelID === 'add-property');
+			console.log('isNewProperty',isNewProperty);
+
+			this.setState({ isNewProperty })
+		}
+// handlePropertySelection =====================================
+		handlePropertySelection = (data) => {
+			console.log('==== selected property ID ===>',data);
+			this.setState({
+				propertyID: data.id
+			})
+		}
+
+// render //////////////////////////////////////////////////
+>>>>>>> b4def044ed5d0e6c299f273d88a335658de0cbcd
     render() {
         return (
             <div className="pg-contains-aframe">
