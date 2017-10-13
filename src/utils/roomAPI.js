@@ -18,9 +18,9 @@ const roomAPI = {
     /**
      * Get all rooms of specific property
      */
-    getAllRoomsInProperty: propertyID => {
-        axios.get("/api/property/" + propertyID, result => {
-            return result.rooms;
+    getAllRoomsInProperty: (propertyID, cb) => {
+        axios.get("/api/property/" + propertyID).then(result => {
+            cb(result.data[0].rooms);
         });
     },
 

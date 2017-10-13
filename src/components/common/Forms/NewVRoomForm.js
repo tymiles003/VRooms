@@ -227,6 +227,7 @@ class NewVRoomForm extends Component {
 
 // componentDidMount =======================================
     componentDidMount = (prevProps, prevState) => {
+
         // Get userID from cookies ----------
         let userID = cookie.load('userId');
         // console.log('userID',userID);
@@ -253,7 +254,7 @@ class NewVRoomForm extends Component {
             console.log('allProperties ===>',response.data);
             let propertyList = response.data;
             // Set propertyList state, which will trigger BuildPropertyList
-            this.setState({ propertyList })
+            this.setState({ propertyList });
         })
         
     }
