@@ -52,6 +52,25 @@
 		padding: 0.5rem 1rem;
 		font-weight: 400;
 	}
+	#exit-btn {
+		top: 1rem;
+		left: 1rem;
+		position: fixed;
+		height: 2.4rem;
+		line-height: 2.4rem;
+		border-radius: 5px;
+		padding: 0 1rem;
+		font-size: 1.2rem;
+		font-weight: 300;
+		background-color: rgba(0,0,0,0.5);
+		i {
+			margin-right: .5rem;
+		}
+
+		&:hover {
+			background-color: rgba(0,0,0,0.7)
+		}
+	}
 	#confirm-position {
 		// position: fixed;
 		top: 60vh;

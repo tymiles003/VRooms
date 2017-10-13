@@ -938,6 +938,27 @@ body::-webkit-scrollbar-thumb {
   font-weight: 400;
 }
 
+.aframe-wrap #exit-btn {
+  top: 1rem;
+  left: 1rem;
+  position: fixed;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  border-radius: 5px;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.aframe-wrap #exit-btn i {
+  margin-right: .5rem;
+}
+
+.aframe-wrap #exit-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .aframe-wrap #confirm-position {
   top: 60vh;
   left: 50%;
