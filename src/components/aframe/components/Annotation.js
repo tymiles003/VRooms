@@ -190,6 +190,24 @@ class Annotation extends React.Component {
 		// let animation__scale = boxEl.getAttribute("animation__scale");
 		// console.log('animation__scale.to ===>', animation__scale.to);
 
+		//Added hover detection for Fresh demo
+
+		if (this.props.data.text=="Blue milk"){
+			
+			console.log("Star Wars Baby!"+ this.state.count);
+			this.setState({
+				count: this.state.count+1
+			});
+
+			if (this.state.count=5){
+				this.addAlert("Would you like some blue ice cream and yogurt too?");			
+			}
+			if (this.state.count>10){
+				this.addAlert("Ok ok! Let's get you some Bantha goodies!");			
+			}
+		}
+			
+
 	};
 
 // handleMouseLeave ================================
@@ -224,25 +242,26 @@ class Annotation extends React.Component {
 
 
 // handleHover =====================================
+	// handleHover = event => {
+	// 	event.preventDefault();
+
 // | Note from Wayne: this might be problematic with this component since 
 // | Annotation is an aframe entity and therefore doesn't have normal events.
 // | All events in aframe are synthetic and are usually declared differently
 // | I've been using mouseenter and mouseleave instead of hover, but if it works,
 // | it works. Just be careful mixing Aframe with normal react. The way it 
 // | handles everything is just whack. Let me know if you have any problems with it.
-	handleHover = event => {
-		event.preventDefault();
 		
-		if (this.props.data.text=="Blue milk"){
-			this.setState({
-				count: this.state.count+1
-			})
-		}
+	// 	if (this.props.data.text=="Blue milk"){
+	// 		this.setState({
+	// 			count: this.state.count+1
+	// 		})
+	// 	}
 
-		if (this.state.count>10){
-			this.addAlert("Would you like some blue ice cream and yogurt too?");			
-		}
-	};
+	// 	if (this.state.count>10){
+	// 		this.addAlert("Would you like some blue ice cream and yogurt too?");			
+	// 	}
+	// };
 
 // resetAttributes =================================
 	resetAttributes = (parent) => {
