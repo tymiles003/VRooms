@@ -194,12 +194,13 @@ class Annotation extends React.Component {
 
 		if (this.props.data.text=="Blue milk"){
 			
-			console.log("Star Wars Baby!"+ this.state.count);
+			console.log("Star Wars Baby! "+ this.state.count);
+
 			this.setState({
 				count: this.state.count+1
 			});
 
-			if (this.state.count=5){
+			if (this.state.count==5){
 				this.addAlert("Would you like some blue ice cream and yogurt too?");			
 			}
 			if (this.state.count>10){
