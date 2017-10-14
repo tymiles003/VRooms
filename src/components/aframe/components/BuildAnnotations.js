@@ -9,22 +9,32 @@ const BuildAnnotations = ( props ) => {
 	// const annos = props.annotations;
 	// console.log('annos',annos);
 	let annotationsToBuild = props.annotations;
-	console.log("annotationsToBuild", annotationsToBuild);
+	// console.log("annotationsToBuild", annotationsToBuild);
 
 	return (
 		<Entity>
 			{annotationsToBuild.map((ea, index) => {
-				{/* console.log('ea',ea); */}
-				{/* console.log('ea.link',ea.link); */}
-				{/* if ( ea.link !== '' ) { */}
 				if ( ea.link ) {
-					{/* return <ConstAnnoLink data={ ea } key={ index } /> */}
-					return <AnnoLink location={props.location} history={props.history} data={ ea } key={ index } />
-					{/* let LinkRouter = withRouter(AnnoLink); */}
-					{/* return <LinkRouter  data={ea}  key={index} />; */}
+					return (
+						<AnnoLink
+							location={props.location}
+							history={props.history}
+							data={ea}
+							key={index}
+							idx={index}
+							inEditMode={props.inEditMode}
+ 						/>
+ 					);
 				}
 				else {
-					return <Annotation data={ea} key={index}/>;
+					return ( 
+						<Annotation 
+							data={ea} 
+							key={index}
+							idx={index}
+							inEditMode={props.inEditMode}
+						/>
+ 					)
 				}
 			})}
 		</Entity>
