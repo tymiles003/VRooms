@@ -166,7 +166,7 @@ class EditShowcaseContent extends Component {
                             >
                                 <div className="content-block">
                                     <Link to={{
-                                            pathname: "/annotate_" + rooms._id,
+                                            pathname: "/edit/" + rooms._id,
                                         }}
                                     >
                                         <img
