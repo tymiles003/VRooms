@@ -260,6 +260,9 @@ class NewVRoomForm extends Component {
 									submitBtnTheme: "isDisabled"
 								});
 								this.addAlert("New room successfully added");
+								
+								// Clear form
+								this.clearForm();
 							}
 						});
 				} else {
