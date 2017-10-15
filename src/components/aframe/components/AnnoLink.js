@@ -259,20 +259,6 @@ class AnnoLink extends React.Component {
 							material={label.material}
 							look-at="#camera"
 						/>
-					{/* TEXT ===================================== */}
-						{/* <Entity
-							className="portal-text"
-							geometry={text.geometry}
-							text={Object.assign({},text.text, {value: data.text})}
-							position={text.position}
-							scale={text.scale}
-							material={text.material}
-							visible='false'
-							look-at="#camera"
-							events={{
-								mouseleave: this.handleMouseLeave
-							}}
-						/> */}
 			</Entity>
 		);
 	}
