@@ -126,18 +126,7 @@ class NewVRoomForm extends Component {
 						// Check if both uploads were successful
 						if (url && urlTN) {
 							// Create new property
-							let {
-								street,
-								city,
-								state,
-								zip,
-								country,
-								beds,
-								baths,
-								year,
-								price,
-								sqft
-							} = this.state;
+							let { street, city, state, zip, country, beds, baths, year, price, sqft } = this.state;
 							let property = {
 								street,
 								city,
@@ -369,7 +358,7 @@ class NewVRoomForm extends Component {
 			fileNameTN: "",
 			fileStatus: "no-file",
 			
-			roomID: "",
+			// roomID: "",
 		});
 		this.setState({
 			clearing: false

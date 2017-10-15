@@ -208,6 +208,7 @@ class AnnotationAframe extends React.Component {
 					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
 					<img id="annotation-photo" src={this.state.pano_url + "?v=1230"} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
+					<img id="edit-icon" src="/public/assets/icons/edit-white.svg" crossOrigin="anonymous"/>
 				</a-assets>
 			{/* SKY ===============================================*/}
 				<Entity
@@ -320,7 +321,6 @@ class AnnotationAframe extends React.Component {
 					intensity="1"
 					position={{ x: -0.5, y: 3, z: 1 }}
 				/>
-			{/* GROUND ==========================================*/}
 
 			{/*==================================================*/}
 
