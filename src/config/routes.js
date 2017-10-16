@@ -83,8 +83,8 @@ const routes = (
             <Route path="/show/:roomID" component={ShowroomMain} />
             <Route path="/show_:roomID" component={ShowroomMain} />
 
-						<Redirect from="/portal-demo" to="/show/59c8544560f9e6001233404c"/>
-						<Redirect from="/demo" to="/show/59c8544560f9e6001233404c"/>
+						<Redirect from="/portal-demo" to="/show/59e1b4ce41f8990012a65cba"/>
+						<Redirect from="/demo" to="/show/59e1b4ce41f8990012a65cba"/>
 
         </Switch>
     </BrowserRouter>
