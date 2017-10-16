@@ -41,7 +41,7 @@ class AnnotationAframe extends React.Component {
 			annotations: [],
 			creatingPortal: false,
 			
-			loading: true,
+			// loading: true,
 			isMobile: false,
 
 		};
@@ -95,8 +95,8 @@ class AnnotationAframe extends React.Component {
 			let url = nextProps.pano_url;
 			console.log('pano_url ===>',url);
 
-			let img = document.getElementById('annotation-photo');
-			img.addEventListener('load', this.handleLoadState)
+			// let img = document.getElementById('annotation-photo');
+			// img.addEventListener('load', this.handleLoadState)
 			
 			// let assets = document.querySelector('a-assets');
 			// assets.addEventListener('loaded', console.log('>>>> ASSETS LOADED >>>>'))
@@ -114,13 +114,13 @@ class AnnotationAframe extends React.Component {
 
 	};
 // handleLoad ======================================
-	handleLoadState = (e) => {
-		e.preventDefault();
-		console.log('>>>> img loaded');
-		this.setState({
-			loading: false
-		})
-	}
+	// handleLoadState = (e) => {
+	// 	e.preventDefault();
+	// 	console.log('>>>> img loaded');
+	// 	this.setState({
+	// 		loading: false
+	// 	})
+	// }
 
 
 // componentWillMount ==============================
@@ -144,8 +144,8 @@ class AnnotationAframe extends React.Component {
 			annotations: this.props.annotations
 		});
 
-
 		// this.detectEnvironment();
+
 	};
 // detectEnvironment ===============================
 	detectEnvironment = () => {
@@ -200,16 +200,16 @@ class AnnotationAframe extends React.Component {
 	render() {
 		return (
 			<Scene inspector embedded >
-				{/* className={this.state.loading ? 'loading' : 'loaded' } */}
-				{/* {this.state.loading && <Cloak/>} */}
 				{/* <Cloak/> */}
 			{/*====================================================*/}
-				<a-assets>
+				{/* <a-assets> */}
+				<Entity primitive="a-assets">
 					{/* <a-asset-item id="anno-asset" src={this.state.pano_url} crossOrigin="anonymous"/> */}
 					<img id="annotation-photo" src={this.state.pano_url + "?v=1230"} crossOrigin="anonymous"/>
 					{/* <img id="annotation-photo" src={this.state.pano_url} /> */}
-					<img id="edit-icon" src="/public/assets/icons/edit-white.svg" crossOrigin="anonymous"/>
-				</a-assets>
+					<img id="edit-icon" src="/public/assets/icons/edit-white.svg"/>
+				</Entity>
+				{/* </a-assets> */}
 			{/* SKY ===============================================*/}
 				<Entity
 					primitive="a-sky"

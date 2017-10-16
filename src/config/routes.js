@@ -33,6 +33,8 @@ import ShowroomVideoMain from "../components/ShowroomVideoMain";
 
 import EditShowcase from "../components/EditShowcase";
 
+import LatestRoom from '../utils/LatestRoom';
+
 // import createHistory from 'history/createBrowserHistory';
 // const history = createHistory();
 
@@ -85,6 +87,8 @@ const routes = (
 
 						<Redirect from="/portal-demo" to="/show/59c8544560f9e6001233404c"/>
 						<Redirect from="/demo" to="/show/59c8544560f9e6001233404c"/>
+
+						<Route path="/latest" component={LatestRoom} />
 
         </Switch>
     </BrowserRouter>
