@@ -36,6 +36,7 @@ import EditShowcase from "../components/EditShowcase";
 import AframePresentation from "../components/AframePresentation";
 
 import LatestRoom from '../utils/LatestRoom';
+import GenerateIframe from '../components/GenerateIframe';
 
 // import createHistory from 'history/createBrowserHistory';
 // const history = createHistory();
@@ -87,11 +88,12 @@ const routes = (
             <Route path="/show/:roomID" component={ShowroomMain} />
             <Route path="/show_:roomID" component={ShowroomMain} />
 
-						{/* Redirects */}
-						<Redirect from="/portal-demo" to="/show/59c8544560f9e6001233404c"/>
-						<Redirect from="/demo" to="/show/59c8544560f9e6001233404c"/>
+						<Redirect from="/portal-demo" to="/show/59e1b4ce41f8990012a65cba"/>
+						<Redirect from="/demo" to="/show/59e1b4ce41f8990012a65cba"/>
 
 						<Route path="/latest" component={LatestRoom} />
+						<Route path="/iframe" component={GenerateIframe} />
+						
 
         </Switch>
     </BrowserRouter>

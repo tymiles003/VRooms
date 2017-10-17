@@ -1341,6 +1341,153 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid red;
 }
 
+.max-w, .contain, .ws-code-section, .ws-code-section .code-wrap {
+  width: 100%;
+  max-width: 800px;
+}
+
+.contain, .ws-code-section {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 0;
+}
+
+.ws-code-section {
+  text-align: left;
+  width: 100%;
+  background-color: #282c34;
+  border-radius: 5px;
+  padding: 0 2rem;
+  max-width: 636px;
+  font-family: "Source Code Pro", monospace;
+}
+
+.ws-code-section.full-width {
+  border-radius: 0;
+}
+
+.ws-code-section .code-wrap {
+  position: relative;
+  padding: 0 2rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+.ws-code-section .code-wrap code {
+  background-color: #282c34;
+  color: #abb2bf;
+  border: none;
+  outline: none;
+  margin: 0;
+}
+
+.ws-code-section .code-text {
+  font-family: 'Source Code Pro', monospace;
+  color: #abb2bf;
+}
+
+pre {
+  background-color: #282c34;
+  width: 100%;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+}
+
+code {
+  color: #abb2bf;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 2rem 0;
+  tab-size: 2;
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+  float: left;
+  overflow: auto;
+}
+
+code.js {
+  color: #e06c75;
+}
+
+.copy-code.btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #5c6370;
+  transition: background-color 500ms;
+}
+
+.copy-code.btn:hover {
+  background-color: #828997;
+}
+
+code span, code mark {
+  background-color: transparent;
+}
+
+code .green {
+  color: #98c379;
+}
+
+code .red {
+  color: #e06c75;
+}
+
+code .purple {
+  color: #c678dd;
+}
+
+code .cyan {
+  color: #56b6c2;
+}
+
+code .text-yellow {
+  color: #e5d58e;
+}
+
+code .text-orange {
+  color: #e5c07b;
+}
+
+code .function {
+  color: #61afef;
+}
+
+code .symbol {
+  color: #abb2bf;
+}
+
+code .operator {
+  color: #abb2bf;
+}
+
+code .comment {
+  color: #828997;
+}
+
+code .comment span, code .comment mark {
+  color: inherit;
+}
+
+code .string {
+  color: #98c379;
+}
+
+code .string span, code .string mark {
+  color: inherit;
+}
+
+code span.keyword, code mark.keyword {
+  color: #c678dd !important;
+}
+
 html {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "sans-serif";
 }
