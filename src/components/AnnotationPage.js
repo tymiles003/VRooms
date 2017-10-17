@@ -3,19 +3,18 @@ import AnnotationAframe from "./aframe/AnnotationAframe";
 import AnnotationForm from "./common/Forms/AnnotationForm";
 import propertyAPI from "../utils/propertyAPI";
 import roomAPI from "../utils/roomAPI";
-// import {Helmet} from 'react-helmet';
 import Btn from "./common/Elements/Btn";
 import Cloak from "./common/Elements/Cloak";
-import Helmet from 'react-helmet';
+// import {Helmet} from 'react-helmet';
 
-const defaultAnnotationState = {
-	label: "Label",
-	text: "Lorem Ipsum whatever blah.",
-	xAxis: 0,
-	yAxis: 1.5,
-	zAxis: -4,
-	fetchCoordinates: false,
-};
+// const defaultAnnotationState = {
+// 	label: "Label",
+// 	text: "Lorem Ipsum whatever blah.",
+// 	xAxis: 0,
+// 	yAxis: 1.5,
+// 	zAxis: -4,
+// 	fetchCoordinates: false,
+// };
 
 // Pass roomID to this page via props
 class AnnotationPage extends Component {
@@ -298,9 +297,9 @@ class AnnotationPage extends Component {
 ////////////////////////////////////////////////////
 } export default AnnotationPage;
 
-AnnotationPage.defaultProps = {
-	roomID: '59c5a24b7f69c2255b616d18'
-}
+// AnnotationPage.defaultProps = {
+// 	roomID: '59c5a24b7f69c2255b616d18'
+// }
 // AnnotationPage.defaultProps = {
 // 	propID: "59c5a00ba4d2290012cbdfaa",
 // 	roomID: "59c5a24b7f69c2255b616d18",

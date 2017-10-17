@@ -1,0 +1,175 @@
+
+// $atom-bg: #303340;
+$atom-bg-highlighted: #363a4f;
+$atom-yellow: #e5d58e;
+$atom-yellow2: #e7d68f;
+$atom-green: #9fec9b;
+$atom-punc: #d9def3;
+$atom-punc: #9298bd;
+$atom-cursor: #8091f5;
+
+$atom-cyan: hsl(187, 47%, 55%);
+$atom-blue: hsl(207, 82%, 66%);
+$atom-green: hsl(95, 38%, 62%);
+$atom-purple: hsl(286, 60%, 67%);
+$atom-red:  hsl(355, 65%, 65%);
+$atom-red2:  hsl(5, 48%, 51%);
+$atom-orange: hsl(29, 54%, 61%);
+$atom-orange2: hsl(39, 67%, 69%);
+$atom-mono-1: hsl(220, 14%, 71%); // default text
+$atom-mono-2: hsl(220,  9%, 55%);
+$atom-mono-3: hsl(220, 10%, 40%);
+$atom-fg: $atom-mono-1;
+$atom-bg: hsl(220, 13%, 18%);
+
+$atom-mono-0: #e2e9f7;
+
+// .ws-code-wrap {
+// 	pre {
+// 		font-family: monospace;
+// 		font-size: 1rem;
+// 		code {
+// 			tab-size: 4;
+// 			line-height: 1;
+// 		}
+// 	}
+// }
+
+.max-w {
+	width: 100%;
+	max-width: 800px;
+}
+
+.contain {
+	@extend .max-w;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	padding: 0;
+}
+
+
+$font-sans: Roboto,'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-serif: Georgia, 'Noto serif', serif;
+$font-mono: 'Source Code Pro', monospace;
+$radius: 5px;
+$max-width: 700px;
+$rem: 16px;
+$padding-sides: 2*$rem;
+
+.ws-code-section {
+	text-align: left;
+	width: 100%;
+	background-color: $atom-bg;
+	border-radius: 5px;
+	@extend .contain;
+	padding: 0 2rem;
+	max-width: $max-width - (4*$rem);
+	font-family: $font-mono;
+	
+	&.full-width {
+		// max-width: 100%;
+		border-radius: 0;
+	}
+	
+	.code-wrap {
+		position: relative;
+		@extend .max-w;
+		padding: 0 2rem;
+		max-width: 800px;
+		width: 100%;
+
+		code {
+			background-color: $atom-bg;
+			color: $atom-mono-0;
+			border: none;
+			outline: none;
+			margin: 0;
+
+		}
+	}
+	.code-text {
+		font-family: 'Source Code Pro', monospace;
+		color: $atom-mono-1;
+	}
+}
+
+
+
+pre {
+	background-color: $atom-bg;
+	width: 100%;
+	padding: 0;
+	margin: 1rem 0;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	max-width: 900px;
+}
+
+code {
+	color: $atom-mono-0;
+	&.js { color: $atom-red; }
+
+	font-family: $font-mono;
+	font-size: 1rem;
+	font-weight: 500;
+	padding: 2rem 0;
+	tab-size: 2;
+	text-align: left;
+	display: inline-block; // @extend .contain;
+	width: 100%;
+	float: left;
+	overflow: auto; 
+	letter-spacing: -1px;
+}
+
+
+// Copy code to clipboard button
+.copy-code.btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: $atom-mono-3;
+	transition: background-color 500ms;
+	
+	&:hover {
+		background-color: $atom-mono-2;
+	}
+}
+
+
+
+// Color Scheme
+code {
+	span, mark { 
+		background-color: transparent; 
+	}
+
+	.green { color: $atom-green; }
+	.red { color: $atom-red; }
+	.purple { color: $atom-purple; }
+	.cyan { color: $atom-cyan; }
+	.text-yellow { color: $atom-yellow; } 
+	// .text-orange { color: $atom-orange; } 
+	.text-orange { color: $atom-orange2; } 
+	
+	.function { color: $atom-blue; }
+	.symbol { color: $atom-mono-1; }
+	.operator { color: $atom-mono-1; }
+
+	.comment 	{ 
+		color: $atom-mono-2; 
+		span, mark { color: inherit; }
+	}
+	
+	.string { 
+		color: $atom-green;
+		span, mark { color: inherit; }
+	}
+
+	span.keyword, mark.keyword {
+		color: $atom-purple !important;
+	}
+
+}

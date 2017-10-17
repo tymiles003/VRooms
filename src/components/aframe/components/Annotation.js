@@ -139,6 +139,7 @@ class Annotation extends React.Component {
 		};
 	}
 
+// Alerts ==========================================
 	addAlert = this.addAlert.bind(this);
     clearAlert = this.clearAlert.bind(this);
 
@@ -156,6 +157,22 @@ class Annotation extends React.Component {
 
 // handleClick =====================================
 	handleClick = event => {
+		event.preventDefault();
+		let el = event.target;
+		let parent = el.parentElement;
+		let boxEl = parent.querySelector('.anno-toggle');
+		let labelEl = parent.querySelector('.anno-label');
+		let textEl = parent.querySelector('.anno-text');
+		let cursorEl = document.getElementById('cursor');
+
+		labelEl.setAttribute( 'material',{'color': '#242424', opacity: 1} );
+		boxEl.setAttribute( 'visible', false );
+		textEl.setAttribute( 'visible', true );
+		cursorEl.setAttribute('visible', false);
+		
+	};
+// handleDelete =====================================
+	handleDelete = event => {
 		event.preventDefault();
 		let el = event.target;
 		let parent = el.parentElement;
@@ -222,7 +239,7 @@ class Annotation extends React.Component {
 
 	};
 
-// handleBoxMouseLeave ================================
+// handleBoxMouseLeave =============================
 	handleBoxMouseLeave = event => {
 		event.preventDefault();
 		const et = event.target;
@@ -246,12 +263,12 @@ class Annotation extends React.Component {
 	// handleHover = event => {
 	// 	event.preventDefault();
 
-// | Note from Wayne: this might be problematic with this component since 
-// | Annotation is an aframe entity and therefore doesn't have normal events.
-// | All events in aframe are synthetic and are usually declared differently
-// | I've been using mouseenter and mouseleave instead of hover, but if it works,
-// | it works. Just be careful mixing Aframe with normal react. The way it 
-// | handles everything is just whack. Let me know if you have any problems with it.
+	// | Note from Wayne: this might be problematic with this component since 
+	// | Annotation is an aframe entity and therefore doesn't have normal events.
+	// | All events in aframe are synthetic and are usually declared differently
+	// | I've been using mouseenter and mouseleave instead of hover, but if it works,
+	// | it works. Just be careful mixing Aframe with normal react. The way it 
+	// | handles everything is just whack. Let me know if you have any problems with it.
 		
 	// 	if (this.props.data.text=="Blue milk"){
 	// 		this.setState({
@@ -375,21 +392,32 @@ class Annotation extends React.Component {
 							mouseleave: this.handleMouseLeave
 						}}
 					/>
-
+				{/* DELETE BTN =============================== */}
 					{/* <Entity
-						geometry={{ primitive, height, width }}
-						material={{ color: "#9b59b6" }}
-						className="anno-text"
+						className="delete-anno"
+						id={'delete-anno-'+this.props.idx}
+						geometry={{
+							primitive: 'plane',
+							height: 0.06,
+							width: 0.12,
+						}}
+						text={{
+							align: 'center',
+							color: 'white',
+							width: 0.8,
+							value: 'edit'
+						}}
+						position={{ x: 0, y: -0.3, z: 0 }}
+						scale={{ x: 3, y: 3, z: 3 }}
+						material={{ 
+							color: "#242424", 
+							opacity: 0.8
+						}}
 						look-at="#camera"
-						scale={{ x: 0, y: 0, z: 0 }}
-					>
-						<a-text
-							value={text}
-							align="center"
-							scale={textScale}
-							position={textPos}
-						/>
-					</Entity> */}
+						events={{ 
+							click: this.handleDelete, 
+							}}
+					/> */}
 			</Entity>
 		);
 	}

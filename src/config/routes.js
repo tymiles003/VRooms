@@ -33,6 +33,11 @@ import ShowroomVideoMain from "../components/ShowroomVideoMain";
 
 import EditShowcase from "../components/EditShowcase";
 
+import AframePresentation from "../components/AframePresentation";
+
+import LatestRoom from '../utils/LatestRoom';
+import GenerateIframe from '../components/GenerateIframe';
+
 // import createHistory from 'history/createBrowserHistory';
 // const history = createHistory();
 
@@ -72,19 +77,23 @@ const routes = (
 
             <Route path="/editshowcase" component={EditShowcase} />
             
-            {/* <Route exact path="/annotate" component={AnnotationPage} /> */}
+						<Route path="/presentation" component={AframePresentation}/>
 
+
+						{/* Room Routes */}
             <Route path="/annotate/:roomID" component={AnnotationPage} />
             <Route path="/annotate_:roomID" component={AnnotationPage} />
             <Route path="/edit/:roomID" component={AnnotationPage} />
             <Route path="/edit_:roomID" component={AnnotationPage} />
-
-						
             <Route path="/show/:roomID" component={ShowroomMain} />
             <Route path="/show_:roomID" component={ShowroomMain} />
 
 						<Redirect from="/portal-demo" to="/show/59e1b4ce41f8990012a65cba"/>
 						<Redirect from="/demo" to="/show/59e1b4ce41f8990012a65cba"/>
+
+						<Route path="/latest" component={LatestRoom} />
+						<Route path="/iframe" component={GenerateIframe} />
+						
 
         </Switch>
     </BrowserRouter>
