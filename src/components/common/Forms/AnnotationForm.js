@@ -35,6 +35,7 @@ class AnnotationForm extends Component {
 				label: '',
 				text: '',
 				inCreationMode: false,
+				toggled: false,
 			})
 		}
 

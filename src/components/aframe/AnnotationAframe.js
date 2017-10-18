@@ -59,6 +59,8 @@ class AnnotationAframe extends React.Component {
 				pano_url: nextURL
 			})
 		}
+
+		
 	//--------------------------------------------------
 
 	// Get the initial position of the cube...
@@ -105,11 +107,21 @@ class AnnotationAframe extends React.Component {
 		}
 	//--------------------------------------------------
 	// Toggle changes when creating portal vs. text
+	
 		if (nextProps.creatingPortal !== this.props.creatingPortal){
+			console.log(this.props.creatingPortal,'--->',nextProps.creatingPortal);
+			
 			this.setState({
 				creatingPortal: nextProps.creatingPortal
 			})
 		}
+	//--------------------------------------------------
+	// When exiting creation mode reset toggle state.
+		// if ( !nextProps.inCreationMode && this.props.inCreationMode ) {
+		// 	this.setState({
+		// 		creatingPortal: false,
+		// 	})
+		// }
 	//--------------------------------------------------
 
 	};

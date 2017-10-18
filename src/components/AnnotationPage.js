@@ -221,7 +221,8 @@ class AnnotationPage extends Component {
 			annotations: newAnnoArray,
 			inCreationMode: false,
 			isSaved: true,
-			mode: 'saved'
+			mode: 'saved',
+			toggled: false,
 		})
 		
 		// Save to Database
@@ -277,6 +278,7 @@ class AnnotationPage extends Component {
 								port={this.portForm}
 								mode={this.state.mode}
 								roomArray={this.state.roomArray}
+								creatingPortal={this.state.toggled}
 							/>
 
 							<Btn
