@@ -58,7 +58,7 @@ class AnnotationVideoAframe extends React.Component {
 				"yAxis" : 4.35262777304134,
 				"xAxis" : -1.807637030617449,
 				"width" : 8,
-				"link" : "59c855be60f9e60012334050",
+				"link" : "fresh",
 				"image" : "",
 				"label" : "Teleport",
 				"text" : "It's time to teleport"

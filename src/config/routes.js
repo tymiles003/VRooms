@@ -73,6 +73,7 @@ const routes = (
             <Route path="/subway" component={Subway} />
 
             <Route path="/fresh" component={AmazonFreshDemo} />
+            <Route path="/show/fresh" component={AmazonFreshDemo} />
             <Route path="/showvideo" component={ShowroomVideoMain} />
 
             <Route path="/editshowcase" component={EditShowcase} />
