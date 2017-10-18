@@ -60,6 +60,7 @@ class AnnotationPage extends Component {
 
 // componentDidMount ===============================
 	componentDidMount = () => {
+		console.log('this.props',this.props);
 		// this.handleAnnotations();
 		// this.getProperty(); // not super essential. for extra info on page.
 		// console.log("---- componentDidMount (Page) ---> state", this.state.annotations);
@@ -77,7 +78,7 @@ class AnnotationPage extends Component {
 		
 		this.setState({rID})
 
-		// Get Room data from roomAPI
+		// Get Room data from roomAPI -------------------------
 		roomAPI.getRoom(rID).then(response => {
 			let roomData = response.data[0];
 			let { roomID, pano_url, annotations, parent_propertyID } = response.data[0];
@@ -253,8 +254,8 @@ class AnnotationPage extends Component {
 						newAnnotation={this.state.newAnnotation}
 
 						creatingPortal={this.state.toggled}
+						movable={this.state.movable}
 					/>
-						{/* roomID={this.state.roomID} */}
 
 				{/* Buttons ==========*/}
 					<Btn

@@ -86,6 +86,7 @@ const routes = (
             <Route path="/edit_:roomID" component={AnnotationPage} />
             <Route path="/show/:roomID" component={ShowroomMain} />
             <Route path="/show_:roomID" component={ShowroomMain} />
+            <Route path="/move/:roomID" component={ShowroomMain} />
 
 						<Redirect from="/portal-demo" to="/show/59e1b4ce41f8990012a65cba"/>
 						<Redirect from="/demo" to="/show/59e1b4ce41f8990012a65cba"/>
@@ -95,7 +96,6 @@ const routes = (
 						
 						<Route path="/iframe" component={GenerateIframe} />
 
-						<Redirect from="/presentation" to="https://prezi.com/p/7tzxtxja27ee/"/>
 
 
         </Switch>

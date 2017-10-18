@@ -26,7 +26,8 @@ class ShowroomMain extends React.Component {
             pano_url: "",
             annotations: [],
             message: 1,
-            roomID: ""
+						roomID: "",
+						movable: false,
         };
     }
 
@@ -77,7 +78,17 @@ class ShowroomMain extends React.Component {
                     annotations
                 });
             });
-        }
+				}
+				
+			// Toggle movable state for certain urls --------------
+				let moveURL = this.props.match.path;
+				let partURL = moveURL.slice(1,5);
+
+				if (partURL === 'move') {
+					this.setState({
+						movable: true
+					})
+				}
     };
     // portAframe =============================
     portAframe = aframeState => {
@@ -117,7 +128,8 @@ class ShowroomMain extends React.Component {
                     port={this.portAframe}
                     annotations={this.state.annotations}
                     pano_url={this.state.pano_url}
-                    message={this.state.message}
+										message={this.state.message}
+										movable={this.state.movable}
                 />
                 <span className="fixed-info">
                     {this.state.message} viewer(s) currently

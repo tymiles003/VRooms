@@ -124,13 +124,17 @@ class AnnotationAframe extends React.Component {
 		// }
 	//--------------------------------------------------
 	// Mobile Raycaster Ticking
-	if (nextProps.inCreationMode && this.state.isMobile){
-		// let limit = 1000;
-		// let func = this.getPosition();
-		// this.fetchPosition();
-	}
+		if (nextProps.inCreationMode && this.state.isMobile){
+			// let limit = 1000;
+			// let func = this.getPosition();
+			// this.fetchPosition();
+		}
 	//--------------------------------------------------
-
+	// Ability to Move
+		this.setState({
+			movable: nextProps.movable
+		})
+	//--------------------------------------------------
 	};
 // handleLoad ======================================
 	// handleLoadState = (e) => {
@@ -266,9 +270,10 @@ class AnnotationAframe extends React.Component {
 					primitive="a-camera"
 					mouse-cursor
 					look-controls="reverseMouseDrag: true"
-					wasd-controls="enabled: false"
 					id="camera"
+					wasd-controls={'enabled: '+this.state.movable}
 				>
+					{/* wasd-controls="enabled: true" */}
 			{/* CURSOR ============================================*/}
 				<Entity 
 					primitive="a-cursor" 
