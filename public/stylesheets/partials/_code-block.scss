@@ -25,7 +25,7 @@ $atom-bg: hsl(220, 13%, 18%);
 $atom-mono-0: #e2e9f7;
 
 // .ws-code-wrap {
-// 	pre {
+// 	pre, .pre-tag {
 // 		font-family: monospace;
 // 		font-size: 1rem;
 // 		code {
@@ -96,7 +96,7 @@ $padding-sides: 2*$rem;
 
 
 
-pre {
+pre, .pre-tag {
 	background-color: $atom-bg;
 	width: 100%;
 	padding: 0;
@@ -107,7 +107,7 @@ pre {
 	max-width: 900px;
 }
 
-code {
+code, .code-tag {
 	color: $atom-mono-0;
 	&.js { color: $atom-red; }
 
@@ -141,7 +141,7 @@ code {
 
 
 // Color Scheme
-code {
+code, .code-tag {
 	span, mark { 
 		background-color: transparent; 
 	}
@@ -151,8 +151,8 @@ code {
 	.purple { color: $atom-purple; }
 	.cyan { color: $atom-cyan; }
 	.text-yellow { color: $atom-yellow; } 
-	// .text-orange { color: $atom-orange; } 
-	.text-orange { color: $atom-orange2; } 
+	.text-orange { color: $atom-orange; } 
+	// .text-orange { color: $atom-orange2; } 
 	
 	.function { color: $atom-blue; }
 	.symbol { color: $atom-mono-1; }
