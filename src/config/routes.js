@@ -89,6 +89,7 @@ const routes = (
 
 						<Redirect from="/portal-demo" to="/show/59e1b4ce41f8990012a65cba"/>
 						<Redirect from="/demo" to="/show/59e1b4ce41f8990012a65cba"/>
+						<Redirect from="/earth" to="/show/59e784c01ff8730012ab9ead"/>
 
 						<Route path="/latest" component={LatestRoom} />
 						

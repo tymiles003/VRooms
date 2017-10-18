@@ -7,6 +7,9 @@
 	justify-content: center;
 	align-items: center;
 	background-color: #fff;
+	// prevent accidental dragging
+	pointer-events: none;
+	touch-action: none;
 	.cloak-content {
 		z-index: inherit;
 		// top: 50%;

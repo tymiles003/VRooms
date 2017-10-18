@@ -1030,6 +1030,8 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  pointer-events: none;
+  touch-action: none;
 }
 
 .ws-cloak .cloak-content {
@@ -1454,7 +1456,7 @@ code .text-yellow, .code-tag .text-yellow {
 }
 
 code .text-orange, .code-tag .text-orange {
-  color: #e5c07b;
+  color: #d19a66;
 }
 
 code .function, .code-tag .function {
@@ -1523,4 +1525,12 @@ html {
 .pg-form main header .headline,
 .pg-newVRoom main header .headline {
   font-weight: 700;
+}
+
+.expand-and-center {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
