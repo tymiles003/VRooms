@@ -1,51 +1,53 @@
-<a id="vrooms-toggle" class="ws-btn" href="#"> Toggle iframe
+<a id="vrooms-toggle" class="ws-b" href="#"> Toggle iframe
 	<script type="text/javascript">
-		var iframeEl = document.createElement('iframe');
-				iframeEl.setAttribute('id', 'vrooms-iframe')
-				iframeEl.setAttribute('src', "http://www.vrooms.us/show/59e1b4ce41f8990012a65cba")
-				iframeEl.setAttribute('allowfullscreen', "yes")
-				iframeEl.setAttribute('allowvr', "yes")
-				iframeEl.setAttribute('crossorigin', "true")
-				iframeEl.style.display = 'none';
-				iframeEl.style.height = '100vh';
-				iframeEl.style.width = '100vw';
-				iframeEl.style.top = '0';
-				iframeEl.style.left = '0';
-				iframeEl.style.position = 'fixed';
-				iframeEl.style.zIndex = '999999'
-		document.querySelector('body').appendChild(iframeEl);
+var i = document.createElement('iframe');
+i.setAttribute('id', 'vrooms-iframe')
+i.setAttribute('src', "http://www.vrooms.us/show/59e1b4ce41f8990012a65cba")
+i.setAttribute('allowfullscreen', "yes")
+i.setAttribute('allowvr', "yes")
+i.setAttribute('crossorigin', "true")
+i.style.display = 'none';
+i.style.height = '100vh';
+i.style.width = '100vw';
+i.style.top = '0';
+i.style.left = '0';
+i.style.position = 'fixed';
+i.style.zIndex = '999999'
+document.querySelector('body').appendChild(i);
 
-		var btn = document.createElement('button');
-				btn.innerHTML = 'Exit 360 View';
-				btn.setAttribute('id', 'close-iframe');
-				btn.style.background = '#333';
-				btn.style.color = '#ffffff';
-				btn.style.position = 'fixed';
-				btn.style.display = 'none';
-				btn.style.top = '1rem';
-				btn.style.left = '1rem';
-				btn.style.fontSize = '16px';
-				btn.style.padding='1em';
-				btn.style.zIndex = '1000000';
-				btn.style.border = 'none';
-				btn.style.outline = 'none';
-				btn.style.borderRadius = '5px';
-				btn.style.fontFamily = 'Helvetica Neue', 'Roboto', 'sans-serif';
-				btn.style.cursor = 'pointer';
-		document.querySelector('body').appendChild(btn)
+var b = document.createElement('button');
+	b.innerHTML = 'Exit 360 View';
+	b.setAttribute('id', 'close-iframe');
+	b.style.background = '#333';
+	b.style.color = '#ffffff';
+	b.style.position = 'fixed';
+	b.style.display = 'none';
+	b.style.top = '1rem';
+	b.style.left = '1rem';
+	b.style.fontSize = '16px';
+	b.style.padding='1em';
+	b.style.zIndex = '1000000';
+	b.style.border = 'none';
+	b.style.outline = 'none';
+	b.style.borderRadius = '5px';
+	b.style.fontFamily = 'Helvetica Neue', 'Roboto', 'sans-serif';
+	b.style.cursor = 'pointer';
+document.querySelector('body').appendChild(b)
 
-		document.getElementById('vrooms-toggle').addEventListener('click', function () {			
-			document.getElementById('vrooms-iframe')iframe.style.display = "block";
-			document.getElementById('close-iframe').style.display = "inline-block";
-			this.classList.toggle('open');
-		})
+document.getElementById('vrooms-toggle').addEventListener('click', function () {			
+document.getElementById('vrooms-iframe').style.display = "block";
+document.getElementById('close-iframe').style.display = "inline-block";
+this.classList.toggle('open');
+})
 
-		document.getElementById('close-iframe').addEventListener('click', function(){
-			document.getElementById('vrooms-iframe').style.display = 'none';
-			this.style.display = 'none';
-		})
+document.getElementById('close-iframe').addEventListener('click', function(){
+document.getElementById('vrooms-iframe').style.display = 'none';
+this.style.display = 'none';
+})
 
 	</script>
 </a>
 
-<!-- <iframe id="vrooms-iframe" style="height: 95%; width: 95%; display: none;" src="http://www.vrooms.us/show/59e1b4ce41f8990012a65cba" allowfullscreen="yes" allowvr="yes" crossorigin="true"></iframe> -->
+<iframe id="vrooms-iframe" style="height:100vh; width:100vw; display:none; position:fixed; top:0; left:0; zIndex:2147483646" src="http://www.vrooms.us/show/59e1b4ce41f8990012a65cba" allowfullscreen="yes" allowvr="yes" crossorigin="true">
+	<button id="close-iframe" style="background: rgb(51, 51, 51); color: rgb(255, 255, 255); position: fixed; display: inline-block; top: 1rem; left: 1rem; font-size: 16px; padding: 1em; z-index: 2147483647; border: none; outline: none; border-radius: 5px; font-family: &quot;Helvetica Neue&quot;; cursor: pointer;">Exit 360 View</button>
+</iframe>

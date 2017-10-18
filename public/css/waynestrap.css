@@ -1376,7 +1376,7 @@ body::-webkit-scrollbar-thumb {
 
 .ws-code-section .code-wrap code {
   background-color: #282c34;
-  color: #abb2bf;
+  color: #e2e9f7;
   border: none;
   outline: none;
   margin: 0;
@@ -1387,7 +1387,7 @@ body::-webkit-scrollbar-thumb {
   color: #abb2bf;
 }
 
-pre {
+pre, .pre-tag {
   background-color: #282c34;
   width: 100%;
   padding: 0;
@@ -1398,8 +1398,8 @@ pre {
   max-width: 900px;
 }
 
-code {
-  color: #abb2bf;
+code, .code-tag {
+  color: #e2e9f7;
   font-family: "Source Code Pro", monospace;
   font-size: 1rem;
   font-weight: 500;
@@ -1410,9 +1410,10 @@ code {
   width: 100%;
   float: left;
   overflow: auto;
+  letter-spacing: -1px;
 }
 
-code.js {
+code.js, .code-tag.js {
   color: #e06c75;
 }
 
@@ -1428,63 +1429,63 @@ code.js {
   background-color: #828997;
 }
 
-code span, code mark {
+code span, code mark, .code-tag span, .code-tag mark {
   background-color: transparent;
 }
 
-code .green {
+code .green, .code-tag .green {
   color: #98c379;
 }
 
-code .red {
+code .red, .code-tag .red {
   color: #e06c75;
 }
 
-code .purple {
+code .purple, .code-tag .purple {
   color: #c678dd;
 }
 
-code .cyan {
+code .cyan, .code-tag .cyan {
   color: #56b6c2;
 }
 
-code .text-yellow {
+code .text-yellow, .code-tag .text-yellow {
   color: #e5d58e;
 }
 
-code .text-orange {
+code .text-orange, .code-tag .text-orange {
   color: #e5c07b;
 }
 
-code .function {
+code .function, .code-tag .function {
   color: #61afef;
 }
 
-code .symbol {
+code .symbol, .code-tag .symbol {
   color: #abb2bf;
 }
 
-code .operator {
+code .operator, .code-tag .operator {
   color: #abb2bf;
 }
 
-code .comment {
+code .comment, .code-tag .comment {
   color: #828997;
 }
 
-code .comment span, code .comment mark {
+code .comment span, code .comment mark, .code-tag .comment span, .code-tag .comment mark {
   color: inherit;
 }
 
-code .string {
+code .string, .code-tag .string {
   color: #98c379;
 }
 
-code .string span, code .string mark {
+code .string span, code .string mark, .code-tag .string span, .code-tag .string mark {
   color: inherit;
 }
 
-code span.keyword, code mark.keyword {
+code span.keyword, code mark.keyword, .code-tag span.keyword, .code-tag mark.keyword {
   color: #c678dd !important;
 }
 

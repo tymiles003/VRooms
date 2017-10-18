@@ -78,8 +78,6 @@ const routes = (
 
             <Route path="/editshowcase" component={EditShowcase} />
             
-						<Route path="/presentation" component={AframePresentation}/>
-
 
 						{/* Room Routes */}
             <Route path="/annotate/:roomID" component={AnnotationPage} />
@@ -93,8 +91,11 @@ const routes = (
 						<Redirect from="/demo" to="/show/59e1b4ce41f8990012a65cba"/>
 
 						<Route path="/latest" component={LatestRoom} />
-						<Route path="/iframe" component={GenerateIframe} />
 						
+						<Route path="/iframe" component={GenerateIframe} />
+
+						<Redirect from="/presentation" to="https://prezi.com/p/7tzxtxja27ee/"/>
+
 
         </Switch>
     </BrowserRouter>

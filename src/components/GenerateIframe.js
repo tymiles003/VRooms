@@ -21,18 +21,13 @@ class GenerateIframe extends Component {
 	};
 
 	render() {
-		const iframeHTML =
-			`<iframe id="vrooms-iframe"
-	style="height: 90vh; width: 90vw; display: none; visibility: hidden; z-index:-9999" 
-	src="http://www.vrooms.us/show/` +
-			this.state.roomID +
-			`"
-	allowfullscreen="yes"
-	allowvr="yes"
-/>`;
+		let iframeHTML = `<iframe src="http://www.vrooms.us/show/${this.state.roomID}" style="height:100vh; width:100vw; display:none; position:fixed; top:0; left:0; zIndex:2147483646" allowfullscreen="yes" allowvr="yes" crossorigin="true"></iframe>`;
 
 		return (
-			<div>
+			<main className="expand-and-center">
+				<h2 style={{ textAlign: 'center' }}>
+					Embed a VRoom
+				</h2>
 				<form className="ws-form">
 					<div className="input-wrap">
 						<input
@@ -47,17 +42,26 @@ class GenerateIframe extends Component {
 					</div>
 				</form>
 				
-				<section className="ws-hero">
-					<ExternalRoomViewer/>
-				</section>
 				<section className="ws-code-section">
-					<div class="code-wrap">
-						<pre>
-							<code>{iframeHTML}</code>
-						</pre>
+					<div className="code-wrap">
+						<div className="pre-tag">
+							<div className="code-tag">
+								{'<iframe'}
+								<span className="text-orange"> 
+								{' src'}
+								</span>
+								{'='}
+								<span className="green">
+									{'"http://www.vrooms.us/show/'+ this.state.roomID +'" '}
+								</span>
+								{'style="height: 100vh; width: 100vw; position:fixed; top:0; left:0;" frameborder="0" allowfullscreen="yes" allowvr="yes" crossorigin="true">'}
+								{'</iframe>'}
+							</div>
+						</div>
+						
 					</div>
 				</section>
-			</div>
+			</main>
 		);
 	} 
 }
