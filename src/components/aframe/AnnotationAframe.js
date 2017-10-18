@@ -123,6 +123,13 @@ class AnnotationAframe extends React.Component {
 		// 	})
 		// }
 	//--------------------------------------------------
+	// Mobile Raycaster Ticking
+	if (nextProps.inCreationMode && this.state.isMobile){
+		// let limit = 1000;
+		// let func = this.getPosition();
+		// this.fetchPosition();
+	}
+	//--------------------------------------------------
 
 	};
 // handleLoad ======================================
@@ -156,7 +163,7 @@ class AnnotationAframe extends React.Component {
 			annotations: this.props.annotations
 		});
 
-		// this.detectEnvironment();
+		this.detectEnvironment();
 
 	};
 // detectEnvironment ===============================
@@ -168,8 +175,27 @@ class AnnotationAframe extends React.Component {
 			console.log('isMobile',isMobile());
 			this.setState({ isMobile: true })
 		}
+		else {
+			console.log('isMobile', false);
+		}
+		// let environment = {
+		// 	isMobile: isMobile(),
+		// 	isIOS: isIOS(),
+		// 	isIframed: isIframed(),
+		// 	isGearVR: isGearVR(),
+		// }
+		// console.log('environment',environment);
+
+		// this.setState(environment);
+
+
 	}
 
+// fetchPosition ===================================
+	fetchPosition = () => {
+		let el = document.getElementById('new-annotation');
+		el.emit('click');
+	}
 // getPosition =====================================
 	getPosition = event => {
 		event.preventDefault();
@@ -190,6 +216,10 @@ class AnnotationAframe extends React.Component {
 
 			// Remove event so it only fires once. (or else it would fire constantly)
 			event.target.removeEventListener( "raycaster-intersected", this.handleRay );
+			
+			// if(this.state.isMobile && this.state.inCreationMode){
+			// 	setTimeout(event.target.addEventListener( "raycaster-intersected", this.handleRay ),1000);
+			// }
 
 			let posState = {
 				xAxis: x,
