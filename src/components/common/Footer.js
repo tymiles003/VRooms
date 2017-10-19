@@ -50,7 +50,7 @@ class Footer extends Component {
           Made with love by <a target="_blank" href="https://github.com/novialim">Novia Lim</a>&nbsp;|&nbsp; 
           <a target="_blank" href="https://github.com/wayncheng">Wayne Cheng</a>&nbsp;|&nbsp; 
           <a target="_blank" href="https://github.com/jhuynh85">Joseph Huynh</a>&nbsp;|&nbsp; 
-          <a target="_blank" href="https://github.com/aqupriyanka">Priyaka Arora</a>
+          <a target="_blank" href="https://github.com/aqupriyanka">Priyanka Arora</a>
         </div>
       </div>
     </footer>        
