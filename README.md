@@ -65,7 +65,6 @@ VRooms allows you to create your VR app by using 360 images or videos without co
 * Created A-Frame environment used in all rooms.
 * Designed and developed annotation creation system within A-Frame.
 * In-depth research of A-Frame's core technology and related applications.
-* 
 
 - - -
 
